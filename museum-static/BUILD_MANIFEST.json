@@ -84,8 +84,9 @@
     "layout_template_source": "public phpBB2 subSilver index_body.tpl, viewforum_body.tpl, viewtopic_body.tpl, overall_header.tpl, overall_footer.tpl mirror",
     "layout_restoration": "forum Last Post; forum-topic Author/Last Post; Author/Message thread header; previous/next topic navigation; phpBB-style breadcrumbs",
     "subsilver_nav_icon_scope": "Forum Index, Search, Memberlist, FAQ/About only; shown only in subSilver",
-    "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic"
+    "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
+    "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.4-wordpress-recovery",
+  "build_version": "v3.5-thread-author-visibility",
   "build_date": "2026-09-23"
 }
