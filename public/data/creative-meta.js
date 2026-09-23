@@ -22,5 +22,17 @@ window.IDP_CREATIVE_META = {
     uncertain: 'Uncertain'
   },
   works: {},
-  seeds: []
+  seeds: [
+    {
+      id: 'seed-2026-09-23-insects-are-best',
+      title: 'Untitled seed — Insects are best',
+      text: "Insects are best, never view them as a pest\nJust do your best to give respect and let them settle where they've felt",
+      status: 'seed',
+      provenance: 'brandon',
+      confidence: 'confirmed',
+      source: 'ChatGPT conversation · user-supplied',
+      date: '2026-09-23',
+      notes: 'Preserved exactly as supplied; no AI continuation or editing included.'
+    }
+  ]
 };
