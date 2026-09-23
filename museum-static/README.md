@@ -65,6 +65,12 @@ Upload this entire folder as-is to a static host. The GitHub repository includes
 - reclamation workflow for former members
 - subSilver, skyLineGrey, Helius, and modern museum skins
 
+## Reader Impact evidence
+
+The museum includes a privacy-safe **Reader Impact** exhibit built from 16 surviving historical correspondence and public-interaction records spanning 2005–2015. The records document individual experiences including long-term readership, emotional support, classroom use, teaching, adaptations, and rediscovery. Private correspondence is represented only through anonymized paraphrase; raw messages, names, email addresses, IP addresses, and Gmail identifiers are not shipped in the public site.
+
+These records are qualitative historical evidence and are **not** used as a numerical estimate of total audience size.
+
 ## Privacy
 
 This site does **not** contain historical email addresses, IP addresses, passwords, password hashes, or private-message bodies. Do not replace its sanitized data files with exports from the raw SQL dumps.
