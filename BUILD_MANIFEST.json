@@ -17,7 +17,8 @@
     "museum-config.js",
     "data/core.js",
     "data/posts.js",
-    "data/poetry.js"
+    "data/poetry.js",
+    "data/creative-meta.js"
   ],
   "interface_reconstruction": {
     "engine": "phpBB 2.0.6",
@@ -29,5 +30,11 @@
     "default_style": "subSilver",
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
+  },
+  "archive_version": "3.10",
+  "creative_archive": {
+    "seeds_section": true,
+    "provenance_metadata": true,
+    "provenance_policy": "No automatic authorship or Seed classification without supporting source evidence."
   }
 }
