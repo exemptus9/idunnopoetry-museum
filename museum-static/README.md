@@ -75,7 +75,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.5 Social Preview**, September 23, 2026.
+Current museum line: **v3.9**, September 23, 2026.
 
 ### Version visibility
 
