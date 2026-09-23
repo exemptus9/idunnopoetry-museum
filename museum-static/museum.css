@@ -131,3 +131,6 @@ body.skin-subsilver .classic-box-title{background:#D1D7DC url("assets/subsilver/
 .icon-key-row{display:grid;grid-template-columns:1fr;gap:4px}.icon-key-row span{display:flex;align-items:center;gap:7px}.icon-key-row img{width:46px;height:25px;image-rendering:auto}
 .classic-key-note{padding:0 7px 7px;font-size:9px;color:#666}
 @media(max-width:760px){.classic-index-footer{grid-template-columns:1fr}}
+
+/* published creative media */
+.published-media{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0}.media-preview{margin:0;padding:8px;border:1px solid var(--border);background:#fff}.media-preview img,.media-preview video{display:block;max-width:100%;height:auto;margin:0 auto}.media-preview audio{display:block;width:100%;margin-top:6px}.media-preview figcaption{font-size:9px;color:var(--muted);margin-top:5px;text-align:center}
