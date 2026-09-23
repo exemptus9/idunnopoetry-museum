@@ -1,3 +1,17 @@
+# IDunnoPoetry Messageboard Museum
+
+**Current public museum release: v3.5 · Social Preview · September 23, 2026**
+
+Public site: https://exemptus9.github.io/idunnopoetry-museum/
+
+The deployable museum lives in `museum-static/`. It reconstructs the surviving IDunnoPoetry forum and poetry archive while excluding private-message bodies, credentials, historical email addresses, and IP addresses.
+
+## IDunnoPoetry Museum release
+
+Version metadata is centralized in `museum-static/museum-config.js` and mirrored in the public header, footer, About view, social metadata, and `museum-static/VERSION.txt`.
+
+---
+
 # Welcome to your Lovable project
 
 This project was built with [Lovable](https://lovable.dev).
