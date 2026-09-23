@@ -16,6 +16,10 @@ button,input,select{font:inherit}
 .brand-title{display:block;font-family:"Trebuchet MS",Verdana,Arial,sans-serif;font-weight:bold;font-size:28px;line-height:1;color:#000;text-shadow:0 1px 0 #fff}
 .brand-tagline{display:block;color:#555;font-size:10px;margin-top:4px}
 .museum-label{display:block;color:var(--blue);font-weight:bold;font-size:10px;margin-top:5px;letter-spacing:.02em}
+.site-version-badge{display:inline-block;margin-left:5px;padding:2px 6px;border:1px solid var(--blue);background:#fff;color:var(--blue);font-weight:bold;font-size:9px;line-height:1.2;letter-spacing:.04em;vertical-align:1px;white-space:nowrap}
+.footer-version{margin-left:3px;font-size:8px}
+.version-panel{margin:8px 0;padding:8px 10px;border:2px solid var(--blue);background:#EEF4F7;font-weight:bold}
+.version-panel .version-number{font-size:16px;color:var(--blue);margin-right:6px}
 .skin-control{white-space:nowrap;text-align:right;color:#444}.skin-control>div+div{margin-top:4px}.skin-control label{font-weight:bold;margin-right:5px}.skin-control select{border:1px solid var(--border);background:#fff;padding:3px 4px;color:#222}.text-display-control{font-size:9px}
 .board-nav{border-top:1px solid var(--row3);padding:6px 4px;text-align:right;line-height:20px}
 .board-nav a{font-weight:bold;text-decoration:none;margin-left:12px;font-size:10px}.board-nav a:before{content:"• ";color:var(--hover)}.mini-nav-icon{display:none;width:auto;height:13px;vertical-align:-3px;margin-right:3px}.skin-subsilver .board-nav a.has-authentic-icon:before{content:none}.skin-subsilver .mini-nav-icon{display:inline-block}
