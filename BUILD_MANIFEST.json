@@ -1,0 +1,33 @@
+{
+  "generated_from": "idp_public_recovery.sqlite + sanitized CSVs",
+  "counts": {
+    "users": 1403,
+    "posts": 23957,
+    "topics": 1528,
+    "forums": 60,
+    "works": 673,
+    "member_counter_sum": 108040,
+    "max_post_id": 126405,
+    "poetry_comments": 1327
+  },
+  "files": [
+    "index.html",
+    "museum.css",
+    "museum.js",
+    "museum-config.js",
+    "data/core.js",
+    "data/posts.js",
+    "data/poetry.js"
+  ],
+  "interface_reconstruction": {
+    "engine": "phpBB 2.0.6",
+    "historical_styles": [
+      "subSilver",
+      "skyLineGrey",
+      "Helius"
+    ],
+    "default_style": "subSilver",
+    "modern_skin_available": true,
+    "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
+  }
+}
