@@ -13,5 +13,6 @@ window.IDP_VERSION_HISTORY={
     {time:"19:26–19:32",title:"Thread authorship restored",detail:"Topic lists, search, and topic views gained preserved thread-starter attribution from recovered phpBB data."},
     {time:"20:08–20:13",title:"v3.9 identity and sharing layer",detail:"Visible version markers, machine-readable version metadata, canonical social metadata, and the dedicated 1200×630 preview image were added."},
     {time:"20:21–20:23",title:"Reader Impact evidence added",detail:"Sixteen anonymized historical reader-impact records were added with a dedicated exhibit and explicit privacy methodology."}
+    ,{time:"20:29–20:32",title:"Media lineage indexed",detail:"The Master Creative Archive supplied 136 linked creative assets across 51 works (93 video, 42 audio, 1 image; about 3.58 GB). Private Drive IDs were stripped from the public catalog, poem-level media lineage was added, and the first curated image asset was published."}
   ]
 };
