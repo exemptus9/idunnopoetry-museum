@@ -65,6 +65,23 @@ Upload this entire folder as-is to a static host. The GitHub repository includes
 - reclamation workflow for former members
 - subSilver, skyLineGrey, Helius, and modern museum skins
 
+## Creative media lineage
+
+The public museum now includes a sanitized media catalog generated from the **Master Creative Archive — Brandon WordSmith** Assets tab:
+
+- **136 cataloged creative media assets**
+- **51 canonical works with linked media**
+- **93 videos**
+- **42 audio files**
+- **1 image**
+- approximately **3.58 GB** of source media
+- **6 duplicate candidates** flagged for review
+- source collections: Poemz2Musick, SunoV4 Poemusic, AI Poem Vidz, and Spoken Poetry
+
+Private Google Drive IDs and direct private-storage links are excluded from the public museum. Media records are attached to matching poem pages by normalized canonical title. Files become directly viewable/playable only when deliberately published.
+
+The first deliberately published asset is the **I Love You More** lyric image; the remaining large audio/video collection still lives in the private master archive pending a suitable public media host.
+
 ## Reader Impact evidence
 
 The museum includes a privacy-safe **Reader Impact** exhibit built from 16 surviving historical correspondence and public-interaction records spanning 2005–2015. The records document individual experiences including long-term readership, emotional support, classroom use, teaching, adaptations, and rediscovery. Private correspondence is represented only through anonymized paraphrase; raw messages, names, email addresses, IP addresses, and Gmail identifiers are not shipped in the public site.
