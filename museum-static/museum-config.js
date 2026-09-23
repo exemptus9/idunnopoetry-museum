@@ -1,1 +1,1 @@
-window.IDP_CONFIG={version:'3.9',releaseDate:'2026-09-23',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic'};
+window.IDP_CONFIG={version:'3.9',releaseDate:'2026-09-23',mediaBaseUrl:'',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic'};
