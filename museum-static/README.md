@@ -70,7 +70,7 @@ Upload this entire folder as-is to a static host. The GitHub repository includes
 The public museum now includes a sanitized media catalog generated from the **Master Creative Archive — Brandon WordSmith** Assets tab:
 
 - **136 cataloged creative media assets**
-- **51 canonical works with linked media**
+- **50 reconciled canonical works with linked media**
 - **93 videos**
 - **42 audio files**
 - **1 image**
