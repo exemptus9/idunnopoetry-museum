@@ -45,6 +45,7 @@ function Museum() {
       await loadScript("/data/core.js");
       await loadScript(postsAsset.url);
       await loadScript("/data/poetry.js");
+      await loadScript("/data/creative-meta.js");
       await loadScript("/museum.js");
     })().catch((e) => console.error(e));
   }, []);
@@ -60,7 +61,7 @@ function Museum() {
               Submit teen poetry, poems, advice from poets, depression help, teen guy, etc.
             </span>
             <span className="museum-label">
-              Messageboard Museum · reconstructed public archive
+              Messageboard Museum · v3.10 · reconstructed public archive
             </span>
           </a>
           <div className="skin-control">
@@ -78,6 +79,7 @@ function Museum() {
           <a href="#search">Search</a>
           <a href="#people">Memberlist</a>
           <a href="#poetry">Poetry</a>
+          <a href="#seeds">Seeds</a>
           <a href="#timeline">Timeline</a>
           <a href="#exhibits">Exhibits</a>
           <a href="#reclaim">Reclaim</a>
