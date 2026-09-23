@@ -1,6 +1,6 @@
 # IDunnoPoetry Messageboard Museum
 
-**Current public museum release: v3.5 · Social Preview · September 23, 2026**
+**Current public museum release: v3.9 · September 23, 2026**
 
 Public site: https://exemptus9.github.io/idunnopoetry-museum/
 
