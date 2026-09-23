@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>I Dunno Poetry :: Messageboard Museum</title>
+  <meta name="description" content="A reconstructed, privacy-conscious museum of the IDunnoPoetry messageboard and poetry community.">
+  <meta property="og:title" content="I Dunno Poetry :: Messageboard Museum">
+  <meta property="og:description" content="Browse the reconstructed phpBB 2.0.6 forum, 23,957 surviving public posts, recovered poetry, exhibits and the reclamation workflow.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./public/museum.css">
+</head>
+<body class="skin-subsilver">
+<div class="phpbb-page">
+  <a id="top"></a>
+  <header class="board-header">
+    <div class="brand-row">
+      <a class="brand" href="#home" aria-label="I Dunno Poetry forum index">
+        <span class="brand-title">I Dunno Poetry</span>
+        <span class="brand-tagline">Submit teen poetry, poems, advice from poets, depression help, teen guy, etc.</span>
+        <span class="museum-label">Messageboard Museum · reconstructed public archive</span>
+      </a>
+      <div class="skin-control">
+        <label for="skinSelect">Board style:</label>
+        <select id="skinSelect" aria-label="Choose historical board style">
+          <option value="subsilver">subSilver (default)</option>
+          <option value="skyline">skyLineGrey</option>
+          <option value="helius">Helius</option>
+          <option value="museum">Museum modern</option>
+        </select>
+      </div>
+    </div>
+    <nav class="board-nav" aria-label="Museum navigation">
+      <a href="#forums">Forum Index</a>
+      <a href="#search">Search</a>
+      <a href="#people">Memberlist</a>
+      <a href="#poetry">Poetry</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#exhibits">Exhibits</a>
+      <a href="#reclaim">Reclaim</a>
+      <a href="#about">FAQ / About</a>
+    </nav>
+  </header>
+  <div id="notice" class="notice">
+    <strong>Archive content notice:</strong> historical public posts may discuss self-harm, abuse, drugs, sexuality, and other difficult subjects.
+    <button id="dismissNotice">Dismiss</button>
+  </div>
+  <main id="app" tabindex="-1"></main>
+  <footer>
+    <div><strong>I Dunno Poetry :: Messageboard Museum</strong><br>Historical interface reconstructed from the surviving phpBB 2.0.6 database and sanitized public archive.</div>
+    <div>Public archive only. No private messages, email addresses, IP addresses, credentials, or password material.</div>
+  </footer>
+</div>
+<script src="./public/museum-config.js"></script>
+<script src="./public/data/core.js"></script>
+<script src="https://idunnopoetry-museum.lovable.app/__l5e/assets-v1/09de9389-4699-4d56-b8e2-f3ae271e9c5a/posts.js"></script>
+<script src="./public/data/poetry.js"></script>
+<script src="./public/museum.js"></script>
+</body>
+</html>
