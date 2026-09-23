@@ -1,0 +1,42 @@
+name: Deploy IDunnoPoetry Museum
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download museum package
+        run: |
+          curl -fL --retry 3 'https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-25f0-822f-b8cc-d040e6dfad53/raw?se=2026-09-23T12%3A27%3A21Z&sp=r&sv=2026-02-06&sr=b&scid=ddf28229-5652-5cbb-8568-4a7d7a3a4e16&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T09%3A13%3A43Z&ske=2026-09-24T09%3A13%3A43Z&sks=b&skv=2026-02-06&sig=aezSnRGSkVrOvj0OZTHTJOLHmhP9v5%2BolEA0jeFut/M%3D' -o museum.zip
+          mkdir -p _site
+          unzip -q museum.zip -d unpacked
+          cp -a unpacked/IDP_Messageboard_Museum/. _site/
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
