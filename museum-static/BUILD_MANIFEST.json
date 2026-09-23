@@ -1,0 +1,69 @@
+{
+  "generated_from": "idp_public_recovery.sqlite + sanitized CSVs",
+  "counts": {
+    "users": 1403,
+    "posts": 23957,
+    "topics": 1528,
+    "forums": 60,
+    "works": 673,
+    "member_counter_sum": 108040,
+    "max_post_id": 126405,
+    "poetry_comments": 1327
+  },
+  "files": [
+    "index.html",
+    "museum.css",
+    "museum.js",
+    "museum-config.js",
+    "data/core.js",
+    "data/posts.js",
+    "data/poetry.js",
+    "ASSET_PROVENANCE.md",
+    "assets/subsilver/cellpic1.gif",
+    "assets/subsilver/cellpic2.jpg",
+    "assets/subsilver/cellpic3.gif",
+    "assets/subsilver/folder_big.gif",
+    "assets/subsilver/folder.gif",
+    "assets/subsilver/icon_minipost.gif",
+    "assets/subsilver/folder_new_big.gif",
+    "assets/subsilver/folder_locked_big.gif",
+    "assets/subsilver/icon_latest_reply.gif",
+    "assets/subsilver/icon_mini_house.gif",
+    "assets/subsilver/icon_mini_search.gif",
+    "assets/subsilver/icon_mini_members.gif",
+    "assets/subsilver/icon_mini_faq.gif"
+  ],
+  "interface_reconstruction": {
+    "engine": "phpBB 2.0.6",
+    "historical_styles": [
+      "subSilver",
+      "skyLineGrey",
+      "Helius"
+    ],
+    "default_style": "subSilver",
+    "modern_skin_available": true,
+    "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts",
+    "topics_per_page": 20,
+    "posts_per_page": 20,
+    "pagination_basis": "Both surviving phpbb_config snapshots",
+    "archival_theme_sources": [
+      "SourceForge phpBB OldFiles: phpBB-2.0.6.zip",
+      "SourceForge ThaiNuke Themes Pack: Pack-Helius6.5+Thai.zip (2004)",
+      "SourceForge ThaiNuke Themes Pack: Pack-skylinegrey6.5+Thai.zip (2004)"
+    ],
+    "exact_graphics_status": "Core subSilver gradient/folder/minipost assets restored from a public phpBB2 source mirror; Helius and skyLineGrey binary assets remain pending exact-pack ingestion.",
+    "reversible_text_display": true,
+    "text_display_default": "original recovered text",
+    "text_repair_scope": "Display-time substitution of common mojibake only; source data unchanged.",
+    "subsilver_binary_source": "https://github.com/phpbb2premods/arkamod/tree/master/templates/subSilver/images",
+    "subsilver_binary_provenance_file": "ASSET_PROVENANCE.md",
+    "official_phpbb_2_0_6_listing": "https://sourceforge.net/projects/phpbb/files/OldFiles/",
+    "subsilver_asset_restoration": "category/header gradients; forum/topic folder icons; mini-post marker; mini navigation icons; latest-reply arrow; phpBB2-style forum index statistics and historical icon key",
+    "layout_template_source": "public phpBB2 subSilver index_body.tpl, viewforum_body.tpl, viewtopic_body.tpl, overall_header.tpl, overall_footer.tpl mirror",
+    "layout_restoration": "forum Last Post; forum-topic Author/Last Post; Author/Message thread header; previous/next topic navigation; phpBB-style breadcrumbs",
+    "subsilver_nav_icon_scope": "Forum Index, Search, Memberlist, FAQ/About only; shown only in subSilver",
+    "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic"
+  },
+  "build_version": "v3.3-subSilver-navigation-fidelity",
+  "build_date": "2026-09-23"
+}

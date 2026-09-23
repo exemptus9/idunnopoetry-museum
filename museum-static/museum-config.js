@@ -1,0 +1,1 @@
+window.IDP_CONFIG={archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic'};
