@@ -75,4 +75,12 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.4 WordPress recovery**, September 23, 2026.
+Current museum line: **v3.5 Social Preview**, September 23, 2026.
+
+### Version visibility
+
+The current version is displayed in the public museum header, footer, About view, page metadata, and `VERSION.txt`. Version metadata is centralized in `museum-config.js`.
+
+### Link preview
+
+The canonical public URL includes Open Graph and Twitter large-card metadata with a dedicated 1200×630 PNG preview styled after the recovered phpBB/subSilver museum interface.
