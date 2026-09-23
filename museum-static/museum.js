@@ -101,15 +101,14 @@ function readerImpact(){
  const applied=entries.filter(e=>e.category==='education'||e.category==='adaptation').length;
  const privateCount=entries.filter(e=>!e.public).length;
  const label=x=>String(x||'reader evidence').replaceAll('_',' ');
- return \`\${pageTitle('Independent contemporary evidence','Reader Impact','Privacy-safe summaries of surviving correspondence and public interaction records showing how people used, remembered, and responded to IDunnoPoetry.')}
+ return `${pageTitle('Independent contemporary evidence','Reader Impact','Privacy-safe summaries of surviving correspondence and public interaction records showing how people used, remembered, and responded to IDunnoPoetry.')}
  <div class="callout"><strong>Evidence standard:</strong> these records document individual experiences; they do <em>not</em> establish a total audience size. Private correspondence is anonymized and paraphrased. Raw emails, addresses, IPs, and message identifiers are not published here.</div>
- <div class="stats">\${stat(entries.length,'documented impact records')}\${stat('2005','earliest surviving correspondence')}\${stat(longTerm,'long-term readership records')}\${stat(applied,'education / adaptation records')}</div>
+ <div class="stats">${stat(entries.length,'documented impact records')}${stat('2005','earliest surviving correspondence')}${stat(longTerm,'long-term readership records')}${stat(applied,'education / adaptation records')}</div>
  <div class="panel"><h2>What the correspondence adds</h2><p>The forum database can show posts, users, and poems. Correspondence shows what happened beyond those tables: readers returning after years, people using poems in school and teaching, song and social-media adaptations, and readers describing the writing as a source of identification or support.</p><p>Two especially strong chronology clues are independent: a March 2006 correspondent said they had followed the poetry for about four years, implying readership around 2002; a March 2015 correspondent said they first discovered IDunnoPoetry in 2003 and rediscovered it nearly twelve years later.</p></div>
- \${sectionHead('Surviving reader evidence',\`\${entries.length} privacy-safe records • \${privateCount} derived from private correspondence\`)}
- <div class="grid">\${entries.map(e=>\`<article class="card impact-card"><div><span class="pill gold">\${esc(e.date.slice(0,4))}</span><span class="pill">\${esc(label(e.category))}</span></div><h3>\${esc(e.related_work||'IDunnoPoetry')}</h3><p>\${esc(e.summary)}</p><div class="source-note"><strong>Source class:</strong> \${esc(e.channel)} • \${e.public?'public interaction':'private correspondence, paraphrased'}</div></article>\`).join('')}</div>
- <div class="source-note"><strong>Methodology:</strong> \${esc(R.methodology||'Private correspondence is summarized without publishing identifying information or raw message text.')}</div>\`
+ ${sectionHead('Surviving reader evidence',`${entries.length} privacy-safe records • ${privateCount} derived from private correspondence`)}
+ <div class="grid">${entries.map(e=>`<article class="card impact-card"><div><span class="pill gold">${esc(e.date.slice(0,4))}</span><span class="pill">${esc(label(e.category))}</span></div><h3>${esc(e.related_work||'IDunnoPoetry')}</h3><p>${esc(e.summary)}</p><div class="source-note"><strong>Source class:</strong> ${esc(e.channel)} • ${e.public?'public interaction':'private correspondence, paraphrased'}</div></article>`).join('')}</div>
+ <div class="source-note"><strong>Methodology:</strong> ${esc(R.methodology||'Private correspondence is summarized without publishing identifying information or raw message text.')}</div>`
 }
-
 function exhibits(){
  const s=C.meta.stats;const positive=C.evidence.filter(e=>String(e.category).toLowerCase()!=='counterevidence').slice(0,5);const counter=C.evidence.find(e=>String(e.category).toLowerCase()==='counterevidence');
  return `${pageTitle('Guided history','Museum Exhibits','Curated paths through the recovered record. Verified database evidence, archival inference, and creator recollection remain explicitly separate.')}
