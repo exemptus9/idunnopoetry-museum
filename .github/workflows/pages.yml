@@ -1,0 +1,53 @@
+name: Deploy museum to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Assemble static museum
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/data
+          cp site/index.html _site/index.html
+          cp public/museum.css _site/museum.css
+          cp public/museum.js _site/museum.js
+          cp public/museum-config.js _site/museum-config.js
+          cp public/data/core.js _site/data/core.js
+          cp public/data/poetry.js _site/data/poetry.js
+          cp public/robots.txt _site/robots.txt
+          touch _site/.nojekyll
+          curl --fail --location --retry 3             "https://idunnopoetry-museum.lovable.app/__l5e/assets-v1/09de9389-4699-4d56-b8e2-f3ae271e9c5a/posts.js"             --output _site/data/posts.js
+          test -s _site/data/posts.js
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
