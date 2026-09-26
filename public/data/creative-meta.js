@@ -129,6 +129,20 @@ window.IDP_CREATIVE_META = {
       "evidence": "Brandon's 2021 email titled 'Couple of my writings' links the 2016 IDunnoPoetry publication and reproduces the full poem.",
       "notes": "Resolves two September-audit entries: the main work and the later-posted “& in a manic panic…” excerpt.",
       "public": true
+    },
+    {
+      "id": "if-only-brandon-core",
+      "title": "If only — original core",
+      "text": "I \"only\" come to you when I want something\nYou \"only\" come to me when I'm wrong\nI \"only\" want us to be happy\nYou \"only\" wish we'd get along\n\nI \"only\" wish we weren't divided\nIf \"only\" we weren't so alone\nIf everything \"only\" weren't seperate\nIf \"only\" we weren't \"on our own\"\n\nYou \"only\" want me to be stable\nTo take my own steps and not fall\nBut where is the parent that cherished\nChance to lift me so I can stand tall?\n\nI'm out on my own and I'm grown now\nBut I'm still oh-so-very much small\nIf \"only\" you would really know me\nIf only, if only, if only.....",
+      "status": "finished",
+      "provenance": "brandon",
+      "confidence": "confirmed",
+      "source": "public Threads/posting archive + prior ChatGPT creation history",
+      "date": "2025-03-20",
+      "relationship": "Original Brandon core; later GPT-expanded song version kept as a separate private lineage record.",
+      "evidence": "Brandon supplied this core text first in prior ChatGPT history; ChatGPT later added chorus/bridge/extra arrangement material.",
+      "notes": "Authorship is resolved; whether the core itself predates its 2025 public posting remains unresolved.",
+      "public": true
     }
   ],
   "reviewQueue": [],
@@ -233,6 +247,18 @@ window.IDP_CREATIVE_META = {
       "evidence": "The line appears in the 2016 Seed notebook and was publicly reused as a long-standing tagline/slogan by 2024-2025.",
       "notes": "Graduated from Seed fragment into a recurring public identity/tagline.",
       "public": true
+    },
+    {
+      "id": "seed-clarity-read-mind-graduated",
+      "title": "You get upset when I ask for clarity",
+      "text": "You get upset when I ask for clarity,\nbecause you insist I should already understand.\n\nThen when I act like I understand,\nyou get upset\nbecause I misunderstood.\n\nSo what you really want\nis for me to read your mind\nand apologize\nwhen I fail.",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "probable",
+      "source": "2016 private Seed notebook → 2026 public post",
+      "evidence": "A closely matching prose seed appears in Brandon's 2016 Seed notebook; a polished descendant was publicly posted on 2026-07-06.",
+      "notes": "Public record preserves the later-posted version; the private source notebook remains unpublished.",
+      "public": true
     }
   ],
   "sourceRules": {
@@ -335,18 +361,30 @@ window.IDP_CREATIVE_META = {
     "resolvedOrRetiredSinceAudit": 7,
     "unresolvedRemaining": 4,
     "remainingTitles": [
-      "I \"only\" come to you when I want something",
-      "I wish that I could lunge",
-      "A thousand sunsets shape your facial features",
-      "There's so much I wish to tell you"
+      {
+        "title": "I \"only\" come to you when I want something",
+        "status": "Brandon authorship confirmed; composition era unresolved"
+      },
+      {
+        "title": "I wish that I could lunge",
+        "status": "authorship/origin unresolved"
+      },
+      {
+        "title": "A thousand sunsets shape your facial features",
+        "status": "authorship/origin unresolved"
+      },
+      {
+        "title": "There's so much I wish to tell you",
+        "status": "authorship/origin unresolved"
+      }
     ],
     "resolutions": [
       {
-        "title": "Fractured Time",
-        "result": "AI-generated from Brandon prompt",
-        "provenance": "prompted",
+        "title": "I \"only\" come to you when I want something",
+        "result": "Brandon-authored core; composition era still unresolved",
+        "provenance": "brandon",
         "confidence": "confirmed",
-        "evidence": "Prior ChatGPT creation history shows ChatGPT generated it as a new poem on 2025-02-05 and then expanded it at Brandon's request."
+        "evidence": "Prior ChatGPT history shows Brandon supplied the original lyric/poem first; ChatGPT later expanded it into a song arrangement."
       },
       {
         "title": "Kicking Beehives",
@@ -390,6 +428,9 @@ window.IDP_CREATIVE_META = {
         "confidence": "probable",
         "evidence": "The fragment appears in a private 2016 Seed notebook and was later publicly posted in 2026."
       }
-    ]
+    ],
+    "fullyResolvedOrRetired": 7,
+    "authorshipResolvedChronologyOpen": 1,
+    "authorshipUnresolved": 3
   }
 };
