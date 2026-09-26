@@ -81,6 +81,8 @@ function Museum() {
           <a href="#poetry">Poetry</a>
           <a href="#seeds">Seeds</a>
           <a href="#provenance">Provenance</a>
+          <a href="#documents">Documents / Prose</a>
+          <a href="#verify">Verify</a>
           <a href="#timeline">Timeline</a>
           <a href="#exhibits">Exhibits</a>
           <a href="#reclaim">Reclaim</a>
