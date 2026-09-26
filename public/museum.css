@@ -113,3 +113,7 @@ body.skin-museum{--body:#f7f4ed;--paper:#fffdf9;--row1:#fffdf9;--row2:#edf1f3;--
   .verify-values{justify-content:flex-start;margin-top:8px}
   .verify-control{grid-template-columns:1fr}
 }
+
+.seed-lineage{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:8px;padding:6px 9px;border-left:3px solid currentColor;background:rgba(127,127,127,.08)}
+.seed-lineage .lineage-arrow{font-size:14px}
+.seed-lineage .small{opacity:.8}
