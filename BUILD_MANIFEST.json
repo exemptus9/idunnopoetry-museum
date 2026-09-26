@@ -31,7 +31,7 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.19",
+  "archive_version": "3.20",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -54,7 +54,7 @@
       "private_provenance_review_items": 4,
       "source_rules": 5,
       "audit_items": 105,
-      "audit_authorship_unresolved": 2,
+      "audit_authorship_unresolved": 1,
       "audit_authorship_resolved_chronology_open": 1,
       "dated_seed_lineages": 12
     },
@@ -72,6 +72,16 @@
     "seed_germination_timelines": true,
     "seed_sorting": true,
     "seed_detail_pages": true,
-    "seed_deep_links": true
+    "seed_deep_links": true,
+    "drive_continuity_ingestion": true,
+    "public_seed_count_is_verified_layer_only": true,
+    "continuity_corpus": {
+      "core_notebooks_scanned": 8,
+      "core_raw_blocks": 1271,
+      "core_exact_normalized_unique_blocks": 669,
+      "core_safe_exact_normalized_unique_blocks": 640,
+      "explicit_seed_safe_blocks_for_reconciliation": 175,
+      "caveat": "Source blocks are reconciliation units, not final works or Seed counts."
+    }
   }
 }
