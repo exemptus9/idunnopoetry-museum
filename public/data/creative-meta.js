@@ -1,6 +1,6 @@
 window.IDP_CREATIVE_META = {
   "schemaVersion": 2,
-  "archiveVersion": "3.19",
+  "archiveVersion": "3.20",
   "completion": {
     "seed": {
       "label": "Seed",
@@ -413,23 +413,34 @@ window.IDP_CREATIVE_META = {
     "note": "These are the audit's baseline categories, not a claim that later reconciliation cannot resolve individual cases.",
     "currentReconciliation": {
       "baselineUnresolved": 11,
-      "resolvedOrRetired": 8,
+      "resolvedOrRetired": 9,
       "authorshipResolvedChronologyOpen": 1,
-      "authorshipOriginUnresolved": 2,
-      "note": "Current reconciliation reflects additional source matching and prior-chat creation evidence after the original audit."
+      "authorshipOriginUnresolved": 1,
+      "note": "Drive ingestion of historical notebooks resolved “I wish that I could lunge” as old/recovered by at least 2015-03-21."
     }
   },
   "privateCreativeStats": {
     "privateSeedCandidates": 3,
     "privateSupplementalWorks": 9,
     "privateReviewItems": 4,
-    "note": "Private creative records are maintained outside the public site payload; counts only are exposed here."
+    "note": "Private creative records remain outside the public payload. The newly ingested Drive continuity corpus is represented publicly only by aggregate block statistics and already-public evidence."
   },
   "auditReconciliation": {
     "baselineUnresolved": 11,
-    "fullyResolvedOrRetired": 8,
+    "fullyResolvedOrRetired": 9,
     "authorshipResolvedChronologyOpen": 1,
-    "authorshipUnresolved": 2,
-    "note": "Two audit cases remain unresolved for authorship/origin after cross-source and prior-chat reconciliation."
+    "authorshipUnresolved": 1,
+    "note": "Only “A thousand sunsets shape your facial features” remains unresolved for authorship/origin among the original audit's unresolved set. “I wish that I could lunge” is present in poeming1.txt dated 2015-03-21."
+  },
+  "continuityCorpusStats": {
+    "coreNotebookSourcesScanned": 8,
+    "coreRawBlocks": 1271,
+    "coreExactNormalizedUniqueBlocks": 669,
+    "coreSafeExactNormalizedUniqueBlocks": 640,
+    "explicitSeedSourceFiles": 2,
+    "explicitSeedRawBlocks": 359,
+    "explicitSeedExactNormalizedUniqueBlocks": 202,
+    "explicitSeedSafeBlocksForReconciliation": 175,
+    "note": "These are source-note blocks, not a final count of poems or Seeds. Multi-stanza works can span several blocks; blocks can also be finished works, variants, story ideas, reference material, or AI-assisted expansions."
   }
 };
