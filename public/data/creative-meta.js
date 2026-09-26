@@ -145,6 +145,42 @@ window.IDP_CREATIVE_META = {
       "evidence": "The Threads introduction explicitly described SOULutions as an old unfinished piece of writing; the audit reconstructs a later two-part posted version.",
       "notes": "Original incomplete Seed text is not separately recovered here. This record preserves the documented unfinished origin and later completed/posting state without inventing the missing seed version.",
       "public": true
+    },
+    {
+      "id": "seed-my-eyes-reflection-graduated",
+      "title": "My eyes focus on my reflection.",
+      "text": "My eyes focus on my reflection.\n\nCracks spiderweb their way\nacross my face.\n\nI’m so ugly.\n\nMy eyes are closed\nbecause I can’t bear\nto see myself.\n\nI don’t want to see the thing\nI’ll never have.",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "probable",
+      "source": "2016 private Seed notebook → 2026 public post",
+      "evidence": "A materially matching fragment was preserved in Brandon's 2016 Seed notebook and later posted publicly on 2026-07-07.",
+      "notes": "Public page shows only the later-public text and lineage summary; the private notebook itself is not published.",
+      "public": true
+    },
+    {
+      "id": "seed-different-skin-graduated",
+      "title": "You want me to be all the things you’ve never been",
+      "text": "You want me to be all the things you’ve never been,\nbut I’m the same as you are\njust wearing different skin.",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "probable",
+      "source": "2016 private Seed notebook → 2026 public post",
+      "evidence": "The core line appears in Brandon's 2016 Seed notebook and was later publicly posted in revised form on 2026-07-06.",
+      "notes": "Shows a ten-year Seed-to-public-line evolution.",
+      "public": true
+    },
+    {
+      "id": "seed-write-for-survival-graduated",
+      "title": "I don’t fight for my survival; I write for it",
+      "text": "I don’t fight for my survival; I write for it.",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "strong",
+      "source": "2016 private Seed notebook → later public tagline",
+      "evidence": "The line appears in the 2016 Seed notebook and was publicly reused as a long-standing tagline/slogan by 2024-2025.",
+      "notes": "Graduated from Seed fragment into a recurring public identity/tagline.",
+      "public": true
     }
   ],
   "sourceRules": {
@@ -241,5 +277,67 @@ window.IDP_CREATIVE_META = {
     "privateSupplementalWorks": 9,
     "privateReviewItems": 4,
     "note": "Private creative records are maintained outside the public site payload; counts only are exposed here."
+  },
+  "auditReconciliation": {
+    "baselineUnresolved": 11,
+    "resolvedOrRetiredSinceAudit": 7,
+    "unresolvedRemaining": 4,
+    "remainingTitles": [
+      "I \"only\" come to you when I want something",
+      "I wish that I could lunge",
+      "A thousand sunsets shape your facial features",
+      "There's so much I wish to tell you"
+    ],
+    "resolutions": [
+      {
+        "title": "Fractured Time",
+        "result": "AI-generated from Brandon prompt",
+        "provenance": "prompted",
+        "confidence": "confirmed",
+        "evidence": "Prior ChatGPT creation history shows ChatGPT generated it as a new poem on 2025-02-05 and then expanded it at Brandon's request."
+      },
+      {
+        "title": "Kicking Beehives",
+        "result": "AI-generated from Brandon prompt/style request",
+        "provenance": "prompted",
+        "confidence": "confirmed",
+        "evidence": "Prior ChatGPT creation history records Brandon requesting the poem in his style and ChatGPT supplying the full text."
+      },
+      {
+        "title": "I was the myth… / The Hundredth Canary",
+        "result": "AI-generated from Brandon 100th-monkey/canary concept",
+        "provenance": "prompted",
+        "confidence": "confirmed",
+        "evidence": "Prior ChatGPT creation history on 2025-05-22 shows ChatGPT generated the poem after Brandon's concept/style request."
+      },
+      {
+        "title": "I came coded in feathers and fur… / Holding Pattern Transmission",
+        "result": "AI-generated from Brandon 100th-monkey/canary concept",
+        "provenance": "prompted",
+        "confidence": "confirmed",
+        "evidence": "Prior ChatGPT creation history on 2025-05-22 shows ChatGPT generated the poem after Brandon's concept/style request."
+      },
+      {
+        "title": "So Much More To Gain",
+        "result": "Brandon original; predates Threads by years",
+        "provenance": "brandon",
+        "confidence": "confirmed",
+        "evidence": "IDunnoPoetry publication dated 2016-11-14; Brandon later emailed it in 2021 under the subject 'Couple of my writings'."
+      },
+      {
+        "title": "& in a manic panic, frantic;",
+        "result": "Excerpt/section of So Much More To Gain, not a separate unresolved work",
+        "provenance": "brandon",
+        "confidence": "confirmed",
+        "evidence": "The lines occur inside the complete 2016 So Much More To Gain text."
+      },
+      {
+        "title": "My eyes focus on my reflection.",
+        "result": "Old Seed resurfaced later",
+        "provenance": "brandon",
+        "confidence": "probable",
+        "evidence": "The fragment appears in a private 2016 Seed notebook and was later publicly posted in 2026."
+      }
+    ]
   }
 };
