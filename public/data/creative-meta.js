@@ -158,7 +158,8 @@ window.IDP_CREATIVE_META = {
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
       "notes": "Preserved exactly as supplied; no AI continuation or editing included.",
-      "public": true
+      "public": true,
+      "seedDate": "2026-09-23"
     },
     {
       "id": "seed-feed-the-mosquito",
@@ -173,7 +174,9 @@ window.IDP_CREATIVE_META = {
         "feed-the-mosquito-expanded"
       ],
       "notes": "Original Seed preserved separately from the later expanded working version.",
-      "public": true
+      "public": true,
+      "seedDate": "pre-2025",
+      "lineageKind": "Old/recovered Seed"
     },
     {
       "id": "seed-2026-09-23-more-orders-you-give",
@@ -186,7 +189,8 @@ window.IDP_CREATIVE_META = {
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
       "notes": "Preserved exactly as supplied; no AI continuation or editing included.",
-      "public": true
+      "public": true,
+      "seedDate": "2026-09-23"
     },
     {
       "id": "seed-2026-09-23-when-the-pain-intensely-hurts",
@@ -199,7 +203,8 @@ window.IDP_CREATIVE_META = {
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
       "notes": "Preserved exactly as supplied, including spacing, punctuation, and the unfinished final phrase.",
-      "public": true
+      "public": true,
+      "seedDate": "2026-09-23"
     },
     {
       "id": "seed-soulutions-graduated",
@@ -210,7 +215,9 @@ window.IDP_CREATIVE_META = {
       "source": "public Threads post + 2026 originality audit",
       "evidence": "The Threads introduction explicitly described SOULutions as an old unfinished piece of writing; the audit reconstructs a later two-part posted version.",
       "notes": "Original incomplete Seed text is not separately recovered here. This record preserves the documented unfinished origin and later completed/posting state without inventing the missing seed version.",
-      "public": true
+      "public": true,
+      "graduatedDate": "2025-01-25",
+      "lineageKind": "Old unfinished Seed → reconstructed public work"
     },
     {
       "id": "seed-my-eyes-reflection-graduated",
@@ -222,7 +229,10 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → 2026 public post",
       "evidence": "A materially matching fragment was preserved in Brandon's 2016 Seed notebook and later posted publicly on 2026-07-07.",
       "notes": "Public page shows only the later-public text and lineage summary; the private notebook itself is not published.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "graduatedDate": "2026-07-07",
+      "lineageKind": "Seed → public revised poem"
     },
     {
       "id": "seed-different-skin-graduated",
@@ -234,7 +244,10 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → 2026 public post",
       "evidence": "The core line appears in Brandon's 2016 Seed notebook and was later publicly posted in revised form on 2026-07-06.",
       "notes": "Shows a ten-year Seed-to-public-line evolution.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "graduatedDate": "2026-07-06",
+      "lineageKind": "Seed → public revised micro-poem"
     },
     {
       "id": "seed-write-for-survival-graduated",
@@ -246,7 +259,9 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → later public tagline",
       "evidence": "The line appears in the 2016 Seed notebook and was publicly reused as a long-standing tagline/slogan by 2024-2025.",
       "notes": "Graduated from Seed fragment into a recurring public identity/tagline.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "lineageKind": "Seed → recurring public identity/tagline"
     },
     {
       "id": "seed-clarity-read-mind-graduated",
@@ -258,7 +273,10 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → 2026 public post",
       "evidence": "A closely matching prose seed appears in Brandon's 2016 Seed notebook; a polished descendant was publicly posted on 2026-07-06.",
       "notes": "Public record preserves the later-posted version; the private source notebook remains unpublished.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "graduatedDate": "2026-07-06",
+      "lineageKind": "Seed → public prose-poetic descendant"
     },
     {
       "id": "seed-love-burden-graduated",
@@ -270,7 +288,10 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → public Love Burden posts",
       "evidence": "A substantial opening draft appears in Brandon's 2016 Seed notebook and later survives as the opening of the titled public poem Love Burden, first located publicly on 2024-10-07 and repeatedly reposted afterward.",
       "notes": "Public page shows only later-public poem text; the private notebook remains unpublished.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "graduatedDate": "2024-10-07",
+      "lineageKind": "Seed draft → titled public poem"
     },
     {
       "id": "seed-close-door-graduated",
@@ -282,7 +303,10 @@ window.IDP_CREATIVE_META = {
       "source": "2016 private Seed notebook → 2025 public prose-poetic post",
       "evidence": "The closing image appears almost verbatim in Brandon's 2016 Seed notebook and later publicly reappears on 2025-03-19 inside a longer prose-poetic fragment.",
       "notes": "Public page uses only the later-public wording; private Seed source remains unpublished.",
-      "public": true
+      "public": true,
+      "seedDate": "2016-08-09",
+      "graduatedDate": "2025-03-19",
+      "lineageKind": "Seed image → public prose-poetic descendant"
     },
     {
       "id": "seed-much-i-wish-growing",
@@ -294,7 +318,9 @@ window.IDP_CREATIVE_META = {
       "source": "2025 public post + later direct archive statement",
       "evidence": "The opening third was publicly posted on 2025-04-16. In a later ChatGPT archive conversation Brandon explicitly called the work “Another from my archives” and “unfinished.” Known variants use “much/so much” and “concentration/discipline.”",
       "notes": "Only the already-public opening section is displayed here; later private/archive variants remain private.",
-      "public": true
+      "public": true,
+      "graduatedDate": "2025-04-16",
+      "lineageKind": "Archive Seed → public partial posting; still unfinished"
     }
   ],
   "sourceRules": {
