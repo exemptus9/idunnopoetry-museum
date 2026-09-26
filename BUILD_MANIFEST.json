@@ -44,14 +44,16 @@
     "seeds_dashboard": true,
     "source_ingestion_rules": true,
     "current_counts": {
-      "public_seed_records": 5,
-      "public_supplemental_reconciled_works": 1,
+      "public_seed_records": 9,
+      "public_supplemental_reconciled_works": 6,
       "public_provenance_review_items": 0,
       "private_seed_candidates": 3,
       "private_supplemental_reconciled_works": 9,
       "private_provenance_review_items": 4,
       "source_rules": 5,
-      "audit_items": 105
+      "audit_items": 105,
+      "audit_authorship_unresolved": 3,
+      "audit_authorship_resolved_chronology_open": 1
     },
     "documents_prose_section": true,
     "archive_wide_document_search": true,
