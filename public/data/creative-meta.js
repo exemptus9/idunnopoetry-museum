@@ -237,7 +237,7 @@ window.IDP_CREATIVE_META = {
     "note": "These are the audit's baseline categories, not a claim that later reconciliation cannot resolve individual cases."
   },
   "privateCreativeStats": {
-    "privateSeedCandidates": 2,
+    "privateSeedCandidates": 3,
     "privateSupplementalWorks": 9,
     "privateReviewItems": 4,
     "note": "Private creative records are maintained outside the public site payload; counts only are exposed here."
