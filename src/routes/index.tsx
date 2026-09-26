@@ -61,7 +61,7 @@ function Museum() {
               Submit teen poetry, poems, advice from poets, depression help, teen guy, etc.
             </span>
             <span className="museum-label">
-              Messageboard Museum · v3.19 · reconstructed public archive
+              Messageboard Museum · v3.20 · reconstructed public archive
             </span>
           </a>
           <div className="skin-control">
