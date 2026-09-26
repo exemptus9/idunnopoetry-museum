@@ -401,79 +401,9 @@ window.IDP_CREATIVE_META = {
   },
   "auditReconciliation": {
     "baselineUnresolved": 11,
-    "resolvedOrRetiredSinceAudit": 7,
-    "unresolvedRemaining": 4,
-    "remainingTitles": [
-      {
-        "title": "I \"only\" come to you when I want something",
-        "status": "Brandon authorship confirmed; composition era unresolved"
-      },
-      {
-        "title": "I wish that I could lunge",
-        "status": "authorship/origin unresolved"
-      },
-      {
-        "title": "A thousand sunsets shape your facial features",
-        "status": "authorship/origin unresolved"
-      },
-      {
-        "title": "There's so much I wish to tell you",
-        "status": "authorship/origin unresolved"
-      }
-    ],
-    "resolutions": [
-      {
-        "title": "I \"only\" come to you when I want something",
-        "result": "Brandon-authored core; composition era still unresolved",
-        "provenance": "brandon",
-        "confidence": "confirmed",
-        "evidence": "Prior ChatGPT history shows Brandon supplied the original lyric/poem first; ChatGPT later expanded it into a song arrangement."
-      },
-      {
-        "title": "Kicking Beehives",
-        "result": "AI-generated from Brandon prompt/style request",
-        "provenance": "prompted",
-        "confidence": "confirmed",
-        "evidence": "Prior ChatGPT creation history records Brandon requesting the poem in his style and ChatGPT supplying the full text."
-      },
-      {
-        "title": "I was the myth… / The Hundredth Canary",
-        "result": "AI-generated from Brandon 100th-monkey/canary concept",
-        "provenance": "prompted",
-        "confidence": "confirmed",
-        "evidence": "Prior ChatGPT creation history on 2025-05-22 shows ChatGPT generated the poem after Brandon's concept/style request."
-      },
-      {
-        "title": "I came coded in feathers and fur… / Holding Pattern Transmission",
-        "result": "AI-generated from Brandon 100th-monkey/canary concept",
-        "provenance": "prompted",
-        "confidence": "confirmed",
-        "evidence": "Prior ChatGPT creation history on 2025-05-22 shows ChatGPT generated the poem after Brandon's concept/style request."
-      },
-      {
-        "title": "So Much More To Gain",
-        "result": "Brandon original; predates Threads by years",
-        "provenance": "brandon",
-        "confidence": "confirmed",
-        "evidence": "IDunnoPoetry publication dated 2016-11-14; Brandon later emailed it in 2021 under the subject 'Couple of my writings'."
-      },
-      {
-        "title": "& in a manic panic, frantic;",
-        "result": "Excerpt/section of So Much More To Gain, not a separate unresolved work",
-        "provenance": "brandon",
-        "confidence": "confirmed",
-        "evidence": "The lines occur inside the complete 2016 So Much More To Gain text."
-      },
-      {
-        "title": "My eyes focus on my reflection.",
-        "result": "Old Seed resurfaced later",
-        "provenance": "brandon",
-        "confidence": "probable",
-        "evidence": "The fragment appears in a private 2016 Seed notebook and was later publicly posted in 2026."
-      }
-    ],
-    "fullyResolvedOrRetired": 7,
+    "fullyResolvedOrRetired": 8,
     "authorshipResolvedChronologyOpen": 1,
-    "authorshipUnresolved": 3
+    "authorshipUnresolved": 2,
+    "note": "Two audit cases remain unresolved for authorship/origin after cross-source and prior-chat reconciliation."
   }
 };
