@@ -1,6 +1,6 @@
 window.IDP_CREATIVE_META = {
   "schemaVersion": 2,
-  "archiveVersion": "3.18",
+  "archiveVersion": "3.19",
   "completion": {
     "seed": {
       "label": "Seed",
@@ -259,6 +259,42 @@ window.IDP_CREATIVE_META = {
       "evidence": "A closely matching prose seed appears in Brandon's 2016 Seed notebook; a polished descendant was publicly posted on 2026-07-06.",
       "notes": "Public record preserves the later-posted version; the private source notebook remains unpublished.",
       "public": true
+    },
+    {
+      "id": "seed-love-burden-graduated",
+      "title": "Love Burden",
+      "text": "Love Burden\n\nI was bruised and I was hurting\nIn my weakness, was a burden\nThough your strength sustained me through\nIt clearly took its toll on you\nAnd though I hate you went away\nI am amazed how late you stayed\nThe simple words here I will say\nAre all I can do to repay\nI so regret accepting help\nFocusing solely on myself\nAnd though I gave what I could spare\nThere was no way it could compare\n\nIt seems unfair for me to blame\nThe deepest poignance of my pain\nOn one who so long did sustain\nWell past the point it was a strain\nThough heavy was the load I bore\nYou stood beside me, evermore\nYour love, a beacon through this night\nYour life sufficing my insight\nMy gratitude, it now takes flight\nThis thankfulness is only right\nFor all you’ve done, both day and night\nMy heart forever holds you tight\n\nWith weathered love, I now embrace\nThese gifts of healing, warmth and grace\nYour selfless acts never erased\nFor you - my soul forever waits",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "probable",
+      "source": "2016 private Seed notebook → public Love Burden posts",
+      "evidence": "A substantial opening draft appears in Brandon's 2016 Seed notebook and later survives as the opening of the titled public poem Love Burden, first located publicly on 2024-10-07 and repeatedly reposted afterward.",
+      "notes": "Public page shows only later-public poem text; the private notebook remains unpublished.",
+      "public": true
+    },
+    {
+      "id": "seed-close-door-graduated",
+      "title": "I close the door to myself",
+      "text": "Sometimes I burrow so deeply inside myself that my arms are no longer able to reach out for help\nSo I close the door to myself and lock it, swallowing the key",
+      "status": "graduated",
+      "provenance": "brandon",
+      "confidence": "probable",
+      "source": "2016 private Seed notebook → 2025 public prose-poetic post",
+      "evidence": "The closing image appears almost verbatim in Brandon's 2016 Seed notebook and later publicly reappears on 2025-03-19 inside a longer prose-poetic fragment.",
+      "notes": "Public page uses only the later-public wording; private Seed source remains unpublished.",
+      "public": true
+    },
+    {
+      "id": "seed-much-i-wish-growing",
+      "title": "There’s much I wish to tell you",
+      "text": "There's so much I wish to tell you\nBut your discipline is missin'\nSo sometimes I have to yell\nBut even then you will not listen\n\nSo I slip into that silent place\nI hide deep in my self\nAnd decide it's not worth trying;\nYou're not deserving of my help\n\nSelf-sabotage mirage barrages\nYour flaw's missing what I mean\nWhen I implore but am ignored\nI'm caught; you're dissing me, it seems",
+      "status": "growing",
+      "provenance": "brandon",
+      "confidence": "confirmed",
+      "source": "2025 public post + later direct archive statement",
+      "evidence": "The opening third was publicly posted on 2025-04-16. In a later ChatGPT archive conversation Brandon explicitly called the work “Another from my archives” and “unfinished.” Known variants use “much/so much” and “concentration/discipline.”",
+      "notes": "Only the already-public opening section is displayed here; later private/archive variants remain private.",
+      "public": true
     }
   ],
   "sourceRules": {
@@ -348,7 +384,14 @@ window.IDP_CREATIVE_META = {
       "excludedQuoteAiNonPoemDuplicate": 42,
       "totalAudited": 105
     },
-    "note": "These are the audit's baseline categories, not a claim that later reconciliation cannot resolve individual cases."
+    "note": "These are the audit's baseline categories, not a claim that later reconciliation cannot resolve individual cases.",
+    "currentReconciliation": {
+      "baselineUnresolved": 11,
+      "resolvedOrRetired": 8,
+      "authorshipResolvedChronologyOpen": 1,
+      "authorshipOriginUnresolved": 2,
+      "note": "Current reconciliation reflects additional source matching and prior-chat creation evidence after the original audit."
+    }
   },
   "privateCreativeStats": {
     "privateSeedCandidates": 3,
