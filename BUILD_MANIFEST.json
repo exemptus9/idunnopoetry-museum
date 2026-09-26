@@ -31,11 +31,11 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.15",
+  "archive_version": "3.18",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
-    "provenance_policy": "No automatic authorship or Seed classification without supporting source evidence.",
+    "provenance_policy": "Authorship/provenance, completion status, and publication permission are separate axes. No automatic attribution or publication without supporting evidence/approval.",
     "segment_level_provenance": true,
     "review_queue": true,
     "supplemental_reconciled_works": true,
@@ -44,12 +44,14 @@
     "seeds_dashboard": true,
     "source_ingestion_rules": true,
     "current_counts": {
-      "seed_records": 9,
-      "supplemental_reconciled_works": 4,
-      "provenance_review_items": 5,
-      "source_rules": 6,
-      "archive_documents": 5,
-      "verification_candidates": 16
+      "public_seed_records": 5,
+      "public_supplemental_reconciled_works": 1,
+      "public_provenance_review_items": 0,
+      "private_seed_candidates": 3,
+      "private_supplemental_reconciled_works": 9,
+      "private_provenance_review_items": 4,
+      "source_rules": 5,
+      "audit_items": 105
     },
     "documents_prose_section": true,
     "archive_wide_document_search": true,
@@ -58,6 +60,9 @@
     "numeric_verification_values": true,
     "local_review_export": true,
     "private_sensitive_source_rules": true,
-    "strong_unresolved_filter": true
+    "strong_unresolved_filter": true,
+    "provenance_methodology_page": true,
+    "public_private_payload_split": true,
+    "branch_history_consolidated": true
   }
 }
