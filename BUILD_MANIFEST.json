@@ -70,6 +70,8 @@
     "public_private_payload_split": true,
     "branch_history_consolidated": true,
     "seed_germination_timelines": true,
-    "seed_sorting": true
+    "seed_sorting": true,
+    "seed_detail_pages": true,
+    "seed_deep_links": true
   }
 }
