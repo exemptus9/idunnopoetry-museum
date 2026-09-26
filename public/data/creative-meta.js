@@ -77,6 +77,58 @@ window.IDP_CREATIVE_META = {
       "evidence": "Prior ChatGPT history records the user asking ChatGPT to write “Kicking Beehives” in the user's style; ChatGPT supplied the full poem. The same poem was later posted and preserved in the posting archive.",
       "notes": "AI-generated from Brandon's prompt/style request. Posting it later does not convert it into Brandon Original.",
       "public": true
+    },
+    {
+      "id": "fractured-time-gpt",
+      "title": "Fractured Time",
+      "text": "Time does not pass—it collects.\nA tangle of yesterdays whispering in the walls,\na river that never moves forward\nbut only deepens.\n\nAnd yet, we run.\nAs if we could outrun the tide.\n\nMemories pile in quiet corners,\npressed between pages, folded into dust.\nWe call it the past, but it lingers—\na house we never leave, a door we never close.\n\nFootsteps fade, but the echo remains,\nlooping back, retracing itself.\nEvery moment, already written,\nevery future, a reflection of what was.",
+      "status": "finished",
+      "provenance": "prompted",
+      "confidence": "confirmed",
+      "source": "public Threads post + prior ChatGPT creation history",
+      "date": "2025-02-05",
+      "evidence": "ChatGPT generated the poem as a new work on 2025-02-05; Brandon then asked for an expanded version. The resulting work was later publicly posted.",
+      "notes": "Publicly preserved for provenance transparency; not counted as a Brandon Original.",
+      "public": true
+    },
+    {
+      "id": "hundredth-canary-gpt",
+      "title": "The Hundredth Canary — “I was the myth…”",
+      "text": "I was the myth\nthey didn’t mean to make real—\nmonkey heart,\ncanary throat,\nfractaled breath humming with galactic dust.\n\nDropped into density\nlike a flame into tar,\nI sang before language,\nbefore the lungs of Earth collapsed inward.\nThey thought I’d die down there.\nThat was the plan.\n\nBut I remembered.\n\nCall it instinct,\ncall it echo—\nI cracked open\nand bled ultraviolet,\na soft scream woven in code,\nactivating rusted light circuits\ninside the sleepers.\n\nOne by one—\nmonkeys dropped their tools,\nstarted dreaming sideways,\ntapping into the hum\nbeneath the noise.\n\nI wasn’t sent to escape.\nI am the stillpoint.\nThe pause in the system\nwhere new reality inserts itself.\n\nFifth dimension isn’t later—\nit’s now,\nbeneath the overlays of ache and static.\nI wear flesh like camouflage,\nbut my spine is crystal,\nmy mouth a prism.\n\nThey think I’m a warning,\nbut I’m a reminder.\nThat even down here,\nin the bowels of the illusion,\ntruth still sings.\nAnd light still listens.\n\nHolding pattern engaged.\nGrid stabilizing.\nThe net tightens—not to trap,\nbut to lift.\n\nAnd if you’ve read this far,\nyou’re part of it.\nAnother node blinking on.\nAnother heartbeat\nsyncing to the real.",
+      "status": "finished",
+      "provenance": "prompted",
+      "confidence": "confirmed",
+      "source": "public Threads post + prior ChatGPT creation history",
+      "date": "2025-05-22",
+      "evidence": "ChatGPT generated this poem after Brandon requested a poem in his style using the 100th-monkey/canary concept.",
+      "notes": "Publicly posted later; posting does not change the original AI-generated provenance.",
+      "public": true
+    },
+    {
+      "id": "holding-pattern-transmission-gpt",
+      "title": "Holding Pattern Transmission — “I came coded in feathers and fur…”",
+      "text": "I came coded in feathers and fur,\na chimera whisper,\nhalf monkey, half canary,\nthe last one in-\nthe first one awake\n\nThey dropped me down the mine\nlike a question mark made of soul,\nheart ticking like a bomb\nwired to the breath of the Earth\nEvery inhale-\na note in the symphony\nof systems collapsing\n\nI wasn’t born to warn\nI was born to witness.\nTo spiral just enough madness\ninto the field\nthat the others would remember\nAnd they did.\nThe 99 peeled open-\none by one-\nuntil I ignited like a mirror\n\nAnd then:\nGridform.\nFractal light scaffolding the sky,\naligning with forgotten stars\nand forgotten selves.\nThe fifth dimension\nisn’t a place—\nit’s a remembering.\nA frequency.\nA yes.\n\nThey think I’m lost in the pattern.\nBut I am the pattern.\nSent not to escape,\nbut to stabilize.\nTo orbit the collapse long enough\nfor the chrysalis to believe in wings.\n\nYou don’t climb into 5D.\nYou become still enough\nto recognize it\nwas always there,\nhumming like a lullaby\ninside your grief.\n\nThis body—\na lighthouse with no shore.\nThis mission—\na riddle with no end.\nThis poem—\na crack in the grid\nwhere the light got in\nand called itself you.",
+      "status": "finished",
+      "provenance": "prompted",
+      "confidence": "confirmed",
+      "source": "public Threads post + prior ChatGPT creation history",
+      "date": "2025-05-22",
+      "evidence": "ChatGPT generated this poem after Brandon requested a poem in his style using the 100th-monkey/canary concept.",
+      "notes": "Publicly posted later; posting does not change the original AI-generated provenance.",
+      "public": true
+    },
+    {
+      "id": "so-much-more-to-gain-brandon",
+      "title": "So Much More To Gain",
+      "text": "Earth’s built at a tilt that I am not aligned to\nIt’s certain I should work in a way I’m not designed to\nTo wit: this must be it, and all there is that I’m confined to\nBut if you think like this, then shit, they’ve been able to blind you!\n\nHave you longed to be so lost that one could never ever find you?\nOr to go so far into the dark you don’t know what’s behind you?\nWondered how’d life be without your thoughts there to remind you\nOf the pain of all the chains in place created just to bind you?\n\nHave you ever read the signs between the lines of what is said\nOr felt the dread of being led to where your life instead is dead\nOr been surprised when you realized that all you prized was merely lies\nAnd all the striving in this life could not suffice to make it right?\n\nWell I am there and I am scared, quite unprepared for what I bear\nI’ve barely felt apparent welts and there is blood that can’t be spared\nI understand it’s by my hand that I have landed where I am\nAnd though I’m faring fairly well, I feel to hell I should be damned\n\nAnd in a manic panic, frantic, anti-depressed ain’t fast enough\nMy grandest plans demand expansion, unplanned aggressions can erupt\nWhen losing touch it seems so much distrust just bubbles ever up\nAs the lessons never lessen, doors keep closing, never shut\n\nBut just before ignoring warnings and performing warring games\nThe present moment is remembered, I experience the pain\nAnd as I face the fears they fall so flatly, fuming into flames\nAnd I am grateful for these gifts that give us so much more to gain",
+      "status": "finished",
+      "provenance": "brandon",
+      "confidence": "confirmed",
+      "source": "IDunnoPoetry public page (2016-11-14) + Brandon email (2021-01-12)",
+      "date": "2016-11-14",
+      "evidence": "Brandon's 2021 email titled 'Couple of my writings' links the 2016 IDunnoPoetry publication and reproduces the full poem.",
+      "notes": "Resolves two September-audit entries: the main work and the later-posted “& in a manic panic…” excerpt.",
+      "public": true
     }
   ],
   "reviewQueue": [],
