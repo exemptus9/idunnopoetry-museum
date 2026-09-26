@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.9**, September 23, 2026.
+Current museum line: **v3.18**, September 24, 2026.
 
 ### Version visibility
 
@@ -107,3 +107,5 @@ The current version is displayed in the public museum header, footer, About view
 ### Link preview
 
 The canonical public URL includes Open Graph and Twitter large-card metadata with a dedicated 1200×630 PNG preview styled after the recovered phpBB/subSilver museum interface.
+
+The share-card PNG is rendered from its versioned SVG during deployment. Release checks reject conflicting labels before publication.

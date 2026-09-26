@@ -1,6 +1,6 @@
 (()=>{
   const cfg=window.IDP_CONFIG||{};
-  const version=String(cfg.version||'3.9');
+  const version=String(cfg.version||'unknown');
   const label='v'+version;
   function applyVersion(){
     document.querySelectorAll('[data-idp-version]').forEach(el=>{el.textContent=label;});

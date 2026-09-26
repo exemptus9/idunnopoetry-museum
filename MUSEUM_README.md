@@ -20,7 +20,9 @@ Upload this entire folder as-is to any static host (GitHub Pages, Netlify, Cloud
 - 1,403 recoverable public user IDs
 - 673 selected recovered creative source records, plus preserved historical versions
 - 1,327 surviving public replies to poetry threads
-- public full-text search
+- dedicated Seeds collection for incomplete and in-progress work
+- Documents / Prose archive for essays, manifestos, experience reports, and source artifacts
+- public full-text search across poetry, Seeds, prose/source documents, and public posts
 - user/poet directory
 - month-by-month timeline
 - original reactions attached to forum poetry

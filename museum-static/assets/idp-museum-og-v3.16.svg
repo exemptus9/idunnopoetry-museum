@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#167caa"/><stop offset="1" stop-color="#004767"/></linearGradient></defs>
+<rect width="1200" height="630" fill="#e5e9ed"/>
+<rect x="26" y="26" width="1148" height="578" rx="4" fill="#fff" stroke="#96a8b5" stroke-width="2"/>
+<rect x="27" y="27" width="1146" height="62" fill="url(#bar)"/>
+<g font-family="DejaVu Sans, sans-serif">
+<text x="62" y="67" fill="white" font-size="22">FORUM ARCHIVE / EARLY 2000s</text>
+<rect x="1010" y="40" width="134" height="36" rx="3" fill="#eaf4fb"/>
+<text x="1077" y="66" fill="#00577d" font-size="23" text-anchor="middle" font-weight="bold">v3.16</text>
+<text x="63" y="195" fill="#005b85" font-size="76" font-weight="bold">I Dunno Poetry</text>
+<text x="65" y="251" fill="#203e54" font-size="39">Messageboard Museum</text>
+<text x="66" y="311" fill="#536673" font-size="25">An early internet poetry community, recovered.</text>
+<rect x="63" y="352" width="1074" height="44" fill="#dce6ed" stroke="#afc1cd"/>
+<text x="82" y="382" fill="#315469" font-size="21">Poetry  /  Conversations  /  Seeds  /  Media  /  History</text>
+<rect x="63" y="396" width="1074" height="123" fill="#f0f4f7" stroke="#afc1cd"/>
+<path d="M421 396V519M779 396V519" stroke="#c3d0d9"/>
+<g fill="#005b85" font-weight="bold" font-size="43" text-anchor="middle">
+<text x="242" y="454">23,957</text><text x="600" y="454">1,528</text><text x="958" y="454">682</text></g>
+<g fill="#526875" font-size="20" text-anchor="middle">
+<text x="242" y="490">surviving public posts</text><text x="600" y="490">recovered topics</text><text x="958" y="490">creative records</text></g>
+<text x="64" y="567" fill="#365469" font-size="23">Preserved words. Original conversations.</text>
+</g></svg>

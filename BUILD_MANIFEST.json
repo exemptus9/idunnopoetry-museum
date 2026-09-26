@@ -31,10 +31,33 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.10",
+  "archive_version": "3.15",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
-    "provenance_policy": "No automatic authorship or Seed classification without supporting source evidence."
+    "provenance_policy": "No automatic authorship or Seed classification without supporting source evidence.",
+    "segment_level_provenance": true,
+    "review_queue": true,
+    "supplemental_reconciled_works": true,
+    "archive_wide_seed_search": true,
+    "visible_provenance_legend": true,
+    "seeds_dashboard": true,
+    "source_ingestion_rules": true,
+    "current_counts": {
+      "seed_records": 9,
+      "supplemental_reconciled_works": 4,
+      "provenance_review_items": 5,
+      "source_rules": 6,
+      "archive_documents": 5,
+      "verification_candidates": 16
+    },
+    "documents_prose_section": true,
+    "archive_wide_document_search": true,
+    "mixed_source_notebook_rules": true,
+    "provenance_verification_ui": true,
+    "numeric_verification_values": true,
+    "local_review_export": true,
+    "private_sensitive_source_rules": true,
+    "strong_unresolved_filter": true
   }
 }

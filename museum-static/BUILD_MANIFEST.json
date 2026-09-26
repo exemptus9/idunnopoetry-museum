@@ -14,29 +14,45 @@
     "forum_linked_poetry_works": 333
   },
   "files": [
-    "index.html",
-    "museum.css",
-    "museum.js",
-    "museum-config.js",
-    "data/core.js",
-    "data/posts.js",
-    "data/poetry.js",
-    "recovery/wordpress-live-recovery.js",
-    "recovery/museum-recovery-enhancements.js",
     "ASSET_PROVENANCE.md",
+    "MEDIA_RECONCILIATION_2026-09-24.md",
+    "VERSION.txt",
+    "analytics.js",
+    "assets/idp-museum-og-v3.16.png",
+    "assets/idp-museum-og-v3.16.svg",
+    "assets/idp-museum-og-v3.17.png",
+    "assets/idp-museum-og-v3.17.svg",
     "assets/subsilver/cellpic1.gif",
     "assets/subsilver/cellpic2.jpg",
     "assets/subsilver/cellpic3.gif",
-    "assets/subsilver/folder_big.gif",
     "assets/subsilver/folder.gif",
-    "assets/subsilver/icon_minipost.gif",
-    "assets/subsilver/folder_new_big.gif",
+    "assets/subsilver/folder_big.gif",
     "assets/subsilver/folder_locked_big.gif",
+    "assets/subsilver/folder_new_big.gif",
     "assets/subsilver/icon_latest_reply.gif",
+    "assets/subsilver/icon_mini_faq.gif",
     "assets/subsilver/icon_mini_house.gif",
-    "assets/subsilver/icon_mini_search.gif",
     "assets/subsilver/icon_mini_members.gif",
-    "assets/subsilver/icon_mini_faq.gif"
+    "assets/subsilver/icon_mini_search.gif",
+    "assets/subsilver/icon_minipost.gif",
+    "data/core.js",
+    "data/creative-meta.js",
+    "data/media-catalog.js",
+    "data/poetry.js",
+    "data/posts.js",
+    "data/reader-impact.js",
+    "data/version-history.js",
+    "data/youtube-media.js",
+    "index.html",
+    "museum-config.js",
+    "museum.css",
+    "museum.js",
+    "recovery/museum-recovery-enhancements.js",
+    "recovery/thread-starters.js",
+    "recovery/wordpress-live-recovery.js",
+    "version.js",
+    "assets/idp-museum-og-v3.18.svg",
+    "assets/idp-museum-og-v3.18.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -52,7 +68,7 @@
       "Nice Future",
       "Love Burden"
     ],
-    "probable_community_work": "If I Could (unfinished) — angelplaya",
+    "probable_community_work": "If I Could (unfinished) \u2014 angelplaya",
     "privacy": "No private messages, email addresses, IP addresses, credentials, or password material are added by the recovery overlay."
   },
   "interface_reconstruction": {
@@ -87,6 +103,36 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.5-thread-author-visibility",
-  "build_date": "2026-09-23"
+  "build_version": "v3.18",
+  "build_date": "2026-09-24",
+  "archive_version": "3.18",
+  "creative_archive": {
+    "provenance_verification_ui": true,
+    "numeric_verification_values": true,
+    "local_review_export": true,
+    "private_sensitive_source_rules": true,
+    "strong_unresolved_filter": true,
+    "current_counts": {
+      "verification_candidates": 0,
+      "provenance_review_items": 0,
+      "seed_records": 6,
+      "supplemental_reconciled_works": 4,
+      "archive_documents": 0,
+      "source_rules": 0
+    },
+    "privacy": "Personal source/review material excluded from public data; maintained privately."
+  },
+  "social_preview": {
+    "source": "assets/idp-museum-og-v3.18.svg",
+    "path": "assets/idp-museum-og-v3.18.png",
+    "width": 1200,
+    "height": 630,
+    "rendered_during_deployment": true
+  },
+  "media_reconciliation": {
+    "youtube_cataloged": 58,
+    "curated_relevant": 43,
+    "awaiting_work_match": 15,
+    "new_title_links": 3
+  }
 }

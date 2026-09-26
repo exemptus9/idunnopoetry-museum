@@ -86,3 +86,30 @@ body.skin-museum{--body:#f7f4ed;--paper:#fffdf9;--row1:#fffdf9;--row2:#edf1f3;--
 .seed-legend .card h3{margin-bottom:6px}
 .seed-row details{margin-top:10px}
 .seed-text{font-size:14px;margin-top:8px;white-space:pre-wrap}
+
+.seed-tools{align-items:center}
+.seed-tools .btn{white-space:nowrap}
+.seed-related{margin-top:7px}
+.seed-focus{outline:3px solid currentColor;outline-offset:3px;transition:outline-color .3s ease}
+
+
+/* Provenance Review */
+.verify-toolbar{align-items:center;gap:8px;flex-wrap:wrap}
+.verify-card{margin:18px 0;padding:16px;border:1px solid var(--line,#b8b8b8);background:var(--panel,#fff)}
+.verify-card.locked{border-style:dashed}
+.verify-card-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.verify-values{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.verify-values span{padding:3px 7px;border:1px solid currentColor;font-size:.78rem;white-space:nowrap}
+.verify-text{max-height:360px;overflow:auto;margin:14px 0;white-space:pre-wrap}
+.verify-control{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin:10px 0}
+.verify-buttons{display:flex;gap:6px;flex-wrap:wrap}
+.verify-choice{appearance:none;border:1px solid #777;background:transparent;color:inherit;padding:6px 9px;cursor:pointer;font:inherit}
+.verify-choice:hover:not(:disabled){text-decoration:underline}
+.verify-choice.selected{font-weight:700;outline:2px solid currentColor;outline-offset:1px}
+.verify-choice:disabled{opacity:.55;cursor:not-allowed}
+.verify-summary{margin-top:12px;padding-top:10px;border-top:1px dotted currentColor}
+@media(max-width:700px){
+  .verify-card-head{display:block}
+  .verify-values{justify-content:flex-start;margin-top:8px}
+  .verify-control{grid-template-columns:1fr}
+}
