@@ -122,10 +122,10 @@
     "seeds_dashboard": true,
     "source_ingestion_rules": true,
     "current_counts": {
-      "public_seed_records": 12,
-      "public_graduated_seeds": 7,
-      "public_growing_seeds": 2,
-      "public_supplemental_reconciled_works": 6,
+      "public_seed_records": 6,
+      "public_graduated_seeds": 0,
+      "public_growing_seeds": 1,
+      "public_supplemental_reconciled_works": 4,
       "public_provenance_review_items": 0,
       "private_seed_candidates": 3,
       "private_supplemental_reconciled_works": 9,
@@ -134,7 +134,9 @@
       "audit_items": 105,
       "audit_authorship_unresolved": 1,
       "audit_authorship_resolved_chronology_open": 1,
-      "dated_seed_lineages": 12
+      "dated_seed_lineages": 12,
+      "public_source_rules": 0,
+      "private_source_rules": 5
     },
     "documents_prose_section": true,
     "archive_wide_document_search": true,
@@ -175,7 +177,7 @@
     "awaiting_work_match": 15,
     "new_title_links": 3
   },
-  "release_note": "v3.22 reorganizes the museum around first-time visitors: simpler navigation, four guided entry pages, a dedicated Archive & Research hub, less prominent authorship-assistance language, improved mobile reading, and a refreshed social preview.",
+  "release_note": "v3.22 reorganizes the museum around first-time visitors while restoring the publication-approved public creative payload: simpler navigation, four guided entry pages, a dedicated Archive & Research hub, less prominent authorship-assistance language, improved mobile reading, and a refreshed social preview.",
   "visitor_experience": {
     "primary_navigation": [
       "Home",
