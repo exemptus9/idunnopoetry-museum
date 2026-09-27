@@ -54,7 +54,9 @@
     "assets/idp-museum-og-v3.18.svg",
     "assets/idp-museum-og-v3.18.png",
     "assets/idp-museum-og-v3.21.svg",
-    "assets/idp-museum-og-v3.21.png"
+    "assets/idp-museum-og-v3.21.png",
+    "assets/idp-museum-og-v3.22.svg",
+    "assets/idp-museum-og-v3.22.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -105,9 +107,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.21",
+  "build_version": "v3.22",
   "build_date": "2026-09-27",
-  "archive_version": "3.21",
+  "archive_version": "3.22",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -161,8 +163,8 @@
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.21.svg",
-    "path": "assets/idp-museum-og-v3.21.png",
+    "source": "assets/idp-museum-og-v3.22.svg",
+    "path": "assets/idp-museum-og-v3.22.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -173,5 +175,26 @@
     "awaiting_work_match": 15,
     "new_title_links": 3
   },
-  "release_note": "v3.21 syncs continuity/provenance improvements into the complete static museum. Private archive cleanup and sensitive source material remain outside the public payload."
+  "release_note": "v3.22 reorganizes the museum around first-time visitors: simpler navigation, four guided entry pages, a dedicated Archive & Research hub, less prominent authorship-assistance language, improved mobile reading, and a refreshed social preview.",
+  "visitor_experience": {
+    "primary_navigation": [
+      "Home",
+      "Forum Index",
+      "Poetry",
+      "Story",
+      "Reader Impact",
+      "Archive & Research",
+      "Search",
+      "Reclaim"
+    ],
+    "guided_entries": [
+      "Start Here",
+      "What Was IDunnoPoetry?",
+      "Best-Preserved Threads",
+      "Then & Now"
+    ],
+    "specialist_tools_hub": "Archive & Research",
+    "mobile_readability_pass": true,
+    "public_language_cleanup": true
+  }
 }
