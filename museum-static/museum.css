@@ -176,3 +176,84 @@ body.skin-subsilver .classic-box-title{background:#D1D7DC url("assets/subsilver/
 .seed-lineage{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:8px;padding:6px 9px;border-left:3px solid currentColor;background:rgba(127,127,127,.08)}
 .seed-lineage .lineage-arrow{font-size:14px}
 .seed-lineage .small{opacity:.8}
+
+
+/* v3.22 visitor-first navigation and guided entry points */
+.board-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:3px 14px;text-align:left;white-space:normal}
+.board-nav a{margin-left:0;min-height:28px;display:inline-flex;align-items:center}
+.hero-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.primary-paths,.guided-paths{grid-template-columns:repeat(4,minmax(0,1fr))}
+.path-card{position:relative;min-height:118px}
+.path-card .eyebrow{margin-bottom:5px}
+.journey-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.journey-card{min-height:142px}
+.journey-card h3{margin-top:5px}
+.start-panel{font-size:12px}
+.then-now-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.archive-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.visitor-next{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.preserved-thread-list .row{grid-template-columns:minmax(0,1fr) 150px}
+.technical-details{padding:0}
+.technical-details>summary{cursor:pointer;font-weight:bold;padding:10px}
+.technical-details[open]>summary{border-bottom:1px solid var(--border)}
+.technical-details .work-list{border:0}
+
+@media(max-width:960px){
+  .primary-paths,.guided-paths,.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:760px){
+  body{font-size:12px;line-height:1.55}
+  .phpbb-page{width:100%;margin:0}
+  .board-header{padding:8px 8px 0}
+  .brand-row{gap:5px}
+  .brand-title{font-size:27px}
+  .brand-tagline,.museum-label{font-size:10px;line-height:1.35}
+  .site-version-badge{font-size:10px;padding:4px 7px}
+  .skin-control{width:100%;display:grid;grid-template-columns:1fr;gap:5px}
+  .skin-control>div{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px}
+  .skin-control select{width:100%;min-height:36px}
+  .board-nav{overflow:visible;white-space:normal;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;padding:7px 0}
+  .board-nav a{margin:0;padding:7px 8px;min-height:38px;border:1px solid var(--row3);background:var(--row1);justify-content:flex-start;font-size:11px}
+  .board-nav a:before{content:none}
+  main{padding:10px 8px 24px}
+  h1{font-size:24px;line-height:1.15}
+  h2{font-size:16px}
+  h3{font-size:14px}
+  .small,.meta,.source-note{font-size:11px}
+  .eyebrow,.kicker{font-size:10px}
+  .hero-main,.hero-aside,.panel,.card,.stat,.callout,.danger-callout,.quote-card,.side-card,.time-item{padding:12px}
+  .hero-main p,.hero-aside p,.card p,.panel p{font-size:12px}
+  .hero-actions,.visitor-next{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn,.visitor-next .btn{width:100%;text-align:center;min-height:40px;padding:9px 10px}
+  .primary-paths,.guided-paths,.archive-grid,.journey-grid,.then-now-grid{grid-template-columns:1fr}
+  .path-card,.journey-card{min-height:0}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .stat b{font-size:20px}
+  .stat span{font-size:10px}
+  .quote-card q{font-size:15px;line-height:1.55}
+  .section-head{display:block;margin-top:18px}
+  .section-head p{margin-top:3px;font-size:10px}
+  .directory-tools{display:grid;grid-template-columns:1fr;width:100%}
+  .directory-tools input,.directory-tools select,.directory-tools .btn{width:100%;min-height:40px;padding:7px 8px}
+  .searchbox{display:grid;grid-template-columns:1fr}
+  .searchbox input,.searchbox .btn{min-height:42px}
+  .poem-text{font-size:15px;line-height:1.65;padding:14px 12px}
+  .post{grid-template-columns:1fr;grid-template-areas:"bar" "author" "msg"}
+  .post-topline{flex-direction:column;gap:2px;font-size:10px}
+  .post-author{border-right:0;border-bottom:1px solid var(--border);font-size:10px}
+  .post-author .username{font-size:12px;margin-bottom:4px}
+  .post-message{min-height:0;font-size:12px;padding:12px}
+  .post-columns-head{display:none}
+  .preserved-thread-list .row{grid-template-columns:1fr}
+  .preserved-thread-list .row .counts{text-align:left;border-top:1px solid var(--row3);padding-top:5px}
+  .pagination a{min-width:32px;min-height:32px;display:inline-flex;align-items:center;justify-content:center}
+  footer{font-size:10px;padding:14px 8px 18px}
+}
+
+@media(max-width:420px){
+  .board-nav{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .brand-title{font-size:25px}
+}
