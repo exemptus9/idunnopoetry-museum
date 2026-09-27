@@ -31,7 +31,7 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.20",
+  "archive_version": "3.21",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
