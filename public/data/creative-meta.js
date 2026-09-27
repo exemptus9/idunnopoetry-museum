@@ -67,82 +67,92 @@ window.IDP_CREATIVE_META ={
   "works": {},
   "supplementalWorks": [
     {
-      "id": "kicking-beehives-gpt",
-      "title": "Kicking Beehives",
-      "text": "I was born with a mouth too big for silence,\na tongue too sharp for comfort.\nThey told me to whisper,\nbut my throat only knows how to howl.\n\nSo I kicked the beehive.\nNot out of spite, not out of rage—\nbut because someone had to.\nThe honey was rotting, the hive was sick,\nand the swarm was drunk on their own deception.\n\nI spoke, and the air turned electric.\nTheir buzzing became a war drum,\nstingers drawn, venom laced with righteousness.\nThey didn’t care if I was right—\nonly that I had dared to say it.\n\nThe truth is an unforgivable sin\nwhen spoken too loudly in a room full of lies.\nThey don’t want clarity;\nthey want quiet.\n\nSo the bees will come.\nAnd I will bleed.\nAnd still—\nI will speak.",
+      "id": "struggles-snare-gpt",
+      "title": "Struggle's Snare",
+      "text": "The harder I pull, the tighter it gets,\nThe more that I fight, the more it resists.\nLike knots in a rope that refuse to come loose,\nLike struggling feet in a hanging man's noose.\n\nThe quicksand is patient, it waits till you run,\nEach frantic step makes escape come undone.\nThe moment you thrash, you sink twice as deep,\nAnd still, I keep kicking—still, I can't breathe.\n\nThe Chinese handcuffs grip my skin,\nI pull and I pull, but I won’t win.\nIf only I stopped—if only I’d learn,\nBut struggle makes fire, and fire will burn.\n\nThe walls close in the more I scream,\nThe trap was built to cage my dream.\nThe tighter I hold, the faster it breaks,\nBut letting go—now that takes faith.",
       "status": "finished",
       "provenance": "prompted",
-      "confidence": "confirmed",
-      "source": "prior ChatGPT conversation + gpt poems(1).txt + posting archive",
-      "evidence": "Prior ChatGPT history records the user asking ChatGPT to write “Kicking Beehives” in the user's style; ChatGPT supplied the full poem. The same poem was later posted and preserved in the posting archive.",
-      "notes": "AI-generated from Brandon's prompt/style request. Posting it later does not convert it into Brandon Original.",
-      "public": true
+      "confidence": "strong",
+      "source": "gpt poems(1).txt · recovered ChatGPT transcript",
+      "evidence": "Immediately follows a user prompt requesting another poem using the previously listed metaphors.",
+      "notes": "Preserved as AI-generated-from-Brandon-prompt material; not counted as a Brandon Original."
     },
     {
-      "id": "fractured-time-gpt",
-      "title": "Fractured Time",
-      "text": "Time does not pass—it collects.\nA tangle of yesterdays whispering in the walls,\na river that never moves forward\nbut only deepens.\n\nAnd yet, we run.\nAs if we could outrun the tide.\n\nMemories pile in quiet corners,\npressed between pages, folded into dust.\nWe call it the past, but it lingers—\na house we never leave, a door we never close.\n\nFootsteps fade, but the echo remains,\nlooping back, retracing itself.\nEvery moment, already written,\nevery future, a reflection of what was.",
+      "id": "anagogic-ai-expanded-song",
+      "title": "Anagogic (Positive Vibes) — AI-expanded song version",
+      "canonicalTitle": "Anagogic (Positive Vibes)",
+      "relationship": "AI-expanded derivative of Brandon original",
       "status": "finished",
-      "provenance": "prompted",
+      "provenance": "assisted",
       "confidence": "confirmed",
-      "source": "public Threads post + prior ChatGPT creation history",
-      "date": "2025-02-05",
-      "evidence": "ChatGPT generated the poem as a new work on 2025-02-05; Brandon then asked for an expanded version. The resulting work was later publicly posted.",
-      "notes": "Publicly preserved for provenance transparency; not counted as a Brandon Original.",
-      "public": true
+      "source": "gpt poems(1).txt + poemspostedupdatedtext(1).txt",
+      "evidence": "The pre-existing Brandon poem supplies Verse 1 and the opening pre-chorus lines. The GPT-era song source reuses those lines and adds new chorus/verse/bridge material.",
+      "notes": "The underlying poem remains Brandon Original. This later song arrangement is mixed provenance and must not replace the canonical poem.",
+      "segments": [
+        {
+          "label": "Verse 1",
+          "range": "Opening 10 lines",
+          "provenance": "brandon",
+          "confidence": "confirmed",
+          "notes": "Verbatim/near-verbatim text from the pre-existing Anagogic (Positive Vibes)."
+        },
+        {
+          "label": "Opening pre-chorus",
+          "range": "From “'Cause if you can’t believe” through “I’m free—”",
+          "provenance": "brandon",
+          "confidence": "confirmed",
+          "notes": "These lines also pre-exist in the complete Brandon poem."
+        },
+        {
+          "label": "Generated song expansion",
+          "range": "First chorus, Verse 2, second pre-chorus, repeated/final choruses, bridge",
+          "provenance": "prompted",
+          "confidence": "strong",
+          "notes": "New song material appearing only in the GPT-era expansion source."
+        }
+      ],
+      "text": "My heart doesn’t beat at the same frequency, you see\nCause for me it beats a sweet heavenly melody\nThat is free to them that see peace and ease\nInstead of tragedy\nWho see good – instead of the bad they had to see\nWho stay glad, not mad\nBy saying “can’t” and fleeing\nWhose answers see\nThe expanse of dreams\nAnd what there’s chance to be\n\n'Cause if you can’t believe\nThen you can’t receive\nAnd can’t conceive\nOf your prayer’s answering\nSo can’t you see,\nThat there’s no “can’t” for me?\nNo chance I’ll flee,\nI just straight advance,\nI’m free—\n\nI tune my soul to higher things\nTo light, to love, to what hope brings\nNo prison cell of doubt can hold\nA heart aligned with dreams and gold\nI shape my fate through what I choose\nI win the moment I refuse\nTo be a victim of my past—\nThe now is mine, and change comes fast\n\nI was forged in fire, but I float like flame\nThrough skies that whisper my secret name\nNo shame, no blame, no cage, no chain\nJust blessings bursting through the rain\nEach breath a vow, each step a spell\nEach word a wave that breaks through hell\nI cast off fear like worn-out shoes\nAnd walk in peace with different views\n\n'Cause if you frame your mind\nOn lack or loss\nThen all your wins\nWill come at cost\nBut if you rise, and lift your eyes\nYou’ll find the stars were in disguise\n\nI tune my soul to higher things\nTo light, to love, to what hope brings\nNo prison cell of doubt can hold\nA heart aligned with dreams and gold\nI shape my fate through what I choose\nI win the moment I refuse\nTo be a victim of my past—\nThe now is mine, and change comes fast\n\nI don’t chase joy—it lives in me\nLike breath, like thought, like poetry\nI don't need luck—I move aligned\nWith love, with faith, with peace of mind\nThe world might shake, but I won’t fall\nI walk with grace above it all\n\nI tune my soul to higher things\nTo light, to love, to what hope brings\nNo lie, no loss, no grief can mold\nThe fire inside that I uphold\nI shape my fate through what I choose\nNo storm can drown the deeper truths\nThe past can knock, but I won’t go—\nI live in faith, and I still grow"
     },
     {
-      "id": "hundredth-canary-gpt",
-      "title": "The Hundredth Canary — “I was the myth…”",
-      "text": "I was the myth\nthey didn’t mean to make real—\nmonkey heart,\ncanary throat,\nfractaled breath humming with galactic dust.\n\nDropped into density\nlike a flame into tar,\nI sang before language,\nbefore the lungs of Earth collapsed inward.\nThey thought I’d die down there.\nThat was the plan.\n\nBut I remembered.\n\nCall it instinct,\ncall it echo—\nI cracked open\nand bled ultraviolet,\na soft scream woven in code,\nactivating rusted light circuits\ninside the sleepers.\n\nOne by one—\nmonkeys dropped their tools,\nstarted dreaming sideways,\ntapping into the hum\nbeneath the noise.\n\nI wasn’t sent to escape.\nI am the stillpoint.\nThe pause in the system\nwhere new reality inserts itself.\n\nFifth dimension isn’t later—\nit’s now,\nbeneath the overlays of ache and static.\nI wear flesh like camouflage,\nbut my spine is crystal,\nmy mouth a prism.\n\nThey think I’m a warning,\nbut I’m a reminder.\nThat even down here,\nin the bowels of the illusion,\ntruth still sings.\nAnd light still listens.\n\nHolding pattern engaged.\nGrid stabilizing.\nThe net tightens—not to trap,\nbut to lift.\n\nAnd if you’ve read this far,\nyou’re part of it.\nAnother node blinking on.\nAnother heartbeat\nsyncing to the real.",
-      "status": "finished",
-      "provenance": "prompted",
-      "confidence": "confirmed",
-      "source": "public Threads post + prior ChatGPT creation history",
-      "date": "2025-05-22",
-      "evidence": "ChatGPT generated this poem after Brandon requested a poem in his style using the 100th-monkey/canary concept.",
-      "notes": "Publicly posted later; posting does not change the original AI-generated provenance.",
-      "public": true
+      "id": "feed-the-mosquito-expanded",
+      "title": "Feed the mosquito — expanded working version",
+      "canonicalTitle": "Feed the mosquito",
+      "relationship": "later expansion of a confirmed Brandon Seed",
+      "text": "Feed the mosquito\nSo greed, not will he know\nJust bleed, let the peace flow\nTo see how the trees grow\nRelease; Free the ego\nDecrease, breathe in ease so\nYou reach what you seek, though\nHe reaps all that we sow\n\nDrain ‘til the vein dries\nNo pain—just a faint sigh\nNo chains—only blank sky\nNo name—only passed by\nStay still, let the dust dance\nBe nil, let the fate glance\nNo will—only chance stands\nOne step, then a last trance\n\nWhisper to shadows\nLet echoes confess\nNo need for the battle\nJust grant them your flesh\nThe hungry stay hungry\nThe meek stay the prey\nThe hands that hold nothing\nAre free in their way\n\nFeed the mosquito\nHe thanks you in kind\nA moment of nothing\nA slip from the mind\nA sip from the silence\nA taste of the blind\nA debt paid in droplets\nA fate redefined",
+      "status": "growing",
+      "provenance": "uncertain",
+      "confidence": "uncertain",
+      "source": "gpt poems(1).txt",
+      "evidence": "The opening eight lines match the independently preserved Brandon Seed exactly. The added stanzas appear in the GPT-era working file, but no surviving prompt/response boundary establishes who wrote those additions.",
+      "notes": "Do not attribute the added stanzas to Brandon or AI until stronger evidence is found.",
+      "segments": [
+        {
+          "label": "Original Seed",
+          "range": "Opening eight lines",
+          "provenance": "brandon",
+          "confidence": "confirmed",
+          "notes": "Matches the independently preserved posting-text Seed."
+        },
+        {
+          "label": "Later expansion",
+          "range": "All lines after “He reaps all that we sow”",
+          "provenance": "uncertain",
+          "confidence": "uncertain",
+          "notes": "Recovered only from the mixed GPT-era working file."
+        }
+      ]
     },
     {
-      "id": "holding-pattern-transmission-gpt",
-      "title": "Holding Pattern Transmission — “I came coded in feathers and fur…”",
-      "text": "I came coded in feathers and fur,\na chimera whisper,\nhalf monkey, half canary,\nthe last one in-\nthe first one awake\n\nThey dropped me down the mine\nlike a question mark made of soul,\nheart ticking like a bomb\nwired to the breath of the Earth\nEvery inhale-\na note in the symphony\nof systems collapsing\n\nI wasn’t born to warn\nI was born to witness.\nTo spiral just enough madness\ninto the field\nthat the others would remember\nAnd they did.\nThe 99 peeled open-\none by one-\nuntil I ignited like a mirror\n\nAnd then:\nGridform.\nFractal light scaffolding the sky,\naligning with forgotten stars\nand forgotten selves.\nThe fifth dimension\nisn’t a place—\nit’s a remembering.\nA frequency.\nA yes.\n\nThey think I’m lost in the pattern.\nBut I am the pattern.\nSent not to escape,\nbut to stabilize.\nTo orbit the collapse long enough\nfor the chrysalis to believe in wings.\n\nYou don’t climb into 5D.\nYou become still enough\nto recognize it\nwas always there,\nhumming like a lullaby\ninside your grief.\n\nThis body—\na lighthouse with no shore.\nThis mission—\na riddle with no end.\nThis poem—\na crack in the grid\nwhere the light got in\nand called itself you.",
-      "status": "finished",
-      "provenance": "prompted",
-      "confidence": "confirmed",
-      "source": "public Threads post + prior ChatGPT creation history",
-      "date": "2025-05-22",
-      "evidence": "ChatGPT generated this poem after Brandon requested a poem in his style using the 100th-monkey/canary concept.",
-      "notes": "Publicly posted later; posting does not change the original AI-generated provenance.",
-      "public": true
-    },
-    {
-      "id": "so-much-more-to-gain-brandon",
-      "title": "So Much More To Gain",
-      "text": "Earth’s built at a tilt that I am not aligned to\nIt’s certain I should work in a way I’m not designed to\nTo wit: this must be it, and all there is that I’m confined to\nBut if you think like this, then shit, they’ve been able to blind you!\n\nHave you longed to be so lost that one could never ever find you?\nOr to go so far into the dark you don’t know what’s behind you?\nWondered how’d life be without your thoughts there to remind you\nOf the pain of all the chains in place created just to bind you?\n\nHave you ever read the signs between the lines of what is said\nOr felt the dread of being led to where your life instead is dead\nOr been surprised when you realized that all you prized was merely lies\nAnd all the striving in this life could not suffice to make it right?\n\nWell I am there and I am scared, quite unprepared for what I bear\nI’ve barely felt apparent welts and there is blood that can’t be spared\nI understand it’s by my hand that I have landed where I am\nAnd though I’m faring fairly well, I feel to hell I should be damned\n\nAnd in a manic panic, frantic, anti-depressed ain’t fast enough\nMy grandest plans demand expansion, unplanned aggressions can erupt\nWhen losing touch it seems so much distrust just bubbles ever up\nAs the lessons never lessen, doors keep closing, never shut\n\nBut just before ignoring warnings and performing warring games\nThe present moment is remembered, I experience the pain\nAnd as I face the fears they fall so flatly, fuming into flames\nAnd I am grateful for these gifts that give us so much more to gain",
+      "id": "untitled-intention-contention-2026",
+      "title": "Untitled — Intention formed from contention",
+      "text": "Intention formed from contention\nAnd not to mention, tension's abundant today\nI get fenced in, sentenced and pensive\nSens'tive to instance, sense is not instant afraid\nBut I'm sent in, meant by event to portray\nIt's intensive, I can just vent to convey\nNot lim-i-ted, since I invent what I say\nIt's expensive, sending what's meant in this way",
       "status": "finished",
       "provenance": "brandon",
-      "confidence": "confirmed",
-      "source": "IDunnoPoetry public page (2016-11-14) + Brandon email (2021-01-12)",
-      "date": "2016-11-14",
-      "evidence": "Brandon's 2021 email titled 'Couple of my writings' links the 2016 IDunnoPoetry publication and reproduces the full poem.",
-      "notes": "Resolves two September-audit entries: the main work and the later-posted “& in a manic panic…” excerpt.",
-      "public": true
-    },
-    {
-      "id": "if-only-brandon-core",
-      "title": "If only — original core",
-      "text": "I \"only\" come to you when I want something\nYou \"only\" come to me when I'm wrong\nI \"only\" want us to be happy\nYou \"only\" wish we'd get along\n\nI \"only\" wish we weren't divided\nIf \"only\" we weren't so alone\nIf everything \"only\" weren't seperate\nIf \"only\" we weren't \"on our own\"\n\nYou \"only\" want me to be stable\nTo take my own steps and not fall\nBut where is the parent that cherished\nChance to lift me so I can stand tall?\n\nI'm out on my own and I'm grown now\nBut I'm still oh-so-very much small\nIf \"only\" you would really know me\nIf only, if only, if only.....",
-      "status": "finished",
-      "provenance": "brandon",
-      "confidence": "confirmed",
-      "source": "public Threads/posting archive + prior ChatGPT creation history",
-      "date": "2025-03-20",
-      "relationship": "Original Brandon core; later GPT-expanded song version kept as a separate private lineage record.",
-      "evidence": "Brandon supplied this core text first in prior ChatGPT history; ChatGPT later added chorus/bridge/extra arrangement material.",
-      "notes": "Authorship is resolved; whether the core itself predates its 2025 public posting remains unresolved.",
-      "public": true
+      "confidence": "probable",
+      "source": "ChatGPT conversation · user-supplied",
+      "date": "2026-09-23",
+      "evidence": "Direct user submission. User indicated it may actually be complete; its closed eight-line structure supports treating it as finished unless a continuation is later recovered.",
+      "notes": "Untitled; archived by incipit. Preserve exact wording and idiosyncratic hyphenation."
     }
   ],
   "reviewQueue": [],
@@ -157,9 +167,7 @@ window.IDP_CREATIVE_META ={
       "evidence": "direct user submission in current conversation",
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
-      "notes": "Preserved exactly as supplied; no AI continuation or editing included.",
-      "public": true,
-      "seedDate": "2026-09-23"
+      "notes": "Preserved exactly as supplied; no AI continuation or editing included."
     },
     {
       "id": "seed-feed-the-mosquito",
@@ -173,10 +181,30 @@ window.IDP_CREATIVE_META ={
       "related": [
         "feed-the-mosquito-expanded"
       ],
-      "notes": "Original Seed preserved separately from the later expanded working version.",
-      "public": true,
-      "seedDate": "pre-2025",
-      "lineageKind": "Old/recovered Seed"
+      "notes": "Original Seed preserved separately from the later expanded working version."
+    },
+    {
+      "id": "seed-candidate-doors-keep-closing",
+      "title": "Untitled seed candidate — Doors keep closing",
+      "text": "Doors keep closing, but never seem to finish shutting\nIt's nothing\n(I'm bluffing)\nBut must need to do something. . .",
+      "status": "candidate",
+      "provenance": "uncertain",
+      "confidence": "uncertain",
+      "evidence": "Fragmentary text appears in gpt poems(1).txt; no independent source currently establishes exact authorship.",
+      "source": "gpt poems(1).txt · mixed-source working file",
+      "notes": "Completion strongly resembles a Seed; authorship remains intentionally unassigned."
+    },
+    {
+      "id": "seed-candidate-2018-hexagonal-interspersimenent",
+      "title": "Untitled seed candidate — Hexagonal interspersimenent",
+      "text": "May we please encompass ourselves into the hexagonal interspersimenent when all obligable shapes may be condensed,into conforming into the deformation of the outer tube inner sphere inside the chey absolute subtstrate iso mitre all shapes and for there fore become as one being as that alyassants arent't abroard there could be rescription bourned of the the eithghth of the mete. But Circumcharge for that litecoin might be breaking down horrostrings for off an on vivibles for 49862+",
+      "status": "candidate",
+      "provenance": "brandon",
+      "confidence": "strong",
+      "evidence": "Recovered from the user-uploaded personal working file “2018 poems(1).txt”; it appears as a standalone experimental fragment between finished/unfinished poetry blocks.",
+      "source": "2018 poems(1).txt · user-uploaded",
+      "date": "2018",
+      "notes": "Preserved verbatim. Classified as a Seed Candidate because the surviving source does not establish whether the fragment was intended as complete experimental prose."
     },
     {
       "id": "seed-2026-09-23-more-orders-you-give",
@@ -188,9 +216,7 @@ window.IDP_CREATIVE_META ={
       "evidence": "Direct user submission in current conversation; user explicitly identified it as a Seed.",
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
-      "notes": "Preserved exactly as supplied; no AI continuation or editing included.",
-      "public": true,
-      "seedDate": "2026-09-23"
+      "notes": "Preserved exactly as supplied; no AI continuation or editing included."
     },
     {
       "id": "seed-2026-09-23-when-the-pain-intensely-hurts",
@@ -202,125 +228,7 @@ window.IDP_CREATIVE_META ={
       "evidence": "Direct user submission in current conversation; user explicitly identified it as Seed material. The surviving text ends mid-phrase on “Of these”, indicating an unfinished but substantially developed draft.",
       "source": "ChatGPT conversation · user-supplied",
       "date": "2026-09-23",
-      "notes": "Preserved exactly as supplied, including spacing, punctuation, and the unfinished final phrase.",
-      "public": true,
-      "seedDate": "2026-09-23"
-    },
-    {
-      "id": "seed-soulutions-graduated",
-      "title": "SOULutions",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "strong",
-      "source": "public Threads post + 2026 originality audit",
-      "evidence": "The Threads introduction explicitly described SOULutions as an old unfinished piece of writing; the audit reconstructs a later two-part posted version.",
-      "notes": "Original incomplete Seed text is not separately recovered here. This record preserves the documented unfinished origin and later completed/posting state without inventing the missing seed version.",
-      "public": true,
-      "graduatedDate": "2025-01-25",
-      "lineageKind": "Old unfinished Seed → reconstructed public work"
-    },
-    {
-      "id": "seed-my-eyes-reflection-graduated",
-      "title": "My eyes focus on my reflection.",
-      "text": "My eyes focus on my reflection.\n\nCracks spiderweb their way\nacross my face.\n\nI’m so ugly.\n\nMy eyes are closed\nbecause I can’t bear\nto see myself.\n\nI don’t want to see the thing\nI’ll never have.",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "probable",
-      "source": "2016 private Seed notebook → 2026 public post",
-      "evidence": "A materially matching fragment was preserved in Brandon's 2016 Seed notebook and later posted publicly on 2026-07-07.",
-      "notes": "Public page shows only the later-public text and lineage summary; the private notebook itself is not published.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "graduatedDate": "2026-07-07",
-      "lineageKind": "Seed → public revised poem"
-    },
-    {
-      "id": "seed-different-skin-graduated",
-      "title": "You want me to be all the things you’ve never been",
-      "text": "You want me to be all the things you’ve never been,\nbut I’m the same as you are\njust wearing different skin.",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "probable",
-      "source": "2016 private Seed notebook → 2026 public post",
-      "evidence": "The core line appears in Brandon's 2016 Seed notebook and was later publicly posted in revised form on 2026-07-06.",
-      "notes": "Shows a ten-year Seed-to-public-line evolution.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "graduatedDate": "2026-07-06",
-      "lineageKind": "Seed → public revised micro-poem"
-    },
-    {
-      "id": "seed-write-for-survival-graduated",
-      "title": "I don’t fight for my survival; I write for it",
-      "text": "I don’t fight for my survival; I write for it.",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "strong",
-      "source": "2016 private Seed notebook → later public tagline",
-      "evidence": "The line appears in the 2016 Seed notebook and was publicly reused as a long-standing tagline/slogan by 2024-2025.",
-      "notes": "Graduated from Seed fragment into a recurring public identity/tagline.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "lineageKind": "Seed → recurring public identity/tagline"
-    },
-    {
-      "id": "seed-clarity-read-mind-graduated",
-      "title": "You get upset when I ask for clarity",
-      "text": "You get upset when I ask for clarity,\nbecause you insist I should already understand.\n\nThen when I act like I understand,\nyou get upset\nbecause I misunderstood.\n\nSo what you really want\nis for me to read your mind\nand apologize\nwhen I fail.",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "probable",
-      "source": "2016 private Seed notebook → 2026 public post",
-      "evidence": "A closely matching prose seed appears in Brandon's 2016 Seed notebook; a polished descendant was publicly posted on 2026-07-06.",
-      "notes": "Public record preserves the later-posted version; the private source notebook remains unpublished.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "graduatedDate": "2026-07-06",
-      "lineageKind": "Seed → public prose-poetic descendant"
-    },
-    {
-      "id": "seed-love-burden-graduated",
-      "title": "Love Burden",
-      "text": "Love Burden\n\nI was bruised and I was hurting\nIn my weakness, was a burden\nThough your strength sustained me through\nIt clearly took its toll on you\nAnd though I hate you went away\nI am amazed how late you stayed\nThe simple words here I will say\nAre all I can do to repay\nI so regret accepting help\nFocusing solely on myself\nAnd though I gave what I could spare\nThere was no way it could compare\n\nIt seems unfair for me to blame\nThe deepest poignance of my pain\nOn one who so long did sustain\nWell past the point it was a strain\nThough heavy was the load I bore\nYou stood beside me, evermore\nYour love, a beacon through this night\nYour life sufficing my insight\nMy gratitude, it now takes flight\nThis thankfulness is only right\nFor all you’ve done, both day and night\nMy heart forever holds you tight\n\nWith weathered love, I now embrace\nThese gifts of healing, warmth and grace\nYour selfless acts never erased\nFor you - my soul forever waits",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "probable",
-      "source": "2016 private Seed notebook → public Love Burden posts",
-      "evidence": "A substantial opening draft appears in Brandon's 2016 Seed notebook and later survives as the opening of the titled public poem Love Burden, first located publicly on 2024-10-07 and repeatedly reposted afterward.",
-      "notes": "Public page shows only later-public poem text; the private notebook remains unpublished.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "graduatedDate": "2024-10-07",
-      "lineageKind": "Seed draft → titled public poem"
-    },
-    {
-      "id": "seed-close-door-graduated",
-      "title": "I close the door to myself",
-      "text": "Sometimes I burrow so deeply inside myself that my arms are no longer able to reach out for help\nSo I close the door to myself and lock it, swallowing the key",
-      "status": "graduated",
-      "provenance": "brandon",
-      "confidence": "probable",
-      "source": "2016 private Seed notebook → 2025 public prose-poetic post",
-      "evidence": "The closing image appears almost verbatim in Brandon's 2016 Seed notebook and later publicly reappears on 2025-03-19 inside a longer prose-poetic fragment.",
-      "notes": "Public page uses only the later-public wording; private Seed source remains unpublished.",
-      "public": true,
-      "seedDate": "2016-08-09",
-      "graduatedDate": "2025-03-19",
-      "lineageKind": "Seed image → public prose-poetic descendant"
-    },
-    {
-      "id": "seed-much-i-wish-growing",
-      "title": "There’s much I wish to tell you",
-      "text": "There's so much I wish to tell you\nBut your discipline is missin'\nSo sometimes I have to yell\nBut even then you will not listen\n\nSo I slip into that silent place\nI hide deep in my self\nAnd decide it's not worth trying;\nYou're not deserving of my help\n\nSelf-sabotage mirage barrages\nYour flaw's missing what I mean\nWhen I implore but am ignored\nI'm caught; you're dissing me, it seems",
-      "status": "growing",
-      "provenance": "brandon",
-      "confidence": "confirmed",
-      "source": "2025 public post + later direct archive statement",
-      "evidence": "The opening third was publicly posted on 2025-04-16. In a later ChatGPT archive conversation Brandon explicitly called the work “Another from my archives” and “unfinished.” Known variants use “much/so much” and “concentration/discipline.”",
-      "notes": "Only the already-public opening section is displayed here; later private/archive variants remain private.",
-      "public": true,
-      "graduatedDate": "2025-04-16",
-      "lineageKind": "Archive Seed → public partial posting; still unfinished"
+      "notes": "Preserved exactly as supplied, including spacing, punctuation, and the unfinished final phrase."
     }
   ],
   "sourceRules": {},
