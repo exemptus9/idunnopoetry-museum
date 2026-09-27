@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.18**, September 24, 2026.
+Current museum line: **v3.21**, September 27, 2026.
 
 ### Version visibility
 
@@ -109,3 +109,7 @@ The current version is displayed in the public museum header, footer, About view
 The canonical public URL includes Open Graph and Twitter large-card metadata with a dedicated 1200×630 PNG preview styled after the recovered phpBB/subSilver museum interface.
 
 The share-card PNG is rendered from its versioned SVG during deployment. Release checks reject conflicting labels before publication.
+
+### v3.21 archive reconciliation
+
+This release brings Seed-lineage, deep-link, continuity-scale, and provenance-reconciliation improvements into the full static museum while retaining Media, Reader Impact, Versions, WordPress recovery overlays, and the restored historical interface. Personal notebooks, family/crisis drafts, private correspondence, and review material remain private by default.

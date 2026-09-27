@@ -34,3 +34,6 @@ This site does **not** contain historical email addresses, IP addresses, passwor
 
 ## Configuration
 Edit `museum-config.js` to change the archive owner/contact destination.
+
+## Current release
+Current museum line: **v3.21**, September 27, 2026.
