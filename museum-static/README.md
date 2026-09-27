@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.21**, September 27, 2026.
+Current museum line: **v3.22**, September 27, 2026.
 
 ### Version visibility
 
@@ -113,3 +113,9 @@ The share-card PNG is rendered from its versioned SVG during deployment. Release
 ### v3.21 archive reconciliation
 
 This release brings Seed-lineage, deep-link, continuity-scale, and provenance-reconciliation improvements into the full static museum while retaining Media, Reader Impact, Versions, WordPress recovery overlays, and the restored historical interface. Personal notebooks, family/crisis drafts, private correspondence, and review material remain private by default.
+
+### v3.22 visitor-first museum
+
+This release reorganizes the public experience around **Forums, Poetry, Story, Reader Impact, Archive & Research, Search, and Reclaim**. It adds four guided first-visit routes — **Start Here**, **What Was IDunnoPoetry?**, **Best-Preserved Threads**, and **Then & Now** — while moving specialist source, attribution, verification, media, Seed, and version tools into the Archive & Research hub.
+
+Prominent AI/authorship-assistance language was reduced without deleting record-level provenance where it is historically relevant. Mobile navigation, post reading, poem typography, forms, touch targets, and guided cards were also enlarged and simplified. The social preview moved to a new v3.22 asset path so social platforms have a fresh image URL to fetch.
