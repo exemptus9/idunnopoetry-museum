@@ -36,4 +36,8 @@ This site does **not** contain historical email addresses, IP addresses, passwor
 Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Current release
-Current museum line: **v3.21**, September 27, 2026.
+Current museum line: **v3.22**, September 27, 2026.
+
+## Visitor-first navigation
+
+v3.22 centers the public experience on Forums, Poetry, Story, Reader Impact, Archive & Research, Search, and Reclaim. Guided entry pages provide a simpler first visit, while specialist reconstruction and attribution tools remain available under Archive & Research.
