@@ -1,4 +1,4 @@
-window.IDP_CREATIVE_META = {
+window.IDP_CREATIVE_META ={
   "schemaVersion": 2,
   "archiveVersion": "3.21",
   "completion": {
@@ -323,33 +323,7 @@ window.IDP_CREATIVE_META = {
       "lineageKind": "Archive Seed → public partial posting; still unfinished"
     }
   ],
-  "sourceRules": {
-    "chatgpt poetry stuff(1).txt": {
-      "disposition": "reference-only",
-      "defaultProvenance": "ai",
-      "rule": "Treat as AI brainstorming/reference material by default, not Brandon canon. Promote a specific item only when independent evidence or direct user confirmation establishes a different provenance."
-    },
-    "gpt poems(1).txt": {
-      "disposition": "mixed-source-review",
-      "defaultProvenance": "uncertain",
-      "rule": "Contains user text, AI output, prompts, and transcript remnants. Never assign whole-file authorship; reconcile individual works or sections from explicit boundaries, prior-chat evidence, and independent versions."
-    },
-    "poemspostedupdatedtext(1).txt": {
-      "disposition": "posting-archive",
-      "defaultProvenance": "publication-evidence",
-      "rule": "Strong evidence of what Brandon posted and of version chronology, but publication alone does not prove sole authorship for AI-era material."
-    },
-    "postedpoemsorder(1).txt": {
-      "disposition": "chronology-index",
-      "defaultProvenance": "publication-evidence",
-      "rule": "Use to establish posting order, titles, media variants, and existence; do not infer authorship or completion solely from list placement."
-    },
-    "Brandon_WordSmith_Threads_Originality_Audit_2026-09-14.xlsx": {
-      "disposition": "provenance-audit",
-      "defaultProvenance": "case-specific",
-      "rule": "Use the audit's explicit labels and confidence levels as provenance evidence; do not promote LOW/UNRESOLVED rows to Brandon Original without stronger evidence."
-    }
-  },
+  "sourceRules": {},
   "archiveDocuments": [],
   "verificationScale": {
     "authorship": {
