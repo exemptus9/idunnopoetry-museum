@@ -1,5 +1,5 @@
 window.IDP_VERSION_HISTORY={
-  current:"3.21",
+  current:"3.22",
   releases:[
     {version:"3.3",date:"2026-09-23",status:"confirmed",title:"Complete static museum import",summary:"The complete static museum build was imported into the GitHub-owned repository and prepared for host-independent deployment.",evidence:"Git commit: Import complete static museum build v3.3"},
     {version:"3.4",date:"2026-09-23",status:"confirmed",title:"WordPress recovery",summary:"The museum incorporated the recovered WordPress layer, archive-trail enhancements, and the 682-work recovery state.",evidence:"Historical museum README: Current museum line: v3.4 WordPress recovery"},
@@ -16,7 +16,8 @@ window.IDP_VERSION_HISTORY={
 ,{version:"3.18",date:"2026-09-24",status:"confirmed",title:"Privacy removal and publication safeguards",summary:"Removed personal source documents, sensitive drafts and notebook verification excerpts from deployable data. New personal material stays private by default; authorship review does not grant publication permission.",evidence:"Privacy release checks in this repository"}
 ,{version:"3.19",date:"2026-09-26",status:"confirmed",title:"Seed lineages and provenance reconciliation",summary:"Added dated Seed germination lineages, sortable Seed views, permanent Seed detail pages and deep links, and expanded evidence-aware provenance reconciliation.",evidence:"v3.19 Git history in this repository"}
 ,{version:"3.20",date:"2026-09-26",status:"confirmed",title:"Drive continuity ingestion",summary:"Recorded private continuity-corpus scale separately from the verified public Seed layer and expanded provenance accounting without publishing private notebook material.",evidence:"v3.20 Drive continuity commits in this repository"}
-,{version:"3.21",date:"2026-09-27",status:"current",title:"Archive reconciliation and continuity sync",summary:"Synced continuity and provenance features into the complete static museum while preserving Media, Reader Impact, Versions, historical themes, and recovery overlays. Verified duplicate private files were removed without publishing private source material.",evidence:"v3.21 release commit in this repository"}
+,{version:"3.21",date:"2026-09-27",status:"confirmed",title:"Archive reconciliation and continuity sync",summary:"Synced continuity and provenance features into the complete static museum while preserving Media, Reader Impact, Versions, historical themes, and recovery overlays. Verified duplicate private files were removed without publishing private source material.",evidence:"v3.21 release commit in this repository"}
+,{version:"3.22",date:"2026-09-27",status:"current",title:"Visitor-first navigation and guided history",summary:"Simplified the public navigation around Forums, Poetry, Story, Reader Impact, Archive and Search; added Start Here, What Was IDunnoPoetry?, Best-Preserved Threads and Then & Now; moved specialist reconstruction tools into Archive & Research; reduced prominent authorship-assistance language; and improved mobile readability and touch navigation.",evidence:"v3.22 visitor-first UX and language-cleanup commits in this repository"}
   ],
   milestones:[
     {time:"11:39",title:"GitHub repository initialized",detail:"Museum repository initialized from the Lovable project."},
@@ -27,5 +28,6 @@ window.IDP_VERSION_HISTORY={
     {time:"20:21–20:23",title:"Reader Impact evidence added",detail:"Sixteen anonymized historical reader-impact records were added with a dedicated exhibit and explicit privacy methodology."}
     ,{time:"20:29–20:32",title:"Media lineage indexed",detail:"The Master Creative Archive supplied 136 linked creative assets across 50 reconciled works (51 source labels) (93 video, 42 audio, 1 image; about 3.58 GB). Private Drive IDs were stripped from the public catalog, poem-level media lineage was added, and the first curated image asset was published."}
     ,{time:"18:34–18:47",title:"YouTube media reconciliation",detail:"The live eXemptus / @idunnopoetry channel was checked directly. Forty clearly IDunnoPoetry, Brandon WordSmith, poetry, poem-to-music, spoken-word, or project-history uploads were added as public media records; ten work/archive labels were new relative to the private Drive media catalog. The channel reports 58 videos, while 52 regular uploads were enumerated, leaving six channel-count items unresolved rather than inferred."}
+    ,{time:"22:53+",title:"Visitor-first museum pass",detail:"Public navigation was simplified, guided entry pages were added, specialist archive tools were grouped under Archive & Research, prominent AI/authorship-assistance language was reduced, mobile reading was improved, and the social preview was refreshed for v3.22."}
   ]
 };
