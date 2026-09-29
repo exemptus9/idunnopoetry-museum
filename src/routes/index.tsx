@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Browse the reconstructed phpBB 2.0.6 forum, 23,957 surviving public posts, recovered poetry, exhibits and the reclamation workflow.",
+          "Browse the reconstructed phpBB 2.0.6 forum, 23,957 surviving public posts, recovered poetry, verified public Seeds, provenance, and the wider continuity record.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -61,7 +61,7 @@ function Museum() {
               Submit teen poetry, poems, advice from poets, depression help, teen guy, etc.
             </span>
             <span className="museum-label">
-              Messageboard Museum · v3.21 · reconstructed public archive
+              Messageboard Museum · v3.22 · reconstructed public archive
             </span>
           </a>
           <div className="skin-control">
