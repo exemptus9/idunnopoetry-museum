@@ -1,6 +1,6 @@
 window.IDP_CREATIVE_META ={
   "schemaVersion": 2,
-  "archiveVersion": "3.21",
+  "archiveVersion": "3.22",
   "completion": {
     "seed": {
       "label": "Seed",
@@ -298,7 +298,7 @@ window.IDP_CREATIVE_META ={
       "resolvedOrRetired": 9,
       "authorshipResolvedChronologyOpen": 1,
       "authorshipOriginUnresolved": 1,
-      "note": "Drive ingestion of historical notebooks resolved “I wish that I could lunge” as old/recovered by at least 2015-03-21."
+      "note": "Historical Drive ingestion now leaves only one original audit case unresolved for authorship/origin. “I wish that I could lunge” is old/recovered by at least 2015-03-21; broader private creative-source chronology reaches at least 2012."
     }
   },
   "privateCreativeStats": {
@@ -312,7 +312,7 @@ window.IDP_CREATIVE_META ={
     "fullyResolvedOrRetired": 9,
     "authorshipResolvedChronologyOpen": 1,
     "authorshipUnresolved": 1,
-    "note": "Only “A thousand sunsets shape your facial features” remains unresolved for authorship/origin among the original audit's unresolved set. “I wish that I could lunge” is present in poeming1.txt dated 2015-03-21."
+    "note": "Only “A thousand sunsets shape your facial features” remains unresolved for authorship/origin among the original audit's unresolved set. “I wish that I could lunge” is old/recovered by at least 2015-03-21. Recovered private creative-source chronology reaches at least 2012."
   },
   "continuityCorpusStats": {
     "coreNotebookSourcesScanned": 8,
@@ -323,6 +323,9 @@ window.IDP_CREATIVE_META ={
     "explicitSeedRawBlocks": 359,
     "explicitSeedExactNormalizedUniqueBlocks": 202,
     "explicitSeedSafeBlocksForReconciliation": 175,
-    "note": "These are source-note blocks, not a final count of poems or Seeds. Multi-stanza works can span several blocks; blocks can also be finished works, variants, story ideas, reference material, or AI-assisted expansions."
+    "note": "These are source-note blocks, not a final count of poems or Seeds. Multi-stanza works can span several blocks; blocks can also be finished works, variants, story ideas, reference material, or AI-assisted expansions. Recovered private creative-source chronology now reaches at least 2012.",
+    "earliestRecoveredCreativeSource": "2012-09-02",
+    "historicalContinuityAnchored": true,
+    "publicLayerPolicy": "Only reconciled, publish-safe records appear as public Seeds; private notebooks contribute chronology and aggregate continuity evidence without publishing their text."
   }
 };
