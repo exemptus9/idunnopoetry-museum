@@ -31,7 +31,7 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.21",
+  "archive_version": "3.22",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -81,7 +81,10 @@
       "core_exact_normalized_unique_blocks": 669,
       "core_safe_exact_normalized_unique_blocks": 640,
       "explicit_seed_safe_blocks_for_reconciliation": 175,
-      "caveat": "Source blocks are reconciliation units, not final works or Seed counts."
+      "caveat": "Source blocks are reconciliation units, not final works or Seed counts.",
+      "earliest_recovered_creative_source": "2012-09-02",
+      "historical_continuity_anchored": true,
+      "public_layer_policy": "Private notebooks contribute chronology and aggregate evidence without automatic publication."
     }
   }
 }
