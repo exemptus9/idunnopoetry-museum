@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.22**, September 27, 2026.
+Current museum line: **v3.23**, September 29, 2026.
 
 ### Version visibility
 
@@ -119,3 +119,7 @@ This release brings Seed-lineage, deep-link, continuity-scale, and provenance-re
 This release reorganizes the public experience around **Forums, Poetry, Story, Reader Impact, Archive & Research, Search, and Reclaim**. It adds four guided first-visit routes — **Start Here**, **What Was IDunnoPoetry?**, **Best-Preserved Threads**, and **Then & Now** — while moving specialist source, attribution, verification, media, Seed, and version tools into the Archive & Research hub.
 
 Prominent AI/authorship-assistance language was reduced without deleting record-level provenance where it is historically relevant. Mobile navigation, post reading, poem typography, forms, touch targets, and guided cards were also enlarged and simplified. The social preview moved to a new v3.22 asset path so social platforms have a fresh image URL to fetch.
+
+### v3.23 continuity chronology
+
+This release preserves the visitor-first v3.22 structure while clarifying the relationship between the small verified public Seed exhibit and the much larger private continuity corpus. Private notebook text remains unpublished by default. Aggregate source accounting and chronology now record recovered creative-source continuity reaching at least 2012, and provenance reconciliation reflects the historical Drive evidence recovered through September 29, 2026.
