@@ -56,7 +56,9 @@
     "assets/idp-museum-og-v3.21.svg",
     "assets/idp-museum-og-v3.21.png",
     "assets/idp-museum-og-v3.22.svg",
-    "assets/idp-museum-og-v3.22.png"
+    "assets/idp-museum-og-v3.22.png",
+    "assets/idp-museum-og-v3.23.svg",
+    "assets/idp-museum-og-v3.23.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -107,9 +109,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.22",
-  "build_date": "2026-09-27",
-  "archive_version": "3.22",
+  "build_version": "v3.23",
+  "build_date": "2026-09-29",
+  "archive_version": "3.23",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -161,12 +163,15 @@
       "core_exact_normalized_unique_blocks": 669,
       "core_safe_exact_normalized_unique_blocks": 640,
       "explicit_seed_safe_blocks_for_reconciliation": 175,
-      "caveat": "Source blocks are reconciliation units, not final works or Seed counts."
+      "caveat": "Source blocks are reconciliation units, not final works or Seed counts.",
+      "earliest_recovered_creative_source": "2012-09-02",
+      "historical_continuity_anchored": true,
+      "public_layer_policy": "Private notebooks contribute chronology and aggregate continuity evidence without automatic publication."
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.22.svg",
-    "path": "assets/idp-museum-og-v3.22.png",
+    "source": "assets/idp-museum-og-v3.23.svg",
+    "path": "assets/idp-museum-og-v3.23.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -177,7 +182,7 @@
     "awaiting_work_match": 15,
     "new_title_links": 3
   },
-  "release_note": "v3.22 reorganizes the museum around first-time visitors while restoring the publication-approved public creative payload: simpler navigation, four guided entry pages, a dedicated Archive & Research hub, less prominent authorship-assistance language, improved mobile reading, and a refreshed social preview.",
+  "release_note": "v3.23 preserves the visitor-first v3.22 experience while clarifying that the visible Seed exhibit is a conservative, publish-safe layer over a much larger private continuity corpus. Recovered private creative-source chronology now reaches at least 2012, and provenance reconciliation is synchronized without publishing private notebook text.",
   "visitor_experience": {
     "primary_navigation": [
       "Home",
