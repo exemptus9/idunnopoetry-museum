@@ -1,201 +1,201 @@
 window.IDP_VERSION_HISTORY={
-  "current": "3.23",
-  "releases": [
+  current: "3.23",
+  releases: [
     {
-      "version": "3.3",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Complete static museum import",
-      "summary": "The complete static museum build was imported into the GitHub-owned repository and prepared for host-independent deployment.",
-      "evidence": "Git commit: Import complete static museum build v3.3"
+      version: "3.3",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Complete static museum import",
+      summary: "The complete static museum build was imported into the GitHub-owned repository and prepared for host-independent deployment.",
+      evidence: "Git commit: Import complete static museum build v3.3"
     },
     {
-      "version": "3.4",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "WordPress recovery",
-      "summary": "The museum incorporated the recovered WordPress layer, archive-trail enhancements, and the 682-work recovery state.",
-      "evidence": "Historical museum README: Current museum line: v3.4 WordPress recovery"
+      version: "3.4",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "WordPress recovery",
+      summary: "The museum incorporated the recovered WordPress layer, archive-trail enhancements, and the 682-work recovery state.",
+      evidence: "Historical museum README: Current museum line: v3.4 WordPress recovery"
     },
     {
-      "version": "3.5–3.8",
-      "date": "2026-09-23",
-      "status": "unresolved",
-      "title": "Intermediate development",
-      "summary": "The repository records continued development after v3.4, but no trustworthy version-to-change mapping for 3.5 through 3.8 survives in the current Git history. Their contents are therefore left unassigned rather than reconstructed by guesswork.",
-      "evidence": "No reliable release labels recovered"
+      version: "3.5–3.8",
+      date: "2026-09-23",
+      status: "unresolved",
+      title: "Intermediate development",
+      summary: "The repository records continued development after v3.4, but no trustworthy version-to-change mapping for 3.5 through 3.8 survives in the current Git history. Their contents are therefore left unassigned rather than reconstructed by guesswork.",
+      evidence: "No reliable release labels recovered"
     },
     {
-      "version": "3.9",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Version visibility and sharing",
-      "summary": "This release makes the version explicit throughout the site, restores a dedicated social/link preview, preserves recovered thread-starter attribution, and adds the privacy-safe Reader Impact evidence layer.",
-      "evidence": "Version visibility and public deployment recorded September 23, 2026"
+      version: "3.9",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Version visibility and sharing",
+      summary: "This release makes the version explicit throughout the site, restores a dedicated social/link preview, preserves recovered thread-starter attribution, and adds the privacy-safe Reader Impact evidence layer.",
+      evidence: "Version visibility and public deployment recorded September 23, 2026"
     },
     {
-      "version": "3.10",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Seeds and provenance layer",
-      "summary": "Introduced a dedicated Seeds archive, creative-status labels, AI/authorship provenance metadata, archive-wide Seed search, and source-level provenance rules.",
-      "evidence": "Git commits beginning with Add Seeds and creative provenance metadata schema and Record v3.10 Seeds and provenance layer"
+      version: "3.10",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Seeds and provenance layer",
+      summary: "Introduced a dedicated Seeds archive, creative-status labels, AI/authorship provenance metadata, archive-wide Seed search, and source-level provenance rules.",
+      evidence: "Git commits beginning with Add Seeds and creative provenance metadata schema and Record v3.10 Seeds and provenance layer"
     },
     {
-      "version": "3.11",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Documents / Prose archive",
-      "summary": "Added a dedicated Documents / Prose section for essays, source artifacts, manifestos, experience reports, and other non-poem creative records.",
-      "evidence": "Git commits Add Documents and Prose archive section and Bump museum to v3.11"
+      version: "3.11",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Documents / Prose archive",
+      summary: "Added a dedicated Documents / Prose section for essays, source artifacts, manifestos, experience reports, and other non-poem creative records.",
+      evidence: "Git commits Add Documents and Prose archive section and Bump museum to v3.11"
     },
     {
-      "version": "3.12",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Seed recovery expansion",
-      "summary": "Added newly recovered Brandon Seeds and updated the archive Seed count.",
-      "evidence": "Git commits Add two newly recovered Brandon Seeds and Bump museum display to v3.12"
+      version: "3.12",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Seed recovery expansion",
+      summary: "Added newly recovered Brandon Seeds and updated the archive Seed count.",
+      evidence: "Git commits Add two newly recovered Brandon Seeds and Bump museum display to v3.12"
     },
     {
-      "version": "3.13",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Mixed-source attribution rules",
-      "summary": "Added mixed-source notebook attribution rules and review tracking so recovered material is not automatically assigned to Brandon without source evidence.",
-      "evidence": "Git commits Add mixed-source attribution rules for recovered notebooks and Track mixed-source attribution review in v3.13"
+      version: "3.13",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Mixed-source attribution rules",
+      summary: "Added mixed-source notebook attribution rules and review tracking so recovered material is not automatically assigned to Brandon without source evidence.",
+      evidence: "Git commits Add mixed-source attribution rules for recovered notebooks and Track mixed-source attribution review in v3.13"
     },
     {
-      "version": "3.14",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Interactive provenance review",
-      "summary": "Added numeric authorship, confidence, and completion values plus an interactive browser-based review queue for ambiguous passages.",
-      "evidence": "Git commit Add provenance verification scale and candidate review queue"
+      version: "3.14",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Interactive provenance review",
+      summary: "Added numeric authorship, confidence, and completion values plus an interactive browser-based review queue for ambiguous passages.",
+      evidence: "Git commit Add provenance verification scale and candidate review queue"
     },
     {
-      "version": "3.15",
-      "date": "2026-09-23",
-      "status": "confirmed",
-      "title": "Evidence-aware provenance review",
-      "summary": "Expanded the verification queue, distinguished strong archival association from confirmed authorship, prioritized strong unresolved candidates, and protected private-sensitive source material from publication.",
-      "evidence": "Git commits Refine provenance evidence and protect private source material and Prioritize strong unresolved provenance candidates"
+      version: "3.15",
+      date: "2026-09-23",
+      status: "confirmed",
+      title: "Evidence-aware provenance review",
+      summary: "Expanded the verification queue, distinguished strong archival association from confirmed authorship, prioritized strong unresolved candidates, and protected private-sensitive source material from publication.",
+      evidence: "Git commits Refine provenance evidence and protect private source material and Prioritize strong unresolved provenance candidates"
     },
     {
-      "version": "3.16",
-      "date": "2026-09-24",
-      "status": "confirmed",
-      "title": "Consistent releases and resilient media sync",
-      "summary": "Unified release labels and share artwork, added a pre-deployment consistency check, expanded scans to all available YouTube channel tabs, preserved omitted review records, and connected successful daily syncs to public deployment.",
-      "evidence": "Release checks, preservation tests and publishing workflow in this repository"
+      version: "3.16",
+      date: "2026-09-24",
+      status: "confirmed",
+      title: "Consistent releases and resilient media sync",
+      summary: "Unified release labels and share artwork, added a pre-deployment consistency check, expanded scans to all available YouTube channel tabs, preserved omitted review records, and connected successful daily syncs to public deployment.",
+      evidence: "Release checks, preservation tests and publishing workflow in this repository"
     },
     {
-      "version": "3.17",
-      "date": "2026-09-24",
-      "status": "confirmed",
-      "title": "Shorts links and media review notes",
-      "summary": "Linked three Shorts by title to Rainy Seasons and Pink Serpent, retained all 58 uploads, and added specific review notes for the 15 remaining unlinked videos. Title-based links remain distinct from audio or lyric verification.",
-      "evidence": "Media reconciliation record dated September 24, 2026"
+      version: "3.17",
+      date: "2026-09-24",
+      status: "confirmed",
+      title: "Shorts links and media review notes",
+      summary: "Linked three Shorts by title to Rainy Seasons and Pink Serpent, retained all 58 uploads, and added specific review notes for the 15 remaining unlinked videos. Title-based links remain distinct from audio or lyric verification.",
+      evidence: "Media reconciliation record dated September 24, 2026"
     },
     {
-      "version": "3.18",
-      "date": "2026-09-24",
-      "status": "confirmed",
-      "title": "Privacy removal and publication safeguards",
-      "summary": "Removed personal source documents, sensitive drafts and notebook verification excerpts from deployable data. New personal material stays private by default; authorship review does not grant publication permission.",
-      "evidence": "Privacy release checks in this repository"
+      version: "3.18",
+      date: "2026-09-24",
+      status: "confirmed",
+      title: "Privacy removal and publication safeguards",
+      summary: "Removed personal source documents, sensitive drafts and notebook verification excerpts from deployable data. New personal material stays private by default; authorship review does not grant publication permission.",
+      evidence: "Privacy release checks in this repository"
     },
     {
-      "version": "3.19",
-      "date": "2026-09-26",
-      "status": "confirmed",
-      "title": "Seed lineages and provenance reconciliation",
-      "summary": "Added dated Seed germination lineages, sortable Seed views, permanent Seed detail pages and deep links, and expanded evidence-aware provenance reconciliation.",
-      "evidence": "v3.19 Git history in this repository"
+      version: "3.19",
+      date: "2026-09-26",
+      status: "confirmed",
+      title: "Seed lineages and provenance reconciliation",
+      summary: "Added dated Seed germination lineages, sortable Seed views, permanent Seed detail pages and deep links, and expanded evidence-aware provenance reconciliation.",
+      evidence: "v3.19 Git history in this repository"
     },
     {
-      "version": "3.20",
-      "date": "2026-09-26",
-      "status": "confirmed",
-      "title": "Drive continuity ingestion",
-      "summary": "Recorded private continuity-corpus scale separately from the verified public Seed layer and expanded provenance accounting without publishing private notebook material.",
-      "evidence": "v3.20 Drive continuity commits in this repository"
+      version: "3.20",
+      date: "2026-09-26",
+      status: "confirmed",
+      title: "Drive continuity ingestion",
+      summary: "Recorded private continuity-corpus scale separately from the verified public Seed layer and expanded provenance accounting without publishing private notebook material.",
+      evidence: "v3.20 Drive continuity commits in this repository"
     },
     {
-      "version": "3.21",
-      "date": "2026-09-27",
-      "status": "confirmed",
-      "title": "Archive reconciliation and continuity sync",
-      "summary": "Synced continuity and provenance features into the complete static museum while preserving Media, Reader Impact, Versions, historical themes, and recovery overlays. Verified duplicate private files were removed without publishing private source material.",
-      "evidence": "v3.21 release commit in this repository"
+      version: "3.21",
+      date: "2026-09-27",
+      status: "confirmed",
+      title: "Archive reconciliation and continuity sync",
+      summary: "Synced continuity and provenance features into the complete static museum while preserving Media, Reader Impact, Versions, historical themes, and recovery overlays. Verified duplicate private files were removed without publishing private source material.",
+      evidence: "v3.21 release commit in this repository"
     },
     {
-      "version": "3.22",
-      "date": "2026-09-27",
-      "status": "confirmed",
-      "title": "Visitor-first navigation and guided history",
-      "summary": "Simplified the public navigation around Forums, Poetry, Story, Reader Impact, Archive and Search; added Start Here, What Was IDunnoPoetry?, Best-Preserved Threads and Then & Now; moved specialist reconstruction tools into Archive & Research; reduced prominent authorship-assistance language; and improved mobile readability and touch navigation.",
-      "evidence": "v3.22 visitor-first UX and language-cleanup commits in this repository"
+      version: "3.22",
+      date: "2026-09-27",
+      status: "confirmed",
+      title: "Visitor-first navigation and guided history",
+      summary: "Simplified the public navigation around Forums, Poetry, Story, Reader Impact, Archive and Search; added Start Here, What Was IDunnoPoetry?, Best-Preserved Threads and Then & Now; moved specialist reconstruction tools into Archive & Research; reduced prominent authorship-assistance language; and improved mobile readability and touch navigation.",
+      evidence: "v3.22 visitor-first UX and language-cleanup commits in this repository"
     },
     {
-      "version": "3.23",
-      "date": "2026-09-29",
-      "status": "current",
-      "title": "Continuity chronology and provenance refresh",
-      "summary": "Clarified the verified public Seed layer versus the much larger private continuity corpus, anchored recovered private creative-source chronology to at least 2012, and synchronized provenance reconciliation without publishing private notebook text.",
-      "evidence": "v3.23 continuity refresh commits and Drive-source chronology reconciliation"
+      version: "3.23",
+      date: "2026-09-29",
+      status: "current",
+      title: "Continuity chronology and provenance refresh",
+      summary: "Clarified the verified public Seed layer versus the much larger private continuity corpus, anchored recovered private creative-source chronology to at least 2012, and synchronized provenance reconciliation without publishing private notebook text.",
+      evidence: "v3.23 continuity refresh commits and Drive-source chronology reconciliation"
     }
   ],
-  "milestones": [
+  milestones: [
     {
-      "time": "11:39",
-      "title": "GitHub repository initialized",
-      "detail": "Museum repository initialized from the Lovable project."
+      time: "11:39",
+      title: "GitHub repository initialized",
+      detail: "Museum repository initialized from the Lovable project."
     },
     {
-      "time": "12:28",
-      "title": "v3.3 static build imported",
-      "detail": "Complete static museum build imported and moved toward GitHub-owned hosting."
+      time: "12:28",
+      title: "v3.3 static build imported",
+      detail: "Complete static museum build imported and moved toward GitHub-owned hosting."
     },
     {
-      "time": "14:38–14:46",
-      "title": "WordPress recovery integrated",
-      "detail": "Archive-trail enhancements, WordPress recovery overlay, recovered poetry overlays, manifest update, and 682-work documentation."
+      time: "14:38–14:46",
+      title: "WordPress recovery integrated",
+      detail: "Archive-trail enhancements, WordPress recovery overlay, recovered poetry overlays, manifest update, and 682-work documentation."
     },
     {
-      "time": "19:26–19:32",
-      "title": "Thread authorship restored",
-      "detail": "Topic lists, search, and topic views gained preserved thread-starter attribution from recovered phpBB data."
+      time: "19:26–19:32",
+      title: "Thread authorship restored",
+      detail: "Topic lists, search, and topic views gained preserved thread-starter attribution from recovered phpBB data."
     },
     {
-      "time": "20:08–20:13",
-      "title": "v3.9 identity and sharing layer",
-      "detail": "Visible version markers, machine-readable version metadata, canonical social metadata, and the dedicated 1200×630 preview image were added."
+      time: "20:08–20:13",
+      title: "v3.9 identity and sharing layer",
+      detail: "Visible version markers, machine-readable version metadata, canonical social metadata, and the dedicated 1200×630 preview image were added."
     },
     {
-      "time": "20:21–20:23",
-      "title": "Reader Impact evidence added",
-      "detail": "Sixteen anonymized historical reader-impact records were added with a dedicated exhibit and explicit privacy methodology."
+      time: "20:21–20:23",
+      title: "Reader Impact evidence added",
+      detail: "Sixteen anonymized historical reader-impact records were added with a dedicated exhibit and explicit privacy methodology."
     },
     {
-      "time": "20:29–20:32",
-      "title": "Media lineage indexed",
-      "detail": "The Master Creative Archive supplied 136 linked creative assets across 50 reconciled works (51 source labels) (93 video, 42 audio, 1 image; about 3.58 GB). Private Drive IDs were stripped from the public catalog, poem-level media lineage was added, and the first curated image asset was published."
+      time: "20:29–20:32",
+      title: "Media lineage indexed",
+      detail: "The Master Creative Archive supplied 136 linked creative assets across 50 reconciled works (51 source labels) (93 video, 42 audio, 1 image; about 3.58 GB). Private Drive IDs were stripped from the public catalog, poem-level media lineage was added, and the first curated image asset was published."
     },
     {
-      "time": "18:34–18:47",
-      "title": "YouTube media reconciliation",
-      "detail": "The live eXemptus / @idunnopoetry channel was checked directly. Forty clearly IDunnoPoetry, Brandon WordSmith, poetry, poem-to-music, spoken-word, or project-history uploads were added as public media records; ten work/archive labels were new relative to the private Drive media catalog. The channel reports 58 videos, while 52 regular uploads were enumerated, leaving six channel-count items unresolved rather than inferred."
+      time: "18:34–18:47",
+      title: "YouTube media reconciliation",
+      detail: "The live eXemptus / @idunnopoetry channel was checked directly. Forty clearly IDunnoPoetry, Brandon WordSmith, poetry, poem-to-music, spoken-word, or project-history uploads were added as public media records; ten work/archive labels were new relative to the private Drive media catalog. The channel reports 58 videos, while 52 regular uploads were enumerated, leaving six channel-count items unresolved rather than inferred."
     },
     {
-      "time": "22:53+",
-      "title": "Visitor-first museum pass",
-      "detail": "Public navigation was simplified, guided entry pages were added, specialist archive tools were grouped under Archive & Research, prominent AI/authorship-assistance language was reduced, mobile reading was improved, and the social preview was refreshed for v3.22."
+      time: "22:53+",
+      title: "Visitor-first museum pass",
+      detail: "Public navigation was simplified, guided entry pages were added, specialist archive tools were grouped under Archive & Research, prominent AI/authorship-assistance language was reduced, mobile reading was improved, and the social preview was refreshed for v3.22."
     },
     {
-      "time": "2026-09-29",
-      "title": "2012 continuity anchor",
-      "detail": "Recovered private creative-source metadata extended the continuity chronology back to at least 2012 while keeping private notebook text outside the public exhibit."
+      time: "2026-09-29",
+      title: "2012 continuity anchor",
+      detail: "Recovered private creative-source metadata extended the continuity chronology back to at least 2012 while keeping private notebook text outside the public exhibit."
     }
   ]
 };
