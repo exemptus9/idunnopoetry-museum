@@ -31,7 +31,7 @@
     "modern_skin_available": true,
     "basis": "Surviving phpbb_config/phpbb_themes records and public style-discussion posts"
   },
-  "archive_version": "3.22",
+  "archive_version": "3.23",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -84,7 +84,7 @@
       "caveat": "Source blocks are reconciliation units, not final works or Seed counts.",
       "earliest_recovered_creative_source": "2012-09-02",
       "historical_continuity_anchored": true,
-      "public_layer_policy": "Private notebooks contribute chronology and aggregate evidence without automatic publication."
+      "public_layer_policy": "Private notebooks contribute chronology and aggregate continuity evidence without automatic publication."
     }
   }
 }
