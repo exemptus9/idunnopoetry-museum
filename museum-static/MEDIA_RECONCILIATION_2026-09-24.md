@@ -38,3 +38,9 @@ The sync script preserves all three layers on future runs. A rejected bot push c
 ### Visitor analytics status
 
 The museum contains a privacy-oriented Cloudflare Web Analytics loader, but collection remains **inactive** until a Cloudflare site token is configured. The Pages workflow is prepared to inject `CLOUDFLARE_ANALYTICS_TOKEN` from a GitHub repository variable or secret into the deploy copy only; the committed public configuration keeps the token blank. There is no historical backfill for visits that occurred before analytics activation.
+
+## October 1 verification
+
+The repaired automation was verified under its normal scheduled path on **2026-10-01**: the YouTube sync completed successfully, enumerated all 58 public uploads, preserved the 45 curated / 11 reference / 2 unresolved classification, and triggered a successful GitHub Pages deployment. Exact Drive searches for YouTube IDs `q4Ur7wTWlrw` and `YMufQgPBc5g` returned no matching archive files. Searches for *Gasoline Enema* produced unrelated historical-library full-text hits rather than a creative-work record. The apparent Master Creative Archive search hit for *just a lil harcore truth* could not be reproduced in the workbook's hydrated text or structured reconciliation tables, so it is not treated as provenance evidence. Both videos remain intentionally unresolved pending direct content review or stronger source evidence.
+
+Visitor analytics remains technically prepared but inactive because `CLOUDFLARE_ANALYTICS_TOKEN` is not configured. Visits before activation cannot be backfilled.
