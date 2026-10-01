@@ -66,6 +66,7 @@ def reconcile(old, info, now=None):
     now = now or datetime.now(timezone.utc)
     day = now.date().isoformat()
     known = {v['youtubeId']: v for v in old.get('relevantVideos', []) if v.get('youtubeId')}
+    reference = {v['youtubeId']: v for v in old.get('referenceUploads', []) if v.get('youtubeId')}
     pending = {v['youtubeId']: v for v in old.get('reviewQueue', []) if v.get('youtubeId')}
     entries, tabs = {}, {}
     for entry, tab in flatten_videos(info):
@@ -75,9 +76,9 @@ def reconcile(old, info, now=None):
     if not entries:
         raise RuntimeError('No public videos enumerated; previous catalog kept unchanged.')
 
-    curated, review = [], []
+    curated, references, review = [], [], []
     for video_id, entry in entries.items():
-        row = copy.deepcopy(known.get(video_id) or pending.get(video_id) or {})
+        row = copy.deepcopy(known.get(video_id) or reference.get(video_id) or pending.get(video_id) or {})
         row.update({
             'youtubeId': video_id,
             'title': entry.get('title') or row.get('title') or video_id,
@@ -96,19 +97,21 @@ def reconcile(old, info, now=None):
             row['uploadDate'] = uploaded
         if video_id in known:
             curated.append(row)
+        elif video_id in reference:
+            references.append(row)
         else:
             row.setdefault('reason', 'Public channel upload not yet mapped to a canonical archive work.')
             row.setdefault('status', 'needs_review')
             review.append(row)
 
-    # Omission is not proof of deletion. Preserve both layers and their notes.
-    for source, destination in ((known, curated), (pending, review)):
+    # Omission is not proof of deletion. Preserve all classification layers and their notes.
+    for source, destination in ((known, curated), (reference, references), (pending, review)):
         for video_id, original in source.items():
-            if video_id not in entries and not (source is pending and video_id in known):
+            if video_id not in entries and not (source is pending and (video_id in known or video_id in reference)):
                 row = copy.deepcopy(original)
                 row['syncStatus'] = 'not_seen_in_latest_enumeration'
                 destination.append(row)
-    for rows in (curated, review):
+    for rows in (curated, references, review):
         rows.sort(key=lambda v: (v.get('uploadDate') or '', v['youtubeId']), reverse=True)
 
     channel = copy.deepcopy(old.get('channel') or {})
@@ -133,7 +136,7 @@ def reconcile(old, info, now=None):
     output.update({
         'checked': day,
         'channel': channel,
-        'methodology': 'Daily public-channel scan covering available Videos, Shorts and Live tabs. Uploads are deduplicated by YouTube ID. Curated work mappings and review notes are preserved. Omitted records are retained and flagged; new uploads remain unclassified until reviewed. The dated channel-header count is a separate historical observation, not a live total.',
+        'methodology': 'Daily public-channel scan covering available Videos, Shorts and Live tabs. Uploads are deduplicated by YouTube ID. Curated work mappings, reference/non-canonical classifications, and review notes are preserved. Omitted records are retained and flagged; new uploads remain unclassified until reviewed. The dated channel-header count is a separate historical observation, not a live total.',
         'sync': {
             'mode': 'scheduled_public_channel',
             'source': CHANNEL_URL,
@@ -141,14 +144,17 @@ def reconcile(old, info, now=None):
             'enumerated': len(entries),
             'enumeratedByTab': channel['enumeratedByTab'],
             'curatedRelevant': len(curated),
+            'referenceUploads': len(references),
             'needsReview': len(review),
-            'notSeen': sum('syncStatus' in v for v in curated + review),
+            'notSeen': sum('syncStatus' in v for v in curated + references + review),
         },
         'relevantVideos': curated,
+        'referenceUploads': references,
         'reviewQueue': review,
     })
     output.setdefault('stats', {}).update({
         'relevantVideos': len(curated),
+        'referenceUploads': len(references),
         'youtubeOnlyWorks': len(output.get('youtubeOnlyWorks') or []),
         'needsReview': len(review),
         'enumeratedRegularVideos': channel['enumeratedRegularVideos'],
