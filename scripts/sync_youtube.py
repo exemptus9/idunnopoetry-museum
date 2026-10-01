@@ -163,6 +163,54 @@ def reconcile(old, info, now=None):
     return output
 
 
+def compact_text(value, limit=700):
+    text = re.sub(r'\s+', ' ', str(value or '')).strip()
+    return text[:limit] + ('…' if len(text) > limit else '')
+
+
+def enrich_review_metadata(output, ydl, now=None):
+    """Fetch full public metadata once for unresolved videos; never auto-classify from it."""
+    now = now or datetime.now(timezone.utc)
+    day = now.date().isoformat()
+    changed = 0
+    for row in output.get('reviewQueue', []):
+        if row.get('metadataChecked'):
+            continue
+        video_id = row.get('youtubeId')
+        if not video_id:
+            continue
+        try:
+            detail = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
+        except Exception as exc:
+            row['metadataChecked'] = day
+            row['metadataError'] = compact_text(exc, 240)
+            changed += 1
+            continue
+        row['metadataChecked'] = day
+        row['metadataSource'] = 'public YouTube video metadata'
+        desc = compact_text(detail.get('description'), 700)
+        if desc:
+            row['descriptionExcerpt'] = desc
+        for source_key, target_key in (
+            ('uploader', 'uploader'),
+            ('channel', 'channel'),
+            ('creator', 'creator'),
+            ('artist', 'artist'),
+            ('track', 'track'),
+            ('album', 'album'),
+            ('license', 'license'),
+        ):
+            value = detail.get(source_key)
+            if value not in (None, '', []):
+                row[target_key] = value
+        tags = detail.get('tags') or []
+        if tags:
+            row['tags'] = [str(x) for x in tags[:20]]
+        changed += 1
+    output.setdefault('sync', {})['metadataEnrichedThisRun'] = changed
+    return output
+
+
 def main():
     from yt_dlp import YoutubeDL
     old = load_data()
@@ -171,6 +219,16 @@ def main():
     with YoutubeDL(options) as ydl:
         info = ydl.extract_info(CHANNEL_URL, download=False)
     output = reconcile(old, info)
+    detail_options = {
+        'quiet': True,
+        'no_warnings': True,
+        'skip_download': True,
+        'noplaylist': True,
+        'socket_timeout': 30,
+        'retries': 2,
+    }
+    with YoutubeDL(detail_options) as detail_ydl:
+        output = enrich_review_metadata(output, detail_ydl)
     staged = DATA.with_suffix('.tmp')
     staged.write_text(PREFIX + json.dumps(output, separators=(',', ':'), ensure_ascii=False) + ';\n', encoding='utf-8')
     staged.replace(DATA)
