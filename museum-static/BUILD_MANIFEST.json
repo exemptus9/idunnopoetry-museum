@@ -182,7 +182,7 @@
     "awaiting_work_match": 2,
     "new_title_links": 4,
     "reference_noncanonical": 11,
-    "last_reconciled": "2026-09-30",
+    "last_reconciled": "2026-10-01",
     "sync_mode": "daily scheduled public-channel scan (Videos + Shorts + available Live)",
     "classification_layers": [
       "curated archive-relevant",
@@ -197,7 +197,9 @@
       "Perfectly Possible is linked as canonical creative media.",
       "The Epistle of Brandon is preserved as assistant-generated derivative media and excluded from Brandon-authored original counts.",
       "Explicit third-party and unmatched topical uploads are preserved as reference/non-canonical channel history."
-    ]
+    ],
+    "last_successful_scheduled_sync": "2026-10-01T10:35:03Z",
+    "automation_status": "Scheduled YouTube sync and downstream GitHub Pages deployment both verified successful on 2026-10-01."
   },
   "release_note": "v3.23 preserves the visitor-first v3.22 experience while clarifying that the visible Seed exhibit is a conservative, publish-safe layer over a much larger private continuity corpus. Recovered private creative-source chronology now reaches at least 2012, and provenance reconciliation is synchronized without publishing private notebook text.",
   "visitor_experience": {
