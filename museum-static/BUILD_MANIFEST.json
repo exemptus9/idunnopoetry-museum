@@ -178,16 +178,25 @@
   },
   "media_reconciliation": {
     "youtube_cataloged": 58,
-    "curated_relevant": 44,
-    "awaiting_work_match": 10,
+    "curated_relevant": 45,
+    "awaiting_work_match": 2,
     "new_title_links": 4,
-    "reference_noncanonical": 4,
+    "reference_noncanonical": 11,
     "last_reconciled": "2026-09-30",
     "sync_mode": "daily scheduled public-channel scan (Videos + Shorts + available Live)",
     "classification_layers": [
       "curated archive-relevant",
       "reference/non-canonical",
-      "unresolved review"
+      "unresolved content review"
+    ],
+    "unresolved_titles": [
+      "Gasoline Enema",
+      "just a lil harcore truth"
+    ],
+    "notes": [
+      "Perfectly Possible is linked as canonical creative media.",
+      "The Epistle of Brandon is preserved as assistant-generated derivative media and excluded from Brandon-authored original counts.",
+      "Explicit third-party and unmatched topical uploads are preserved as reference/non-canonical channel history."
     ]
   },
   "release_note": "v3.23 preserves the visitor-first v3.22 experience while clarifying that the visible Seed exhibit is a conservative, publish-safe layer over a much larger private continuity corpus. Recovered private creative-source chronology now reaches at least 2012, and provenance reconciliation is synchronized without publishing private notebook text.",
@@ -215,8 +224,9 @@
   "visitor_analytics": {
     "provider": "Cloudflare Web Analytics",
     "code_prepared": true,
+    "deploy_time_token_injection": true,
     "active": false,
-    "blocker": "cloudflareAnalyticsToken is still blank in museum-static/museum-config.js",
+    "blocker": "Set GitHub repository variable or secret CLOUDFLARE_ANALYTICS_TOKEN after creating the Cloudflare Web Analytics site.",
     "historical_backfill": false,
     "note": "No detailed museum visitor telemetry is being collected until a site token is configured."
   }
