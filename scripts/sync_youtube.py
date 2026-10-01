@@ -176,17 +176,27 @@ def enrich_review_metadata(output, ydl, now=None):
     for row in output.get('reviewQueue', []):
         if row.get('metadataChecked'):
             continue
+        last_attempt=row.get('metadataLastAttempt')
+        if last_attempt:
+            try:
+                if (now.date()-datetime.fromisoformat(last_attempt).date()).days < 7:
+                    continue
+            except (TypeError, ValueError):
+                pass
         video_id = row.get('youtubeId')
         if not video_id:
             continue
         try:
             detail = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
         except Exception as exc:
-            row['metadataChecked'] = day
+            row['metadataLastAttempt'] = day
+            row['metadataAttempts'] = int(row.get('metadataAttempts') or 0) + 1
             row['metadataError'] = compact_text(exc, 240)
             changed += 1
             continue
         row['metadataChecked'] = day
+        row['metadataLastAttempt'] = day
+        row.pop('metadataError', None)
         row['metadataSource'] = 'public YouTube video metadata'
         desc = compact_text(detail.get('description'), 700)
         if desc:
