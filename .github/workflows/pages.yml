@@ -68,10 +68,37 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Build deployable site and inject analytics token
+        env:
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          cp -a museum-static _site
+          if [[ -n "${CLOUDFLARE_ANALYTICS_TOKEN:-}" ]]; then
+            python - <<'PY'
+from pathlib import Path
+import os, re
+p=Path("_site/museum-config.js")
+text=p.read_text(encoding="utf-8")
+token=os.environ["CLOUDFLARE_ANALYTICS_TOKEN"].strip()
+if not token:
+    raise SystemExit(0)
+text,n=re.subn(r"cloudflareAnalyticsToken:'[^']*'", "cloudflareAnalyticsToken:"+repr(token), text, count=1)
+if n != 1:
+    raise SystemExit("cloudflareAnalyticsToken placeholder not found")
+p.write_text(text, encoding="utf-8")
+print("Cloudflare Web Analytics token injected into deployment copy.")
+PY
+          else
+            echo "Cloudflare Web Analytics remains disabled: no repository variable/secret configured."
+          fi
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: museum-static
+          path: _site
 
       - name: Deploy
         id: deployment
