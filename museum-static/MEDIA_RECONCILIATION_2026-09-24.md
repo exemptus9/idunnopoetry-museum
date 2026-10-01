@@ -15,11 +15,22 @@ These are **title-based associations**. No claim is made that the recording repr
 ## Preserved inventory
 
 - 58 distinct public YouTube IDs preserved: 52 regular uploads and 6 Shorts.
-- 43 archive-relevant uploads, including the three new links.
-- 15 uploads remain unlinked with individual title-review notes.
-- Rainy Seasons is newly represented in YouTube media relative to the private Drive catalog.
-- Perfectly Possible has no matching written record in this museum snapshot; it was not substituted with Perfect or True Perfection.
-- The Epistle of Brandon was not merged with The Book of Brandon without evidence of their relationship.
-- Channel ownership alone is not evidence of authorship. Titles naming third-party creators remain unlinked.
+- 44 archive-relevant uploads.
+- 4 reference / non-canonical channel uploads are preserved outside creative-work matching.
+- 10 uploads remain unresolved with individual title-review notes.
+- Rainy Seasons is represented in YouTube media relative to the private Drive catalog.
+- Perfectly Possible is now linked to the canonical Brandon WordSmith work after later project-canon evidence established the relationship; its written text remains outside this public museum payload unless separately published.
+- The Epistle of Brandon is still not merged with The Book of Brandon without evidence of their relationship.
+- Channel ownership alone is not evidence of authorship. Titles naming third-party creators remain outside the creative canon unless separately established.
 
-The next daily scan must preserve these links, evidence notes and unresolved decisions.
+## September 30 follow-up
+
+The scheduled YouTube workflow is operating daily and now enumerates all **58 public channel IDs** visible across the channel surfaces used by the sync: **52 regular Videos-tab uploads plus 6 Shorts**. Records are deduplicated by YouTube ID.
+
+The catalog is now deliberately split into three layers:
+
+1. **44 curated archive-relevant uploads** linked to a canonical work or archive/documentary identity.
+2. **4 reference/non-canonical uploads** retained for channel history but excluded from creative-work matching: the *Fringe* DXM clip, the Psychic TV / Thee Temple ov Psychick Youth upload, `ps3 gamez`, and `comix collection`.
+3. **10 unresolved uploads** that still need content or relationship review.
+
+The sync script preserves all three classifications on future runs, so reference uploads no longer fall back into the unresolved queue.
