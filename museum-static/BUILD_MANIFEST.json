@@ -58,7 +58,10 @@
     "assets/idp-museum-og-v3.22.svg",
     "assets/idp-museum-og-v3.22.png",
     "assets/idp-museum-og-v3.23.svg",
-    "assets/idp-museum-og-v3.23.png"
+    "assets/idp-museum-og-v3.23.png",
+    "data/seedbank-approved.js",
+    "assets/idp-museum-og-v3.24.svg",
+    "assets/idp-museum-og-v3.24.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -109,9 +112,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.23",
-  "build_date": "2026-09-29",
-  "archive_version": "3.23",
+  "build_version": "v3.24",
+  "build_date": "2026-10-08",
+  "archive_version": "3.24",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -170,8 +173,8 @@
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.23.svg",
-    "path": "assets/idp-museum-og-v3.23.png",
+    "source": "assets/idp-museum-og-v3.24.svg",
+    "path": "assets/idp-museum-og-v3.24.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -201,12 +204,13 @@
     "last_successful_scheduled_sync": "2026-10-01T10:35:03Z",
     "automation_status": "Scheduled YouTube sync and downstream GitHub Pages deployment both verified successful on 2026-10-01."
   },
-  "release_note": "v3.23 preserves the visitor-first v3.22 experience while clarifying that the visible Seed exhibit is a conservative, publish-safe layer over a much larger private continuity corpus. Recovered private creative-source chronology now reaches at least 2012, and provenance reconciliation is synchronized without publishing private notebook text.",
+  "release_note": "v3.24 promotes the curated, publish-safe Seed Bank into main navigation and introduces a private-first, explicit-author-approval publishing bridge. No unapproved private source material is included.",
   "visitor_experience": {
     "primary_navigation": [
       "Home",
       "Forum Index",
       "Poetry",
+      "Seed Bank",
       "Story",
       "Reader Impact",
       "Archive & Research",
@@ -221,7 +225,8 @@
     ],
     "specialist_tools_hub": "Archive & Research",
     "mobile_readability_pass": true,
-    "public_language_cleanup": true
+    "public_language_cleanup": true,
+    "seed_bank_publishing_bridge": true
   },
   "visitor_analytics": {
     "provider": "Cloudflare Web Analytics",
