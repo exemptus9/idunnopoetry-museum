@@ -291,9 +291,9 @@ async function ready(){
   e.preventDefault();
   const email=$('email').value.trim();
   try {
-   await readJson(await fetch(base()+'/auth/v1/otp',{
+   await readJson(await fetch(base()+'/auth/v1/otp?redirect_to='+encodeURIComponent(location.origin+location.pathname),{
      method:'POST',headers:{apikey:cfg.publishableKey,'Content-Type':'application/json'},
-     body:JSON.stringify({email,create_user:false,options:{email_redirect_to:location.origin+location.pathname}})
+     body:JSON.stringify({email,create_user:false})
    }));
    tell('If this email belongs to an invited account, a sign-in link has been sent. Follow the link on this device.');
   } catch(err){tell('Sign-in failed: '+err.message,true)}
