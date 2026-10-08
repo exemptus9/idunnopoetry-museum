@@ -111,7 +111,7 @@ function sourceData(){
  const source={
   seed:meta.seeds||[],poem:poetry.works||[],creative:meta.supplementalWorks||[],
   post:window.IDP_POSTS||[],topic:core.topics||[],forum:core.forums||[],
-  member:core.users||[],media:media.assets||[],document:meta.archiveDocuments||[]
+  member:core.users||[],media:media.assets||[],document:meta.archiveDocuments||[],reader_impact:(window.IDP_READER_IMPACT||{}).entries||[]
  }[kind]||[];
  return source.map((row,i)=>{
   const key=String(row.id??row.workId??'');
@@ -125,7 +125,7 @@ function projectSource(item,kind){
  return {
   kind, entity_key:item.key,title:item.title,
   draft:{
-   text:String(r.x||r.text||''),
+   text:String(r.x||r.text||r.summary||''),
    description:String(r.description||r.summary||''),
    status:typeof r.status==='string'?r.status:'',
    provenance:typeof r.provenance==='string'?r.provenance:(kind==='poem'?'uncertain':''),
@@ -206,7 +206,7 @@ async function saveDraft(evt){
  const kind=active.kind;
  const key=$('entity-key').value.trim(),title=$('title').value.trim(),draft=draftForm();
  if(!/^[A-Za-z0-9_-]{1,120}$/.test(key)||!title){tell('Valid key and title are required.',true);return}
- if(kind==='seed' && active.localPrivate && !confirm('Save this selected Seed text to YOUR PRIVATE hosted database? This uploads only the selected item, not the entire Vault. It does not publish.'))return;
+ if(active.localPrivate && !confirm('Save this selected Seed text to YOUR PRIVATE hosted database? This uploads only the selected item, not the entire Vault. It does not publish.'))return;
  busy=true;$('save').disabled=true;
  try {
   const saved=await rpc('museum_save',{
