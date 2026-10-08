@@ -1,12 +1,12 @@
 # IDunnoPoetry Messageboard Museum
 
-**Current public museum release: v3.24 · October 8, 2026**
+**Current public museum release: v3.25 · October 8, 2026**
 
 Public site: https://exemptus9.github.io/idunnopoetry-museum/
 
 The deployable museum lives in `museum-static/`. It reconstructs the surviving IDunnoPoetry forum and poetry archive while excluding private-message bodies, credentials, historical email addresses, and IP addresses.
 
-v3.24 promotes the existing curated Seeds into a directly linked public Seed Bank, with a documented, opt-in offline publishing bridge to the private Seed Vault. The larger private creative corpus remains unpublished by default.
+v3.25 adds an optional secure Museum Control Center editorial layer to the existing public Seed Bank, with role-checked private drafts, explicit approvals, and audit-safe publication overlays. This code is **disabled until a separately authorized Supabase project and owner account are provisioned**; no private writing is uploaded.
 
 See [Private-to-public Seed workflow](docs/SEEDBANK_WORKFLOW.md) for the curator-only steps. Do not commit private Vault HTML, private review packets, or notebooks.
 
@@ -49,3 +49,4 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+For the private-editor setup and security scope, see [Museum Control Center](docs/MUSEUM_CONTROL_CENTER.md). The public Museum continues using its existing sanitized static recovery when the backend is unconfigured.
