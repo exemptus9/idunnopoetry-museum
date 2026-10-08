@@ -77,6 +77,12 @@
           <input id="vault-file" type="file" accept=".json,application/json">
           <input id="vault-filter" type="search" placeholder="Search loaded local Seeds">
           <div id="vault-list" class="scroll-list"></div>
+          <div id="vault-detail" class="preview" hidden>
+            <h3 id="vault-title">Selected local Seed</h3>
+            <label>Choose the exact preserved version<select id="vault-version"></select></label>
+            <pre id="vault-preview"></pre>
+            <button id="vault-use" type="button">Use this version as a PRIVATE draft</button>
+          </div>
         </details>
       </aside>
       <section id="editor" class="panel editor">
