@@ -11,7 +11,7 @@ const kinds = new Set(['seed','poem','creative','post','topic','forum','member',
 const FIELDS = ['text','description','status','provenance','public-note','url','alt','nav-label','color'];
 const storageKey = 'idp_museum_editor_session_v1';
 let session = null, role = null, records = [], active = null, localVault = [];
-let busy = false;
+let busy = false,selectedVault = null;
 function tell(message,error=false) {
  const el=$('message');el.textContent=String(message);el.className='message'+(error?' error':'');el.hidden=false;
 }
@@ -194,6 +194,8 @@ function renderEditor(){
 }
 function draftForm(){
  const d={};
+ if(active?.draft?.private_witness_id)d.private_witness_id=active.draft.private_witness_id;
+ if(active?.draft?.private_witness_sha256)d.private_witness_sha256=active.draft.private_witness_sha256;
  for(const k of FIELDS){
   const prop=k==='public-note'?'public_note':k==='nav-label'?'label':k;
   const v=$(k).value;
@@ -259,19 +261,39 @@ async function loadHistory(){
   out.append(el);
  }
 }
+function displayVaultWitness(){
+ const record=selectedVault;if(!record)return;
+ const witness=record.versions[Number($('vault-version').value)];
+ $('vault-preview').textContent=(witness?.text||'No text for this version').slice(0,12000);
+}
+function selectVault(record){
+ selectedVault=record;
+ $('vault-title').textContent=record.title;
+ const chooser=$('vault-version');chooser.replaceChildren();
+ (record.versions||[]).forEach((w,i)=>{
+  const option=document.createElement('option');option.value=String(i);
+  option.textContent='Version '+(i+1)+' · '+(w.id||'source witness')+' · '+(w.nonemptyLines||'?')+' lines';
+  chooser.append(option);
+ });
+ show('vault-detail');displayVaultWitness();
+}
+function useVaultWitness(){
+ const record=selectedVault;if(!record)return;
+ const witness=record.versions?.[Number($('vault-version').value)];
+ if(!witness?.text)return tell('Choose a preserved version with text.',true);
+ $('kind').value='seed';
+ active={id:null,kind:'seed',entity_key:String(record.id).replace(/[^A-Za-z0-9_-]/g,'_').slice(0,120),
+  title:record.title,draft:{text:witness.text,status:record.completion||'candidate',
+  provenance:record.provenance||'uncertain',private_witness_id:String(witness.id||''),
+  private_witness_sha256:String(witness.sha256||'')},
+  revision:0,status:'local preview',localPrivate:true};
+ renderEditor();tell('Selected the exact private witness. NOT uploaded or published.');
+}
 function renderVault(){
  const out=$('vault-list');out.replaceChildren();
  const q=$('vault-filter').value.trim().toLowerCase();
  for(const record of localVault.filter(r=>(r.title+' '+r.id).toLowerCase().includes(q)).slice(0,70)){
-  addOption(out,record.title,()=>{
-   const witness=record.versions?.[0];
-   if(!witness||!witness.text)return tell('No preserved text witness for this record.',true);
-   $('kind').value='seed';
-   active={id:null,kind:'seed',entity_key:String(record.id).replace(/[^A-Za-z0-9_-]/g,'_').slice(0,120),
-    title:record.title,draft:{text:witness.text,status:record.completion||'candidate',
-    provenance:record.provenance||'uncertain'},revision:0,status:'local preview',localPrivate:true};
-   renderEditor();tell('Opened a selected local witness. NOT uploaded or published.');
-  },(record.versions?.length||0)+' preserved versions · LOCAL ONLY');
+  addOption(out,record.title,()=>selectVault(record),(record.versions?.length||0)+' preserved versions · LOCAL ONLY');
  }
  if(!localVault.length)out.textContent='Choose a private Seedbank JSON file to review locally.';
 }
@@ -283,6 +305,7 @@ async function importVault(evt){
   if(!String(data.format||'').toLowerCase().includes('seed')
    || !Array.isArray(data.records) || data.records.length>20000) throw Error('Invalid Seedbank format');
   localVault=data.records.filter(r=>r&&typeof r.id==='string'&&Array.isArray(r.versions));
+  selectedVault=null;hide('vault-detail');
   $('kind').value='seed';renderVault();tell('Loaded '+localVault.length+' local Seed records. No data has been transmitted.');
  }catch(e){tell('Local Vault import failed: '+e.message,true)}
 }
@@ -315,6 +338,8 @@ async function ready(){
  $('publish').addEventListener('click',()=>action('museum_publish',{prompt:'PUBLISH this approved revision on the public Museum? Public visitors will be able to read it.',phrase:'PUBLISH APPROVED VERSION'}));
  $('withdraw').addEventListener('click',()=>action('museum_withdraw',{prompt:'WITHDRAW this record from public view? A public tombstone will override the static copy, but archival originals remain preserved.',phrase:'WITHDRAW PUBLIC VERSION'}));
  $('vault-file').addEventListener('change',importVault);
+ $('vault-version').addEventListener('change',displayVaultWitness);
+ $('vault-use').addEventListener('click',useVaultWitness);
  $('vault-filter').addEventListener('input',renderVault);
  renderVault();await beginSession();
 }
