@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.24**, October 8, 2026.
+Current museum line: **v3.25**, October 8, 2026.
 
 ### Version visibility
 
@@ -127,3 +127,7 @@ This release preserves the visitor-first v3.22 structure while clarifying the re
 ### v3.24 — Public Seed Bank and protected curator bridge
 
 The visitor navigation now links directly to the curated Seed Bank and its source-preserving development states. The separate private Seed Vault allows the owner to classify authorship and completion, explicitly approve one version for publication, and export an approved-only packet. Public updates are still gated by a reviewed repository change. No unapproved notebook text has been added to the public build. See `docs/SEEDBANK_WORKFLOW.md`.
+
+### v3.25 — Optional Museum Control Center foundation
+
+The public site can apply explicitly approved editorial overlays from a separately authorized Supabase project; the original static archive remains intact. A private HTML editor for Seeds, poetry, forums, members, media, documents and curated pages is installed but unconfigured and unavailable for authenticated editing until hosting, RLS and owner setup are approved. No private notebook contents were committed. See docs/MUSEUM_CONTROL_CENTER.md.

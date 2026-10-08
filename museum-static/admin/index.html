@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; form-action 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'">
+<title>Museum Control Center · private curator</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header>
+  <div class="brand"><a href="../#home">← Public Museum</a> <span class="divider">/</span> <strong>Museum Control Center</strong> <span class="flag">PRIVATE DATA — AUTH REQUIRED</span></div>
+  <div id="identity" class="identity"></div>
+</header>
+<main>
+  <section id="setup" class="panel" hidden>
+    <h1>Connect the private backend</h1>
+    <p>The editor is installed, but no database has been connected. Your public Museum and historical archive are unchanged.</p>
+    <p>Only the public Supabase Project URL and <em>publishable</em> key belong in <code>cms-config.js</code>. Never place a service-role or secret key here.</p>
+    <p>Use <a href="../../docs/MUSEUM_CONTROL_CENTER.md">the setup guide in the repository</a> for owner onboarding and database activation.</p>
+  </section>
+  <section id="login" class="panel" hidden>
+    <h1>Private curator sign-in</h1>
+    <p>Only an invited and explicitly authorized curator can load draft records. Signing in never makes a draft public.</p>
+    <form id="login-form">
+      <label>Email address <input id="email" type="email" autocomplete="email" required placeholder="Your authorized email"></label>
+      <button type="submit">Email me a sign-in link</button>
+    </form>
+    <p class="muted">Sign-in requires an existing invited Supabase Auth account. No open self-registration or public edit rights.</p>
+  </section>
+  <section id="denied" class="panel" hidden>
+    <h1>Access not granted</h1>
+    <p>Your sign-in succeeded, but your account is not on the Museum's private editor allowlist. No draft data has been loaded.</p>
+    <button id="logout-denied" type="button">Sign out</button>
+  </section>
+  <section id="app" hidden>
+    <div class="hero">
+      <div><div class="eyebrow">Owner-only publishing • revision-safe drafts</div><h1>Museum Control Center</h1><p>One place to edit curated content while preserving the original recovered archive.</p></div>
+      <div class="quick"><a href="../#seeds">View public Seed Bank ↗</a> <button id="reload" type="button" class="secondary">Refresh records</button> <button id="logout" type="button" class="secondary">Sign out</button></div>
+    </div>
+    <div class="stat-grid" id="stats"></div>
+    <div class="layout">
+      <aside>
+        <h2>Manage</h2>
+        <label>Section
+          <select id="kind">
+            <option value="seed">🌱 Seeds & drafts</option>
+            <option value="poem">✒️ Poems</option>
+            <option value="creative">📖 Reconciled works</option>
+            <option value="post">💬 Forum posts</option>
+            <option value="topic">🧵 Forum topics</option>
+            <option value="forum">🏛️ Forum rooms</option>
+            <option value="member">👥 Member profiles</option>
+            <option value="media">🎧 Media records</option>
+            <option value="document">📃 Documents & prose</option>
+            <option value="page">📄 Museum pages</option>
+            <option value="site">⚙️ Site settings</option>
+            <option value="navigation">🧭 Navigation links</option>
+            <option value="theme">🎨 Theme accents</option>
+            <option value="exhibit">🔍 Historical exhibits</option>
+            <option value="reader_impact">💬 Reader impact</option>
+          </select>
+        </label>
+        <label>Find an existing published item
+          <input id="source-search" type="search" placeholder="Search preserved public records">
+        </label>
+        <div id="source-list" class="scroll-list" aria-live="polite"></div>
+        <hr>
+        <label>Search your drafts
+          <input id="draft-search" type="search" placeholder="Title or record ID">
+        </label>
+        <div id="draft-list" class="scroll-list" aria-live="polite"></div>
+        <button id="new" type="button" class="secondary full">+ New editorial record</button>
+        <details class="vault-import"><summary>Import ONE Seed from private Vault</summary>
+          <p>The selected local JSON stays on this device. Nothing uploads until you explicitly save a selected work as a private draft. The original private Vault remains separately preserved.</p>
+          <input id="vault-file" type="file" accept=".json,application/json">
+          <input id="vault-filter" type="search" placeholder="Search loaded local Seeds">
+          <div id="vault-list" class="scroll-list"></div>
+          <div id="vault-detail" class="preview" hidden>
+            <h3 id="vault-title">Selected local Seed</h3>
+            <label>Choose the exact preserved version<select id="vault-version"></select></label>
+            <pre id="vault-preview"></pre>
+            <button id="vault-use" type="button">Use this version as a PRIVATE draft</button>
+          </div>
+        </details>
+      </aside>
+      <section id="editor" class="panel editor">
+        <div id="empty"><h2>Select a record</h2><p>Choose an existing Museum entry to annotate, or start a new one. Original recovered text stays immutable; all changes are tracked as overlays.</p></div>
+        <form id="edit-form" hidden>
+          <div class="eyebrow" id="edit-identity"></div>
+          <h2 id="edit-heading">Edit record</h2>
+          <div class="two">
+            <label>Stable public record key <input id="entity-key" required pattern="[A-Za-z0-9_-]{1,120}" maxlength="120" placeholder="example-seed-or-original-ID"></label>
+            <label>Editing category <input id="entity-kind" disabled></label>
+          </div>
+          <label>Public-facing title or label <input id="title" maxlength="240" required></label>
+          <label>Main content <textarea id="text" rows="10" placeholder="A poem, post, page, description, or historical correction."></textarea></label>
+          <label>Short description <textarea id="description" rows="2"></textarea></label>
+          <div class="two">
+            <label>Creative stage <select id="status"><option value="">Not applicable / unknown</option><option value="candidate">Candidate</option><option value="seed">Seed</option><option value="growing">Growing</option><option value="graduated">Graduated</option><option value="finished">Finished</option></select></label>
+            <label>Authorship / source <select id="provenance"><option value="">Not specified</option><option value="brandon">Brandon original</option><option value="assisted">Brandon + AI assisted</option><option value="mixed">Mixed / section-level</option><option value="prompted">Prompt-led</option><option value="ai">AI generated</option><option value="external">External source</option><option value="uncertain">Uncertain</option></select></label>
+          </div>
+          <label>Public editorial note <textarea id="public-note" rows="2" placeholder="Only put text here that you intend visitors to see."></textarea></label>
+          <div class="two">
+            <label>Public link (HTTPS or internal Museum anchor) <input id="url" placeholder="https://... or #page/..."></label>
+            <label>Image alternative text / display label <input id="alt" placeholder="Brief public description"></label>
+          </div>
+          <div class="two">
+            <label>Navigation label <input id="nav-label" placeholder="Only for navigation or site label"></label>
+            <label>Theme accent color <input id="color" placeholder="#006699" pattern="#[0-9A-Fa-f]{6}"></label>
+          </div>
+          <label>Private editorial reasoning (never projected publicly) <textarea id="reason" rows="2" placeholder="What changed and why?"></textarea></label>
+          <div class="button-row">
+            <button id="save" type="submit">Save PRIVATE draft</button>
+            <button id="preview" type="button" class="secondary">Preview published fields</button>
+            <span id="save-state" class="muted"></span>
+          </div>
+          <div id="preview-panel" class="preview" hidden><h3>Public projection preview (not published)</h3><pre id="preview-content"></pre></div>
+          <div class="publish">
+            <div><h3>Release controls</h3><p>Saving never publishes. Only the owner may approve the exact revision and then publish it. New edits invalidate prior approval.</p><p id="release-state" class="muted"></p></div>
+            <div class="button-row"><button id="approve" type="button" class="secondary">1 · Approve this exact version</button><button id="publish" type="button">2 · Publish approved version</button><button id="withdraw" type="button" class="danger">Withdraw publicly</button></div>
+          </div>
+          <section class="history"><h3>Revision history</h3><div id="history-list" aria-live="polite"></div></section>
+        </form>
+      </section>
+    </div>
+  </section>
+  <div id="message" role="status" aria-live="polite" class="message" hidden></div>
+</main>
+<script src="cms-config.js"></script>
+<script src="../data/core.js"></script>
+<script src="../data/posts.js"></script>
+<script src="../data/poetry.js"></script>
+<script src="../data/creative-meta.js"></script>
+<script src="../data/media-catalog.js"></script>
+<script src="../data/reader-impact.js"></script>
+<script src="admin.js"></script>
+</body></html>
