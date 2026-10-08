@@ -115,7 +115,7 @@ begin
     'description', p_body->>'description',
     'status', p_body->>'status',
     'provenance', p_body->>'provenance',
-    'note', p_body->>'note',
+    'public_note', p_body->>'public_note',
     'url', p_body->>'url',
     'alt', p_body->>'alt',
     'label', p_body->>'label',
