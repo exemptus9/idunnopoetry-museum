@@ -117,7 +117,7 @@ function sourceData(){
   const key=String(row.id??row.workId??'');
   if(!key||!/^[A-Za-z0-9_-]{1,120}$/.test(key))return null;
   const title=String(row.title||row.n||row.name||('Record '+key));
-  return {key,title,row};
+  return {key,title,row,searchText:(title+' '+key+' '+String(row.x||row.text||row.summary||'').slice(0,5000)).toLowerCase()};
  }).filter(Boolean);
 }
 function projectSource(item,kind){
@@ -144,8 +144,8 @@ function listPublicSources(){
  const out=$('source-list');out.replaceChildren();
  if(!q) {const note=document.createElement('p');note.className='muted';note.textContent='Type a title, username, or original ID to find an entry.';out.append(note);return}
  const kind=$('kind').value;
- const source=sourceData().filter(x=>(x.title+' '+x.key).toLowerCase().includes(q)).slice(0,45);
- for(const x of source) addOption(out,x.title,()=>openSource(x,kind),'Original ID '+x.key);
+ const source=sourceData().filter(x=>x.searchText.includes(q)).slice(0,45);
+ for(const x of source) addOption(out,x.title,()=>openSource(x,kind),'Original ID '+x.key+' · '+String(x.row.x||x.row.text||x.row.summary||'').slice(0,85));
  if(!source.length)out.textContent='No matching public source records.';
 }
 function listDrafts(){
