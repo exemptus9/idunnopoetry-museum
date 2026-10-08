@@ -61,7 +61,14 @@
     "assets/idp-museum-og-v3.23.png",
     "data/seedbank-approved.js",
     "assets/idp-museum-og-v3.24.svg",
-    "assets/idp-museum-og-v3.24.png"
+    "assets/idp-museum-og-v3.24.png",
+    "admin/index.html",
+    "admin/admin.css",
+    "admin/admin.js",
+    "admin/cms-config.js",
+    "admin/public-overlay.js",
+    "assets/idp-museum-og-v3.25.svg",
+    "assets/idp-museum-og-v3.25.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -112,9 +119,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.24",
+  "build_version": "v3.25",
   "build_date": "2026-10-08",
-  "archive_version": "3.24",
+  "archive_version": "3.25",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -173,8 +180,8 @@
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.24.svg",
-    "path": "assets/idp-museum-og-v3.24.png",
+    "source": "assets/idp-museum-og-v3.25.svg",
+    "path": "assets/idp-museum-og-v3.25.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -204,7 +211,7 @@
     "last_successful_scheduled_sync": "2026-10-01T10:35:03Z",
     "automation_status": "Scheduled YouTube sync and downstream GitHub Pages deployment both verified successful on 2026-10-01."
   },
-  "release_note": "v3.24 promotes the curated, publish-safe Seed Bank into main navigation and introduces a private-first, explicit-author-approval publishing bridge. No unapproved private source material is included.",
+  "release_note": "v3.25 adds source-preserving public editorial overlays and a disabled-by-default authenticated control-center frontend. The Supabase backend is not provisioned, no owner login has been configured, and no previously private Seed Vault data was deployed.",
   "visitor_experience": {
     "primary_navigation": [
       "Home",
@@ -226,7 +233,9 @@
     "specialist_tools_hub": "Archive & Research",
     "mobile_readability_pass": true,
     "public_language_cleanup": true,
-    "seed_bank_publishing_bridge": true
+    "seed_bank_publishing_bridge": true,
+    "private_editorial_backend_code_prepared": true,
+    "private_editorial_backend_active": false
   },
   "visitor_analytics": {
     "provider": "Cloudflare Web Analytics",
