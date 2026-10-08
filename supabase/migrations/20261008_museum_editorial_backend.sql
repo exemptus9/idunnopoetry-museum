@@ -154,7 +154,7 @@ declare
   result public.museum_documents%rowtype;
   n integer;
 begin
-  if actor is null or public.museum_my_role() not in ('owner','editor') then
+  if actor is null or coalesce(public.museum_my_role(),'') not in ('owner','editor') then
     raise exception 'Not an authorized curator' using errcode = '42501';
   end if;
   if p_kind not in ('seed','poem','creative','post','topic','forum','member',
@@ -204,7 +204,7 @@ declare
   actor uuid := auth.uid();
   d public.museum_documents%rowtype;
 begin
-  if actor is null or public.museum_my_role() <> 'owner' then
+  if actor is null or public.museum_my_role() is distinct from 'owner' then
     raise exception 'Owner role required' using errcode = '42501';
   end if;
   if p_confirmation <> 'APPROVE EXACT PUBLIC VERSION' then
@@ -239,7 +239,7 @@ declare
   d public.museum_documents%rowtype;
   publication public.museum_publications%rowtype;
 begin
-  if actor is null or public.museum_my_role() <> 'owner' then
+  if actor is null or public.museum_my_role() is distinct from 'owner' then
     raise exception 'Owner role required' using errcode = '42501';
   end if;
   if p_confirmation <> 'PUBLISH APPROVED VERSION' then
@@ -282,7 +282,7 @@ declare
   d public.museum_documents%rowtype;
   publication public.museum_publications%rowtype;
 begin
-  if actor is null or public.museum_my_role() <> 'owner' then
+  if actor is null or public.museum_my_role() is distinct from 'owner' then
     raise exception 'Owner role required' using errcode = '42501';
   end if;
   if p_confirmation <> 'WITHDRAW PUBLIC VERSION' then
@@ -322,7 +322,7 @@ declare
   d public.museum_documents%rowtype;
   old public.museum_revisions%rowtype;
 begin
-  if actor is null or public.museum_my_role() not in ('owner','editor') then
+  if actor is null or coalesce(public.museum_my_role(),'') not in ('owner','editor') then
     raise exception 'Not an authorized curator' using errcode = '42501';
   end if;
   select * into d from public.museum_documents where id=p_id for update;
