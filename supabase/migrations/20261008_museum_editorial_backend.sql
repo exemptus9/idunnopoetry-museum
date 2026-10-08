@@ -74,7 +74,7 @@ revoke all on public.museum_editors, public.museum_documents,
   from public, anon, authenticated;
 grant select on public.museum_editors, public.museum_documents,
   public.museum_revisions, public.museum_events to authenticated;
-grant select on public.museum_publications to anon, authenticated;
+grant select (kind,entity_key,payload,state,revision,published_at) on public.museum_publications to anon, authenticated;
 
 create or replace function public.museum_my_role()
 returns text language sql stable security definer set search_path = ''
