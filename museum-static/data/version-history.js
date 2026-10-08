@@ -1,5 +1,5 @@
 window.IDP_VERSION_HISTORY={
-  current: "3.23",
+  current: "3.24",
   releases: [
     {
       version: "3.3",
@@ -140,10 +140,18 @@ window.IDP_VERSION_HISTORY={
     {
       version: "3.23",
       date: "2026-09-29",
-      status: "current",
+      status: "confirmed",
       title: "Continuity chronology and provenance refresh",
       summary: "Clarified the verified public Seed layer versus the much larger private continuity corpus, anchored recovered private creative-source chronology to at least 2012, and synchronized provenance reconciliation without publishing private notebook text.",
       evidence: "v3.23 continuity refresh commits and Drive-source chronology reconciliation"
+    },
+    {
+      version: "3.24",
+      date: "2026-10-08",
+      status: "current",
+      title: "Public Seed Bank and curator publishing bridge",
+      summary: "Promoted public Seeds to primary navigation; documented private review and explicitly authorized, version-specific publication; added privacy-checked approved-only import without exposing the private source corpus.",
+      evidence: "Museum v3.24 source and publication-bridge test suite"
     }
   ],
   milestones: [
