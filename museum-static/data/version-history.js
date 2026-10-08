@@ -1,5 +1,5 @@
 window.IDP_VERSION_HISTORY={
-  current: "3.24",
+  current: "3.25",
   releases: [
     {
       version: "3.3",
@@ -148,10 +148,18 @@ window.IDP_VERSION_HISTORY={
     {
       version: "3.24",
       date: "2026-10-08",
-      status: "current",
+      status: "confirmed",
       title: "Public Seed Bank and curator publishing bridge",
       summary: "Promoted public Seeds to primary navigation; documented private review and explicitly authorized, version-specific publication; added privacy-checked approved-only import without exposing the private source corpus.",
       evidence: "Museum v3.24 source and publication-bridge test suite"
+    },
+    {
+      version: "3.25",
+      date: "2026-10-08",
+      status: "current",
+      title: "Optional private Museum Control Center foundation",
+      summary: "Added role-checked editorial backend migrations, private draft/revision UI, owner-only approval and publishing, and optional public display overlays. Hosted database and owner authentication remain unconfigured; no private Seed Vault source was published.",
+      evidence: "museum-secure-editorial-backend GitHub branch and PostgreSQL security tests"
     }
   ],
   milestones: [
