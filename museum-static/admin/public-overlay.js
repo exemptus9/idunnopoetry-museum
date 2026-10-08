@@ -83,6 +83,10 @@ function apply(change){
   if(!item){item={id:key,source:'Curator approved',type:'Document'};meta.archiveDocuments.push(item)}
   setFields(item,p,{title:'title',text:'text',description:'description',notes:'public_note'});return;
  }
+ if(kind==='reader_impact'){
+  item=findById((window.IDP_READER_IMPACT||{}).entries,key);
+  if(item){if(tombstone)hideRow(item);else setFields(item,p,{summary:'text'});return;}
+}
  if(['page','exhibit','reader_impact'].includes(kind)){
   const previous=live.findIndex(x=>x.kind===kind&&x.key===key);
   if(previous>=0)live.splice(previous,1);
