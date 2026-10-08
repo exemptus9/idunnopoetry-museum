@@ -1,6 +1,6 @@
 window.IDP_CREATIVE_META ={
   "schemaVersion": 2,
-  "archiveVersion": "3.23",
+  "archiveVersion": "3.24",
   "completion": {
     "seed": {
       "label": "Seed",

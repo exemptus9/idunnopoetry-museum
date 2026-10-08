@@ -1,12 +1,14 @@
 # IDunnoPoetry Messageboard Museum
 
-**Current public museum release: v3.23 · September 29, 2026**
+**Current public museum release: v3.24 · October 8, 2026**
 
 Public site: https://exemptus9.github.io/idunnopoetry-museum/
 
 The deployable museum lives in `museum-static/`. It reconstructs the surviving IDunnoPoetry forum and poetry archive while excluding private-message bodies, credentials, historical email addresses, and IP addresses.
 
-v3.23 keeps the visitor-first navigation and adds a provenance-safe continuity refresh: the public Seed exhibit is explicitly distinguished from the larger private continuity corpus, whose recovered creative-source chronology now reaches at least 2012.
+v3.24 promotes the existing curated Seeds into a directly linked public Seed Bank, with a documented, opt-in offline publishing bridge to the private Seed Vault. The larger private creative corpus remains unpublished by default.
+
+See [Private-to-public Seed workflow](docs/SEEDBANK_WORKFLOW.md) for the curator-only steps. Do not commit private Vault HTML, private review packets, or notebooks.
 
 ## IDunnoPoetry Museum release
 

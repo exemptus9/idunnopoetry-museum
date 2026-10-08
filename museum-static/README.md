@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.23**, September 29, 2026.
+Current museum line: **v3.24**, October 8, 2026.
 
 ### Version visibility
 
@@ -123,3 +123,7 @@ Prominent AI/authorship-assistance language was reduced without deleting record-
 ### v3.23 continuity chronology
 
 This release preserves the visitor-first v3.22 structure while clarifying the relationship between the small verified public Seed exhibit and the much larger private continuity corpus. Private notebook text remains unpublished by default. Aggregate source accounting and chronology now record recovered creative-source continuity reaching at least 2012, and provenance reconciliation reflects the historical Drive evidence recovered through September 29, 2026.
+
+### v3.24 — Public Seed Bank and protected curator bridge
+
+The visitor navigation now links directly to the curated Seed Bank and its source-preserving development states. The separate private Seed Vault allows the owner to classify authorship and completion, explicitly approve one version for publication, and export an approved-only packet. Public updates are still gated by a reviewed repository change. No unapproved notebook text has been added to the public build. See `docs/SEEDBANK_WORKFLOW.md`.
