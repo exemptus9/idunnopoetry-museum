@@ -1,6 +1,4107 @@
 {
   "schemaVersion": 1,
-  "terms": [],
-  "relations": [],
-  "versions": []
+  "terms": [
+    {
+      "id": "lex-abrandonmeant",
+      "slug": "abrandonmeant",
+      "headword": "ABrandonMeant",
+      "term": "ABrandonMeant",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonosemantic name-wordplay",
+      "roots": [
+        "Reported component: BrandonMeant"
+      ],
+      "domains": [
+        "Reported: identity",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed BrandonMeant base receives an opening A; the new whole can invite a stronger sound comparison with abandonment.",
+        "interpretationProposal": "The added letter may create a second reading or identify a related title, rather than merely changing spelling.",
+        "distinctionQuestion": "Does ABrandonMeant have a separate meaning or function from BrandonMeant, and what does the initial A contribute?",
+        "limitations": "Do not merge these records or infer autobiographical experiences from a possible sound association. The distinction is unresolved."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/abrandonmeant/"
+    },
+    {
+      "id": "lex-acannibality",
+      "slug": "acannibality",
+      "headword": "Acannibality",
+      "term": "Acannibality",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Cannibal is recognizable inside the form and -ity suggests an abstract noun; the initial a- may be part of a blend rather than a negative prefix.",
+        "interpretationProposal": "Possible readings diverge between absence of a trait, a wordplay blend, and a metaphorical pattern of consuming its own resources.",
+        "distinctionQuestion": "What is the role of the opening a, and is the expression literal, metaphorical, or purely phonetic?",
+        "limitations": "No sense or source components are supplied. The recognizable middle does not justify assigning violent conduct or any biographical context."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/acannibality/"
+    },
+    {
+      "id": "lex-aldabulacular",
+      "slug": "aldabulacular",
+      "headword": "Aldabulacular",
+      "term": "Aldabulacular",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonological construction",
+      "roots": [],
+      "domains": [
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form has an adjective-like -acular ending, but no source words are supplied. Its phonological construction is unresolved.",
+        "interpretationProposal": "The rhythm may make it usable as an expressive adjective, but neither positive nor negative meaning follows from that rhythm.",
+        "distinctionQuestion": "What example sentence captures its meaning, and was sound or meaning the starting point?",
+        "limitations": "Do not force an etymology from a familiar-sounding ending. Pronunciation, components, and meaning all await evidence."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/aldabulacular/"
+    },
+    {
+      "id": "lex-apropoetry",
+      "slug": "apropoetry",
+      "headword": "Apropoetry",
+      "term": "Apropoetry",
+      "definition": "Provisional wordplay blend around apropos and poetry. Its intended use remains under review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [
+        "Reported component: apropos",
+        "Reported component: poetry"
+      ],
+      "domains": [
+        "Reported: poetics",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The supplied apropos and poetry support a blend with the shared po sequence helping connect the components.",
+        "interpretationProposal": "One possible reading is poetry that is especially apt to its occasion; another is a poetic aside introduced in the spirit of apropos.",
+        "distinctionQuestion": "Is the defining feature relevance to an occasion, spontaneous poetic response, or wordplay itself?",
+        "limitations": "The draft identifies components but supplies no settled sense. These readings must remain alternatives rather than an accepted definition."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/apropoetry/"
+    },
+    {
+      "id": "lex-audiodacity",
+      "slug": "audiodacity",
+      "headword": "Audiodacity",
+      "term": "Audiodacity",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: sound",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The spelling makes audio and audacity plausible candidate components, with the second component compressed near the join.",
+        "interpretationProposal": "A possible reading is boldness expressed through sound or speech; it could instead characterize a striking sound itself.",
+        "distinctionQuestion": "Does Audiodacity belong to the speaker, the performance, the sound, or the listener reaction?",
+        "limitations": "Components are inferred from the visible form, not documented sources. No intended meaning or originality claim is established."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/audiodacity/"
+    },
+    {
+      "id": "lex-brandonmeant",
+      "slug": "brandonmeant",
+      "headword": "BrandonMeant",
+      "term": "BrandonMeant",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonosemantic name-wordplay",
+      "roots": [
+        "Reported component: Brandon",
+        "Reported component: meant"
+      ],
+      "domains": [
+        "Reported: identity",
+        "Reported: authorship",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed Brandon and meant support name-based wordplay. The full form also invites comparison with the sound of abandonment, but that is an interpretive possibility.",
+        "interpretationProposal": "A possible reading links a personal name with intention or meaning, while leaving any literary or emotional interpretation to source evidence.",
+        "distinctionQuestion": "Should the archive treat this primarily as a title, a name-based expression, or a general concept?",
+        "limitations": "The name is visible in the headword, but no biographical meaning follows from it. Keep any work title separate from a new dictionary sense."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/brandonmeant/"
+    },
+    {
+      "id": "lex-burritoclock",
+      "slug": "burritoclock",
+      "headword": "Burrit’o’clock",
+      "term": "Burrit’o’clock",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: humor",
+        "Reported: time"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Burrit’o’clock visually combines a shortened burrito with the familiar time expression o’clock.",
+        "interpretationProposal": "A likely playful reading is that it is time for a burrito, using appetite or occasion rather than a fixed clock time.",
+        "distinctionQuestion": "Is this simply a time-for-food expression, or does it name a recurring ritual or specific occasion?",
+        "limitations": "This is a form-based reading of a playful expression, not a claim that the author invented the construction or that it requires dictionary-word status."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/burritoclock/"
+    },
+    {
+      "id": "lex-casually-causal",
+      "slug": "casually-causal",
+      "headword": "Casually Causal",
+      "term": "Casually Causal",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonosemantic phrase",
+      "roots": [],
+      "domains": [
+        "Reported: causality",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Systems and futures",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "This phrase juxtaposes the visibly similar casually and causal, shifting a small part of the letter order and rhythm.",
+        "interpretationProposal": "One possible reading is an apparently incidental act with meaningful consequences; another is a deliberately light treatment of causation.",
+        "distinctionQuestion": "Is the point accidental consequence, understated influence, or the sound-play itself?",
+        "limitations": "The expression has no recorded definition. Near-matching words do not supply a historical or philosophical claim about causality."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/casually-causal/"
+    },
+    {
+      "id": "lex-circuitous-surreptitiousness",
+      "slug": "circuitous-surreptitiousness",
+      "headword": "Circuitous Surreptitiousness",
+      "term": "Circuitous Surreptitiousness",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phrase",
+      "roots": [],
+      "domains": [
+        "Reported: behavior",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Two existing-looking descriptive words form a rhythmically dense phrase: an indirect route paired with hidden or discreet action.",
+        "interpretationProposal": "A possible reading is concealment achieved through roundabout methods, distinguishing indirectness from secrecy while combining them.",
+        "distinctionQuestion": "Must the indirect route serve concealment, or can both qualities simply coexist?",
+        "limitations": "This is phrase-level interpretation, not evidence of intentional covert behavior in any actual situation. Prior phrase uses are unresearched."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/circuitous-surreptitiousness/"
+    },
+    {
+      "id": "lex-cognoia",
+      "slug": "cognoia",
+      "headword": "Cognoia",
+      "term": "Cognoia",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: root neologism",
+      "roots": [
+        "Reported component: cogn-"
+      ],
+      "domains": [
+        "Reported: cognition",
+        "Reported: epistemology"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed cogn- and the visible opening evoke cognition or knowing; the remaining -oia cannot be assigned a verified function from this record.",
+        "interpretationProposal": "A cognition-related concept is plausible, but the form alone cannot select knowing, awareness, uncertainty, or a state of mind.",
+        "distinctionQuestion": "What concrete experience should a reader recognize when hearing Cognoia?",
+        "limitations": "No definition is recorded. Do not treat the ending as a verified Greek element or infer a psychiatric meaning from resemblance to other words."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/cognoia/"
+    },
+    {
+      "id": "lex-collapstrophe",
+      "slug": "collapstrophe",
+      "headword": "collapstrophe",
+      "term": "collapstrophe",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: collapse",
+        "Reported: systems"
+      ],
+      "variants": [
+        "Collapstrophe"
+      ],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Transformation and adversity",
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible form makes collapse and catastrophe plausible blend components, retaining collap- and -strophe.",
+        "interpretationProposal": "A possible reading is a collapse whose effects become catastrophic, or a cascade in which one collapse produces others.",
+        "distinctionQuestion": "Is the key feature scale of damage, cascading failure, or the abruptness of collapse?",
+        "limitations": "No components or definition are documented. This analysis does not prove derivation, and the relation to collapstrophy remains unresolved."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/collapstrophe/"
+    },
+    {
+      "id": "lex-collapstrophy",
+      "slug": "collapstrophy",
+      "headword": "collapstrophy",
+      "term": "collapstrophy",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: variant",
+      "roots": [],
+      "domains": [
+        "Reported: collapse",
+        "Reported: systems"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Transformation and adversity",
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form closely resembles collapstrophe but ends in -y; that ending alone cannot determine whether it is a variant or a separate noun.",
+        "interpretationProposal": "It could name a process or recurring pattern beside an event called collapstrophe, but that contrast is only an editorial possibility.",
+        "distinctionQuestion": "Should the -e and -y forms be spelling variants, or event and process terms with different meanings?",
+        "limitations": "Keep both forms and their identifiers until the distinction is resolved. Do not infer an established suffix function from the final letter."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/collapstrophy/"
+    },
+    {
+      "id": "lex-complicatizing",
+      "slug": "complicatizing",
+      "headword": "Complicatizing",
+      "term": "Complicatizing",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: systems",
+        "Reported: behavior"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form resembles complicate with an additional -ize-like layer and the participial -ing ending.",
+        "interpretationProposal": "A possible reading is actively turning something into an unnecessarily complicated system, emphasizing the act of manufacturing complexity.",
+        "distinctionQuestion": "Does Complicatizing require needless complication, or does it include useful elaboration?",
+        "limitations": "The extra derivational layer may be intentional wordplay; it should not be corrected to complicating without review."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/complicatizing/"
+    },
+    {
+      "id": "lex-contralchemy",
+      "slug": "contralchemy",
+      "headword": "Contralchemy",
+      "term": "Contralchemy",
+      "definition": "Working definition: transformation driven through opposition or counterforce; a playful proposed relative of Suffralchemy.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [
+        "Reported component: contra-",
+        "Reported component: alchemy"
+      ],
+      "domains": [
+        "Reported: transformation",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed contra- and alchemy suggest a blend or compressed compound, with the adjacent a sounds sharing the join.",
+        "interpretationProposal": "The supplied definition emphasizes transformation through opposition, potentially separating it from the creation emphasis of Contrapoiesis.",
+        "distinctionQuestion": "Should Contralchemy mean changing an existing thing while Contrapoiesis means bringing a new thing into being?",
+        "limitations": "The proposed distinction is a review option, not an approved separation. Shared alchemy imagery does not establish a historical family tree."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/contralchemy/"
+    },
+    {
+      "id": "lex-contrapoiesis",
+      "slug": "contrapoiesis",
+      "headword": "Contrapoiesis",
+      "term": "Contrapoiesis",
+      "definition": "Working definition: creation through opposition or counterforce; proposed as a conceptual relative of Suffralchemy.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: classical-root compound",
+      "roots": [
+        "Reported component: contra-",
+        "Reported component: poiesis"
+      ],
+      "domains": [
+        "Reported: creation",
+        "Reported: opposition"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed contra- and poiesis support a construction joining opposition with making or creation.",
+        "interpretationProposal": "The supplied definition suggests creation enabled by counterforce. It should be distinguished from creation merely expressing disagreement.",
+        "distinctionQuestion": "Must opposition materially shape what is created, or is creating in response to opposition sufficient?",
+        "limitations": "The term relationship to Suffralchemy is conceptual in the draft, not evidence that one historically produced the other."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/contrapoiesis/"
+    },
+    {
+      "id": "lex-crisisociety",
+      "slug": "crisisociety",
+      "headword": "Crisisociety",
+      "term": "Crisisociety",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible crisis and society sequences suggest a blend, with the join compressing adjacent s sounds or letters.",
+        "interpretationProposal": "A possible reading is a society organized around recurring crisis, distinct from a society merely experiencing one crisis.",
+        "distinctionQuestion": "Does crisis produce the social organization, sustain it, or simply describe its current condition?",
+        "limitations": "No definition is supplied. This hypothesis is not a sociological finding or evidence that any particular society fits the term."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/crisisociety/"
+    },
+    {
+      "id": "lex-demonoscopy",
+      "slug": "demonoscopy",
+      "headword": "Demonoscopy",
+      "term": "Demonoscopy",
+      "definition": "Primarily, the close examination of demons or purported demonic phenomena; secondarily, the metaphorical examination of one's inner demons.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified. Prior usage and originality remain undetermined. Source-limited research did not establish a verified historical witness for the proposed senses, and no priority claim is made.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Demon plus -scopy suggests observation or examination; that makes a methodological contrast with a broader study term possible.",
+        "interpretationProposal": "The supplied literal primary sense concerns examining demons or purported phenomena. The inner-demons psychological metaphor is explicitly secondary.",
+        "distinctionQuestion": "What methods or evidence distinguish close examination from general discussion in the primary sense?",
+        "limitations": "The lexical definition does not establish that purported demonic phenomena have a supernatural cause. Preserve the primary/secondary sense order and research prior uses."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/demonoscopy/"
+    },
+    {
+      "id": "lex-dignified",
+      "slug": "dignified",
+      "headword": "DigNified",
+      "term": "DigNified",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: orthographic wordplay",
+      "roots": [],
+      "domains": [
+        "Reported: identity",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Internal capitalization in DigNified draws attention to Dig inside the familiar letter sequence dignified.",
+        "interpretationProposal": "A possible reading layers digging or inquiry onto dignity, but the capital N may signal a different intended division.",
+        "distinctionQuestion": "What does the capital N mark, and does the expression add a new sense or visually reinterpret the existing word?",
+        "limitations": "Treat the ordinary word and its visual reworking separately. No new word-form, originality, or specific component meaning is established."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/dignified/"
+    },
+    {
+      "id": "lex-dim-mentions",
+      "slug": "dim-mentions",
+      "headword": "dim-mentions",
+      "term": "dim-mentions",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonosemantic phrase",
+      "roots": [],
+      "domains": [
+        "Reported: perception",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The hyphen makes dim and mentions readable as separate units while the full sequence may echo dimensions.",
+        "interpretationProposal": "A possible reading is faint or incomplete reference; a second is wordplay about dimensions that are difficult to perceive.",
+        "distinctionQuestion": "Is the primary meaning about vague mentions, hidden dimensions, or the relationship between both readings?",
+        "limitations": "The echo is a form-based hypothesis, not a verified component or a claim about actual hidden dimensions."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/dim-mentions/"
+    },
+    {
+      "id": "lex-dispossessance",
+      "slug": "dispossessance",
+      "headword": "Dispossessance",
+      "term": "Dispossessance",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form resembles dispossess with a noun-like -ance ending, rather than the more immediately expected dispossession pattern.",
+        "interpretationProposal": "A possible distinction is an ongoing condition or felt experience of being dispossessed, beside the event or act of dispossession.",
+        "distinctionQuestion": "Does the term name an act, a continuing condition, a felt experience, or a separate concept entirely?",
+        "limitations": "No definition is recorded. The ending does not justify a legal meaning or a personal narrative, and prior forms require research."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/dispossessance/"
+    },
+    {
+      "id": "lex-ellacutia",
+      "slug": "ellacutia",
+      "headword": "Ellacutia",
+      "term": "Ellacutia",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: neologism",
+      "roots": [],
+      "domains": [
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "No components or definition are supplied. The final -ia gives a noun-like surface pattern, but its segmentation is unresolved.",
+        "interpretationProposal": "The record can currently preserve a distinctive form or name without assigning an abstract concept to it.",
+        "distinctionQuestion": "Is Ellacutia a name, a quality, a process, or another kind of expression?",
+        "limitations": "Any derivation from similar-sounding words would be speculative. A name should not automatically receive a dictionary-style definition."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/ellacutia/"
+    },
+    {
+      "id": "lex-emotional-radiation",
+      "slug": "emotional-radiation",
+      "headword": "Emotional Radiation",
+      "term": "Emotional Radiation",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: compound",
+      "roots": [],
+      "domains": [
+        "Reported: emotion",
+        "Reported: social dynamics"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Relationships and communication",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The two visible words form a metaphorical phrase that transfers radiation imagery to emotion.",
+        "interpretationProposal": "A possible reading is the spreading effect of an expressed mood beyond the person expressing it, with an emphasis on reach or lingering influence.",
+        "distinctionQuestion": "How does this differ from emotional contagion, atmosphere, or the lasting effect of an encounter?",
+        "limitations": "The physical metaphor does not establish a literal field, remote influence, or a demonstrated causal mechanism. Prior uses of the phrase are unresearched here."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/emotional-radiation/"
+    },
+    {
+      "id": "lex-floggle-dee-hoppess",
+      "slug": "floggle-dee-hoppess",
+      "headword": "Floggle dee hoppess",
+      "term": "Floggle dee hoppess",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonological construction",
+      "roots": [],
+      "domains": [
+        "Reported: play",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Three rhythmically patterned sound-groups form a phrase, but no lexical components are documented; phonological construction is unresolved.",
+        "interpretationProposal": "The phrase can be preserved as sound-play without forcing it into a literal paraphrase.",
+        "distinctionQuestion": "Is there a repeatable use or feeling attached to it, and what rhythm or pronunciation is essential?",
+        "limitations": "No meaning, etymology, or fixed pronunciation is recoverable from the current record. Do not turn sound resemblance into invented source words."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/floggle-dee-hoppess/"
+    },
+    {
+      "id": "lex-fran",
+      "slug": "fran",
+      "headword": "fran",
+      "term": "fran",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: root neologism",
+      "roots": [],
+      "domains": [
+        "Reported: social relationships"
+      ],
+      "variants": [
+        "Fran"
+      ],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The short form has no listed source components. The presence of franbase and franship in the collection makes it a possible family base.",
+        "interpretationProposal": "A social-role meaning is possible given those derivatives, but the base could also be a name or an unrelated expression.",
+        "distinctionQuestion": "What does a fran denote, and what distinguishes it from a friend, fan, or named person?",
+        "limitations": "Friend and fan are comparison prompts, not verified source words. Do not infer that the author intended either blend."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/fran/"
+    },
+    {
+      "id": "lex-franbase",
+      "slug": "franbase",
+      "headword": "franbase",
+      "term": "franbase",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivative",
+      "roots": [
+        "Reported component: fran",
+        "Reported component: base"
+      ],
+      "domains": [
+        "Reported: social relationships"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed fran and base support a compound analysis, but fran remains undefined.",
+        "interpretationProposal": "If fran names a social role, franbase might name a collective or network of such people; its scope depends on the base definition.",
+        "distinctionQuestion": "Does this mean a community of frans, an audience, or a foundation for a relationship?",
+        "limitations": "The relationship between the forms is documented only at the component level; a shared social meaning is still a hypothesis."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/franbase/"
+    },
+    {
+      "id": "lex-franship",
+      "slug": "franship",
+      "headword": "franship",
+      "term": "franship",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivative",
+      "roots": [
+        "Reported component: fran",
+        "Reported component: -ship"
+      ],
+      "domains": [
+        "Reported: social relationships"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed fran and -ship suggest a relationship or state noun formed from the unresolved base fran.",
+        "interpretationProposal": "A possible reading is the relationship associated with being frans, perhaps distinct from friendship if the base warrants that distinction.",
+        "distinctionQuestion": "What rights, expectations, or degree of connection distinguish franship from friendship?",
+        "limitations": "Do not define the derivative before defining fran, and do not automatically collapse the family into familiar social labels."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/franship/"
+    },
+    {
+      "id": "lex-glimpsanity",
+      "slug": "glimpsanity",
+      "headword": "Glimpsanity",
+      "term": "Glimpsanity",
+      "definition": "A brief flash of clarity or sanity amid confusion, obsession, or chaos.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [
+        "Reported component: glimpse",
+        "Reported component: sanity"
+      ],
+      "domains": [
+        "Reported: cognition",
+        "Reported: clarity",
+        "Reported: mental states"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed glimpse and sanity produce a blend that preserves the brief-seeing cue and most of sanity.",
+        "interpretationProposal": "The supplied definition emphasizes the brevity of clarity against a surrounding period of confusion, rather than a permanently resolved condition.",
+        "distinctionQuestion": "Should ordinary flashes of insight qualify, or must the contrast include an ongoing state of confusion?",
+        "limitations": "Sanity is used here within a creative definition; this is not a diagnostic category or evidence about a person’s mental health."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/glimpsanity/"
+    },
+    {
+      "id": "lex-glossolalien",
+      "slug": "glossolalien",
+      "headword": "glossolalien",
+      "term": "glossolalien",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: language",
+        "Reported: spirituality"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible form resembles a blend involving a language-associated glossol- sequence and alien; the actual component boundary is unverified.",
+        "interpretationProposal": "A possible reading concerns speech experienced as strange or alien, or a person whose language feels foreign to others.",
+        "distinctionQuestion": "Does it describe a speaker, a speech-form, or the experience of a listener hearing unfamiliar language?",
+        "limitations": "No source components are supplied. Resemblance to glossolalia does not establish derivation, religious context, or a clinical phenomenon."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/glossolalien/"
+    },
+    {
+      "id": "lex-goat-ing",
+      "slug": "goat-ing",
+      "headword": "GOAT-ing",
+      "term": "GOAT-ing",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: conversion",
+      "roots": [],
+      "domains": [
+        "Reported: status",
+        "Reported: culture"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Capitalized GOAT followed by -ing resembles verb formation from an acronym, while the animal-word reading remains available.",
+        "interpretationProposal": "A possible reading is acting at an exceptional level or treating someone as the greatest; those are different transitive and intransitive uses.",
+        "distinctionQuestion": "Does someone GOAT a task, get GOAT-ed by others, or simply GOAT as a way of performing?",
+        "limitations": "The acronym expansion and intended grammar are not recorded. Public familiarity with similar slang is not evidence of authorship of this entry."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/goat-ing/"
+    },
+    {
+      "id": "lex-goblinry",
+      "slug": "goblinry",
+      "headword": "goblinry",
+      "term": "goblinry",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: humor",
+        "Reported: behavior"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form resembles goblin plus -ry, a noun-forming pattern that can suggest conduct, a practice, or a collective.",
+        "interpretationProposal": "A possible reading is goblin-like mischief or behavior, though the tone could range from affectionate play to criticism.",
+        "distinctionQuestion": "What kind of behavior qualifies, and is the intended tone playful, admiring, or disapproving?",
+        "limitations": "No definition is supplied, and ordinary-looking derivations may already have prior uses. Originality is not established."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/goblinry/"
+    },
+    {
+      "id": "lex-hydra-index",
+      "slug": "hydra-index",
+      "headword": "Hydra-Index",
+      "term": "Hydra-Index",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: compound",
+      "roots": [],
+      "domains": [
+        "Reported: classification",
+        "Reported: systems"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "A hyphen joins Hydra and Index, making a title or system-name reading at least as plausible as an ordinary lexical item.",
+        "interpretationProposal": "As a metaphor, a many-headed index could suggest multiple connected ways into a body of information.",
+        "distinctionQuestion": "Should this be catalogued primarily as a project title, a general indexing method, or both?",
+        "limitations": "The metaphor is a proposed reading of the name. No project-specific functions or private implementation details are inferred here."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/hydra-index/"
+    },
+    {
+      "id": "lex-hyperboliever",
+      "slug": "hyperboliever",
+      "headword": "Hyperboliever",
+      "term": "Hyperboliever",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: belief",
+        "Reported: rhetoric"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The spelling suggests a possible overlap of hyperbole and believer, while hyper- also remains visible as an alternative parsing.",
+        "interpretationProposal": "A possible reading is someone whose belief is amplified into exaggeration; a different reading would be someone inclined to believe exaggerations.",
+        "distinctionQuestion": "Is the person producing hyperbole, accepting it, or believing with unusual intensity?",
+        "limitations": "These alternatives differ in agency. The form alone cannot determine the intended judgment or identify a target."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/hyperboliever/"
+    },
+    {
+      "id": "lex-illogicational",
+      "slug": "illogicational",
+      "headword": "Illogicational",
+      "term": "Illogicational",
+      "definition": "Working interpretation: relating to a process, system, or rhetoric that produces, operationalizes, or perpetuates illogic. Definition remains provisional.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [
+        "Reported component: illogic",
+        "Reported component: -ational"
+      ],
+      "domains": [
+        "Reported: reasoning",
+        "Reported: systems",
+        "Reported: rhetoric"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Illogic is recognizable at the start; the listed -ational gives the form an adjective-like ending associated with processes or systems.",
+        "interpretationProposal": "The draft may distinguish a mechanism that generates illogic from something that is merely illogical.",
+        "distinctionQuestion": "Does a single bad inference qualify, or must there be a repeatable process that produces illogic?",
+        "limitations": "A transparent-looking suffix does not establish a historical derivation. The proposed process distinction needs examples."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/illogicational/"
+    },
+    {
+      "id": "lex-intension",
+      "slug": "intension",
+      "headword": "InTension",
+      "term": "InTension",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: orthographic reanalysis",
+      "roots": [],
+      "domains": [
+        "Reported: intention",
+        "Reported: tension",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The capitalization InTension visibly invites reading in tension alongside the similar sound of intention.",
+        "interpretationProposal": "A possible reading explores purpose formed under tension or a state of being held in tension; those are distinct from a technical semantic sense.",
+        "distinctionQuestion": "Is the primary sense purpose under pressure, an unresolved balance, or a deliberate play among several readings?",
+        "limitations": "The familiar form can have meanings outside this project. Preserve the capitalization and do not treat a spelling overlap as first coinage."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/intension/"
+    },
+    {
+      "id": "lex-less-strain-on-the-ass-pain",
+      "slug": "less-strain-on-the-ass-pain",
+      "headword": "Less strain on the ass pain",
+      "term": "Less strain on the ass pain",
+      "definition": "A playful way to describe, reduce, or refer to a pain in the ass: an annoying person, task, situation, or problem. Recorded as an expression, with wording open to review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: idiomatic wordplay",
+      "roots": [],
+      "domains": [
+        "Reported: humor",
+        "Reported: idiom",
+        "Reported: friction"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "This expression rearranges the idiom pain in the ass and adds the rhyme strain/pain.",
+        "interpretationProposal": "Its mechanism is humorous rephrasing of annoyance or relief, rather than a new single-word lexical item.",
+        "distinctionQuestion": "Is the preferred use a wish for reduced annoyance, a description of relief, or a standalone punch line?",
+        "limitations": "The wording is informal and includes mild profanity. Preserve the expression as a phrase rather than inventing a grammatical category for it."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/less-strain-on-the-ass-pain/"
+    },
+    {
+      "id": "lex-lexicision",
+      "slug": "lexicision",
+      "headword": "Lexicision",
+      "term": "Lexicision",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [
+        "Reported component: lexicon",
+        "Reported component: incision"
+      ],
+      "domains": [
+        "Reported: language",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed lexicon and incision support a blend that retains a lexical opening and the cutting-related -cision sequence.",
+        "interpretationProposal": "A possible reading is precise cutting into language, either as analysis or editorial removal; those uses differ in what the action produces.",
+        "distinctionQuestion": "Is Lexicision the dissection of wording to understand it, the removal of wording to improve it, or both?",
+        "limitations": "The components are reported rather than historically verified. A literary title should remain distinct from a generalized process definition."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/lexicision/"
+    },
+    {
+      "id": "lex-lexicognality",
+      "slug": "lexicognality",
+      "headword": "Lexicognality",
+      "term": "Lexicognality",
+      "definition": "The processes and dynamics through which language participates in cognition, including how words organize, mediate, or develop thought.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible lexi- and cogn- sequences connect vocabulary with cognition; the -ality ending gives the result an abstract-noun form.",
+        "interpretationProposal": "The supplied definition concerns the processes and dynamics of language-mediated thought, rather than merely a fixed personal trait.",
+        "distinctionQuestion": "Which examples show language organizing or changing thought without reducing the term to a personality label?",
+        "limitations": "Keep lexical-form emergence under Lexigenesis when that is the specific subject. This proposed terminology is not an established scientific classification."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/lexicognality/"
+    },
+    {
+      "id": "lex-lexicognital",
+      "slug": "lexicognital",
+      "headword": "Lexicognital",
+      "term": "Lexicognital",
+      "definition": "An adjective describing cognition strongly organized around linguistic structures.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form shares lexi- and cogn- sequences with Lexicognality and has an adjective-like ending.",
+        "interpretationProposal": "The supplied sense describes cognition organized around linguistic structures; it can modify a process or mode without naming a diagnosis.",
+        "distinctionQuestion": "Should it apply to a momentary mode of thinking, a recurring style, or both?",
+        "limitations": "Its connection to Lexicognality is a useful proposed family relationship, not proof of historical derivation or a validated cognitive type."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/lexicognital/"
+    },
+    {
+      "id": "lex-lexiconography",
+      "slug": "lexiconography",
+      "headword": "Lexiconography",
+      "term": "Lexiconography",
+      "definition": "The mapping and representation of lexical relationships, histories, conceptual families, and associated symbolic structures.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [
+        "Reported component: lexicon",
+        "Reported component: -graphy"
+      ],
+      "domains": [
+        "Reported: language",
+        "Reported: knowledge representation",
+        "Reported: archives"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified. Lexiconography is already used in the title of a published literary collaboration. This confirms an existing form in a different context; it does not establish whether the Observatory’s mapping sense matches that use.",
+      "definitionStatus": "author_supplied",
+      "classification": "existing_form_reinterpreted",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed lexicon and -graphy make a mapping or representation reading morphologically plausible.",
+        "interpretationProposal": "The project assigns this term the mapping of lexical relationships and conceptual structures, a useful functional distinction from entry-by-entry description.",
+        "distinctionQuestion": "Which objects must a Lexiconography map contain to differ from a glossary, thesaurus, or conceptual diagram?",
+        "limitations": "This project-specific meaning does not establish that the word-form is new. Preserve prior-form research and do not present it as verified original coinage."
+      },
+      "witnesses": [
+        {
+          "id": "public-lexiconography-ojibwe",
+          "visibility": "approved_public",
+          "label": "Lexiconography 1 — Heid E. Erdrich and Margaret Noodin",
+          "publicSummary": "The collaboration’s own language-project page presents Lexiconography 1 as a poem title. Only the title and public attribution are referenced; no poem excerpt is reproduced.",
+          "approvedExcerpt": "",
+          "sourceDate": "",
+          "evidence": "verified",
+          "url": "https://ojibwe.net/stories/spring/lexiconography-1/"
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/lexiconography/"
+    },
+    {
+      "id": "lex-lexigenesis",
+      "slug": "lexigenesis",
+      "headword": "Lexigenesis",
+      "term": "Lexigenesis",
+      "definition": "The generation or emergence of lexical forms, distinct from the broader cognitive processes of Lexicognality.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified. Lexigenesis already appears in scholarly writing about word formation. The proposed Observatory sense is retained for comparison, without claiming original creation of the word or equivalence with every technical use.",
+      "definitionStatus": "author_supplied",
+      "classification": "existing_form_reinterpreted",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible lexi- and genesis sequences make generation of lexical forms a compositional reading.",
+        "interpretationProposal": "The supplied definition isolates emergence or formation of a word-form from the broader role of language in cognition described by Lexicognality.",
+        "distinctionQuestion": "Does the term cover first spontaneous emergence, deliberate construction, or every subsequent formation of a variant?",
+        "limitations": "A recognizable classical-looking construction does not establish originality. Keep this process separate from author approval, publication, and later conceptual development."
+      },
+      "witnesses": [
+        {
+          "id": "public-lexigenesis-journal-article",
+          "visibility": "approved_public",
+          "label": "Lexigenesis in ancestral south-east Australian Aboriginal language",
+          "publicSummary": "The primary publisher’s indexed article title documents existing scholarly use of Lexigenesis. Full-text access was restricted during this review; no earliest-use claim is made.",
+          "approvedExcerpt": "",
+          "sourceDate": "",
+          "evidence": "supported",
+          "url": "https://www.tandfonline.com/doi/abs/10.1080/0266476022000023703"
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/lexigenesis/"
+    },
+    {
+      "id": "lex-libracdified",
+      "slug": "libracdified",
+      "headword": "Libracdified",
+      "term": "Libracdified",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: blend",
+      "roots": [],
+      "domains": [
+        "Reported: identity",
+        "Reported: astrology"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The -ified ending resembles a result-state form, while the opening and middle lack verified component boundaries.",
+        "interpretationProposal": "It may describe something changed into a particular condition, but the condition cannot be recovered reliably from this spelling alone.",
+        "distinctionQuestion": "What changed, and what does the resulting state mean? Is Libractifide an earlier spelling or a distinct form?",
+        "limitations": "Phonological construction and derivation are unresolved. Do not infer identity, beliefs, or symbolism from the Libra-like opening."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/libracdified/"
+    },
+    {
+      "id": "lex-libractifide",
+      "slug": "libractifide",
+      "headword": "Libractifide",
+      "term": "Libractifide",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: variant",
+      "roots": [],
+      "domains": [
+        "Reported: identity",
+        "Reported: astrology"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The form resembles Libracdified in its opening and consonant pattern, but its -fide ending does not settle a grammatical role.",
+        "interpretationProposal": "This may be a spelling experiment in the same family, although no shared meaning has been established.",
+        "distinctionQuestion": "Which spelling best preserves the intended sound, and do the two forms have different meanings?",
+        "limitations": "No definition or source components are available. Avoid forced Latin derivations and preserve both records until review."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/libractifide/"
+    },
+    {
+      "id": "lex-magnificentification",
+      "slug": "magnificentification",
+      "headword": "Magnificentification",
+      "term": "Magnificentification",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: transformation",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible magnificent base combines with a process-noun-like -ification ending, producing an intentionally elaborate form.",
+        "interpretationProposal": "A possible reading is the act of making something magnificent, with the length of the word itself adding comic emphasis.",
+        "distinctionQuestion": "Does the term name actual improvement, ornamental exaggeration, or a playful compliment?",
+        "limitations": "The interpretation follows surface form only. Existing uses and the intended authorial register have not been checked here."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/magnificentification/"
+    },
+    {
+      "id": "lex-meesh-namana-dooshdoo",
+      "slug": "meesh-namana-dooshdoo",
+      "headword": "Meesh namana dooshdoo",
+      "term": "Meesh namana dooshdoo",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonological construction",
+      "roots": [],
+      "domains": [
+        "Reported: play",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The phrase repeats rounded vowel spellings and sh/d sounds across three units; no source words or pronunciation are documented.",
+        "interpretationProposal": "It may function through cadence and expressive sound rather than a stable propositional meaning.",
+        "distinctionQuestion": "Should it be preserved as a fixed vocal phrase, a flexible sound pattern, or an expression with a particular use?",
+        "limitations": "Phonological construction unresolved. Written spellings alone do not justify IPA, cross-language derivations, or a translated meaning."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/meesh-namana-dooshdoo/"
+    },
+    {
+      "id": "lex-metacognoia",
+      "slug": "metacognoia",
+      "headword": "Metacognoia",
+      "term": "Metacognoia",
+      "definition": "Working interpretation: a construction concerning knowing or awareness about cognition itself. Definition remains provisional.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: classical-root blend",
+      "roots": [
+        "Reported component: meta-",
+        "Reported component: cognoia"
+      ],
+      "domains": [
+        "Reported: metacognition",
+        "Reported: epistemology"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed meta- and Cognoia indicate a proposed family relationship: a prefixed form built around another candidate entry.",
+        "interpretationProposal": "The draft concerns awareness about cognition. Its distinctiveness depends on what Cognoia adds beyond cognition and how the result differs from metacognition.",
+        "distinctionQuestion": "What experience would count as Metacognoia but not simply metacognition?",
+        "limitations": "Cognoia itself lacks a definition, so the family cannot yet supply a reliable compositional meaning."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/metacognoia/"
+    },
+    {
+      "id": "lex-muertacognoia",
+      "slug": "muertacognoia",
+      "headword": "Muertacognoia",
+      "term": "Muertacognoia",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: cross-lingual blend",
+      "roots": [
+        "Reported component: muerta/muerte?",
+        "Reported component: cognoia"
+      ],
+      "domains": [
+        "Reported: mortality",
+        "Reported: cognition"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed muerta/muerte? and Cognoia suggest a cross-language construction, with the first component explicitly uncertain in the record.",
+        "interpretationProposal": "A relationship between death and cognition is a possible reading; awareness of mortality and the ending of awareness would be substantially different senses.",
+        "distinctionQuestion": "Is the intended source muerta, muerte, another form, or a sound association, and which mortality-related distinction matters?",
+        "limitations": "The source form is unresolved and Cognoia has no settled definition. Do not silently normalize the spelling or attach a personal history."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/muertacognoia/"
+    },
+    {
+      "id": "lex-neurohypocritical",
+      "slug": "neurohypocritical",
+      "headword": "neurohypocritical",
+      "term": "neurohypocritical",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: compound derivation",
+      "roots": [],
+      "domains": [
+        "Reported: cognition",
+        "Reported: behavior"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Neuro- precedes hypocritical in a transparent-looking compound adjective.",
+        "interpretationProposal": "A possible reading concerns inconsistent expectations about cognition or neurological difference, rather than a neurological cause of hypocrisy.",
+        "distinctionQuestion": "Does it criticize a double standard about minds, a mismatch between belief and cognitive behavior, or something else?",
+        "limitations": "No definition is recorded. The neuro- prefix supplies neither a diagnosis nor evidence that hypocrisy has a specific neurological explanation."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/neurohypocritical/"
+    },
+    {
+      "id": "lex-occipitalization",
+      "slug": "occipitalization",
+      "headword": "Occipitalization",
+      "term": "Occipitalization",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: perception",
+        "Reported: cognition"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The spelling transparently suggests occipital plus -ization, making a process reading available.",
+        "interpretationProposal": "It could be used figuratively for making something visual, but that is only one interpretation of a form associated with the back of the head.",
+        "distinctionQuestion": "Is the term anatomical, perceptual, metaphorical, or wordplay, and what observable event would illustrate it?",
+        "limitations": "Do not present this as an established neurological process, brain-localization claim, or medical term on the strength of morphology."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/occipitalization/"
+    },
+    {
+      "id": "lex-phonetic-recursion",
+      "slug": "phonetic-recursion",
+      "headword": "phonetic recursion",
+      "term": "phonetic recursion",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: technical compound",
+      "roots": [],
+      "domains": [
+        "Reported: phonetics",
+        "Reported: poetics",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Phonetic modifies recursion, producing a technical-looking phrase about sound and repeated or self-referential structure.",
+        "interpretationProposal": "A possible reading concerns a sound sequence that generates or feeds back into another occurrence of its own pattern.",
+        "distinctionQuestion": "What example makes the operation recursive, and how does it differ from rhyme, repetition, or the separate phonosemantic-recursion entry?",
+        "limitations": "The phrase has no recorded definition. Do not present a formal linguistic mechanism until its operation is specified and checked."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/phonetic-recursion/"
+    },
+    {
+      "id": "lex-phonosemantic-recursion",
+      "slug": "phonosemantic-recursion",
+      "headword": "phonosemantic recursion",
+      "term": "phonosemantic recursion",
+      "definition": "Working term for recursive interaction between sound-pattern and meaning-pattern. Its technical boundaries remain under review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: technical compound",
+      "roots": [
+        "Reported component: phono-",
+        "Reported component: semantic",
+        "Reported component: recursion"
+      ],
+      "domains": [
+        "Reported: language",
+        "Reported: poetics",
+        "Reported: cognition"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Cognition and interpretation",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The supplied phono-, semantic, and recursion explicitly connect sound, meaning, and repeated or self-referential operation.",
+        "interpretationProposal": "The draft suggests a feedback loop in which a sound-pattern influences a meaning-pattern that then shapes further sound choices.",
+        "distinctionQuestion": "What concrete example shows the output feeding back into the next step, rather than merely repeating sound or meaning?",
+        "limitations": "A technical-sounding name does not establish a formal linguistic mechanism. Operational examples are needed to distinguish recursion from repetition."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/phonosemantic-recursion/"
+    },
+    {
+      "id": "lex-portmantres",
+      "slug": "portmantres",
+      "headword": "Portmantrés",
+      "term": "Portmantrés",
+      "definition": "A three-source-word portmanteau that blends recognizable elements through overlapping sounds or letters rather than merely joining separate fragments.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Language and wordplay"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The spelling reshapes portmanteau around a final trés sequence that invites a three-related reading; the accent should be preserved as recorded.",
+        "interpretationProposal": "The supplied definition requires three recognizable source words joined through overlap, making demonstrable three-way blending the key test.",
+        "distinctionQuestion": "Must all three sources share an overlap, or can two successive overlaps connect the three?",
+        "limitations": "User authorship of the word-form is undetermined. Do not turn its presence in the prompt into a claim of invention, and do not label simple concatenations as validated examples."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/portmantres/"
+    },
+    {
+      "id": "lex-preconceived-precotions",
+      "slug": "preconceived-precotions",
+      "headword": "preconceived precotions",
+      "term": "preconceived precotions",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonological phrase",
+      "roots": [],
+      "domains": [
+        "Reported: cognition",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Cognition and interpretation",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The phrase repeats the pre- opening while replacing an expected familiar noun with the unresolved form precotions.",
+        "interpretationProposal": "A possible effect is to make the language of preconceptions stumble over its own expectations; the intended semantic target remains unknown.",
+        "distinctionQuestion": "Is precotions a deliberate blend, a pronunciation experiment, or an intentionally disrupted familiar phrase?",
+        "limitations": "No component analysis is verified. Do not silently repair the spelling to preconceptions or invent a missing source word."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/preconceived-precotions/"
+    },
+    {
+      "id": "lex-pro-topian",
+      "slug": "pro-topian",
+      "headword": "Pro-topian",
+      "term": "Pro-topian",
+      "definition": "Oriented toward actively pursuing achievable improvement rather than an imagined state of perfection.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: hyphenated reanalysis",
+      "roots": [
+        "Reported component: pro-",
+        "Reported component: protopian"
+      ],
+      "domains": [
+        "Reported: futures",
+        "Reported: improvement",
+        "Reported: philosophy"
+      ],
+      "variants": [],
+      "authorship": "author_reinterpretation",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified. The unhyphenated form protopian appears in Kevin Kelly’s 2011 Protopia essay. This entry presents a hyphenated reinterpretation; it does not claim invention of the existing base word.",
+      "definitionStatus": "author_supplied",
+      "classification": "existing_form_reinterpreted",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed pro- and protopian indicate a deliberate resegmentation or reinterpretation of an existing base, highlighted by the hyphen.",
+        "interpretationProposal": "The supplied sense foregrounds active support for achievable improvement. Its added value should be stated relative to the existing protopian concept.",
+        "distinctionQuestion": "What does the hyphenated reinterpretation add beyond protopian, and should that difference be part of every public definition?",
+        "limitations": "Treat this as a reinterpretation of an existing base, not a verified first coinage. Prior-use research remains necessary."
+      },
+      "witnesses": [
+        {
+          "id": "public-protopia-kevin-kelly",
+          "visibility": "approved_public",
+          "label": "Kevin Kelly — Protopia",
+          "publicSummary": "The primary essay uses protopian in discussing incremental improvement. This witnesses earlier related-word usage, not the author’s coinage date.",
+          "approvedExcerpt": "",
+          "sourceDate": "2011-05-19",
+          "evidence": "verified",
+          "url": "https://kk.org/thetechnium/protopia/"
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/pro-topian/"
+    },
+    {
+      "id": "lex-proxintimacy",
+      "slug": "proxintimacy",
+      "headword": "Proxintimacy",
+      "term": "Proxintimacy",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: relationships",
+        "Reported: distance",
+        "Reported: intimacy"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The spelling suggests a possible blend of proximity and intimacy, compressing the boundary before intimacy.",
+        "interpretationProposal": "A possible reading is closeness created by physical nearness; another is the misleading appearance of intimacy produced by repeated proximity.",
+        "distinctionQuestion": "Is Proxintimacy authentic closeness arising through proximity, or proximity mistaken for closeness?",
+        "limitations": "The two possible readings differ sharply in value and implication. No source definition establishes either."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/proxintimacy/"
+    },
+    {
+      "id": "lex-psycheligious",
+      "slug": "psycheligious",
+      "headword": "Psycheligious",
+      "term": "Psycheligious",
+      "definition": "Working interpretation: a term for territory where psychological experience and religious or spiritual interpretation overlap. Definition remains provisional.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonological blend",
+      "roots": [
+        "Reported component: psyche",
+        "Reported component: religious"
+      ],
+      "domains": [
+        "Reported: psychology",
+        "Reported: spirituality",
+        "Reported: interpretation"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed psyche and religious suggest a blend whose middle compresses the boundary between the two components.",
+        "interpretationProposal": "The draft places the term at the interface of psychological experience and religious interpretation; it does not specify whether the relationship is complementary, conflicting, or neutral.",
+        "distinctionQuestion": "Does the term name an overlap in experience, an interpretive method, or a type of belief?",
+        "limitations": "The draft is provisional. Similarity to Psychreligious does not establish that the forms are interchangeable."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/psycheligious/"
+    },
+    {
+      "id": "lex-psychreligious",
+      "slug": "psychreligious",
+      "headword": "Psychreligious",
+      "term": "Psychreligious",
+      "definition": "Provisional variant related to Psycheligious; exact distinction remains unresolved.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: blend",
+      "roots": [
+        "Reported component: psych-",
+        "Reported component: religious"
+      ],
+      "domains": [
+        "Reported: psychology",
+        "Reported: spirituality"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed psych- and religious produce a visibly joined construction with a more explicit component boundary than Psycheligious.",
+        "interpretationProposal": "A possible distinction is a more overtly analytical label beside the smoother blend Psycheligious, but that distinction is a proposal only.",
+        "distinctionQuestion": "Is this an alternate spelling of Psycheligious, or should each form have a separate sense?",
+        "limitations": "No semantic difference can be established from spelling alone; do not merge the entries without an editorial decision."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/psychreligious/"
+    },
+    {
+      "id": "lex-psyciety",
+      "slug": "psyciety",
+      "headword": "Psyciety",
+      "term": "Psyciety",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [
+        "Reported component: psyche",
+        "Reported component: society"
+      ],
+      "domains": [
+        "Reported: psychology",
+        "Reported: society"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed psyche and society suggest a blend with a compressed join that keeps the psy- opening and society-like ending.",
+        "interpretationProposal": "A possible reading names the mutual shaping of mind and society, or a society understood through its psychological patterns.",
+        "distinctionQuestion": "Does Psyciety describe a social system, a shared mental climate, or the interaction between individual minds and society?",
+        "limitations": "No definition is supplied. The form does not support an empirical claim about a population or justify treating a literary title as a scientific concept."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/psyciety/"
+    },
+    {
+      "id": "lex-questalien",
+      "slug": "questalien",
+      "headword": "Questalien",
+      "term": "Questalien",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: portmanteau",
+      "roots": [],
+      "domains": [
+        "Reported: identity",
+        "Reported: inquiry",
+        "Reported: alienation"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Systems and futures",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible spelling allows quest plus alien as a possible blend, although no components are documented.",
+        "interpretationProposal": "A possible reading is a seeker whose inquiry leaves them feeling foreign, or a strange kind of quest; the grammatical role is open.",
+        "distinctionQuestion": "Does Questalien name a person, a kind of search, or an adjective for an unfamiliar journey?",
+        "limitations": "Do not infer a personal alienation story or choose a speaker identity from the surface form alone."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/questalien/"
+    },
+    {
+      "id": "lex-radicosity",
+      "slug": "radicosity",
+      "headword": "Radicosity",
+      "term": "Radicosity",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: roots",
+        "Reported: inquiry"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Systems and futures"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The ending -osity gives the form an abstract-noun profile; radic- may evoke roots or radical, but the source is undocumented.",
+        "interpretationProposal": "A possible reading is a root-seeking quality or intensity of radical inquiry, with neither reading privileged yet.",
+        "distinctionQuestion": "Is the core idea rootedness, getting to the root, radical intensity, or something unrelated?",
+        "limitations": "The visible root-like sequence does not establish Latin ancestry or an accepted meaning. Similar existing forms require collision research."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/radicosity/"
+    },
+    {
+      "id": "lex-re-absecentigrate",
+      "slug": "re-absecentigrate",
+      "headword": "re-absecentigrate",
+      "term": "re-absecentigrate",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: complex blend",
+      "roots": [],
+      "domains": [
+        "Reported: transformation",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "A visible re- prefix suggests recurrence, while the long remaining sequence has no supplied or reliably recoverable components.",
+        "interpretationProposal": "A repeated action may be suggested by the prefix; the action itself is not recoverable without an example.",
+        "distinctionQuestion": "What action is being repeated, and which internal word fragments are intentional?",
+        "limitations": "The phonological construction is unresolved. Do not infer disappearance, migration, or reintegration merely from sound resemblance."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/re-absecentigrate/"
+    },
+    {
+      "id": "lex-redevra-dingiate",
+      "slug": "redevra-dingiate",
+      "headword": "Redevra-dingiate",
+      "term": "Redevra-dingiate",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: complex blend",
+      "roots": [],
+      "domains": [
+        "Reported: transformation",
+        "Reported: wordplay"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The hyphen divides two invented-looking sequences; neither segment has a documented source or stable grammatical analysis.",
+        "interpretationProposal": "It can presently be preserved as an experimental sound-form, with meaning left open rather than filled by resemblance.",
+        "distinctionQuestion": "What pronunciation and sentence would reveal whether the hyphen marks two meaningful components?",
+        "limitations": "Phonological construction unresolved. No reliable interpretation or etymology can be assigned from the record."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/redevra-dingiate/"
+    },
+    {
+      "id": "lex-semantic-frontiering",
+      "slug": "semantic-frontiering",
+      "headword": "Semantic frontiering",
+      "term": "Semantic frontiering",
+      "definition": "Working expression for pushing language outward into regions where human experience exists but available vocabulary feels insufficient. This is a provisional metaphor, not an established technical classification.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: technical phrase",
+      "roots": [],
+      "domains": [
+        "Reported: language",
+        "Reported: neology",
+        "Reported: concept formation"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Frontiering gives the adjective semantic an active frontier-making metaphor and a process-like -ing form.",
+        "interpretationProposal": "The draft concerns developing language for experiences that lack adequate labels; it may name the exploration preceding a finished coinage.",
+        "distinctionQuestion": "Does the activity require inventing a word, or can discovering a conceptual gap already count?",
+        "limitations": "The draft metaphor should not be mistaken for proof that no existing vocabulary covers a given experience. That requires research."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/semantic-frontiering/"
+    },
+    {
+      "id": "lex-soulutions",
+      "slug": "soulutions",
+      "headword": "SOULutions",
+      "term": "SOULutions",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: orthographic wordplay",
+      "roots": [],
+      "domains": [
+        "Reported: spirituality",
+        "Reported: problem solving"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Systems and futures",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The capitalization SOULutions makes soul visible inside a respelling of solutions.",
+        "interpretationProposal": "A possible reading is responses to problems that attend to meaning or inner life, rather than technical fixes alone.",
+        "distinctionQuestion": "What distinguishes a SOULution from a compassionate, meaningful, or spiritual solution?",
+        "limitations": "A plausible reading of wordplay is not an originality finding or evidence that any particular practice solves a problem. Prior uses are unresearched here."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/soulutions/"
+    },
+    {
+      "id": "lex-subtlespeak",
+      "slug": "subtlespeak",
+      "headword": "Subtlespeak",
+      "term": "Subtlespeak",
+      "definition": "Indirect, deniable communication whose implied meaning may nevertheless be recognizable to its intended audience.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: compound",
+      "roots": [
+        "Reported component: subtle",
+        "Reported component: speak"
+      ],
+      "domains": [
+        "Reported: communication",
+        "Reported: social dynamics"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed subtle and speak support a compound or blend-like reading naming a manner of communication.",
+        "interpretationProposal": "The supplied definition centers deniability and audience-recognizable implication. Malicious intent is not required by the base definition.",
+        "distinctionQuestion": "What distinguishes Subtlespeak from tact, implication, an inside joke, or an ambiguous remark?",
+        "limitations": "Recognizing a possible implication is not proof of another person’s intention. Examples need enough context to distinguish interpretation from documented communication."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/subtlespeak/"
+    },
+    {
+      "id": "lex-suffralchemize",
+      "slug": "suffralchemize",
+      "headword": "Suffralchemize",
+      "term": "Suffralchemize",
+      "definition": "Working definition: to deliberately transform suffering into insight, strength, meaning, art, or other value without claiming the suffering itself was good.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivative verb",
+      "roots": [
+        "Reported component: Suffralchemy"
+      ],
+      "domains": [
+        "Reported: meaning-making",
+        "Reported: transformation"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Provisional working definition recovered from an earlier Observatory prototype. Attribution and historical priority remain unverified.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recovered working definition; provisional wording and attribution."
+      },
+      "collections": [
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed Suffralchemy base becomes a verb-like form with -ize, visibly marking an action in the same proposed family.",
+        "interpretationProposal": "The supplied definition adds deliberate action to the broader transformation described by Suffralchemy.",
+        "distinctionQuestion": "Should deliberateness distinguish the verb from unplanned value emerging after suffering?",
+        "limitations": "The family relationship is supported by the supplied component and definition, but no historical derivation or priority date is established."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/suffralchemize/"
+    },
+    {
+      "id": "lex-suffralchemy",
+      "slug": "suffralchemy",
+      "headword": "Suffralchemy",
+      "term": "Suffralchemy",
+      "definition": "The transformation of suffering into something valuable, without implying that the suffering itself was desirable or beneficial.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: phonosemantic blend",
+      "roots": [
+        "Reported component: suffering",
+        "Reported component: alchemy"
+      ],
+      "domains": [
+        "Reported: meaning-making",
+        "Reported: adversity",
+        "Reported: transformation"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The listed components suffering and alchemy support reading this as a blend; the opening of suffering is compressed before alchemy.",
+        "interpretationProposal": "The supplied definition distinguishes making value after suffering from claiming suffering was valuable or necessary. That ethical boundary is the strongest differentiator.",
+        "distinctionQuestion": "Must the transformation be deliberate, or can value emerge without a conscious effort to transform the experience?",
+        "limitations": "This is analysis of the supplied definition, not evidence of etymological history, clinical benefit, or first invention."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/suffralchemy/"
+    },
+    {
+      "id": "lex-synchronist",
+      "slug": "synchronist",
+      "headword": "Synchronist",
+      "term": "Synchronist",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: synchronicity",
+        "Reported: identity"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "Synchron- plus the person-noun-like -ist ending suggests someone associated with synchrony or a related practice.",
+        "interpretationProposal": "Possible readings include someone who coordinates events, studies simultaneous relationships, or attends to meaningful coincidence; these cannot be conflated.",
+        "distinctionQuestion": "Which activity or outlook defines the person, and what would distinguish the intended sense from existing uses?",
+        "limitations": "The ordinary derivational pattern may already have established senses. This record provides neither an originality finding nor support for causal claims about coincidence."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/synchronist/"
+    },
+    {
+      "id": "lex-tragedaptation",
+      "slug": "tragedaptation",
+      "headword": "Tragedaptation",
+      "term": "Tragedaptation",
+      "definition": "Adaptation to tragedy, particularly when the resulting changes become enduring structures, behaviors, or identities.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Under review",
+      "roots": [],
+      "domains": [],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Transformation and adversity"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible tragedy and adaptation sequences support a compressed blend, retaining the shared transition into adaptation.",
+        "interpretationProposal": "The supplied definition emphasizes enduring structures after tragedy, which may separate the term from immediate coping or recovery.",
+        "distinctionQuestion": "Must the adaptation persist to count, and can the resulting structure be helpful, harmful, or mixed?",
+        "limitations": "Do not assume adaptation is beneficial or infer that tragedy was necessary. The form does not establish a clinical category or historical coinage date."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/tragedaptation/"
+    },
+    {
+      "id": "lex-unframable",
+      "slug": "unframable",
+      "headword": "Unframable",
+      "term": "Unframable",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derivation",
+      "roots": [],
+      "domains": [
+        "Reported: perception",
+        "Reported: identity"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Identity and belief"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The visible un- plus frame plus -able pattern allows several readings because frame itself has physical, conceptual, and accusatory senses.",
+        "interpretationProposal": "The candidate could describe something that resists a conceptual frame, cannot fit a physical frame, or cannot be falsely implicated.",
+        "distinctionQuestion": "Which sense of frame is primary, and are the other readings deliberate secondary senses?",
+        "limitations": "No sense is selected by the record. Do not collapse unrelated readings or claim the ordinary-looking construction is newly invented."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/unframable/"
+    },
+    {
+      "id": "lex-us-conscious",
+      "slug": "us-conscious",
+      "headword": "Us-conscious",
+      "term": "Us-conscious",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: compound",
+      "roots": [],
+      "domains": [
+        "Reported: collective cognition",
+        "Reported: social psychology"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "term_seed",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Cognition and interpretation",
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The hyphenated us and conscious construction shifts attention from an individual pronoun toward a collective one.",
+        "interpretationProposal": "A possible reading is awareness that includes other people or a shared group perspective, without implying a literally shared mind.",
+        "distinctionQuestion": "Does Us-conscious mean empathy, awareness of group consequences, shared identity, or a distinct state?",
+        "limitations": "The record has no definition. Collective-consciousness language should not be treated as evidence for a psychological or metaphysical mechanism."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/us-conscious/"
+    },
+    {
+      "id": "lex-verse-vertigo",
+      "slug": "verse-vertigo",
+      "headword": "Verse Vertigo",
+      "term": "Verse Vertigo",
+      "definition": "Definition pending author review.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: alliterative compound",
+      "roots": [],
+      "domains": [
+        "Reported: poetics",
+        "Reported: language"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "unknown",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Public Forge seed. Definition pending author review. Inclusion does not claim an original coinage.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "expression",
+      "editorialReview": {
+        "shortReason": "Named Forge seed; definition awaits author review."
+      },
+      "collections": [
+        "Language and wordplay",
+        "Expressions"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The repeated v sounds link verse with vertigo in an alliterative metaphorical phrase.",
+        "interpretationProposal": "A possible reading is the disorientation or exhilaration of intense poetic language, either during reading or composition.",
+        "distinctionQuestion": "Does it belong to the writer, the reader, or both, and is the feeling pleasurable or overwhelming?",
+        "limitations": "No definition is supplied. The metaphor should not be presented as a diagnosis or a demonstrated physical effect of poetry."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/verse-vertigo/"
+    },
+    {
+      "id": "lex-weaponized-subtlespeak",
+      "slug": "weaponized-subtlespeak",
+      "headword": "Weaponized Subtlespeak",
+      "term": "Weaponized Subtlespeak",
+      "definition": "A form of Subtlespeak used aggressively or manipulatively.",
+      "stage": "lexicon",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Reported classification: derived compound",
+      "roots": [
+        "Reported component: Subtlespeak"
+      ],
+      "domains": [
+        "Reported: communication",
+        "Reported: conflict",
+        "Reported: social dynamics"
+      ],
+      "variants": [],
+      "authorship": "origin_undetermined",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": null,
+      "provenanceSummary": "Definition supplied for the Observatory; earliest appearance and original coinage have not been verified.",
+      "definitionStatus": "author_supplied",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Author-supplied definition; original coinage not established."
+      },
+      "collections": [
+        "Relationships and communication"
+      ],
+      "tags": [],
+      "analysis": {
+        "kind": "ai_hypothesis",
+        "formationProposal": "The modifier weaponized narrows the base term Subtlespeak to an aggressive or manipulative use.",
+        "interpretationProposal": "The supplied distinction concerns how indirect communication is used, not merely whether its recipient dislikes it.",
+        "distinctionQuestion": "What evidence would support classifying an example as aggressive or manipulative rather than simply indirect?",
+        "limitations": "Treat intent as an evidentiary question. A perceived personal reference alone cannot establish the proposed subtype."
+      },
+      "witnesses": [],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-16T23:03:35.647Z",
+        "approvedRevision": 1,
+        "approvalMethod": "author_delegated_editorial_review"
+      },
+      "permalink": "word/weaponized-subtlespeak/"
+    }
+  ],
+  "relations": [
+    {
+      "source": "lex-psycheligious",
+      "target": "lex-psychreligious",
+      "visibility": "approved_public",
+      "type": "proposed_form_relation",
+      "status": "inferred",
+      "explanation": "The earlier prototype associated these forms. Similarity suggests a variant or conceptual relation; the records remain distinct and historical derivation is unverified."
+    },
+    {
+      "source": "lex-metacognoia",
+      "target": "lex-cognoia",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "Reported morphological analysis from the earlier prototype; shared form suggests a possible derivative relationship. Authenticated historical derivation has not been established."
+    },
+    {
+      "source": "lex-muertacognoia",
+      "target": "lex-cognoia",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "Reported morphological analysis from the earlier prototype; shared form suggests a possible derivative relationship. Authenticated historical derivation has not been established."
+    },
+    {
+      "source": "lex-collapstrophy",
+      "target": "lex-collapstrophe",
+      "visibility": "approved_public",
+      "type": "proposed_form_relation",
+      "status": "inferred",
+      "explanation": "The earlier prototype associated these forms. Similarity suggests a variant or conceptual relation; the records remain distinct and historical derivation is unverified."
+    },
+    {
+      "source": "lex-libractifide",
+      "target": "lex-libracdified",
+      "visibility": "approved_public",
+      "type": "proposed_form_relation",
+      "status": "inferred",
+      "explanation": "The earlier prototype associated these forms. Similarity suggests a variant or conceptual relation; the records remain distinct and historical derivation is unverified."
+    },
+    {
+      "source": "lex-franbase",
+      "target": "lex-fran",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "Reported morphological analysis from the earlier prototype; shared form suggests a possible derivative relationship. Authenticated historical derivation has not been established."
+    },
+    {
+      "source": "lex-franship",
+      "target": "lex-fran",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "Reported morphological analysis from the earlier prototype; shared form suggests a possible derivative relationship. Authenticated historical derivation has not been established."
+    },
+    {
+      "source": "lex-phonosemantic-recursion",
+      "target": "lex-audiodacity",
+      "visibility": "approved_public",
+      "type": "reported_association",
+      "status": "inferred",
+      "explanation": "The earlier prototype proposed a shared language/sound domain. This remains a conceptual association, not authenticated etymology."
+    },
+    {
+      "source": "lex-lexicognital",
+      "target": "lex-lexicognality",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "The supplied adjective and process noun share a conceptual base. This links their proposed meanings without asserting a verified coinage lineage."
+    },
+    {
+      "source": "lex-lexigenesis",
+      "target": "lex-lexicognality",
+      "visibility": "approved_public",
+      "type": "conceptual_distinction",
+      "status": "inferred",
+      "explanation": "The supplied definitions distinguish lexical-form emergence from the broader participation of language in cognition. This is a proposed conceptual comparison, not a claim of derivation."
+    },
+    {
+      "source": "lex-weaponized-subtlespeak",
+      "target": "lex-subtlespeak",
+      "visibility": "approved_public",
+      "type": "proposed_subtype",
+      "status": "inferred",
+      "explanation": "The supplied definition explicitly frames Weaponized Subtlespeak as an aggressive or manipulative form of Subtlespeak. Historical development of the terms is not established."
+    },
+    {
+      "source": "lex-suffralchemize",
+      "target": "lex-suffralchemy",
+      "visibility": "approved_public",
+      "type": "proposed_derivation",
+      "status": "inferred",
+      "explanation": "The recovered working verb describes the transformation named by Suffralchemy. The form suggests a derivative relationship; historical authorship remains unverified."
+    },
+    {
+      "source": "lex-contrapoiesis",
+      "target": "lex-suffralchemy",
+      "visibility": "approved_public",
+      "type": "conceptual_association",
+      "status": "inferred",
+      "explanation": "The recovered working definition relates creation through opposition to making value through suffering. Opposition and suffering are not treated as identical."
+    },
+    {
+      "source": "lex-contralchemy",
+      "target": "lex-suffralchemy",
+      "visibility": "approved_public",
+      "type": "conceptual_association",
+      "status": "inferred",
+      "explanation": "The recovered working definition proposes an opposition-driven transformation relative to Suffralchemy. This is a tentative semantic comparison."
+    },
+    {
+      "source": "lex-contralchemy",
+      "target": "lex-contrapoiesis",
+      "visibility": "approved_public",
+      "type": "conceptual_association",
+      "status": "inferred",
+      "explanation": "Both recovered working definitions concern opposition or counterforce. The shared theme does not make the two records duplicates."
+    }
+  ],
+  "versions": [
+    {
+      "termId": "lex-suffralchemy",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "The deliberate transformation of suffering into something valuable without implying the suffering itself was good or a blessing.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-suffralchemy",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "The transformation of suffering into something valuable, without implying that the suffering itself was desirable or beneficial.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-psycheligious",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working interpretation: a term for territory where psychological experience and religious or spiritual interpretation overlap. Definition remains provisional.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-psychreligious",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Provisional variant related to Psycheligious; exact distinction remains unresolved.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-illogicational",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working interpretation: relating to a process, system, or rhetoric that produces, operationalizes, or perpetuates illogic. Definition remains provisional.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-apropoetry",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Provisional wordplay blend around apropos and poetry. Its intended use remains under review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-metacognoia",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working interpretation: a construction concerning knowing or awareness about cognition itself. Definition remains provisional.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-cognoia",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-muertacognoia",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-audiodacity",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-aldabulacular",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-ellacutia",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-emotional-radiation",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-complicatizing",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-collapstrophe",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-collapstrophy",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-casually-causal",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-hydra-index",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-hyperboliever",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-libracdified",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-libractifide",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-magnificentification",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-occipitalization",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-preconceived-precotions",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-radicosity",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-re-absecentigrate",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-redevra-dingiate",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-us-conscious",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-burritoclock",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-goblinry",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-fran",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-franbase",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-franship",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-glossolalien",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-goat-ing",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-phonosemantic-recursion",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working term for recursive interaction between sound-pattern and meaning-pattern. Its technical boundaries remain under review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-glimpsanity",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "A brief or partial flash of sanity or clarity amid confusion, obsession, chaos, or altered perception.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-glimpsanity",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "A brief flash of clarity or sanity amid confusion, obsession, or chaos.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-less-strain-on-the-ass-pain",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "A playful way to describe, reduce, or refer to a pain in the ass: an annoying person, task, situation, or problem. Recorded as an expression, with wording open to review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-pro-topian",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Actively oriented toward building better possible worlds through achievable improvement rather than perfection; the hyphen foregrounds pro- as being in favor of the better place.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-pro-topian",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "Oriented toward actively pursuing achievable improvement rather than an imagined state of perfection.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-lexiconography",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "The mapping and presentation of a lexicon's relationships, histories, symbols, classifications, and conceptual system.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-lexiconography",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "The mapping and representation of lexical relationships, histories, conceptual families, and associated symbolic structures.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-subtlespeak",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Outwardly indirect or deniable communication that is plainly targeted in context, including veiled remarks, insinuations, coded references, and passive-aggressive comments.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-subtlespeak",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "Indirect, deniable communication whose implied meaning may nevertheless be recognizable to its intended audience.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-weaponized-subtlespeak",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Deliberately indirect, plausibly deniable communication used aggressively so the intended target receives the message while the speaker retains deniability.",
+      "date": "",
+      "note": "Undated recovered working wording. Historical effective date and author approval were not established; this is preserved as an alternative for definition archaeology."
+    },
+    {
+      "termId": "lex-weaponized-subtlespeak",
+      "version": 2,
+      "visibility": "approved_public",
+      "definition": "A form of Subtlespeak used aggressively or manipulatively.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-semantic-frontiering",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working expression for pushing language outward into regions where human experience exists but available vocabulary feels insufficient. This is a provisional metaphor, not an established technical classification.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-proxintimacy",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-suffralchemize",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working definition: to deliberately transform suffering into insight, strength, meaning, art, or other value without claiming the suffering itself was good.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-contrapoiesis",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working definition: creation through opposition or counterforce; proposed as a conceptual relative of Suffralchemy.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-contralchemy",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Working definition: transformation driven through opposition or counterforce; a playful proposed relative of Suffralchemy.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-questalien",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-acannibality",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-neurohypocritical",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-dim-mentions",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-dignified",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-intension",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-lexicision",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-psyciety",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-soulutions",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-unframable",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-verse-vertigo",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-brandonmeant",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-abrandonmeant",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-circuitous-surreptitiousness",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-floggle-dee-hoppess",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-meesh-namana-dooshdoo",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-phonetic-recursion",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-synchronist",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-lexicognality",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "The processes and dynamics through which language participates in cognition, including how words organize, mediate, or develop thought.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-lexicognital",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "An adjective describing cognition strongly organized around linguistic structures.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-lexigenesis",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "The generation or emergence of lexical forms, distinct from the broader cognitive processes of Lexicognality.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-portmantres",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "A three-source-word portmanteau that blends recognizable elements through overlapping sounds or letters rather than merely joining separate fragments.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-demonoscopy",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Primarily, the close examination of demons or purported demonic phenomena; secondarily, the metaphorical examination of one's inner demons.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-tragedaptation",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Adaptation to tragedy, particularly when the resulting changes become enduring structures, behaviors, or identities.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-crisisociety",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    },
+    {
+      "termId": "lex-dispossessance",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Definition pending author review.",
+      "date": "2026-10-16T23:03:35.647Z",
+      "note": "Approved public snapshot. This date records publication, not coinage; the definition remains open to revision."
+    }
+  ]
 }

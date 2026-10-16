@@ -58,8 +58,12 @@ export function normalizeCatalog(payload) {
       id, slug, headword, visibility: 'approved_public', stage,
       permalink: text(raw.permalink) === `word/${slug}/` ? `word/${slug}/` : '',
       revision: Number.isInteger(raw.revision) ? raw.revision : null,
-      publication: {approvedAt: date(raw.publication?.approvedAt), approvedRevision: Number.isInteger(raw.publication?.approvedRevision) ? raw.publication.approvedRevision : null},
+      publication: {approvedAt: date(raw.publication?.approvedAt), approvedRevision: Number.isInteger(raw.publication?.approvedRevision) ? raw.publication.approvedRevision : null, approvalMethod:text(raw.publication?.approvalMethod || raw.publication?.method)},
       definition: text(raw.definition || raw.currentDefinition || raw.current_definition),
+      definitionStatus: text(raw.definitionStatus || raw.definition_status) || (text(raw.definition) ? 'working_definition' : 'awaiting_definition'),
+      editorialReview: {shortReason: text(raw.editorialReview?.shortReason)},
+      collections: strings(raw.collections),
+      analysis: raw.analysis?.kind === 'ai_hypothesis' ? {kind:'ai_hypothesis', formationProposal:text(raw.analysis.formationProposal),interpretationProposal:text(raw.analysis.interpretationProposal),distinctionQuestion:text(raw.analysis.distinctionQuestion),limitations:typeof raw.analysis.limitations==='string'?raw.analysis.limitations:strings(raw.analysis.limitations).join(' ')} : null,
       classification: text(raw.classification) || 'Unclassified',
       preferredCapitalization: text(raw.preferredCapitalization || raw.preferred_capitalization),
       pronunciation: raw.pronunciationVerified === true || raw.pronunciation_verified === true ? text(raw.pronunciation) : '',
@@ -139,6 +143,8 @@ export function searchScore(term, query) {
 export function searchTerms(catalog, filters = {}) {
   const q = text(filters.q);
   const matches = catalog.terms.filter(t => (!filters.stage || t.stage === filters.stage) &&
+    (!filters.definitionState || (filters.definitionState === 'defined' ? hasWorkingDefinition(t) : !hasWorkingDefinition(t))) &&
+    (!filters.collection || t.collections.includes(filters.collection)) &&
     (!filters.domain || t.domains.includes(filters.domain)) && (!filters.formation || t.formation === filters.formation) &&
     (!filters.letter || fold(t.headword).startsWith(fold(filters.letter))))
     .map(term => ({term, score: searchScore(term, q)})).filter(row => row.score > 0);
@@ -146,6 +152,64 @@ export function searchTerms(catalog, filters = {}) {
   if (filters.sort === 'documented') matches.sort((a, b) => (b.term.earliestAppearance || '').localeCompare(a.term.earliestAppearance || ''));
   return matches.map(row => row.term);
 }
+export function featuredTerms(catalog, limit = 3) {
+  return catalog.terms.filter(hasWorkingDefinition).sort((a, b) =>
+    (b.stage === 'lexicon') - (a.stage === 'lexicon') || b.domains.length - a.domains.length || a.headword.localeCompare(b.headword)).slice(0, limit);
+}
+export function hasWorkingDefinition(term) {
+  return Boolean(text(term?.definition)) && term?.definitionStatus !== 'awaiting_definition' && !/^definition pending/i.test(term.definition);
+}
+/** Builds a public-only request. GitHub Actions remains the authorization boundary. */
+export function preparePublicChange(input, term = null) {
+  const action = input.action;
+  if (!['create','update','stage','withdraw','restore'].includes(action)) throw new Error('Choose a supported public editorial action.');
+  const headword = text(input.headword || term?.headword);
+  if (!headword || headword.length > 200) throw new Error('A headword of at most 200 characters is required.');
+  const expectedRevision = action === 'create' ? 0 : Number(input.expectedRevision);
+  if (action !== 'create' && (!term?.id || !Number.isInteger(expectedRevision) || expectedRevision < 1)) throw new Error('Reload a current public record or select a documented public history revision.');
+  const request = {action, expectedRevision};
+  if (action === 'create') {
+    request.slug = text(input.slug) || slugify(headword);
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(request.slug)) throw new Error('The permanent slug must use lowercase letters, numbers, and single hyphens.');
+  } else request.id = term.id;
+  const publicNote = text(input.publicNote);
+  if (publicNote.length > 2000) throw new Error('Public editorial notes may contain at most 2000 characters.');
+  if (publicNote) request.publicNote = publicNote;
+  const confirmation = `${action === 'withdraw' ? 'WITHDRAW' : 'PUBLISH'} ${headword}`;
+  if (input.confirmPublication !== confirmation) throw new Error(`Type “${confirmation}” exactly to confirm your public intention.`);
+  if (action === 'withdraw') return request;
+  request.confirmPublication = confirmation;
+  if (action === 'restore') {
+    const revision = Number(input.restoreRevision);
+    if (!Number.isInteger(revision) || revision < 1 || revision > expectedRevision) throw new Error('Choose an available earlier public snapshot revision.');
+    request.restoreRevision = revision;
+  } else {
+    const stage = input.stage;
+    if (!STAGES.includes(stage)) throw new Error('Choose Forge, Lexicon, or an explicitly confirmed Canon decision.');
+    if (stage !== 'forge' && !hasWorkingDefinition(action === 'stage' ? term : input)) throw new Error('Develop a working definition before moving this entry to Lexicon or Canon.');
+    if (action === 'stage') request.changes = {stage};
+    else {
+      const fields = {headword, stage, definition:text(input.definition), classification:text(input.classification) || (text(input.definition) ? 'coinage_candidate' : 'term_seed'), definitionStatus:text(input.definitionStatus) || (text(input.definition) ? 'working_definition' : 'awaiting_definition'), formation:text(input.formation), provenanceSummary:text(input.provenanceSummary)};
+      if (fields.definition.length > 20000 || fields.provenanceSummary.length > 3000) throw new Error('Definition or public provenance summary exceeds the supported length.');
+      for (const field of ['roots','domains','variants','collections']) {
+        let values;
+        try {values = typeof input[field] === 'string' ? JSON.parse(input[field] || '[]') : input[field] || [];}
+        catch {throw new Error(`${labelField(field)} must be a JSON array of text values.`);}
+        if (!Array.isArray(values) || values.length > 100 || values.some(value => typeof value !== 'string' || !value.trim() || value.length > 500)) throw new Error(`${labelField(field)} must contain up to 100 nonempty text values.`);
+        fields[field] = values.map(value => value.trim());
+      }
+      request.changes = action === 'create' ? fields : Object.fromEntries(Object.entries(fields).filter(([key,value]) => JSON.stringify(value) !== JSON.stringify(key === 'roots' ? term.components : term[key])));
+      if (input.rejectAnalysis === true || input.rejectAnalysis === 'on') request.changes.analysis = null;
+      if (!Object.keys(request.changes).length) throw new Error('No content changes are present. Edit a field before preparing an update.');
+    }
+  }
+  if ((request.changes?.stage || term?.stage) === 'canon') {
+    if (input.canonConfirmation !== `APPROVE CANON ${headword}`) throw new Error('Every Canon decision requires its separate exact authorial confirmation.');
+    request.canonConfirmation = input.canonConfirmation;
+  }
+  return request;
+}
+function labelField(field) { return field[0].toUpperCase() + field.slice(1); }
 export function relatedTo(catalog, id) {
   return catalog.relations.filter(r => r.from === id || r.to === id).map(relation => ({relation, term: catalog.terms.find(t => t.id === (relation.from === id ? relation.to : relation.from))}));
 }
@@ -176,7 +240,7 @@ export function csvExport(catalog) {
     if (/^[=+\-@\t\r]/.test(v)) v = `'${v}`;
     return `"${v.replaceAll('"', '""')}"`;
   };
-  const fields = ['id','slug','headword','stage','definition','formation','authorship','evidence','earliestAppearance','publishedAt'];
+  const fields = ['id','slug','headword','stage','definitionStatus','classification','definition','formation','authorship','evidence','earliestAppearance','publishedAt'];
   return '\uFEFF' + [fields, ...catalog.terms.map(t => fields.map(key => t[key]))].map(row => row.map(cell).join(',')).join('\r\n');
 }
 export function definitionDiff(previous, current) {

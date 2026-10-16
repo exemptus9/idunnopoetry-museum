@@ -1,0 +1,139 @@
+name: Lexical public editor
+
+# The GitHub owner account is the authenticated authoring console. Only public
+# text belongs in dispatch inputs. No pull-request or external-event execution.
+on:
+  workflow_dispatch:
+    inputs:
+      change_json:
+        description: 'PUBLIC-only editorial JSON. Never paste private drafts, source bodies, credentials, or personal notes.'
+        required: true
+        type: string
+      commit:
+        description: 'Apply, commit, and deploy this public change (false performs validation/preview only)'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Share the Pages deployment lock; edits are never interrupted halfway through.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  edit-public-lexicon:
+    if: github.event_name == 'workflow_dispatch' && github.actor == 'exemptus9' && github.repository == 'exemptus9/idunnopoetry-museum' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out trusted latest main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: scripts/dom-tests/package-lock.json
+      - name: Install isolated DOM test dependencies
+        run: npm ci --prefix scripts/dom-tests --ignore-scripts --no-audit --no-fund
+
+      - name: Fetch latest main and validate public change
+        env:
+          LEXICAL_CHANGE_JSON: ${{ inputs.change_json }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout --detach origin/main
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          value = os.environ["LEXICAL_CHANGE_JSON"]
+          if len(value.encode()) > 150000:
+              raise SystemExit("Public change exceeds 150 KB")
+          json.loads(value)
+          Path(os.environ["RUNNER_TEMP"], "lexical-public-change.json").write_text(value)
+          PY
+          python scripts/lexical_editor.py --change "$RUNNER_TEMP/lexical-public-change.json"
+
+      - name: Apply explicitly confirmed owner change
+        if: inputs.commit == true
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/lexical_editor.py --change "$RUNNER_TEMP/lexical-public-change.json" --write
+
+      - name: Run all archive regression and publication checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install 'cairosvg>=2.7,<3'
+          python scripts/check_release.py --render-preview
+          python -m unittest discover -s scripts -p 'test_*.py' -v
+          node --check museum-static/observatory/app.js
+          node --check museum-static/observatory/model.js
+          node scripts/test_lexical_dom.mjs
+          if test -f tests/observatory/model.test.mjs; then node --test tests/observatory/model.test.mjs; fi
+          python scripts/check_release.py --check
+
+      - name: Commit approved public snapshot
+        if: inputs.commit == true
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Lexical Observatory editor'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add museum-static/observatory
+          if ! git diff --cached --quiet; then
+            git commit -m 'Apply owner-reviewed public lexical change'
+            # A concurrent non-editor push causes a safe rejection. Never force
+            # or rebase an already-authored lexical edit onto unexpected state.
+            git push origin HEAD:main
+          fi
+
+      - name: Configure Pages
+        if: inputs.commit == true
+        uses: actions/configure-pages@v5
+
+      - name: Prepare deployment artifact
+        if: inputs.commit == true
+        env:
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ vars.CLOUDFLARE_ANALYTICS_TOKEN || secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          cp -a museum-static _site
+          python scripts/inject_analytics.py _site/museum-config.js
+
+      - name: Upload complete Museum with lexical publication
+        if: inputs.commit == true
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      # A GITHUB_TOKEN commit does not itself trigger the push Pages workflow.
+      - name: Deploy verified public snapshot
+        if: inputs.commit == true
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Verify live release
+        if: inputs.commit == true
+        env:
+          MUSEUM_PUBLIC_URL: ${{ steps.deployment.outputs.page_url }}
+        run: python scripts/verify_public_release.py

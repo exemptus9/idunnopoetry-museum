@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, safeUrl, definitionDiff, editDistance} from '../museum-static/observatory/model.js';
+import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, featuredTerms, preparePublicChange, safeUrl, definitionDiff, editDistance} from '../museum-static/observatory/model.js';
 
 const publicTerm = (id, headword, extra = {}) => ({id, headword, slug: headword.toLowerCase(), stage:'forge', visibility:'approved_public', definition:'An example definition about weather.', revision:1, publication:{approvedAt:'2026-01-01',approvedRevision:1}, ...extra});
 const project = (terms, relations=[], versions=[]) => normalizeCatalog({terms,relations,versions});
@@ -99,6 +99,56 @@ test('JSON export preserves publication and Canon approval metadata for a contro
 test('partial and impossible dates do not become precise time-machine evidence', () => {
   const c=project([publicTerm('a','Example',{earliestVerifiedDate:'2025-02-31'})],[],[{visibility:'approved_public',termId:'a',date:'2025',definition:'Only the year is known.'}]);
   assert.equal(c.terms[0].earliestAppearance,null);assert.equal(publicVersions(c,'a')[0].effectiveAt,'2025');assert.equal(versionAt(c,'a','2025-06-01'),null);
+});
+test('populated catalog retains public editorial state and excludes private review rationale', () => {
+  const c=project([publicTerm('a','Example',{definitionStatus:'author_supplied',classification:'expression',collections:['Expressions'],editorialReview:{shortReason:'Public evidence basis',privateRationale:'sensitive rationale'},analysis:{kind:'ai_hypothesis',formationProposal:'A provisional blend',interpretationProposal:'A hypothesis',distinctionQuestion:'What does this distinguish?',limitations:['Unverified'],privatePrompt:'secret'}})]);
+  assert.equal(c.terms[0].definitionStatus,'author_supplied');assert.deepEqual(c.terms[0].collections,['Expressions']);assert.equal(c.terms[0].editorialReview.shortReason,'Public evidence basis');assert.ok(!JSON.stringify(c).includes('sensitive rationale'));assert.ok(!JSON.stringify(c).includes('privatePrompt'));assert.equal(c.terms[0].analysis.kind,'ai_hypothesis');
+});
+test('feature selection prioritizes actual developed definitions and filters work against real collections', () => {
+  const c=project([publicTerm('a','Alpha',{definition:'',collections:['Seeds']}),publicTerm('b','Beta',{stage:'lexicon',collections:['Developed']})]);
+  assert.deepEqual(featuredTerms(c).map(t=>t.id),['b']);assert.deepEqual(searchTerms(c,{definitionState:'pending'}).map(t=>t.id),['a']);assert.deepEqual(searchTerms(c,{definitionState:'defined',collection:'Developed'}).map(t=>t.id),['b']);
+});
+test('a nonempty pending placeholder is never counted or featured as a developed definition', () => {
+  const c=project([publicTerm('a','Alpha',{definition:'Definition pending author review.',definitionStatus:'awaiting_definition'}),publicTerm('b','Beta')]);
+  assert.deepEqual(featuredTerms(c).map(t=>t.id),['b']);
+  assert.deepEqual(searchTerms(c,{definitionState:'pending'}).map(t=>t.id),['a']);
+});
+test('author can explicitly approve Canon but no unchecked or unfinished request can do so', () => {
+  const input={action:'create',headword:'Sample',stage:'canon',definition:'A developed definition.',confirmPublication:'PUBLISH Sample'};
+  assert.throws(()=>preparePublicChange(input),/separate exact/);
+  const request=preparePublicChange({...input,canonConfirmation:'APPROVE CANON Sample'});
+  assert.equal(request.changes.stage,'canon');assert.equal(request.canonConfirmation,'APPROVE CANON Sample');
+  assert.throws(()=>preparePublicChange({...input,definition:'Definition pending author review.',definitionStatus:'awaiting_definition',canonConfirmation:'APPROVE CANON Sample'}),/working definition/);
+});
+test('rejecting an AI proposal is an explicit versioned public change', () => {
+  const term=project([publicTerm('a','Example',{analysis:{kind:'ai_hypothesis',formationProposal:'A possibility'}})]).terms[0];
+  const input={...term,action:'update',expectedRevision:1,roots:[],confirmPublication:'PUBLISH Example',rejectAnalysis:true};
+  const request=preparePublicChange(input,term);
+  assert.equal(request.changes.analysis,null);assert.equal(term.analysis.kind,'ai_hypothesis');
+});
+test('public editor creates exact workflow JSON without private inputs or automatic Canon', () => {
+  const request=preparePublicChange({action:'create',headword:'Sample',stage:'forge',definition:'A working definition.',roots:'["root"]',domains:'[]',variants:'[]',collections:'[]',confirmPublication:'PUBLISH Sample',rawPrivateNote:'not accepted'});
+  assert.equal(request.action,'create');assert.equal(request.expectedRevision,0);assert.equal(request.slug,'sample');assert.equal(request.confirmPublication,'PUBLISH Sample');assert.deepEqual(request.changes.roots,['root']);assert.equal(request.changes.definitionStatus,'working_definition');assert.ok(!JSON.stringify(request).includes('rawPrivateNote'));
+  assert.throws(()=>preparePublicChange({action:'create',headword:'Sample',stage:'canon',confirmPublication:'PUBLISH Sample'}),/Canon/);
+});
+test('public editor requires exact intention, validates JSON arrays, and requires a definition for Lexicon', () => {
+  const base={action:'create',headword:'Sample',stage:'forge',confirmPublication:'PUBLISH Sample'};
+  assert.throws(()=>preparePublicChange({...base,confirmPublication:'publish sample'}),/exactly/);
+  assert.throws(()=>preparePublicChange({...base,roots:'not json'}),/JSON array/);
+  assert.throws(()=>preparePublicChange({...base,stage:'lexicon'}),/working definition/);
+});
+test('public editor stages and withdraws using current IDs/revisions without changing source inputs', () => {
+  const term=project([publicTerm('a','Example')]).terms[0];
+  const stage=preparePublicChange({action:'stage',headword:'Example',stage:'lexicon',expectedRevision:1,confirmPublication:'PUBLISH Example'},term);
+  assert.deepEqual(stage.changes,{stage:'lexicon'});assert.equal(stage.id,'a');assert.equal(stage.expectedRevision,1);assert.equal(term.stage,'forge');
+  const withdrawal=preparePublicChange({action:'withdraw',headword:'Example',expectedRevision:1,confirmPublication:'WITHDRAW Example'},term);
+  assert.equal(withdrawal.action,'withdraw');assert.ok(!Object.hasOwn(withdrawal,'changes'));assert.ok(!Object.hasOwn(withdrawal,'confirmPublication'));
+});
+test('public editor restoration needs explicit snapshot revision and separately approved Canon confirmation', () => {
+  const term=project([publicTerm('a','Example',{stage:'canon',canonApproval:{approvedAt:'2026-01-01',revision:1}})]).terms[0];
+  const input={action:'restore',headword:'Example',expectedRevision:4,restoreRevision:1,confirmPublication:'PUBLISH Example'};
+  assert.throws(()=>preparePublicChange(input,term),/separate exact/);
+  const request=preparePublicChange({...input,canonConfirmation:'APPROVE CANON Example'},term);assert.equal(request.restoreRevision,1);assert.equal(request.expectedRevision,4);assert.equal(request.canonConfirmation,'APPROVE CANON Example');
 });
 test('approved source summaries survive JSON roundtrip without private bodies', () => {
   const c=project([publicTerm('a','Example',{sources:[{visibility:'approved_public',label:'Synthetic witness',
