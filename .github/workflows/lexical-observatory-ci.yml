@@ -1,0 +1,54 @@
+name: Lexical Observatory security and behavior
+
+on:
+  push:
+    branches: [main, max-lex-observatory-2026-10-16]
+    paths:
+      - museum-static/observatory/**
+      - supabase/migrations/20261016_lexical_observatory.sql
+      - scripts/*lexical*
+      - scripts/fixtures/word_archive_schema.sql
+      - .github/workflows/lexical-observatory-ci.yml
+  pull_request:
+    paths:
+      - museum-static/observatory/**
+      - supabase/migrations/20261016_lexical_observatory.sql
+      - scripts/*lexical*
+      - scripts/fixtures/word_archive_schema.sql
+      - .github/workflows/lexical-observatory-ci.yml
+
+permissions:
+  contents: read
+
+jobs:
+  lexical-tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: disposable-test-only
+          POSTGRES_DB: lexical_smoketest
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d lexical_smoketest"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGDATABASE: lexical_smoketest
+      PGUSER: postgres
+      PGPASSWORD: disposable-test-only
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Public catalog, search, publication and Museum preservation
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Lexical migration and anonymous/admin role matrix
+        run: psql -v ON_ERROR_STOP=1 -f scripts/test_lexical_backend.sql
