@@ -19,6 +19,10 @@ class LexicalFrontendTests(unittest.TestCase):
         result = subprocess.run(['node', '--test', str(ROOT / 'scripts/test_lexical_model.mjs')], capture_output=True, text=True, timeout=60)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_bulk_review_behaviors(self):
+        result = subprocess.run(['node', '--test', str(ROOT / 'scripts/test_lexical_review.mjs')], capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_publication_output_is_consumed_without_losing_relations_or_canon(self):
         def term(identity, stage='forge'):
             return {'id': identity, 'slug': identity, 'headword': identity,

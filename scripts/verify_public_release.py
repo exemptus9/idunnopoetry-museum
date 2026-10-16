@@ -26,7 +26,7 @@ for attempt in range(8):
         assert image in html, 'Public share image reference differs'
         png = get(image)
         assert png[:8] == b'\x89PNG\r\n\x1a\n' and struct.unpack('>II', png[16:24]) == (1200, 630), 'Public preview is invalid'
-        checks = ['index.html', 'public.json', 'app.js', 'model.js', 'observatory.css', 'sitemap.xml']
+        checks = ['index.html', 'public.json', 'app.js', 'model.js', 'review.js', 'observatory.css', 'sitemap.xml']
         if (lexical / 'history.json').exists():
             checks.append('history.json')
         catalog = json.loads((lexical / 'public.json').read_text())

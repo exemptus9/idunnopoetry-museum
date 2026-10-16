@@ -38,17 +38,42 @@ query. Unknown/partial dates remain visible in the version history without a
 fabricated exact effective day.
 
 `definitionStatus` explicitly distinguishes `author_supplied`,
-`working_definition`, and `awaiting_definition`. `classification` separates
-coinage candidates, existing forms with project interpretations, expressions, and
-term seeds. `collections` contains actual curated public collection labels.
+`working_definition`, `conversation_recovered`, `inferred_definition`, and
+`awaiting_definition`. The separate `review.definitionBasis` is
+`author_supplied`, `conversation_recovered`, `archive_recovered`, `inferred`, or
+`unknown`. Recovery and inference are evidence categories, not author approval.
+`classification` supports `coinage_candidate`, `existing_form_reinterpreted`,
+`expression`, `term_seed`, `unclassified`, `proper_name`, `literary_wordplay`,
+`concept_label`, `ai_suggestion`, and `existing_term`. `collections` contains
+actual curated public collection labels.
 Only `editorialReview.shortReason` is projected; private review rationale is not
 accepted. Optional `analysis.kind: "ai_hypothesis"` displays a collapsible
 formation/interpretation/distinction proposal separate from the definition,
 with explicit limitations and a need for author review.
 
+The reconciled snapshot has 132 working records: 120 Forge, 12 Lexicon, zero
+Canon. Definition bases comprise 81 conversation recoveries, 26 archive
+recoveries, 12 supplied definitions, and 13 explicitly inferred readings. It is
+not a collection of 132 accepted or original coinages. Fifty-two reviews remain
+open and 80 are operationally resolved; 11 carry definition-conflict flags.
+There are 33 inferred relations, 237 public definition versions, and 137 public
+source summaries, not 137 independent primary documents. Coverage includes a
+1,329-post archive snapshot and focused conversation summaries, not every chat
+or archive. Six newly inferred name readings are explicitly labelled:
+Inner-linking, Sweetrepeats, Hurri-canary, Raincarnation, ReBased in Graces, and
+Max Para-noy-mee-ya! Prior wording and conflicts remain available.
+
+The 60 additions to the original 72-record baseline comprise 50 lexical
+candidates and ten crafted project names: RhymeMosaic, techEnlight, MindVault,
+EchoLens, Total Recall, Artificial Continuity, Forge Lexicon, Lexical Observatory,
+Word Archive, and IDunnoPoetry. These ten are `proper_name` records with recovered
+naming-role descriptions, not new dictionary-word or originality claims.
+Unrecovered source timestamps remain unknown.
+
 ## Routes and behavior
 
-- `#home`, `#archive`, `#constellation`, `#evolution`, `#laboratory`, `#methodology`
+- `#home`, `#archive`, `#constellation`, `#evolution`, `#laboratory`, `#methodology`,
+  `#author`, and `#review`
 - `?term=<slug>` opens the approved public entry; private or absent identifiers
   produce the same unavailable state. Generated `word/<slug>/` pages provide
   static canonical entry URLs.
@@ -101,6 +126,26 @@ checked**. Confirmation records an author-defined conceptual association and
 does not automatically verify etymology or historical influence. Rejection
 removes the current edge while retaining the public decision history. Manual
 JSON is an advanced fallback, including for edges outside the selector.
+
+`#review` provides public review filtering and an atomic bulk editor;
+`#review?term=<slug>` selects an entry from its **Flag / categorize** link.
+Filter by state/flag/evidence basis/classification/stage/tag, select entries,
+add metadata or review operations, inspect every before/after record, and type
+the exact `APPLY N PUBLIC CHANGES` confirmation. Adding a flag reopens review;
+an explicit later state operation can resolve or defer it. Tags, collections,
+domains, classification, formation, definition status/basis, review state/flags,
+and Forge/Lexicon stage changes are supported. Edit definition text individually.
+
+Selections persist across filter changes. **Select all matching** replaces the
+selection and selects the first 100 alphabetically when more than 100 match.
+Limits are 100 entries, 60,000 prepared JSON characters, and 150 KB per backend
+request, subject to GitHub's input-wrapper size. Unchanged rows are omitted.
+The batch is all-or-nothing: a stale revision or invalid request rejects it
+without partial publication. Copy the exact preview into the owner workflow,
+run with **commit unchecked** to preview, then the same JSON with **commit
+checked** to publish. Current Canon records and Canon promotions require the
+individual editor and separate exact author confirmation; bulk editing cannot
+bypass that boundary. All review labels and notes are public history.
 
 The optional, explicitly requested public `history.json` ledger supplies
 previously public snapshots and the latest revision for withdrawn entries.

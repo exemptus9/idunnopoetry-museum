@@ -15,18 +15,45 @@ private notebook.
 
 ## What is currently in the catalog
 
-The reviewed release contains 72 public provisional records: 12 in Lexicon, 60
-in Forge, and none in Canon. Twenty-three have substantive definitions: 12 use
-the supplied project definitions and 11 carry explicitly provisional recovered
-working definitions. The other 49 say **Definition pending author review**.
-This is a populated research collection, not a claim that 72 original coinages
-or 72 completed definitions have been established.
+The reconciled release contains 132 public working records: 12 in Lexicon, 120
+in Forge, and none in Canon. All have a working definition, naming-role
+description, or explicitly provisional interpretation; this does not mean 132 accepted definitions or
+original coinages have been established.
 
-All 72 also have a separate, labelled AI hypothesis. Its proposed interpretation,
-formation analysis, and review question are not accepted definitions. A proposed
-meaning must be reviewed and deliberately copied or rewritten into the
-definition before it becomes the published entry's meaning. AI output cannot
-approve Canon or establish authorship, etymology, originality, or a coinage date.
+| Definition basis | Records | What it means |
+|---|---:|---|
+| `author_supplied` | 12 | The supplied project definitions; not automatic Canon approval. |
+| `conversation_recovered` | 81 | Recovered conversation wording, including explicit naming roles, with user wording, assistant proposals, and acceptance uncertainty distinguished in the evidence summaries. |
+| `archive_recovered` | 26 | Recovered archival definitions or working readings; this does not independently establish original authorship. |
+| `inferred` | 13 | Explicitly labelled provisional readings where a settled definition was not recovered. |
+
+The last group includes newly inferred readings of Inner-linking, Sweetrepeats,
+Hurri-canary, Raincarnation, ReBased in Graces, and Max Para-noy-mee-ya! These are
+usable working interpretations under the delegated publication policy, not
+recovered author-approved endpoints. AI hypotheses remain visibly separate from
+the definition and its evidence basis. AI output cannot approve Canon or
+establish authorship, etymology, originality, or a coinage date.
+
+The current classifications are 56 `coinage_candidate`, 25 `literary_wordplay`,
+16 `concept_label`, 13 `ai_suggestion`, 5 `expression`, 5
+`existing_form_reinterpreted`, and 12 `proper_name`. These distinguish experimental
+words, literary readings, proposed conceptual labels, AI-origin candidates,
+expressions, existing forms, and names; they are not a count of original words.
+The schema also allows `term_seed`, `unclassified`, and `existing_term` when
+appropriate. The final scope adds ten crafted project names with recovered
+naming roles: RhymeMosaic, techEnlight, MindVault, EchoLens, Total Recall,
+Artificial Continuity, Forge Lexicon, Lexical Observatory, Word Archive, and
+IDunnoPoetry. They are proper names, not automatically original dictionary
+coinages. Source dates not recovered remain unknown. In total, 60 records were
+added to the 72-record baseline: 50 lexical candidates and these ten names.
+
+There are 52 open review records and 80 resolved operational reviews, including
+11 records flagged for definition conflicts. A resolved review is not a Canon
+decision. The snapshot contains 33 inferred relationships, 237 public definition
+versions, and 137 public source summaries. Source summaries are not 137
+independent primary documents. Recovery inspected a 1,329-post public archive
+snapshot and focused conversation summaries; it did not exhaustively inspect
+every chat, manuscript, or private archive.
 
 ## Use the public author form
 
@@ -130,6 +157,47 @@ remove that edge. Keep every explanation and change note safe for publication.
 The underlying entry controller also accepts `publish` as a publication action.
 Normal form-based updates already confirm and publish the resulting revision;
 there is no separate hidden draft store behind this public editor.
+
+## Review queue and atomic bulk changes
+
+Open the [review queue](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review),
+or use `#review?term=slug` from a word's **Flag / categorize** link. This public
+workspace filters by review state, flag, definition basis, classification,
+lifecycle stage, and tag. Review state is `open`, `resolved`, or `deferred`.
+Definition basis is `author_supplied`, `conversation_recovered`,
+`archive_recovered`, `inferred`, or `unknown`; it describes evidence, not approval.
+
+1. Filter the queue and select entries. Selection persists when filters change;
+   check the selected count. **Select all matching** replaces the selection and,
+   when more than 100 match, explicitly selects only the first 100 alphabetically.
+2. Add operations for tags, collections, domains, classification, formation,
+   definition status, evidence basis, review state, or review flags. Adding a flag
+   automatically reopens review; a later explicit state operation may resolve or
+   defer it. **Flag for author review** prepares an `author_decision` flag and an
+   open review. It does not publish immediately.
+3. Use **Preview selected changes** and inspect each before/after record. Entries
+   unchanged by the operations are omitted. Definition text itself is edited in
+   the individual author form; a bulk evidence/status change does not prove a
+   definition's accuracy.
+4. Confirm public consent and type the displayed exact intention,
+   `APPLY N PUBLIC CHANGES`, using the actual changed-record count. Copy the batch
+   into the same owner workflow, preview with **commit unchecked**, then publish
+   the identical reviewed JSON with **commit checked**.
+
+A prepared batch is limited to 100 entries, 60,000 JSON characters, and the
+150-KB backend request limit, with additional allowance for GitHub's input
+wrapper. Split larger selections into smaller reviewed batches. Each request
+checks its own expected revision; one stale revision or invalid operation rejects
+the entire batch without partial publication. Reload and rebuild after a conflict.
+The editor rejects duplicate IDs/slugs within a batch and nested batches.
+
+Bulk stage changes support Forge and Lexicon only, and a developed definition is
+required for Lexicon. Current Canon records are excluded from bulk editing.
+Every Canon decision and revision uses the individual editor with exact author
+confirmation. Review flags include `definition_conflict`, `definition_needed`,
+`meaning_inferred`, `classification_review`, `variant_review`,
+`attribution_review`, `source_needed`, `author_decision`, and `duplicate_candidate`.
+All review notes, tags, flags, and batch notes are public and retained in history.
 
 ## Canon, evidence, and revision history
 

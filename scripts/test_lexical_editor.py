@@ -196,6 +196,88 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(rejected["relations"], [])
         self.assertEqual(ledger["events"][-1]["termId"], "__relations__")
 
+    def test_batch_is_atomic_and_all_individual_revisions_use_one_timestamp(self):
+        first = creation()
+        second = creation(id="second-id", slug="second-word", changes={"headword": "Secondword"}, confirmPublication="PUBLISH Secondword")
+        original = empty()
+        catalog, ledger = apply(*original, {"action": "batch", "changes": [first, second], "confirmBatch": "APPLY 2 PUBLIC CHANGES"})
+        self.assertEqual(len(catalog['terms']), 2)
+        self.assertEqual(ledger['events'][-1]['action'], 'batch')
+        self.assertEqual(len({e['recordedAt'] for e in ledger['events']}), 1)
+        before = copy.deepcopy((catalog, ledger))
+        requests = [
+            {"action": "update", "id": "fixture-id", "expectedRevision": 1, "changes": {"tags": ["reviewed"]}, "confirmPublication": "PUBLISH Fixtureword"},
+            {"action": "update", "id": "second-id", "expectedRevision": 999, "changes": {"tags": ["stale"]}, "confirmPublication": "PUBLISH Secondword"},
+        ]
+        with self.assertRaisesRegex(ValueError, 'Revision conflict'):
+            apply(catalog, ledger, {"action": "batch", "changes": requests, "confirmBatch": "APPLY 2 PUBLIC CHANGES"})
+        self.assertEqual((catalog, ledger), before)
+        self.assertEqual(original, empty())
+        editor.verify_history(ledger)
+
+    def test_batch_requires_owner_count_limit_no_nested_and_unique_ids_or_slugs(self):
+        valid = {"action": "batch", "changes": [creation()], "confirmBatch": "APPLY 1 PUBLIC CHANGES"}
+        with self.assertRaises(ValueError):
+            apply(*empty(), valid, actor='someone')
+        for change in ({**valid, 'confirmBatch': 'APPLY 2 PUBLIC CHANGES'},
+                       {**valid, 'changes': [valid]},
+                       {'action': 'batch', 'changes': [creation(), creation()], 'confirmBatch': 'APPLY 2 PUBLIC CHANGES'},
+                       {'action': 'batch', 'changes': [creation(), creation(id=' fixture-id ', slug='second-word')], 'confirmBatch': 'APPLY 2 PUBLIC CHANGES'},
+                       {'action': 'batch', 'changes': [creation(), creation(id='second')], 'confirmBatch': 'APPLY 2 PUBLIC CHANGES'},
+                       {'action': 'batch', 'changes': [creation()] * 101, 'confirmBatch': 'APPLY 101 PUBLIC CHANGES'}):
+            with self.subTest(change=change['confirmBatch']), self.assertRaises(ValueError):
+                apply(*empty(), change)
+
+    def test_batch_never_supplies_implicit_canon_approval(self):
+        canon = creation(changes={"headword": "Fixtureword", "definition": "A developed public fixture.", "stage": "canon"})
+        request = {'action': 'batch', 'changes': [canon], 'confirmBatch': 'APPLY 1 PUBLIC CHANGES'}
+        with self.assertRaisesRegex(ValueError, 'Canon'):
+            apply(*empty(), request)
+        catalog, ledger = apply(*empty(), {**request, 'changes': [{**canon, 'canonConfirmation': 'APPROVE CANON Fixtureword'}]})
+        self.assertEqual(catalog['terms'][0]['stage'], 'canon')
+        self.assertEqual(catalog['terms'][0]['canonApproval']['revision'], 1)
+
+    def test_review_fields_tags_and_definition_basis_survive_update_and_restore(self):
+        review = {'state': 'open', 'flags': ['meaning_inferred', 'source_needed'], 'definitionBasis': 'inferred', 'note': 'An explicitly public question.'}
+        catalog, ledger = apply(*empty(), creation(changes={'headword': 'Fixtureword', 'definition': 'A provisional inferred public meaning.',
+                                                         'definitionStatus': 'inferred_definition', 'review': review, 'tags': ['provisional'], 'collections': ['Tests'],
+                                                         'analysis': {'kind': 'ai_hypothesis', 'limitations': ['Unverified history', 'Interpretation may differ']}}))
+        before = copy.deepcopy(catalog['terms'][0])
+        catalog, ledger = apply(catalog, ledger, {'action': 'update', 'id': 'fixture-id', 'expectedRevision': 1,
+                                                'changes': {'review': {**review, 'state': 'resolved'}, 'tags': ['reviewed']}, 'confirmPublication': 'PUBLISH Fixtureword'})
+        self.assertEqual(catalog['terms'][0]['analysis']['limitations'], 'Unverified history\nInterpretation may differ')
+        for name in ('definition', 'definitionStatus', 'analysis', 'collections', 'formation', 'authorship'):
+            self.assertEqual(catalog['terms'][0][name], before[name])
+        catalog, ledger = apply(catalog, ledger, {'action': 'restore', 'id': 'fixture-id', 'expectedRevision': 2,
+                                                'restoreRevision': 1, 'confirmPublication': 'PUBLISH Fixtureword'})
+        self.assertEqual(catalog['terms'][0]['review'], review)
+        self.assertEqual(catalog['terms'][0]['tags'], ['provisional'])
+        for invalid in ({**review, 'privateNote': 'PRIVATE_SENTINEL'}, {**review, 'flags': ['not_approved']}, {**review, 'definitionBasis': 'certain'}):
+            with self.assertRaises(ValueError):
+                apply(*empty(), creation(changes={'headword': 'Fixtureword', 'review': invalid}))
+
+    def test_expanded_classifications_survive_edits_and_restores(self):
+        for classification in ('proper_name', 'literary_wordplay', 'concept_label', 'ai_suggestion', 'existing_term'):
+            with self.subTest(classification=classification):
+                catalog, ledger = apply(*empty(), creation(changes={'headword': 'Fixtureword', 'classification': classification}))
+                catalog, ledger = apply(catalog, ledger, {'action': 'update', 'id': 'fixture-id', 'expectedRevision': 1,
+                                                        'changes': {'tags': ['reviewed']}, 'confirmPublication': 'PUBLISH Fixtureword'})
+                self.assertEqual(catalog['terms'][0]['classification'], classification)
+                catalog, ledger = apply(catalog, ledger, {'action': 'restore', 'id': 'fixture-id', 'expectedRevision': 2,
+                                                        'restoreRevision': 1, 'confirmPublication': 'PUBLISH Fixtureword'})
+                self.assertEqual(catalog['terms'][0]['classification'], classification)
+
+    def test_public_ledger_reprojects_approved_import_snapshots_and_rejects_private_ones(self):
+        catalog, _ = apply(*empty(), creation())
+        term = {**catalog['terms'][0], 'raw_notes': 'PRIVATE_SENTINEL', 'legacySources': [{'body': 'PRIVATE_SENTINEL'}]}
+        history = empty()[1]
+        editor.append_event(history, 'assistant_editor', 'initial_delegated_release', term['id'], term['slug'], term['revision'],
+                            '2026-10-16T20:00:00Z', snapshot=term, approval_method='author_delegated_editorial_review')
+        self.assertNotIn('PRIVATE_SENTINEL', json.dumps(history))
+        with self.assertRaises(ValueError):
+            editor.append_event(history, 'assistant_editor', 'initial_delegated_release', term['id'], term['slug'], term['revision'],
+                                '2026-10-16T20:00:00Z', snapshot={**term, 'visibility': 'private'}, approval_method='author_delegated_editorial_review')
+
     def test_workflow_is_dispatch_only_owner_guarded_and_never_shell_interpolates_input(self):
         text = (Path(__file__).parents[1] / ".github/workflows/lexical-editor.yml").read_text()
         self.assertIn("workflow_dispatch:", text)

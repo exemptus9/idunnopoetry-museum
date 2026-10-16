@@ -16,6 +16,26 @@ def example():
 
 
 class LexicalPublicationTests(unittest.TestCase):
+    def test_expanded_classification_vocabulary_projects_each_label(self):
+        for classification in ('proper_name', 'literary_wordplay', 'concept_label', 'ai_suggestion', 'existing_term'):
+            with self.subTest(classification=classification):
+                result = publication.project({'terms': [{**example(), 'classification': classification}]})
+                self.assertEqual(result['terms'][0]['classification'], classification)
+                self.assertEqual(publication.project(result), result)
+
+    def test_review_projection_has_only_explicit_public_shape_and_inferred_status(self):
+        row = {**example(), 'definitionStatus': 'inferred_definition', 'tags': ['uncertain'],
+               'review': {'state': 'deferred', 'flags': ['source_needed', 'PRIVATE_SENTINEL'], 'definitionBasis': 'inferred',
+                          'note': 'A public review note.', 'privateReason': 'PRIVATE_SENTINEL'},
+               'analysis': {'kind': 'ai_hypothesis', 'limitations': ['First caveat', 'Second caveat']}}
+        result = publication.project({'terms': [row]})
+        term = result['terms'][0]
+        self.assertEqual(term['definitionStatus'], 'inferred_definition')
+        self.assertEqual(term['review'], {'state': 'deferred', 'flags': ['source_needed'], 'definitionBasis': 'inferred', 'note': 'A public review note.'})
+        self.assertEqual(term['analysis']['limitations'], 'First caveat\nSecond caveat')
+        self.assertNotIn('PRIVATE_SENTINEL', json.dumps(result))
+        self.assertEqual(publication.project(result), result)
+
     def test_private_and_stale_approval_records_never_enter_output(self):
         private = {**example(), "id": "private", "slug": "private", "visibility": "private", "definition": "PRIVATE_SENTINEL"}
         stale = {**example(), "id": "stale", "slug": "stale", "revision": 3, "definition": "STALE_SENTINEL"}

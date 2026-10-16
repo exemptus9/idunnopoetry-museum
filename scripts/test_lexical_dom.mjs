@@ -178,6 +178,46 @@ print(json.dumps({'relations':len(after['relations']),'status':ledger['events'][
   assertions.push('relationship review requires real revision load, confirms/rejects, and validates through controller');
 }
 
+if (catalog.terms.filter(t=>t.stage!=='canon').length >= 2) {
+  const reviewTarget=target.stage==='canon'?catalog.terms.find(t=>t.stage!=='canon'):target;
+  route('',`#review?term=${reviewTarget.slug}`);
+  assert.match(document.querySelector('meta[name="robots"]').content,/noindex/);
+  assert.ok(document.querySelector('#review-count').textContent.includes('1 selected'));
+  const filters=document.querySelector('#review-filters');
+  filters.elements.q.value='';filters.dispatchEvent(new window.Event('input',{bubbles:true}));
+  click('#review-select-matching');
+  assert.equal(document.querySelectorAll('[data-review-select]:checked').length,Math.min(100,catalog.terms.filter(t=>t.stage!=='canon').length));
+  click('#review-clear-selection');
+  const ids=catalog.terms.filter(t=>t.stage!=='canon').slice(0,2).map(t=>t.id);
+  for(const id of ids){const input=[...document.querySelectorAll('[data-review-select]')].find(n=>n.dataset.reviewSelect===id);input.checked=true;input.dispatchEvent(new window.Event('change',{bubbles:true}));}
+  const operations=document.querySelector('#bulk-operation-form');
+  operations.elements.field.value='tags';operations.elements.field.dispatchEvent(new window.Event('change'));
+  operations.elements.value.value='dom-integration-test-only';
+  operations.dispatchEvent(new window.Event('submit',{bubbles:true,cancelable:true}));
+  click('#review-preview-batch');
+  const prepared=document.querySelector('#bulk-change-json');assert.ok(prepared,document.querySelector('#review-error').textContent);
+  const request=JSON.parse(prepared.value);
+  assert.equal(request.changes.length,2);assert.deepEqual(request.changes.map(r=>r.id),ids);
+  for(const row of request.changes){const before=catalog.terms.find(t=>t.id===row.id);assert.equal(row.expectedRevision,before.revision);assert.deepEqual(row.changes.tags,[...before.tags,'dom-integration-test-only']);assert.ok(!Object.hasOwn(row.changes,'review'));}
+  click('#bulk-copy');await tick();assert.match(document.querySelector('#bulk-confirm-error').textContent,/Confirm public consent/);
+  document.querySelector('#bulk-public-consent').checked=true;document.querySelector('#bulk-confirmation').value=request.confirmBatch;
+  click('#bulk-copy');await tick();assert.deepEqual(JSON.parse(copied),request);
+  const checked=spawnSync('python3',['-c',`
+import json,sys
+from pathlib import Path
+sys.path.insert(0,'scripts')
+from lexical_editor import apply_change
+p=Path('museum-static/observatory');before=(p/'public.json').read_bytes()
+c=json.loads(before);h=json.loads((p/'history.json').read_text());r=json.load(sys.stdin)
+after,ledger=apply_change(c,h,r,actor='exemptus9',repository='exemptus9/idunnopoetry-museum')
+assert all('dom-integration-test-only' in next(t for t in after['terms'] if t['id']==row['id'])['tags'] for row in r['changes'])
+assert (p/'public.json').read_bytes()==before
+print(json.dumps({'action':ledger['events'][-1]['action'],'changes':ledger['events'][-1]['snapshot']['changes']}))
+`],{cwd:new URL('../',import.meta.url),input:JSON.stringify(request),encoding:'utf8'});
+  assert.equal(checked.status,0,checked.stderr);assert.deepEqual(JSON.parse(checked.stdout),{action:'batch',changes:2});
+  assertions.push('bulk deep-link, bounded filtered selection, consent, safe array preservation and actual atomic controller contract');
+}
+
 assert.deepEqual(failures, [], `Application errors: ${failures.join('; ')}`);
 console.log(JSON.stringify({result: 'PASS', catalogTerms: raw.terms.length, flows: assertions}));
 window.close();

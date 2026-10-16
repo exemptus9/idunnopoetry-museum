@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, featuredTerms, preparePublicChange, safeUrl, definitionDiff, editDistance} from '../museum-static/observatory/model.js';
+import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, featuredTerms, preparePublicChange, safeUrl, definitionDiff, editDistance, validatePublicTransport} from '../museum-static/observatory/model.js';
 
 const publicTerm = (id, headword, extra = {}) => ({id, headword, slug: headword.toLowerCase(), stage:'forge', visibility:'approved_public', definition:'An example definition about weather.', revision:1, publication:{approvedAt:'2026-01-01',approvedRevision:1}, ...extra});
 const project = (terms, relations=[], versions=[]) => normalizeCatalog({terms,relations,versions});
@@ -11,6 +11,42 @@ test('deployed projection contains only explicit public records and a valid cont
   const catalog=normalizeCatalog(raw);
   for(const field of ['terms','relations','versions'])assert.ok(raw[field].every(row=>row.visibility==='approved_public'));
   assert.equal(catalog.terms.length,raw.terms.length);assert.deepEqual(project([]).terms,[]);
+});
+test('public review metadata is whitelisted and retains source-qualified definition states', () => {
+  const c=project([publicTerm('a','Example',{definitionStatus:'conversation_recovered',review:{state:'deferred',flags:['source_needed','private_flag'],definitionBasis:'conversation_recovered',note:'A public source question.',privateBody:'PRIVATE_SENTINEL'}})]);
+  assert.equal(c.terms[0].definitionStatus,'conversation_recovered');
+  assert.deepEqual(c.terms[0].review,{state:'deferred',flags:['source_needed'],definitionBasis:'conversation_recovered',note:'A public source question.'});
+  const exported=publicJsonExport(c);
+  assert.deepEqual(exported.terms[0].review,c.terms[0].review);
+  assert.ok(!JSON.stringify(exported).includes('PRIVATE_SENTINEL'));
+  assert.deepEqual(normalizeCatalog(exported).terms[0].review,c.terms[0].review);
+});
+test('expanded classifications are retained, filterable and exportable', () => {
+  for(const classification of ['proper_name','literary_wordplay','concept_label','ai_suggestion','existing_term']) {
+    const c=project([publicTerm('a','Example',{classification})]);
+    assert.equal(c.terms[0].classification,classification);
+    assert.equal(searchTerms(c,{classification})[0].id,'a');
+    assert.equal(normalizeCatalog(publicJsonExport(c)).terms[0].classification,classification);
+  }
+});
+test('public request transport guard accounts for nested GitHub input JSON escaping', () => {
+  assert.deepEqual(validatePublicTransport({action:'update'}),{action:'update'});
+  assert.throws(()=>validatePublicTransport({text:'x'.repeat(60000)}),/GitHub input limit/);
+  assert.throws(()=>validatePublicTransport({text:'"'.repeat(25000)}),/GitHub input limit/);
+});
+test('review state, flag, definition basis, classification and tag filters combine', () => {
+  const c=project([publicTerm('a','Example',{classification:'coinage_candidate',tags:['provisional'],definitionStatus:'inferred_definition',review:{state:'open',flags:['meaning_inferred','source_needed'],definitionBasis:'inferred',note:''}}),publicTerm('b','Other',{review:{state:'resolved',flags:[],definitionBasis:'author_supplied',note:''}})]);
+  assert.deepEqual(searchTerms(c,{reviewState:'open',reviewFlag:'meaning_inferred',definitionBasis:'inferred',classification:'coinage_candidate',tag:'provisional',definitionState:'defined'}).map(t=>t.id),['a']);
+  assert.equal(searchTerms(c,{reviewState:'resolved',reviewFlag:'source_needed'}).length,0);
+  assert.deepEqual(searchTerms(c,{definitionBasis:'author_supplied'}).map(t=>t.id),['b']);
+});
+test('public edit preparation preserves review objects and accepts tags while rejecting extra review metadata', () => {
+  const t=project([publicTerm('a','Example',{definitionStatus:'inferred_definition',classification:'coinage_candidate'})]).terms[0];
+  const review={state:'resolved',flags:[],definitionBasis:'conversation_recovered',note:'Public evidence reviewed.'};
+  const input={action:'update',expectedRevision:1,headword:t.headword,stage:'forge',definition:t.definition,classification:t.classification,definitionStatus:t.definitionStatus,formation:'',provenanceSummary:'',roots:'[]',domains:'[]',variants:'[]',collections:'[]',tags:'["reviewed"]',review:JSON.stringify(review),confirmPublication:'PUBLISH Example'};
+  const change=preparePublicChange(input,t);
+  assert.deepEqual(change.changes.review,review);assert.deepEqual(change.changes.tags,['reviewed']);
+  assert.throws(()=>preparePublicChange({...input,review:{...review,privateBody:'PRIVATE_SENTINEL'}},t));
 });
 test('only explicitly approved-public terms are projected', () => {
   const catalog=project([publicTerm('a','Example'),publicTerm('b','Hidden',{visibility:'private'}),publicTerm('c','Draft',{visibility:'draft'}),publicTerm('d','Ambiguous',{visibility:'public'})]);
@@ -74,6 +110,10 @@ test('time machine uses only approved public versions and never substitutes impo
 test('CSV quotes newlines/quotes and neutralizes spreadsheet formulas', () => {
   const c=project([publicTerm('a','Example',{definition:'=HYPERLINK("bad")\nnext line'})]);
   const csv=csvExport(c);assert.ok(csv.startsWith('\uFEFF'));assert.ok(csv.includes('"\'=HYPERLINK(""bad"")\nnext line"'));assert.ok(!csv.includes('rawPrivateSource'));
+});
+test('CSV includes stable revisions and the public categorization/review state', () => {
+  const c=project([publicTerm('a','Example',{tags:['wordplay'],review:{state:'deferred',flags:['definition_conflict'],definitionBasis:'conversation_recovered',note:'=not a formula'}})]);
+  const csv=csvExport(c);assert.ok(csv.includes('"revision"'));assert.ok(csv.includes('"definitionBasis"'));assert.ok(csv.includes('conversation_recovered'));assert.ok(csv.includes('definition_conflict'));assert.ok(csv.includes('wordplay'));assert.ok(csv.includes("'=not a formula"));
 });
 test('URLs reject script protocols, credentialed URLs and empty configuration', () => {
   for(const url of ['javascript:alert(1)','data:text/html,bad','https://name:secret@example.com/','','file:///private'])assert.equal(safeUrl(url),'');

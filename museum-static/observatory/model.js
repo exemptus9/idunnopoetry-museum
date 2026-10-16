@@ -1,8 +1,19 @@
 /** Pure public-catalog functions. Public authorization must happen on the server. */
 export const STAGES = ['forge', 'lexicon', 'canon'];
+export const DEFINITION_STATES = ['author_supplied','working_definition','awaiting_definition','conversation_recovered','inferred_definition'];
+export const CLASSIFICATIONS = ['coinage_candidate','existing_form_reinterpreted','expression','term_seed','unclassified','proper_name','literary_wordplay','concept_label','ai_suggestion','existing_term'];
+export const REVIEW_STATES = ['open','resolved','deferred'];
+export const DEFINITION_BASES = ['author_supplied','conversation_recovered','archive_recovered','inferred','unknown'];
+export const REVIEW_FLAGS = ['definition_conflict','definition_needed','meaning_inferred','classification_review','variant_review','attribution_review','source_needed','author_decision','duplicate_candidate'];
 const EVIDENCE = ['verified', 'supported', 'reported', 'hypothetical', 'unknown'];
 const text = value => typeof value === 'string' ? value.trim() : '';
 const strings = value => Array.isArray(value) ? value.map(v => typeof v === 'string' ? v : text(v?.label || v?.name || v?.word)).filter(Boolean) : [];
+export function normalizeReview(value) {
+  const review = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return {state:REVIEW_STATES.includes(review.state)?review.state:'open',
+    flags:[...new Set(Array.isArray(review.flags)?review.flags.filter(flag=>REVIEW_FLAGS.includes(flag)):[])],
+    definitionBasis:DEFINITION_BASES.includes(review.definitionBasis)?review.definitionBasis:'unknown',note:text(review.note).slice(0,2000)};
+}
 export function fold(value) {
   return text(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('en');
 }
@@ -60,11 +71,12 @@ export function normalizeCatalog(payload) {
       revision: Number.isInteger(raw.revision) ? raw.revision : null,
       publication: {approvedAt: date(raw.publication?.approvedAt), approvedRevision: Number.isInteger(raw.publication?.approvedRevision) ? raw.publication.approvedRevision : null, approvalMethod:text(raw.publication?.approvalMethod || raw.publication?.method)},
       definition: text(raw.definition || raw.currentDefinition || raw.current_definition),
-      definitionStatus: text(raw.definitionStatus || raw.definition_status) || (text(raw.definition) ? 'working_definition' : 'awaiting_definition'),
+      definitionStatus: DEFINITION_STATES.includes(raw.definitionStatus || raw.definition_status) ? (raw.definitionStatus || raw.definition_status) : (text(raw.definition) ? 'working_definition' : 'awaiting_definition'),
+      review: normalizeReview(raw.review),
       editorialReview: {shortReason: text(raw.editorialReview?.shortReason)},
       collections: strings(raw.collections),
       analysis: raw.analysis?.kind === 'ai_hypothesis' ? {kind:'ai_hypothesis', formationProposal:text(raw.analysis.formationProposal),interpretationProposal:text(raw.analysis.interpretationProposal),distinctionQuestion:text(raw.analysis.distinctionQuestion),limitations:typeof raw.analysis.limitations==='string'?raw.analysis.limitations:strings(raw.analysis.limitations).join(' ')} : null,
-      classification: text(raw.classification) || 'Unclassified',
+      classification: CLASSIFICATIONS.includes(raw.classification) ? raw.classification : 'unclassified',
       preferredCapitalization: text(raw.preferredCapitalization || raw.preferred_capitalization),
       pronunciation: raw.pronunciationVerified === true || raw.pronunciation_verified === true ? text(raw.pronunciation) : '',
       ipa: raw.pronunciationVerified === true || raw.pronunciation_verified === true ? text(raw.ipa) : '',
@@ -145,6 +157,11 @@ export function searchTerms(catalog, filters = {}) {
   const matches = catalog.terms.filter(t => (!filters.stage || t.stage === filters.stage) &&
     (!filters.definitionState || (filters.definitionState === 'defined' ? hasWorkingDefinition(t) : !hasWorkingDefinition(t))) &&
     (!filters.collection || t.collections.includes(filters.collection)) &&
+    (!filters.reviewState || t.review?.state === filters.reviewState) &&
+    (!filters.reviewFlag || t.review?.flags.includes(filters.reviewFlag)) &&
+    (!filters.definitionBasis || t.review?.definitionBasis === filters.definitionBasis) &&
+    (!filters.classification || t.classification === filters.classification) &&
+    (!filters.tag || t.tags.includes(filters.tag)) &&
     (!filters.domain || t.domains.includes(filters.domain)) && (!filters.formation || t.formation === filters.formation) &&
     (!filters.letter || fold(t.headword).startsWith(fold(filters.letter))))
     .map(term => ({term, score: searchScore(term, q)})).filter(row => row.score > 0);
@@ -158,6 +175,12 @@ export function featuredTerms(catalog, limit = 3) {
 }
 export function hasWorkingDefinition(term) {
   return Boolean(text(term?.definition)) && term?.definitionStatus !== 'awaiting_definition' && !/^definition pending/i.test(term.definition);
+}
+export function validatePublicTransport(request) {
+  const serialized=JSON.stringify(request,null,2);
+  if (serialized.length>60000 || JSON.stringify({change_json:serialized,commit:false}).length>65535 || new TextEncoder().encode(serialized).length>150000)
+    throw new Error('This public change exceeds the GitHub input limit. Reduce the submitted text or batch selection.');
+  return request;
 }
 /** Builds a public-only request. GitHub Actions remains the authorization boundary. */
 export function preparePublicChange(input, term = null) {
@@ -177,7 +200,7 @@ export function preparePublicChange(input, term = null) {
   if (publicNote) request.publicNote = publicNote;
   const confirmation = `${action === 'withdraw' ? 'WITHDRAW' : 'PUBLISH'} ${headword}`;
   if (input.confirmPublication !== confirmation) throw new Error(`Type “${confirmation}” exactly to confirm your public intention.`);
-  if (action === 'withdraw') return request;
+  if (action === 'withdraw') return validatePublicTransport(request);
   request.confirmPublication = confirmation;
   if (action === 'restore') {
     const revision = Number(input.restoreRevision);
@@ -190,13 +213,23 @@ export function preparePublicChange(input, term = null) {
     if (action === 'stage') request.changes = {stage};
     else {
       const fields = {headword, stage, definition:text(input.definition), classification:text(input.classification) || (text(input.definition) ? 'coinage_candidate' : 'term_seed'), definitionStatus:text(input.definitionStatus) || (text(input.definition) ? 'working_definition' : 'awaiting_definition'), formation:text(input.formation), provenanceSummary:text(input.provenanceSummary)};
+      if (!CLASSIFICATIONS.includes(fields.classification) || !DEFINITION_STATES.includes(fields.definitionStatus)) throw new Error('Choose a supported classification and definition status.');
       if (fields.definition.length > 20000 || fields.provenanceSummary.length > 3000) throw new Error('Definition or public provenance summary exceeds the supported length.');
-      for (const field of ['roots','domains','variants','collections']) {
+      for (const field of ['roots','domains','variants','collections',...(Object.hasOwn(input,'tags')?['tags']:[])]) {
         let values;
         try {values = typeof input[field] === 'string' ? JSON.parse(input[field] || '[]') : input[field] || [];}
         catch {throw new Error(`${labelField(field)} must be a JSON array of text values.`);}
         if (!Array.isArray(values) || values.length > 100 || values.some(value => typeof value !== 'string' || !value.trim() || value.length > 500)) throw new Error(`${labelField(field)} must contain up to 100 nonempty text values.`);
         fields[field] = values.map(value => value.trim());
+      }
+      if (Object.hasOwn(input,'review')) {
+        let review;
+        try {review = typeof input.review === 'string' ? JSON.parse(input.review) : input.review;}
+        catch {throw new Error('Review must be a public review object.');}
+        if (!review || typeof review !== 'object' || Array.isArray(review) || Object.keys(review).sort().join(',') !== 'definitionBasis,flags,note,state' ||
+          !REVIEW_STATES.includes(review.state) || !DEFINITION_BASES.includes(review.definitionBasis) || !Array.isArray(review.flags) || review.flags.length>REVIEW_FLAGS.length ||
+          review.flags.some(flag=>!REVIEW_FLAGS.includes(flag)) || typeof review.note!=='string' || review.note.length>2000) throw new Error('Review contains unsupported fields, states, flags, or a nonpublic note.');
+        fields.review = normalizeReview(review);
       }
       request.changes = action === 'create' ? fields : Object.fromEntries(Object.entries(fields).filter(([key,value]) => JSON.stringify(value) !== JSON.stringify(key === 'roots' ? term.components : term[key])));
       if (input.rejectAnalysis === true || input.rejectAnalysis === 'on') request.changes.analysis = null;
@@ -207,7 +240,7 @@ export function preparePublicChange(input, term = null) {
     if (input.canonConfirmation !== `APPROVE CANON ${headword}`) throw new Error('Every Canon decision requires its separate exact authorial confirmation.');
     request.canonConfirmation = input.canonConfirmation;
   }
-  return request;
+  return validatePublicTransport(request);
 }
 function labelField(field) { return field[0].toUpperCase() + field.slice(1); }
 export function relatedTo(catalog, id) {
@@ -226,7 +259,7 @@ export function publicJsonExport(catalog) {
     evidence:source.evidence, url:source.url});
   return {
     schemaVersion: 1,
-    terms: catalog.terms.map(term => ({...term, roots: term.components, earliestVerifiedDate: term.earliestAppearance, evidenceStrength: term.evidence,
+    terms: catalog.terms.map(term => ({...term, review:normalizeReview(term.review), roots: term.components, earliestVerifiedDate: term.earliestAppearance, evidenceStrength: term.evidence,
       witnesses:term.witnesses.map(sourceExport), corpus:term.corpus.map(sourceExport)})),
     relations: catalog.relations.map(relation => ({visibility:'approved_public', source:relation.from, target:relation.to, type:relation.type, status:relation.inferred?'inferred':'confirmed', publicExplanation:relation.explanation})),
     versions: catalog.versions.map(version => ({visibility:'approved_public', termId:version.termId, version:version.version, definition:version.definition, date:version.effectiveAt, publicNote:version.note})),
@@ -240,8 +273,11 @@ export function csvExport(catalog) {
     if (/^[=+\-@\t\r]/.test(v)) v = `'${v}`;
     return `"${v.replaceAll('"', '""')}"`;
   };
-  const fields = ['id','slug','headword','stage','definitionStatus','classification','definition','formation','authorship','evidence','earliestAppearance','publishedAt'];
-  return '\uFEFF' + [fields, ...catalog.terms.map(t => fields.map(key => t[key]))].map(row => row.map(cell).join(',')).join('\r\n');
+  const fields = ['id','slug','headword','revision','stage','definitionStatus','classification','definition','formation','authorship','evidence','earliestAppearance','publishedAt','reviewState','definitionBasis','reviewFlags','publicReviewNote','tags','collections','domains','variants','components'];
+  return '\uFEFF' + [fields, ...catalog.terms.map(t => {
+    const row={...t,reviewState:t.review?.state||'open',definitionBasis:t.review?.definitionBasis||'unknown',reviewFlags:t.review?.flags||[],publicReviewNote:t.review?.note||''};
+    return fields.map(key=>Array.isArray(row[key])?JSON.stringify(row[key]):row[key]);
+  })].map(row => row.map(cell).join(',')).join('\r\n');
 }
 export function definitionDiff(previous, current) {
   const oldWords = text(previous).split(/\s+/), nextWords = text(current).split(/\s+/);

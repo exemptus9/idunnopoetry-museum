@@ -24,8 +24,9 @@ REPOSITORY = "exemptus9/idunnopoetry-museum"
 OWNER = "exemptus9"
 BASE = "https://exemptus9.github.io/idunnopoetry-museum/observatory/"
 NOTICE = "Public editorial history only. Withdrawal removes current publication; prior public Git history remains public. Hashes do not establish coinage priority."
-FIELDS = {"headword", "definition", "formation", "roots", "domains", "variants", "authorship", "evidenceStrength", "earliestVerifiedDate", "provenanceSummary", "witnesses", "corpus", "stage", "classification", "definitionStatus", "collections", "tags", "editorialReview", "analysis"}
+FIELDS = {"headword", "definition", "formation", "roots", "domains", "variants", "authorship", "evidenceStrength", "earliestVerifiedDate", "provenanceSummary", "witnesses", "corpus", "stage", "classification", "definitionStatus", "collections", "tags", "editorialReview", "analysis", "review"}
 REQUEST_FIELDS = {"action", "id", "slug", "expectedRevision", "changes", "publicNote", "confirmPublication", "canonConfirmation", "restoreRevision", "relation"}
+BATCH_FIELDS = {"action", "changes", "confirmBatch", "publicNote"}
 WITNESS_FIELDS = {"id", "label", "publicSummary", "approvedExcerpt", "sourceDate", "evidence", "url", "visibility"}
 RELATION_FIELDS = {"source", "target", "type", "status", "publicExplanation"}
 
@@ -83,6 +84,16 @@ def fields(changes):
             if not isinstance(value, dict) or set(value) != {"shortReason"}:
                 raise ValueError("Editorial review permits only an explicitly public shortReason")
             clean[name] = {"shortReason": string(value["shortReason"], "public shortReason", 1200)}
+        elif name == "review":
+            if not isinstance(value, dict) or set(value) != {"state", "flags", "definitionBasis", "note"}:
+                raise ValueError("Review requires only state, flags, definitionBasis, and a public note")
+            if not isinstance(value['state'], str) or not isinstance(value['definitionBasis'], str) or value['state'] not in publication.REVIEW_STATES or value['definitionBasis'] not in publication.DEFINITION_BASES:
+                raise ValueError("Unknown review state or definition basis")
+            flags = value['flags']
+            if not isinstance(flags, list) or len(flags) > len(publication.REVIEW_FLAGS) or any(not isinstance(flag, str) or flag not in publication.REVIEW_FLAGS for flag in flags):
+                raise ValueError("Unknown public review flag")
+            clean[name] = {"state": value['state'], "flags": list(dict.fromkeys(flags)), "definitionBasis": value['definitionBasis'],
+                           "note": string(value['note'], 'public review note', 2000)}
         elif name == "analysis":
             if value is None:
                 clean[name] = None  # Reject/remove the public AI proposal without erasing its public history.
@@ -90,7 +101,15 @@ def fields(changes):
             allowed = {"kind", "formationProposal", "interpretationProposal", "distinctionQuestion", "limitations"}
             if not isinstance(value, dict) or set(value) - allowed or value.get("kind") != "ai_hypothesis":
                 raise ValueError("Analysis must be a labeled AI hypothesis with only documented public fields")
-            clean[name] = {"kind": "ai_hypothesis", **{k: string(v, k, 3000) for k, v in value.items() if k != "kind"}}
+            clean[name] = {"kind": "ai_hypothesis"}
+            for k, v in value.items():
+                if k == 'kind':
+                    continue
+                if k == 'limitations' and isinstance(v, list):
+                    if len(v) > 100:
+                        raise ValueError('Too many public analysis limitations')
+                    v = '\n'.join(string(item, 'public limitation', 3000) for item in v)
+                clean[name][k] = string(v, k, 3000)
         elif name in {"witnesses", "corpus"}:
             if not isinstance(value, list) or len(value) > 100:
                 raise ValueError(f"Invalid {name} list")
@@ -146,16 +165,41 @@ def version_projection(rows, identity):
     for row in rows:
         if row.get("termId") != identity or row.get("visibility") != "approved_public":
             continue
+        definition, when, note = row.get('definition', ''), row.get('date', ''), row.get('note', row.get('publicNote', ''))
+        string(definition, 'public definition')
+        string(when, 'public version date', 100)
+        string(note, 'public version note', 2000)
         result.append({"termId": identity, "version": positive(row.get("version"), "definition version"),
-                       "visibility": "approved_public", "definition": string(row.get("definition", ""), "public definition"),
-                       "date": string(row.get("date", ""), "public version date", 100),
-                       "note": string(row.get("note", row.get("publicNote", "")), "public version note", 2000)})
+                       "visibility": "approved_public", "definition": definition, "date": when, "note": note})
     return result
 
 
 def append_event(history, actor, action, identity, slug, revision, stamp, note="", snapshot=None, definition_versions=None, approval_method="owner_action"):
     if approval_method not in {"owner_action", "author_delegated_editorial_review"}:
         raise ValueError("Unknown editorial approval method")
+    # Public import callers must never be able to copy a rich private recovery
+    # record into the public audit ledger by accident.
+    if snapshot is not None:
+        if not isinstance(snapshot, dict):
+            raise ValueError('A public ledger snapshot must have a documented public shape')
+        if 'headword' in snapshot:
+            projected = publication.project({'terms': [snapshot]})['terms']
+            if len(projected) != 1 or projected[0]['id'] != identity or projected[0]['slug'] != slug or projected[0]['revision'] != revision:
+                raise ValueError('A ledger term snapshot requires an approved public record with matching identity/revision')
+            snapshot = projected[0]
+        elif action == 'relation_review' and set(snapshot) == {'relation'} and identity == '__relations__':
+            relation = snapshot['relation']
+            if not isinstance(relation, dict) or set(relation) - RELATION_FIELDS or relation.get('status') not in {'confirmed', 'inferred', 'rejected'}:
+                raise ValueError('Unsupported public relation audit snapshot')
+            snapshot = {'relation': {name: string(relation.get(name, ''), name, 2000 if name == 'publicExplanation' else 150)
+                                     for name in RELATION_FIELDS}}
+        elif action == 'batch' and identity == '__batch__' and set(snapshot) == {'changes', 'termIds'}:
+            count = positive(snapshot['changes'], 'public batch change count')
+            if count > 100 or not isinstance(snapshot['termIds'], list) or len(snapshot['termIds']) > 100:
+                raise ValueError('Invalid public batch audit snapshot')
+            snapshot = {'changes': count, 'termIds': [string(value, 'public term ID', 150, True) for value in snapshot['termIds']]}
+        else:
+            raise ValueError('Undocumented public ledger snapshot fields are forbidden')
     event = {"actor": actor, "action": action, "approvalMethod": approval_method, "termId": identity, "slug": slug, "revision": revision,
              "recordedAt": stamp, "publicNote": note, "snapshot": copy.deepcopy(snapshot),
              "definitionVersions": version_projection(definition_versions or [], identity),
@@ -190,14 +234,45 @@ def approval(term, request, actor, stamp):
 def apply_change(catalog, history, request, *, actor, repository, event="workflow_dispatch", ref="refs/heads/main", now=None):
     """Pure preview. Return new public catalog/ledger; never mutate the arguments."""
     authenticate(actor, repository, event, ref)
-    if not isinstance(request, dict) or set(request) - REQUEST_FIELDS or len(canonical(request).encode()) > 150000:
+    if not isinstance(request, dict) or len(canonical(request).encode()) > 150000:
         raise ValueError("Invalid request or unknown fields; do not submit private material")
+    allowed = BATCH_FIELDS if request.get('action') == 'batch' else REQUEST_FIELDS
+    if set(request) - allowed:
+        raise ValueError("Unknown request fields; do not submit private material")
     verify_history(history)
     catalog = publication.project(copy.deepcopy(catalog))
     history = copy.deepcopy(history)
     history["notice"] = NOTICE
     stamp = now or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     action = request.get("action")
+    if action == 'batch':
+        rows = request.get('changes')
+        if not isinstance(rows, list) or not 1 <= len(rows) <= 100:
+            raise ValueError('A batch requires 1–100 individual public requests')
+        if request.get('confirmBatch') != f'APPLY {len(rows)} PUBLIC CHANGES':
+            raise ValueError('Batch requires exact confirmation of its public change count')
+        ids, slugs = set(), set()
+        for row in rows:
+            if not isinstance(row, dict) or row.get('action') == 'batch':
+                raise ValueError('Nested batches and malformed individual requests are forbidden')
+            identity = string(row['id'], 'id', 150) if 'id' in row else None
+            slug = string(row['slug'], 'slug', 150) if 'slug' in row else None
+            if identity is not None and identity in ids:
+                raise ValueError('A batch may edit each stable ID only once')
+            if slug is not None and slug in slugs:
+                raise ValueError('A batch may use each stable slug only once')
+            if identity:
+                ids.add(identity)
+            if slug:
+                slugs.add(slug)
+        starting_events = len(history['events'])
+        for row in rows:
+            catalog, history = apply_change(catalog, history, row, actor=actor, repository=repository, event=event, ref=ref, now=stamp)
+        affected = list(dict.fromkeys(e['termId'] for e in history['events'][starting_events:] if not e['termId'].startswith('__')))
+        revision = sum(e['action'] == 'batch' for e in history['events']) + 1
+        append_event(history, actor, 'batch', '__batch__', '', revision, stamp,
+                     string(request.get('publicNote', ''), 'public batch note', 2000), {'changes': len(rows), 'termIds': affected})
+        return catalog, history
     if action not in {"create", "update", "publish", "withdraw", "restore", "stage", "relation_review"}:
         raise ValueError("Unsupported action")
     note = string(request.get("publicNote", ""), "publicNote", 2000)
@@ -216,7 +291,7 @@ def apply_change(catalog, history, request, *, actor, repository, event="workflo
         if relation.get("status") not in {"confirmed", "inferred", "rejected"}:
             raise ValueError("Relation must be confirmed, inferred, or rejected")
         revision = len([e for e in history["events"] if e["action"] == "relation_review"]) + 1
-        if request.get("expectedRevision") != revision - 1:
+        if type(request.get('expectedRevision')) is not int or request.get("expectedRevision") != revision - 1:
             raise ValueError("Relation revision conflict; reload current public history")
         kind = string(relation.get("type"), "relation type", 100, True)
         catalog["relations"] = [r for r in catalog["relations"] if (r["source"], r["target"], r["type"]) != (source, target, kind)]
@@ -234,6 +309,8 @@ def apply_change(catalog, history, request, *, actor, repository, event="workflo
         if not headword:
             raise ValueError("A public headword is required")
         identity = identity or str(uuid4())
+        if identity.startswith('__'):
+            raise ValueError('System ledger identifiers are reserved')
         slug = string(request.get("slug", ""), "slug", 150, True)
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
             raise ValueError("A safe stable slug is required")
@@ -311,6 +388,8 @@ def main():
                                     actor=os.environ["GITHUB_ACTOR"], repository=os.environ["GITHUB_REPOSITORY"])
     summary = {"action": request["action"], "publicTerms": len(catalog["terms"]), "publicRelations": len(catalog["relations"]),
                "publicHistoryEvents": len(history["events"]), "written": args.write}
+    if request['action'] == 'batch':
+        summary['batchChanges'] = len(request['changes'])
     if args.write:
         publication.build(catalog, directory, BASE, write=True)
         history_path.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n")
@@ -325,6 +404,11 @@ def main():
                        "after": next((t for t in catalog["terms"] if t["id"] == identity), None)}
             if request["action"] == "relation_review":
                 preview = {"publicRelationDecision": history["events"][-1]["snapshot"]}
+            elif request['action'] == 'batch':
+                preview = {'changes': [{'id': identity,
+                                       'before': next((t for t in before['terms'] if t['id'] == identity), None),
+                                       'after': next((t for t in catalog['terms'] if t['id'] == identity), None)}
+                                      for identity in history['events'][-1]['snapshot']['termIds']]}
             output.write("\n### Sanitized public change\n\n```json\n" + json.dumps(preview, ensure_ascii=False, indent=2) + "\n```\n")
 
 

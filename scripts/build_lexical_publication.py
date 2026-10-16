@@ -15,8 +15,12 @@ from urllib.parse import urlsplit
 
 STAGES = {"forge", "lexicon", "canon"}
 STRENGTHS = {"verified", "supported", "reported", "hypothetical", "unknown"}
-DEFINITION_STATES = {"author_supplied", "working_definition", "awaiting_definition"}
-CLASSIFICATIONS = {"coinage_candidate", "existing_form_reinterpreted", "expression", "term_seed", "unclassified"}
+DEFINITION_STATES = {"author_supplied", "working_definition", "awaiting_definition", "conversation_recovered", "inferred_definition"}
+CLASSIFICATIONS = {"coinage_candidate", "existing_form_reinterpreted", "expression", "term_seed", "unclassified",
+                   "proper_name", "literary_wordplay", "concept_label", "ai_suggestion", "existing_term"}
+REVIEW_STATES = {"open", "resolved", "deferred"}
+DEFINITION_BASES = {"author_supplied", "conversation_recovered", "archive_recovered", "inferred", "unknown"}
+REVIEW_FLAGS = {"definition_conflict", "definition_needed", "meaning_inferred", "classification_review", "variant_review", "attribution_review", "source_needed", "author_decision", "duplicate_candidate"}
 
 
 def text(value, limit=20000):
@@ -53,8 +57,20 @@ def public_witnesses(value):
 def linguistic_proposal(value):
     if not isinstance(value, dict) or value.get('kind') != 'ai_hypothesis':
         return None
-    return {'kind': 'ai_hypothesis', **{key: text(value.get(key), 3000) for key in
-            ('formationProposal', 'interpretationProposal', 'distinctionQuestion', 'limitations')}}
+    limits = value.get('limitations')
+    if isinstance(limits, list):
+        limits = '\n'.join(text(item, 3000) for item in limits[:100] if isinstance(item, str))
+    return {'kind': 'ai_hypothesis', 'limitations': text(limits, 3000), **{key: text(value.get(key), 3000) for key in
+            ('formationProposal', 'interpretationProposal', 'distinctionQuestion')}}
+
+
+def public_review(value):
+    """Project public editorial state, never private review metadata."""
+    value = value if isinstance(value, dict) else {}
+    return {'state': value.get('state') if isinstance(value.get('state'), str) and value.get('state') in REVIEW_STATES else 'open',
+            'flags': list(dict.fromkeys(flag for flag in strings(value.get('flags')) if flag in REVIEW_FLAGS)),
+            'definitionBasis': value.get('definitionBasis') if isinstance(value.get('definitionBasis'), str) and value.get('definitionBasis') in DEFINITION_BASES else 'unknown',
+            'note': text(value.get('note'), 2000)}
 
 
 def approved(record):
@@ -125,6 +141,8 @@ def project(payload):
         }
         if row["stage"] == "canon":
             item["canonApproval"] = {"revision": row["revision"], "approvedAt": text(row["canonApproval"]["approvedAt"], 100)}
+        if 'review' in row:
+            item['review'] = public_review(row.get('review'))
         output.append(item)
         ids.add(identity)
         slugs.add(slug)
@@ -166,6 +184,8 @@ def page(term, base, catalog=None):
     title = lambda value: str(value).replace('_', ' ').title()
     statuses = {'author_supplied': 'Author-supplied working definition',
                 'working_definition': 'Provisional working definition',
+                'conversation_recovered': 'Definition recovered from a conversation',
+                'inferred_definition': 'Inferred definition · provisional interpretation',
                 'awaiting_definition': 'Lexical seed · definition pending'}
     status = statuses.get(term.get('definitionStatus'), 'Working definition')
     robots = 'noindex,follow' if term['stage'] == 'forge' else 'index,follow'
@@ -183,6 +203,7 @@ def page(term, base, catalog=None):
         if witness['url']:
             label = f'<a href="{esc(witness["url"], quote=True)}" rel="noopener noreferrer">{label}</a>'
         witnesses.append(f'<li>{label}<p>{esc(witness["publicSummary"])}</p>' +
+                         f'<p class="muted">Source date: {esc(witness["sourceDate"][:10] or "Not established")} · Evidence: {esc(title(witness["evidence"]))}</p>' +
                          (f'<blockquote>{esc(witness["approvedExcerpt"])}</blockquote>' if witness['approvedExcerpt'] else '') + '</li>')
     history = []
     for version in sorted((v for v in catalog['versions'] if v['termId'] == term['id']), key=lambda v: v['version']):
@@ -195,6 +216,8 @@ def page(term, base, catalog=None):
             f'<dt>{label}</dt><dd>{esc(proposal[key])}</dd>' for key, label in
             [('formationProposal', 'Possible formation'), ('interpretationProposal', 'Possible reading'),
              ('distinctionQuestion', 'Question for the author'), ('limitations', 'Limits of this analysis')] if proposal.get(key)) + '</dl></section>'
+    review = term.get('review') or {}
+    review_html = '<section><h2>Working endpoint and review</h2><p>Definition basis: ' + esc(title(review.get('definitionBasis', 'unknown'))) + '</p><p>' + esc(review.get('note', '')) + '</p>' + ('<p>Review flags: ' + esc(' · '.join(title(f) for f in review.get('flags', []))) + '</p>' if review.get('flags') else '') + '</section>' if review else ''
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(term['headword'])} · Lexical Observatory</title>
@@ -210,7 +233,8 @@ def page(term, base, catalog=None):
 <main><p class="status">{esc(term['stage'].title())} · {esc(status)}</p>
 <h1>{esc(term['headword'])}</h1><p class="definition">{esc(term['definition'])}</p>
 <p class="muted">{esc(term.get('editorialReview', {}).get('shortReason', ''))}</p>
-<div class="actions"><a href="../../?term={term['slug']}">Open interactive genome</a><a href="../../#author?term={term['slug']}">Prepare a public edit</a></div>
+<div class="actions"><a href="../../?term={term['slug']}">Open interactive genome</a><a href="../../#author?term={term['slug']}">Prepare a public edit</a><a href="../../#review?term={term['slug']}">Flag / categorize</a></div>
+{review_html}
 <section><h2>Word Genome</h2>
 <dl><dt>Formation</dt><dd>{esc(term['formation'] or 'Under review')}</dd>
 <dt>Components</dt><dd>{esc(' · '.join(term['roots']) or 'Not documented')}</dd>
