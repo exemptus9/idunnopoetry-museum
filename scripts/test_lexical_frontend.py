@@ -11,7 +11,7 @@ SITE = ROOT / 'museum-static/observatory'
 
 class LexicalFrontendTests(unittest.TestCase):
     def test_public_modules_parse(self):
-        for source in ('config.js', 'model.js', 'app.js'):
+        for source in ('config.js', 'model.js', 'app.js', 'review.js', 'public-request.js', 'blend-engine.js', 'laboratory.js'):
             result = subprocess.run(['node', '--check', str(SITE / source)], capture_output=True, text=True, timeout=30)
             self.assertEqual(result.returncode, 0, result.stderr)
 
@@ -21,6 +21,14 @@ class LexicalFrontendTests(unittest.TestCase):
 
     def test_bulk_review_behaviors(self):
         result = subprocess.run(['node', '--test', str(ROOT / 'scripts/test_lexical_review.mjs')], capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_blend_engine_behaviors(self):
+        result = subprocess.run(['node', '--test', str(ROOT / 'scripts/test_lexical_blends.mjs')], capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_laboratory_dom_behaviors(self):
+        result = subprocess.run(['node', str(ROOT / 'scripts/test_lexical_lab_dom.mjs')], capture_output=True, text=True, timeout=60)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_publication_output_is_consumed_without_losing_relations_or_canon(self):

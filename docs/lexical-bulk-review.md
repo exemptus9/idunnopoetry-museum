@@ -1,9 +1,70 @@
 # Public lexical review and atomic batches
 
+Open the [Author's desk](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review).
+Use a specific entry's link such as
+[`#review?term=suffralchemy`](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review?term=suffralchemy).
+Individual definition editing, capture, Canon decisions, and relationship review
+are at [Capture & edit](https://exemptus9.github.io/idunnopoetry-museum/observatory/#author).
+
 The public authoritative snapshot is `museum-static/observatory/public.json`.
 `history.json` contains only previously approved public records and their public
 definition versions. Private recovery files never belong in either file or in
 workflow inputs. A public review note is visible to everyone.
+
+## Read, check, and stage
+
+1. Choose **All entries**, **Open questions**, **Needs definition**, **Needs
+   source**, **Authorship questions**, **Inferred meanings**, or **Resolved**.
+   Search and filters narrow the queue. Queue buttons reset the other filters.
+2. Expand the record's checklist and approved public source summaries. Checking
+   **Definition checked**, **Authorship examined**, or **Source evidence examined**
+   stages the corresponding review tag. The definition check is unavailable for
+   undeveloped definitions. A marker records examination; it does not change
+   attribution, evidence strength, definition basis, review state, or Canon.
+3. Select entry checkboxes for shared actions. **Needs a source** reopens review;
+   **Resolve review** changes its operational state. **Use recovered definition**
+   retains current developed wording and requires an existing conversation or
+   archive recovery basis. It does not retrieve missing wording.
+4. Use **Stage authorship decision** or **Stage evidence assessment** to change
+   those explicit public claims after source examination. These also stage the
+   corresponding checked marker. Qualitative evidence is not proof of absolute
+   originality. **More metadata actions** exposes the other supported fields.
+5. Inspect the staged count and choose **Review & publish**, or **Preview selected
+   changes**. Inspect every before/after record. Unchanged entries are omitted.
+   Confirm that the entire request and public batch note belong in public history.
+
+Selections persist across filter changes. **Select all matching** replaces the
+selection and takes only the first 100 alphabetically when more than 100 editable
+entries match. Current Canon records are excluded. Per-record staged decisions
+remain staged even if filters hide them; inspect the full preview. **Undo staged
+decisions** removes one record's staged operations; **Clear staged** removes
+staged decisions and shared operations. The page does not persist unfinished desk
+work locally. Checking, staging, or previewing does not save or publish anything.
+
+## Approve through GitHub
+
+For a small request, select **Continue to publish on GitHub**. Sign in as owner
+**exemptus9**, inspect the prefilled public issue, then select **Submit new issue**.
+That final submission authorizes the request and starts the owner-only
+[publication workflow](https://github.com/exemptus9/idunnopoetry-museum/actions/workflows/lexical-publication-request.yml).
+It does not guarantee successful deployment: inspect the Actions result and
+resulting public catalog/page before treating the change as live. Opening the
+prefilled issue does not submit it. No live owner submission is asserted here.
+
+When the **full encoded URL exceeds 6,000 characters**, the issue handoff is
+blocked and the interface offers **Copy batch & open workflow**. Confirm public
+consent and type the displayed `APPLY N PUBLIC CHANGES` phrase for this fallback.
+In the [owner workflow](https://github.com/exemptus9/idunnopoetry-museum/actions/workflows/lexical-editor.yml),
+choose **main**, paste the exact JSON into **change_json**, and first run with
+**commit unchecked**. Inspect the preview, then run the identical JSON with
+**commit checked** to publish. Copy/download controls remain available. The small
+issue route instead uses the owner's final submission as approval and does not
+require typing the fallback phrase locally.
+
+Both paths enforce the original owner, authoritative repository, trusted branch,
+publication intent, and expected revisions. The browser collects no GitHub token.
+See [publication instructions](lexical-publication.md) for individual edits,
+relationship decisions, restoration, and privacy boundaries.
 
 ## Review metadata
 
@@ -63,8 +124,11 @@ The controller accepts 1–100 individual requests, rejects nested batches and
 duplicate stable IDs/slugs, and checks every expected revision. Every resulting
 Canon revision still needs its own exact `APPROVE CANON Headword` confirmation.
 All requests are applied to copied state using one timestamp. If any request
-fails, no catalog, pages, or ledger are written. Preview is the workflow default;
-the owner checks `commit` to authorize the successful batch's commit and deploy.
+fails, no catalog, pages, or ledger are written. The manual workflow defaults to
+preview; the owner checks `commit` to authorize writing and deployment. The
+separate issue path uses the owner-opened approval envelope as its authorization.
+Current Canon records and Canon promotion are unavailable in the bulk interface;
+use the individual editor with exact author confirmation.
 
 The local request ceiling remains 150 KB. GitHub's documented
 [`workflow_dispatch` input ceiling](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onworkflow_dispatchinputs)

@@ -27,6 +27,13 @@ for attempt in range(8):
         png = get(image)
         assert png[:8] == b'\x89PNG\r\n\x1a\n' and struct.unpack('>II', png[16:24]) == (1200, 630), 'Public preview is invalid'
         checks = ['index.html', 'public.json', 'app.js', 'model.js', 'review.js', 'observatory.css', 'sitemap.xml']
+        for asset in ('public-request.js', 'blend-engine.js', 'laboratory.js'):
+            if (lexical / asset).is_file():
+                checks.append(asset)
+        # Additional stylesheet names may change while the public entry page
+        # imports them. Verify every local CSS asset included in this release.
+        checks.extend(path.name for path in lexical.glob('*.css') if path.name not in checks)
+        checks.extend(path.name for path in lexical.glob('*.svg') if path.name not in checks)
         if (lexical / 'history.json').exists():
             checks.append('history.json')
         catalog = json.loads((lexical / 'public.json').read_text())

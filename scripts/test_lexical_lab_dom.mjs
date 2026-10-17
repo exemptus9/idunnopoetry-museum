@@ -1,0 +1,81 @@
+// Executes the real offline laboratory in a DOM engine. No browser/layout claim.
+import assert from 'node:assert/strict';
+import {JSDOM} from './dom-tests/node_modules/jsdom/lib/api.js';
+import {laboratoryMarkup,mountLaboratory} from '../museum-static/observatory/laboratory.js';
+
+const dom=new JSDOM('<main id="lab"></main>',{url:'https://exemptus9.github.io/idunnopoetry-museum/observatory/',pretendToBeVisual:true});
+const {window}=dom,root=window.document.querySelector('#lab');
+Object.defineProperty(globalThis,'window',{value:window,configurable:true});
+Object.defineProperty(globalThis,'navigator',{value:window.navigator,configurable:true});
+Object.defineProperty(globalThis,'document',{value:window.document,configurable:true});
+let copied=[];
+Object.defineProperty(window.navigator,'clipboard',{value:{writeText:async value=>copied.push(value)},configurable:true});
+globalThis.matchMedia=()=>({matches:true,addEventListener(){},removeEventListener(){}});
+window.HTMLElement.prototype.scrollIntoView=()=>{};
+const $=selector=>root.querySelector(selector),click=selector=>$(selector).dispatchEvent(new window.MouseEvent('click',{bubbles:true,cancelable:true}));
+const submit=()=>$('#blend-form').dispatchEvent(new window.Event('submit',{bubbles:true,cancelable:true}));
+const change=selector=>$(selector).dispatchEvent(new window.Event('change',{bubbles:true}));
+const errors=[];
+window.addEventListener('error',event=>errors.push(event.error?.message||event.message));
+root.innerHTML=laboratoryMarkup();
+let clock=0;
+let cleanup=mountLaboratory(root,[],{rng:()=>0.371,now:()=>clock});
+const flows=[];
+assert.ok($('#source0').value&&$('#source1').value);
+assert.equal($('.source-2').hidden,true);
+assert.ok(root.querySelectorAll('.blend-candidate').length>0);
+assert.equal(window.localStorage.length,0,'Viewing/generating must not persist experiments automatically.');
+flows.push('initial two-source suggestions with no automatic persistence');
+
+const pinned=$('#source0').value;
+$('#blend-form').elements.pin0.checked=true;
+for(let i=0;i<4;i++)click('#blend-shuffle');
+assert.equal($('#source0').value,pinned);
+$('#blend-mode').value='3';change('#blend-mode');
+assert.equal($('.source-2').hidden,false);
+assert.equal($('#source2').required,true);
+assert.ok($('#source2').value);
+assert.equal($('#source0').value,pinned);
+flows.push('pinned shuffle and three-source mode preserve deliberate source choices');
+
+$('#blend-mode').value='2';change('#blend-mode');
+$('#source0').value='suffering';$('#source1').value='alchemy';submit();
+assert.ok(root.querySelectorAll('.blend-candidate').length>0);
+const firstWord=$('.blend-candidate h3').textContent;
+click('[data-blend-copy]');
+await new Promise(resolve=>setTimeout(resolve,0));
+assert.ok(copied.at(-1).startsWith(firstWord));
+assert.match(copied.at(-1),/Sources: suffering \+ alchemy/);
+click('[data-blend-keep]');
+assert.ok($('#blend-shelf').textContent.includes(firstWord));
+assert.equal(window.localStorage.length,1);
+assert.match($('#blend-status').textContent,/not been published/);
+click('[data-shelf-remove]');
+assert.match($('#blend-shelf').textContent,/Nothing in your pockets/);
+flows.push('copy and explicit local-only shelf save/removal');
+
+$('#source0').value='zzqplaxx';$('#gloss0').value='';$('#source1').value='memory';submit();
+assert.ok($('#blend-results').textContent.includes('zzqplaxx'));
+assert.match($('#blend-results').textContent,/Meaning needed|source meaning|unknown|unfamiliar/i);
+flows.push('unfamiliar source meaning remains an explicit open question');
+
+click('#road-toggle');clock=60000;click('#road-toggle');
+assert.equal($('#road-distance').textContent,'1.00 mi');
+assert.equal($('#road-toggle').getAttribute('aria-pressed'),'false');
+assert.match($('#word-road').getAttribute('aria-label'),/paused/);
+click('#road-reset');assert.equal($('#road-distance').textContent,'0.00 mi');
+flows.push('paused road clock and reset report real simulated elapsed distance');
+
+cleanup();
+window.localStorage.setItem('lexical-observatory:visitor-specimens:v1',JSON.stringify([{word:'<img src=x onerror=alert(1)>',meaning:'<script>alert(1)</script>',sources:'Safe public experiment'}]));
+root.innerHTML=laboratoryMarkup();
+cleanup=mountLaboratory(root,[],{rng:()=>0.371,now:()=>clock});
+assert.equal($('#blend-shelf img'),null);assert.equal($('#blend-shelf script'),null);
+assert.ok($('#blend-shelf').textContent.includes('<img'));
+copied=[];click('[data-blend-copy]');await new Promise(resolve=>setTimeout(resolve,0));
+assert.equal(copied.length,1,'Revisiting the lab must not retain stale delegated copy/save listeners.');
+flows.push('stored strings remain inert text and remount removes stale listeners');
+cleanup();
+assert.deepEqual(errors,[]);
+window.close();
+console.log(JSON.stringify({result:'PASS',flows}));

@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {JSDOM} from './dom-tests/node_modules/jsdom/lib/api.js';
 import {hasWorkingDefinition, normalizeCatalog, searchTerms} from '../museum-static/observatory/model.js';
+import {createPublicationRequest} from '../museum-static/observatory/public-request.js';
 
 const site = new URL('../museum-static/observatory/', import.meta.url);
 const raw = JSON.parse(fs.readFileSync(new URL('public.json', site), 'utf8'));
@@ -91,7 +92,13 @@ if (target) {
 assert.equal(document.querySelectorAll('#graph svg a').length, Math.min(catalog.terms.length,80));
 assert.ok(document.querySelector('#graph-list').textContent.includes(target.headword));
 click('[data-graph="in"]');
-assertions.push('constellation render, full list, and zoom');
+const remoteTerm=catalog.terms.at(-1);
+if(catalog.terms.length>80){
+  const graphSearch=document.querySelector('#graph-search');graphSearch.value=remoteTerm.headword;
+  graphSearch.dispatchEvent(new window.Event('input',{bubbles:true}));
+  assert.ok([...document.querySelectorAll('#graph .graph-node text')].some(node=>node.textContent===remoteTerm.headword),'Search must bring a term beyond the initial 80 into the visual.');
+}
+assertions.push('constellation render, full directory, zoom and search beyond the initial visual limit');
 }
 
 route('', '#laboratory');
@@ -100,6 +107,10 @@ document.querySelector('#formation-specimen').value = 'derivation';
 document.querySelector('#formation-specimen').dispatchEvent(new window.Event('change'));
 assert.match(document.querySelector('#specimen').textContent, /kindness/);
 assertions.push('formation laboratory interaction');
+assert.ok(document.querySelector('#blend-form'),'The real interactive blend bench must mount on the laboratory route.');
+assert.ok(document.querySelectorAll('.blend-candidate').length>0);
+click('#road-toggle');
+route('', '#home'); // Replacing the laboratory must release its running clock.
 
 if (target) {
 route('', `#author?term=${target.slug}`);
@@ -216,6 +227,57 @@ print(json.dumps({'action':ledger['events'][-1]['action'],'changes':ledger['even
 `],{cwd:new URL('../',import.meta.url),input:JSON.stringify(request),encoding:'utf8'});
   assert.equal(checked.status,0,checked.stderr);assert.deepEqual(JSON.parse(checked.stdout),{action:'batch',changes:2});
   assertions.push('bulk deep-link, bounded filtered selection, consent, safe array preservation and actual atomic controller contract');
+}
+
+const checklistTerms=catalog.terms.filter(term=>term.stage!=='canon'&&hasWorkingDefinition(term)).slice(0,2);
+if(checklistTerms.length===2){
+  route('', '#review');
+  for(const term of checklistTerms){
+    const input=[...document.querySelectorAll('[data-desk-check="definition_checked"]')].find(node=>node.dataset.deskRecord===term.id);
+    assert.ok(input&&!input.disabled,'A developed non-Canon term must expose its review checklist.');
+    input.checked=!input.checked;
+    input.dispatchEvent(new window.Event('change',{bubbles:true}));
+  }
+  assert.match(document.querySelector('#desk-staged-count').textContent,/2 records/);
+  click('#desk-preview');
+  const prepared=document.querySelector('#bulk-change-json');assert.ok(prepared,document.querySelector('#review-error').textContent);
+  const request=JSON.parse(prepared.value);
+  assert.equal(request.changes.length,2);
+  for(const row of request.changes){
+    const term=checklistTerms.find(t=>t.id===row.id);assert.ok(term);
+    assert.equal(row.expectedRevision,term.revision);
+    assert.equal(row.changes.tags.includes('definition_checked'),!term.tags.includes('definition_checked'));
+    for(const field of ['authorship','evidenceStrength','definitionStatus','stage','review'])assert.ok(!Object.hasOwn(row.changes,field));
+  }
+  assert.ok(document.querySelector('#desk-continue-publish'));
+  click('#desk-continue-publish');
+  assert.match(document.querySelector('#bulk-confirm-error').textContent,/Confirm.*reviewed.*publication/);
+  const handoff=createPublicationRequest(request);assert.equal(handoff.blocked,false);
+  const url=new URL(handoff.url);
+  assert.equal(url.origin,'https://github.com');
+  const issue={action:'opened',repository:{full_name:'exemptus9/idunnopoetry-museum',private:false},sender:{login:'exemptus9'},
+    issue:{number:123,state:'open',user:{login:'exemptus9'},title:url.searchParams.get('title'),body:url.searchParams.get('body')}};
+  const bridge=spawnSync('python3',['-c',`
+import json,sys
+from pathlib import Path
+sys.path.insert(0,'scripts')
+from lexical_issue import apply_issue
+from lexical_editor import verify_history
+p=Path('museum-static/observatory');original=(p/'public.json').read_bytes()
+c=json.loads(original);h=json.loads((p/'history.json').read_text());event=json.load(sys.stdin)
+after,ledger,summary=apply_issue(c,h,event,actor='exemptus9',repository='exemptus9/idunnopoetry-museum',event_name='issues',ref='refs/heads/main')
+request=json.loads(event['issue']['body'].split('\x60\x60\x60json\\n',1)[1].rsplit('\\n\x60\x60\x60',1)[0])
+for row in request['changes']:
+ previous=next(t for t in c['terms'] if t['id']==row['id'])
+ current=next(t for t in after['terms'] if t['id']==row['id'])
+ assert ('definition_checked' in current['tags']) != ('definition_checked' in previous['tags'])
+ assert current['revision']==previous['revision']+1
+verify_history(ledger)
+assert (p/'public.json').read_bytes()==original
+print(json.dumps({'issueNumber':summary['issueNumber'],'changes':ledger['events'][-1]['snapshot']['changes']}))
+`],{cwd:new URL('../',import.meta.url),input:JSON.stringify(issue),encoding:'utf8'});
+  assert.equal(bridge.status,0,bridge.stderr);assert.deepEqual(JSON.parse(bridge.stdout),{issueNumber:123,changes:2});
+  assertions.push('two-record checklist stages review-only changes and its decoded GitHub issue handoff applies through the real owner bridge/controller in memory');
 }
 
 assert.deepEqual(failures, [], `Application errors: ${failures.join('; ')}`);

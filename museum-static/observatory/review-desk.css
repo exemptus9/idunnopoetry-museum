@@ -1,0 +1,65 @@
+/* Load after observatory.css. Scoped to the public owner-review route. */
+.owner-review-desk { padding-bottom:100px; }
+.desk-heading { display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-block:2.3rem 1.2rem; }
+.desk-heading h2 { font-size:2rem; }
+.desk-heading>p { max-width:340px;color:var(--ink-soft);font-size:.8rem; }
+.desk-queue-buttons { display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem; }
+.desk-queue-buttons button { display:flex;align-items:center;gap:.8rem;min-height:42px;background:#fcfaf2;border:1px solid #b9c7b1;padding:.5rem .8rem;font-size:.72rem; }
+.desk-queue-buttons button[aria-pressed="true"] { color:#fffef4;background:var(--ink);border-color:var(--ink); }
+.desk-queue-buttons span { font-size:.6rem;opacity:.8; }
+.owner-review-desk .review-card { padding:1rem; }
+.owner-review-desk .review-card>p:not(.review-reason) { display:none; }
+.owner-review-desk .review-card>.review-labels { margin-top:.7rem;gap:.25rem; }
+.owner-review-desk .review-labels>span { font-size:.54rem; }
+.owner-review-desk .review-card>.review-reason { margin-top:.65rem;font-size:.68rem; }
+.owner-review-desk .review-card-heading h3 { font-size:1.4rem; }
+.owner-review-desk .review-card details { margin-top:.65rem; }
+.owner-review-desk .review-card-actions { margin-top:.6rem;gap:.8rem; }
+.owner-review-desk .review-card-actions .text-button { min-height:30px;font-size:.65rem; }
+.desk-record-checklist { padding:.9rem;border:1px solid #b9c9b3;background:#eaf0e1;margin:1rem 0; }
+.desk-record-checklist legend { font-size:.65rem;padding:0 .35rem;letter-spacing:.03em; }
+.desk-record-checklist label { display:flex;gap:.7rem;align-items:center;font-size:.75rem;margin-block:.45rem; }
+.desk-record-checklist input { width:19px;min-height:19px;margin:0;accent-color:var(--teal);flex-shrink:0; }
+.desk-record-checklist p { color:var(--ink-soft);font-size:.65rem!important; }
+.desk-quick-actions>div { display:grid;grid-template-columns:1fr 1fr;gap:.45rem; }
+.desk-quick-actions .button { padding:.6rem;font-size:.65rem;min-height:44px; }
+.desk-quick-actions>label { display:block;margin-top:1rem; }
+.desk-quick-actions select { font-size:.75rem; }
+.desk-quick-actions>.small-meta { margin-block:.75rem; }
+.desk-advanced { padding-top:1rem;margin-top:1rem;border-top:1px solid #bacab2; }
+.desk-advanced>summary { font-size:.75rem;cursor:pointer; }
+.desk-advanced .author-form { margin-top:1rem; }
+.desk-tray { position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:15;width:min(1120px,calc(100% - 36px));padding:.8rem 1rem;background:#eff3e7;box-shadow:0 4px 30px #142e3233;border:1px solid #839e88;display:flex;align-items:center;justify-content:space-between;gap:1rem; }
+.desk-tray>p { font-size:.72rem;font-weight:600;max-width:250px; }
+.desk-tray>div { display:flex;align-items:center;gap:.7rem; }
+.desk-tray .button { padding:.7rem .85rem;gap:.5rem;font-size:.7rem; }
+.desk-tray .text-button { font-size:.65rem; }
+.desk-tray select { font-size:.72rem;min-width:160px; }
+.desk-publication-handoff { background:#e7efdd;border:1px solid #a7bea0;padding:1.3rem;margin-block:1.5rem; }
+.desk-publication-handoff h3 { font-size:1.6rem; }
+.desk-publication-handoff p { font-size:.8rem;margin-top:.8rem; }
+.desk-publication-handoff button { margin-top:1rem; }
+@media(max-width:900px) {
+  .desk-tray { flex-wrap:wrap;gap:.6rem; }
+  .desk-tray>p { max-width:none;flex-basis:100%; }
+  .owner-review-desk { padding-bottom:135px; }
+}
+@media(max-width:600px) {
+  .desk-heading { display:block; }
+  .desk-heading>p { margin-top:.8rem; }
+  .desk-queue-buttons { gap:.4rem; }
+  .desk-queue-buttons button { flex:1;min-width:130px;font-size:.67rem;justify-content:space-between; }
+  .owner-review-desk .review-layout { display:flex;flex-direction:column; }
+  .owner-review-desk .review-queue { width:100%;order:0; }
+  .owner-review-desk .bulk-controls { order:1;width:100%; }
+  .desk-tray { bottom:0;width:100%;padding:.6rem .8rem;border-inline:0;gap:.5rem; }
+  .desk-tray>p { font-size:.65rem; }
+  .desk-tray>div { gap:.4rem; }
+  .desk-tray .desk-tray-action { flex:1; }
+  .desk-tray select { min-width:0;font-size:.67rem;min-height:40px; }
+  .desk-tray .button { padding:.6rem;font-size:.62rem;min-height:40px; }
+  .desk-tray .text-button { font-size:.6rem; }
+  .owner-review-desk { padding-bottom:155px; }
+  .desk-publication-handoff button { width:100%; }
+}
+@media(prefers-reduced-motion:reduce) { .desk-tray { transition:none; } }

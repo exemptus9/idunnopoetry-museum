@@ -13,51 +13,28 @@ second public catalog. Private originals must stay outside this repository and
 deployment directories. Neither the browser form nor GitHub Actions is a
 private notebook.
 
-## What is currently in the catalog
+## Begin at the Author's desk
 
-The reconciled release contains 132 public working records: 12 in Lexicon, 120
-in Forge, and none in Canon. All have a working definition, naming-role
-description, or explicitly provisional interpretation; this does not mean 132 accepted definitions or
-original coinages have been established.
+Open the [Author's desk](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review)
+to inspect records, source summaries, and review questions. Open
+[Capture & edit](https://exemptus9.github.io/idunnopoetry-museum/observatory/#author)
+to create or change an individual public entry. Record counts change as recovery
+and publication continue; the current catalog and queue supply the current totals.
 
-| Definition basis | Records | What it means |
-|---|---:|---|
-| `author_supplied` | 12 | The supplied project definitions; not automatic Canon approval. |
-| `conversation_recovered` | 81 | Recovered conversation wording, including explicit naming roles, with user wording, assistant proposals, and acceptance uncertainty distinguished in the evidence summaries. |
-| `archive_recovered` | 26 | Recovered archival definitions or working readings; this does not independently establish original authorship. |
-| `inferred` | 13 | Explicitly labelled provisional readings where a settled definition was not recovered. |
+Working definitions, recovered conversation wording, explicit interpretations,
+and pending-definition captures remain distinct. Inclusion does not establish
+originality or sole authorship. A resolved operational review is not a Canon
+decision. AI proposals cannot establish authorship, etymology, a coinage date,
+or Canon approval. Unknown dates stay unknown.
 
-The last group includes newly inferred readings of Inner-linking, Sweetrepeats,
-Hurri-canary, Raincarnation, ReBased in Graces, and Max Para-noy-mee-ya! These are
-usable working interpretations under the delegated publication policy, not
-recovered author-approved endpoints. AI hypotheses remain visibly separate from
-the definition and its evidence basis. AI output cannot approve Canon or
-establish authorship, etymology, originality, or a coinage date.
-
-The current classifications are 56 `coinage_candidate`, 25 `literary_wordplay`,
-16 `concept_label`, 13 `ai_suggestion`, 5 `expression`, 5
-`existing_form_reinterpreted`, and 12 `proper_name`. These distinguish experimental
-words, literary readings, proposed conceptual labels, AI-origin candidates,
-expressions, existing forms, and names; they are not a count of original words.
-The schema also allows `term_seed`, `unclassified`, and `existing_term` when
-appropriate. The final scope adds ten crafted project names with recovered
-naming roles: RhymeMosaic, techEnlight, MindVault, EchoLens, Total Recall,
-Artificial Continuity, Forge Lexicon, Lexical Observatory, Word Archive, and
-IDunnoPoetry. They are proper names, not automatically original dictionary
-coinages. Source dates not recovered remain unknown. In total, 60 records were
-added to the 72-record baseline: 50 lexical candidates and these ten names.
-
-There are 52 open review records and 80 resolved operational reviews, including
-11 records flagged for definition conflicts. A resolved review is not a Canon
-decision. The snapshot contains 33 inferred relationships, 237 public definition
-versions, and 137 public source summaries. Source summaries are not 137
-independent primary documents. Recovery inspected a 1,329-post public archive
-snapshot and focused conversation summaries; it did not exhaustively inspect
-every chat, manuscript, or private archive.
+The [Language Laboratory](https://exemptus9.github.io/idunnopoetry-museum/observatory/#laboratory)
+provides on-device blend experiments and an optional local specimen shelf.
+Keeping an experiment there does not publish it or create an archival record.
+See the [laboratory guide](lexical-laboratory.md) for shuffle behavior and offline limits.
 
 ## Use the public author form
 
-Open the [author workspace](https://exemptus9.github.io/idunnopoetry-museum/observatory/#author).
+Open [Capture & edit](https://exemptus9.github.io/idunnopoetry-museum/observatory/#author).
 For a particular entry, use a link such as
 [`#author?term=suffralchemy`](https://exemptus9.github.io/idunnopoetry-museum/observatory/#author?term=suffralchemy).
 The value after `term=` is its permanent slug.
@@ -69,22 +46,40 @@ The value after `term=` is its permanent slug.
    provenance summary. Array fields use JSON, for example `["language", "wordplay"]`.
    Preserve an unknown historical date as unknown; publication time is not
    invention time.
-3. Type the exact intention shown by the form: `PUBLISH Headword`, or
-   `WITHDRAW Headword` when withdrawing. Canon additionally requires the separate
+3. Check the generated **Public action to approve**: `PUBLISH Headword`, or
+   `WITHDRAW Headword` when withdrawing. Canon additionally requires typing the separate
    `APPROVE CANON Headword` confirmation. Confirm that the submitted material is
    intended for public revision history.
 4. Select **Preview public change** and read the comparison. Nothing has been
-   written at this point. Select **Copy change & open GitHub**, or copy/download
-   the displayed JSON manually.
-5. On the [Lexical public editor workflow](https://github.com/exemptus9/idunnopoetry-museum/actions/workflows/lexical-editor.yml),
+   written at this point. Choose **Continue to publish on GitHub** for a small
+   request, sign in as **exemptus9**, and inspect the prefilled public issue.
+   Keep its generated title, approval sentence, marker, and JSON envelope intact.
+5. Choose GitHub's **Submit new issue** to give final approval and start the
+   [owner publication workflow](https://github.com/exemptus9/idunnopoetry-museum/actions/workflows/lexical-publication-request.yml).
+   Submission does not guarantee a successful commit, deployment, or live
+   verification. Inspect the Actions result and resulting public entry.
+
+The prefilled issue handoff is blocked when the **full encoded URL exceeds
+6,000 characters**, not when the JSON alone reaches that size. Opening the
+request does not submit it. Only an issue originally opened by `exemptus9` in
+the authoritative repository on trusted `main`, with the exact title
+`Lexical Observatory: approved public change` and approval envelope, is accepted.
+Editing an issue or adding a comment does not create a new approval event.
+No live owner issue submission is implied by this guide.
+
+For a larger request, or if the issue handoff is unavailable, retain the existing
+workflow fallback:
+
+1. Select **Copy change & open GitHub**, or copy/download the exact preview JSON.
+2. On the [Lexical public editor workflow](https://github.com/exemptus9/idunnopoetry-museum/actions/workflows/lexical-editor.yml),
    sign in as the repository owner, `exemptus9`. Choose **Run workflow**, select
    **main**, and paste the exact JSON into **change_json**. Leave **commit**
    unchecked and run it to validate and preview the request.
-6. Read the run summary and checks. To publish, dispatch the same JSON again on
+3. Read the run summary and checks. To publish, dispatch the same JSON again on
    **main**, this time with **commit checked**. A successful run applies the
    change, runs the archive checks, commits the public snapshot, deploys Pages,
    and verifies the resulting release.
-7. Check that run's result and open the updated entry. A queued or failed run,
+4. Check that run's result and open the updated entry. A queued or failed run,
    a copied JSON request, or a successful preview is not a published change.
 
 The browser collects no GitHub token and does not directly mutate the catalog.
@@ -160,29 +155,46 @@ there is no separate hidden draft store behind this public editor.
 
 ## Review queue and atomic bulk changes
 
-Open the [review queue](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review),
+Open the [Author's desk](https://exemptus9.github.io/idunnopoetry-museum/observatory/#review),
 or use `#review?term=slug` from a word's **Flag / categorize** link. This public
 workspace filters by review state, flag, definition basis, classification,
 lifecycle stage, and tag. Review state is `open`, `resolved`, or `deferred`.
 Definition basis is `author_supplied`, `conversation_recovered`,
 `archive_recovered`, `inferred`, or `unknown`; it describes evidence, not approval.
 
-1. Filter the queue and select entries. Selection persists when filters change;
+1. Choose an actionable queue, inspect the definition and public source
+   summaries, and expand the record checklist. **Definition checked**,
+   **Authorship examined**, and **Source evidence examined** stage review tags.
+   They do not change attribution, evidence strength, or Canon. Explicit
+   **Stage authorship decision** and **Stage evidence assessment** controls
+   change those public claims and require source examination.
+2. Filter the queue and select entries. Selection persists when filters change;
    check the selected count. **Select all matching** replaces the selection and,
    when more than 100 match, explicitly selects only the first 100 alphabetically.
-2. Add operations for tags, collections, domains, classification, formation,
+3. Use the quick actions or **More metadata actions** for tags, collections,
+   domains, classification, formation, authorship, evidence strength,
    definition status, evidence basis, review state, or review flags. Adding a flag
    automatically reopens review; a later explicit state operation may resolve or
    defer it. **Flag for author review** prepares an `author_decision` flag and an
    open review. It does not publish immediately.
-3. Use **Preview selected changes** and inspect each before/after record. Entries
+4. Choose **Review & publish** or **Preview selected changes** and inspect each
+   before/after record. Entries
    unchanged by the operations are omitted. Definition text itself is edited in
    the individual author form; a bulk evidence/status change does not prove a
    definition's accuracy.
-4. Confirm public consent and type the displayed exact intention,
-   `APPLY N PUBLIC CHANGES`, using the actual changed-record count. Copy the batch
-   into the same owner workflow, preview with **commit unchecked**, then publish
-   the identical reviewed JSON with **commit checked**.
+5. Confirm public consent, then choose **Continue to publish on GitHub** and
+   approve the prefilled issue as described above. For the larger workflow
+   fallback, type `APPLY N PUBLIC CHANGES` using the actual changed-record count,
+   copy the batch, preview with **commit unchecked**, then publish the identical
+   reviewed JSON with **commit checked**.
+
+Checking, staging, and previewing do not save changes. Unfinished desk work is
+not persisted locally. Per-record staged decisions remain staged even when
+filters hide their records; inspect the staged count and full preview.
+**Undo staged decisions** removes an entry's staged operations, while **Clear
+staged** clears staged decisions and shared operations. **Use recovered definition**
+keeps existing developed wording and its already recorded recovery basis; it
+does not recover missing definitions. See [bulk review](lexical-bulk-review.md).
 
 A prepared batch is limited to 100 entries, 60,000 JSON characters, and the
 150-KB backend request limit, with additional allowance for GitHub's input
@@ -264,7 +276,10 @@ new lexical database merely to bypass the paused prototype.
 The editor implementation is
 [`scripts/lexical_editor.py`](../scripts/lexical_editor.py), its workflow is
 [`.github/workflows/lexical-editor.yml`](../.github/workflows/lexical-editor.yml),
-and behavior checks are in
+and the original-owner issue adapter is
+[`scripts/lexical_issue.py`](../scripts/lexical_issue.py), with workflow
+[`.github/workflows/lexical-publication-request.yml`](../.github/workflows/lexical-publication-request.yml).
+Behavior checks are in
 [`scripts/test_lexical_editor.py`](../scripts/test_lexical_editor.py).
 The owner workflow validates first and, when **commit** is checked, runs the
 publication/archive regressions before committing and deploying. A concurrent

@@ -43,12 +43,21 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: scripts/dom-tests/package-lock.json
+      - name: Install isolated DOM test dependencies
+        run: npm ci --prefix scripts/dom-tests --ignore-scripts --no-audit --no-fund
+
       - name: Verify archive preservation and scripts
         run: |
           python -m unittest discover -s scripts -p 'test_*.py' -v
           node --check museum-static/museum.js
           node --check museum-static/version.js
           node --check museum-static/data/version-history.js
+          node scripts/test_lexical_dom.mjs
 
       - name: Render and verify release preview
         run: |

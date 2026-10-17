@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {normalizeCatalog} from '../museum-static/observatory/model.js';
-import {buildReviewBatch,filterReviewTerms} from '../museum-static/observatory/review.js';
+import {buildReviewBatch,filterReviewTerms,deskActionOperations} from '../museum-static/observatory/review.js';
+import {createPublicationRequest,PUBLIC_REQUEST_PREFIX,PUBLIC_REQUEST_TITLE} from '../museum-static/observatory/public-request.js';
 
 const row=(id,extra={})=>({id,slug:`entry-${id}`,headword:`Example ${id}`,visibility:'approved_public',revision:3,stage:'forge',definition:'A developed illustrative meaning.',definitionStatus:'working_definition',classification:'coinage_candidate',formation:'blend',tags:['existing'],collections:['Collection one'],domains:['Language'],review:{state:'open',flags:['source_needed'],definitionBasis:'conversation_recovered',note:'A public review reason.'},...extra});
 const catalog=(rows=[row('a'),row('b')])=>normalizeCatalog({terms:rows,relations:[],versions:[]});
@@ -55,4 +56,40 @@ test('unsupported review operations and missing selections fail before generatin
   assert.throws(()=>buildReviewBatch(catalog(),[],[op('tags','new','add')]),/Select at least/);
   assert.throws(()=>buildReviewBatch(catalog(),['a'],[op('privateNotes','bad')]),/not supported/);
   assert.throws(()=>buildReviewBatch(catalog(),['a'],[op('review.flags','invented_flag','add')]),/supported review flag/);
+});
+test('checklist actions preserve uncertainty and never fabricate authorship or Canon approval',()=>{
+  const c=catalog(),term=c.terms[0];
+  const result=buildReviewBatch(c,['a'],deskActionOperations('definition_checked',term));
+  assert.deepEqual(result.request.changes[0].changes,{tags:['existing','definition_checked']});
+  assert.ok(!Object.hasOwn(result.request.changes[0].changes,'definitionStatus'));assert.ok(!Object.hasOwn(result.request.changes[0].changes,'authorship'));assert.ok(!Object.hasOwn(result.request.changes[0].changes,'evidenceStrength'));
+  assert.throws(()=>deskActionOperations('recovered',{...term,review:{...term.review,definitionBasis:'inferred'}}),/no recovered source basis/);
+  const recovered=buildReviewBatch(c,['a'],deskActionOperations('recovered',term));assert.equal(recovered.request.changes[0].changes.definitionStatus,'conversation_recovered');
+});
+test('different per-record checklist decisions merge into one atomic batch without crossing records',()=>{
+  const c=catalog();
+  const result=buildReviewBatch(c,['a','b'],[],'A public checklist batch',{a:deskActionOperations('definition_checked',c.terms[0]),b:deskActionOperations('resolve',c.terms[1])});
+  assert.deepEqual(result.request.changes[0].changes,{tags:['existing','definition_checked']});
+  assert.equal(result.request.changes[1].changes.review.state,'resolved');assert.ok(!Object.hasOwn(result.request.changes[1].changes,'tags'));
+  assert.equal(result.request.confirmBatch,'APPLY 2 PUBLIC CHANGES');
+});
+test('explicit authorship and evidence assessments use existing supported public fields only',()=>{
+  const result=buildReviewBatch(catalog(),['a'],[op('authorship','Created by the author (author confirmed)'),op('evidenceStrength','supported')]);
+  assert.equal(result.request.changes[0].changes.authorship,'Created by the author (author confirmed)');assert.equal(result.request.changes[0].changes.evidenceStrength,'supported');assert.ok(!Object.hasOwn(result.request.changes[0].changes,'canonApproval'));
+  assert.throws(()=>buildReviewBatch(catalog(),['a'],[op('evidenceStrength','99% original')]),/qualitative|supported/);
+});
+test('actionable desk queues use actual evidence/review metadata and preserve source records',()=>{
+  const c=catalog([row('a'),row('b',{definition:'',definitionStatus:'awaiting_definition',authorship:'Origin undetermined',review:{state:'deferred',flags:['attribution_review'],definitionBasis:'inferred',note:''}})]);
+  assert.deepEqual(filterReviewTerms(c,{queue:'definitions'}).map(term=>term.id),['b']);
+  assert.deepEqual(filterReviewTerms(c,{queue:'sources'}).map(term=>term.id),['a']);
+  assert.deepEqual(filterReviewTerms(c,{queue:'inferred'}).map(term=>term.id),['b']);
+  assert.deepEqual(filterReviewTerms(c,{queue:'open'}).map(term=>term.id),['a']);
+});
+test('publication request uses exact owner-approval marker/title with one encoding pass and no credentials',()=>{
+  const request={action:'update',id:'a',expectedRevision:3,changes:{definition:'A & B + C?'},confirmPublication:'PUBLISH Example a'};
+  const handoff=createPublicationRequest(request);assert.equal(handoff.blocked,false);
+  const url=new URL(handoff.url);assert.equal(url.origin,'https://github.com');assert.equal(url.pathname,'/exemptus9/idunnopoetry-museum/issues/new');assert.equal(url.searchParams.get('title'),PUBLIC_REQUEST_TITLE);
+  const body=url.searchParams.get('body');assert.ok(body.startsWith(PUBLIC_REQUEST_PREFIX));assert.ok(body.endsWith('```\n'));assert.ok(body.includes('A & B + C?'));assert.equal(url.username,'');assert.equal(url.password,'');
+});
+test('large issue handoffs fall back to the authenticated workflow rather than a truncated request',()=>{
+  const result=createPublicationRequest({action:'batch',publicNote:'x'.repeat(6000)});assert.equal(result.blocked,true);assert.equal(result.url,'');assert.ok(result.workflowUrl.endsWith('/lexical-editor.yml'));assert.ok(result.encodedLength>6000);
 });
