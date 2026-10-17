@@ -1,4 +1,7 @@
-// Configuration intentionally empty until owner-controlled Supabase project is provisioned.
-// Project URL and publishable key are safe for a public browser ONLY with verified RLS.
-// NEVER put a service-role key, database password or private Vault token here.
-window.IDP_CMS_CONFIG = { url: '', publishableKey: '' };
+// Museum editorial project: publishable public client configuration only.
+// All private drafts require Auth plus allowlisted curator role and RLS.
+// NEVER publish service_role/secret keys, credentials, or private archive data.
+window.IDP_CMS_CONFIG = {
+  url: 'https://csqhnfoxyioazxyvhufu.supabase.co',
+  publishableKey: 'sb_publishable_A8jXCGjN3fJa-0PNoFHCYw_kSNoWFrJ'
+};
