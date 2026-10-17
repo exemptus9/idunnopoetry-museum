@@ -56,5 +56,13 @@ jobs:
           node --check museum-static/admin/cms-config.js
       - name: Deployable static Museum release is internally consistent
         run: python scripts/check_release.py --source-only
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: scripts/dom-tests/package-lock.json
+      - name: Install isolated DOM test dependencies
+        run: npm ci --prefix scripts/dom-tests --ignore-scripts --no-audit --no-fund
+
       - name: PostgreSQL RLS + owner/editor/publication integration tests
         run: psql -v ON_ERROR_STOP=1 -f scripts/test_museum_backend.sql

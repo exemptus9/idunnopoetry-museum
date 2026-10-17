@@ -27,6 +27,14 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: scripts/dom-tests/package-lock.json
+      - name: Install isolated DOM test dependencies
+        run: npm ci --prefix scripts/dom-tests --ignore-scripts --no-audit --no-fund
+
       - name: Unit and privacy tests
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
       - name: JavaScript and release syntax
