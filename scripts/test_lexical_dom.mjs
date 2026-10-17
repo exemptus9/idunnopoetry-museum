@@ -84,6 +84,12 @@ const entry = document.querySelector('.word-card h3 a');
 assert.match(entry.getAttribute('href'), /^word\/[^/]+\/$/, 'Actual links must carry crawler-readable word metadata.');
 entry.dispatchEvent(new window.MouseEvent('click',{bubbles:true,cancelable:true,button:0}));
 assert.ok(new URLSearchParams(location.search).get('term'), 'A normal card click opens the interactive word view.');
+route('', '#archive');
+document.querySelector('.archive-filters').open=true;
+const sortControl=document.querySelector('#search-form').elements.sort;
+sortControl.focus();sortControl.value='alphabetical';sortControl.dispatchEvent(new window.Event('change',{bubbles:true}));
+assert.equal(document.activeElement.name,'sort','Refining a filter retains focus.');
+assert.equal(document.querySelector('.archive-filters').open,true,'Refining a filter retains the open controls.');
 assertions.push('canonical card links, compact pending cards, and optional archive filters');
 
 
