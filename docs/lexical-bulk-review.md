@@ -156,3 +156,7 @@ each entry. Future owner-authenticated dispatches record `owner_action`.
 GitHub authentication, repository-owner checks, and the trusted main-branch
 workflow protect writes. Browser code only prepares public change requests and
 does not collect GitHub tokens. No recurring service or paid API is introduced.
+
+### Adopting an AI reading
+
+When a record has a distinct AI hypothesis, its review drawer shows the exact proposal and an optional **Use this proposed reading as the working definition** checkbox. This stages an inferred definition for the before/after preview; it preserves authorship and history and does not approve Canon. Unchecking reverses that staged adoption. Publication still requires your owner-authenticated GitHub approval.

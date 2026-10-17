@@ -22237,6 +22237,315 @@
       ],
       "previousHash": "317f187c9a1fc8cff99388a645a56a043195a5b864a2b5b925e3a1f6b9b2693b",
       "hash": "a302733e904e8a26ed929eee8cd71ae5dd2b4788d91bdffe015688506964fcaa"
+    },
+    {
+      "actor": "assistant_editor",
+      "action": "update",
+      "approvalMethod": "author_delegated_editorial_review",
+      "termId": "lex-de-smyth",
+      "slug": "de-smyth",
+      "revision": 2,
+      "recordedAt": "2026-10-17T00:13:49.405554Z",
+      "publicNote": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval.",
+      "snapshot": {
+        "id": "lex-de-smyth",
+        "slug": "de-smyth",
+        "headword": "de-Smyth",
+        "term": "de-Smyth",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 2,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "The creative archive preserves this literary title or experimental form; an independent lexical meaning remains unresolved. This attestation does not establish original invention, sole authorship, or Canon status. Published under delegated editorial permission. Publication and source documentation are distinct from invention dates.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "literary_wordplay",
+        "editorialReview": {
+          "shortReason": "Attested form; accepted definition not recovered. An earlier assistant interpretation is available separately for author review. Canon has not been approved."
+        },
+        "collections": [
+          "Literary wordplay"
+        ],
+        "tags": [],
+        "analysis": {
+          "kind": "ai_hypothesis",
+          "limitations": "Recovered prior assistant interpretation, not an accepted authorial definition, verified origin, or Canon meaning. The entry definition remains empty pending an explicit editorial decision.",
+          "formationProposal": "An earlier assistant associated the form with de-Smith and de-myth; this is a recovered interpretation, not verified etymology.",
+          "interpretationProposal": "Unmaking a received identity or story so a more self-authored one can take shape.",
+          "distinctionQuestion": "Does this earlier assistant reading match the intended literary meaning, and should it become a lexical definition?"
+        },
+        "witnesses": [
+          {
+            "id": "lex-de-smyth-extended-source",
+            "visibility": "approved_public",
+            "label": "Creative-archive lexical record — public summary only",
+            "publicSummary": "The creative archive preserves this literary title or experimental form; an independent lexical meaning remains unresolved. This attestation does not establish original invention, sole authorship, or Canon status.",
+            "approvedExcerpt": "",
+            "sourceDate": "",
+            "evidence": "reported",
+            "url": ""
+          },
+          {
+            "id": "lex-de-smyth-recovered-assistant-reading",
+            "visibility": "approved_public",
+            "label": "Recovered assistant witness — public lexical summary",
+            "publicSummary": "An earlier assistant conversation witness provides a literary interpretation of this form. The sanitized reading is presented only as a separate AI hypothesis; no author-accepted definition is established. The source date identifies the conversation witness, not invention or editorial approval.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-07-02",
+            "evidence": "reported",
+            "url": ""
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-10-17T00:13:49.405554Z",
+          "approvedRevision": 2,
+          "approvalMethod": "author_delegated_editorial_review"
+        },
+        "permalink": "word/de-smyth/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision",
+            "definition_needed",
+            "classification_review"
+          ],
+          "definitionBasis": "unknown",
+          "note": "The definition remains empty. A prior assistant interpretation has been recovered and displayed separately as an AI hypothesis; no author-approved lexical endpoint was found."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-de-smyth",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:06:57.237025Z",
+          "note": "Delegated recovery publication of source-grounded lexical wording or an attested experimental form. No new semantic interpretation or Canon approval."
+        },
+        {
+          "termId": "lex-de-smyth",
+          "version": 2,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:13:49.405554Z",
+          "note": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval."
+        }
+      ],
+      "previousHash": "a302733e904e8a26ed929eee8cd71ae5dd2b4788d91bdffe015688506964fcaa",
+      "hash": "2ef90e7eeda759e77591e34fa9964bdfed6e7da7bf10a8f858045d130e00d0cf"
+    },
+    {
+      "actor": "assistant_editor",
+      "action": "update",
+      "approvalMethod": "author_delegated_editorial_review",
+      "termId": "lex-meta-metta",
+      "slug": "meta-metta",
+      "revision": 2,
+      "recordedAt": "2026-10-17T00:13:49.405554Z",
+      "publicNote": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval.",
+      "snapshot": {
+        "id": "lex-meta-metta",
+        "slug": "meta-metta",
+        "headword": "Meta-Metta",
+        "term": "Meta-Metta",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 2,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "The creative archive preserves this literary title or experimental form; an independent lexical meaning remains unresolved. This attestation does not establish original invention, sole authorship, or Canon status. Published under delegated editorial permission. Publication and source documentation are distinct from invention dates.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "literary_wordplay",
+        "editorialReview": {
+          "shortReason": "Attested form; accepted definition not recovered. An earlier assistant interpretation is available separately for author review. Canon has not been approved."
+        },
+        "collections": [
+          "Literary wordplay"
+        ],
+        "tags": [],
+        "analysis": {
+          "kind": "ai_hypothesis",
+          "limitations": "Recovered prior assistant interpretation, not an accepted authorial definition, verified origin, or Canon meaning. The entry definition remains empty pending an explicit editorial decision.",
+          "formationProposal": "An earlier assistant associated meta-metta with recursive loving-kindness and metacognition; the intended formation has not been confirmed.",
+          "interpretationProposal": "Recursive loving-kindness linked to reflecting on one’s own thinking.",
+          "distinctionQuestion": "Does this earlier assistant reading match the intended literary meaning, and should it become a lexical definition?"
+        },
+        "witnesses": [
+          {
+            "id": "lex-meta-metta-extended-source",
+            "visibility": "approved_public",
+            "label": "Creative-archive lexical record — public summary only",
+            "publicSummary": "The creative archive preserves this literary title or experimental form; an independent lexical meaning remains unresolved. This attestation does not establish original invention, sole authorship, or Canon status.",
+            "approvedExcerpt": "",
+            "sourceDate": "",
+            "evidence": "reported",
+            "url": ""
+          },
+          {
+            "id": "lex-meta-metta-recovered-assistant-reading",
+            "visibility": "approved_public",
+            "label": "Recovered assistant witness — public lexical summary",
+            "publicSummary": "An earlier assistant conversation witness provides a literary interpretation of this form. The sanitized reading is presented only as a separate AI hypothesis; no author-accepted definition is established. The source date identifies the conversation witness, not invention or editorial approval.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-05-24",
+            "evidence": "reported",
+            "url": ""
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-10-17T00:13:49.405554Z",
+          "approvedRevision": 2,
+          "approvalMethod": "author_delegated_editorial_review"
+        },
+        "permalink": "word/meta-metta/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision",
+            "definition_needed",
+            "classification_review"
+          ],
+          "definitionBasis": "unknown",
+          "note": "The definition remains empty. A prior assistant interpretation has been recovered and displayed separately as an AI hypothesis; no author-approved lexical endpoint was found."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-meta-metta",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:06:57.237025Z",
+          "note": "Delegated recovery publication of source-grounded lexical wording or an attested experimental form. No new semantic interpretation or Canon approval."
+        },
+        {
+          "termId": "lex-meta-metta",
+          "version": 2,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:13:49.405554Z",
+          "note": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval."
+        }
+      ],
+      "previousHash": "2ef90e7eeda759e77591e34fa9964bdfed6e7da7bf10a8f858045d130e00d0cf",
+      "hash": "2aaeccb0dc29735a07b44863a1a0b23b55fc4a68eebe6f9469e2d0a549515d30"
+    },
+    {
+      "actor": "assistant_editor",
+      "action": "update",
+      "approvalMethod": "author_delegated_editorial_review",
+      "termId": "lex-chemeleon",
+      "slug": "chemeleon",
+      "revision": 2,
+      "recordedAt": "2026-10-17T00:13:49.405554Z",
+      "publicNote": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval.",
+      "snapshot": {
+        "id": "lex-chemeleon",
+        "slug": "chemeleon",
+        "headword": "chEmeleon",
+        "term": "chEmeleon",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 2,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [
+          "CHEMeleon"
+        ],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "An archived public post records this experimental form; a developed lexical definition was not recovered. This attestation does not establish original invention, sole authorship, or Canon status. Published under delegated editorial permission. Publication and source documentation are distinct from invention dates.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "literary_wordplay",
+        "editorialReview": {
+          "shortReason": "Attested form; definition not recovered. Attribution and intent remain under review. Canon has not been approved."
+        },
+        "collections": [
+          "Literary wordplay"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-chemeleon-extended-source",
+            "visibility": "approved_public",
+            "label": "Archived public-post lexical record",
+            "publicSummary": "An archived public post records this experimental form; a developed lexical definition was not recovered. This attestation does not establish original invention, sole authorship, or Canon status.",
+            "approvedExcerpt": "",
+            "sourceDate": "2025-10-02",
+            "evidence": "supported",
+            "url": ""
+          },
+          {
+            "id": "lex-chemeleon-recovered-capitalization",
+            "visibility": "approved_public",
+            "label": "Recovered assistant witness — public lexical summary",
+            "publicSummary": "A recovered assistant conversation witness records the capitalization CHEMeleon. It is retained as a possible capitalization variant, not a verified preferred-form correction or a separate definition. The source date identifies the conversation witness, not invention or editorial approval.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-09-14",
+            "evidence": "reported",
+            "url": ""
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-10-17T00:13:49.405554Z",
+          "approvedRevision": 2,
+          "approvalMethod": "author_delegated_editorial_review"
+        },
+        "permalink": "word/chemeleon/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision",
+            "definition_needed",
+            "classification_review",
+            "variant_review"
+          ],
+          "definitionBasis": "unknown",
+          "note": "The current preferred headword and empty definition are retained. A recovered assistant witness records CHEMeleon; deliberate capitalization and preferred form require author review."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-chemeleon",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:06:57.237025Z",
+          "note": "Delegated recovery publication of source-grounded lexical wording or an attested experimental form. No new semantic interpretation or Canon approval."
+        },
+        {
+          "termId": "lex-chemeleon",
+          "version": 2,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-10-17T00:13:49.405554Z",
+          "note": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval."
+        }
+      ],
+      "previousHash": "2aaeccb0dc29735a07b44863a1a0b23b55fc4a68eebe6f9469e2d0a549515d30",
+      "hash": "02d41832a3cc4fe30354987113cdc390da3df08a3f8f560873f649a2d9afe6a3"
     }
   ]
 }

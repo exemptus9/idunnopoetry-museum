@@ -93,3 +93,24 @@ test('publication request uses exact owner-approval marker/title with one encodi
 test('large issue handoffs fall back to the authenticated workflow rather than a truncated request',()=>{
   const result=createPublicationRequest({action:'batch',publicNote:'x'.repeat(6000)});assert.equal(result.blocked,true);assert.equal(result.url,'');assert.ok(result.workflowUrl.endsWith('/lexical-editor.yml'));assert.ok(result.encodedLength>6000);
 });
+test('adopting a proposed reading is an explicit inferred definition change with preserved identity and source history',()=>{
+  const proposal='A provisional reading that describes the space between an idea and its linguistic form.';
+  const c=catalog([row('a',{analysis:{kind:'ai_hypothesis',interpretationProposal:proposal,limitations:'Creative hypothesis only.'},review:{state:'deferred',flags:['definition_needed','source_needed'],definitionBasis:'unknown',note:'Preserve this public source question.'}})]),before=JSON.stringify(c);
+  const result=buildReviewBatch(c,['a'],deskActionOperations('adopt_analysis',c.terms[0]));
+  const changes=result.request.changes[0].changes;
+  assert.equal(changes.definition,proposal);assert.equal(changes.definitionStatus,'inferred_definition');assert.equal(changes.review.definitionBasis,'inferred');assert.equal(changes.review.state,'open');
+  assert.ok(!changes.review.flags.includes('definition_needed'));assert.ok(changes.review.flags.includes('meaning_inferred'));assert.ok(changes.review.flags.includes('author_decision'));assert.ok(changes.review.flags.includes('source_needed'));assert.equal(changes.review.note,'Preserve this public source question.');
+  for(const field of ['authorship','classification','stage','evidenceStrength'])assert.ok(!Object.hasOwn(changes,field));
+  assert.equal(result.proofs[0].before.definition,c.terms[0].definition);assert.equal(JSON.stringify(c),before);assert.equal(result.request.changes[0].expectedRevision,3);
+});
+test('proposed-reading adoption requires a distinct explicitly hypothetical proposal and excludes Canon',()=>{
+  const term=catalog().terms[0];
+  assert.throws(()=>deskActionOperations('adopt_analysis',term),/no distinct/);
+  assert.throws(()=>deskActionOperations('adopt_analysis',{...term,analysis:{kind:'ai_hypothesis',interpretationProposal:term.definition}}),/no distinct/);
+  assert.throws(()=>deskActionOperations('adopt_analysis',{...term,analysis:{kind:'unverified_import',interpretationProposal:'Something else'}}),/no distinct/);
+  assert.throws(()=>deskActionOperations('adopt_analysis',{...term,stage:'canon',analysis:{kind:'ai_hypothesis',interpretationProposal:'Something else'}}),/Canon/);
+});
+test('a Lexicon entry can retain its stage while a proposed reading remains explicitly inferred',()=>{
+  const c=catalog([row('a',{stage:'lexicon',analysis:{kind:'ai_hypothesis',interpretationProposal:'An alternative provisional definition.'}})]);
+  const result=buildReviewBatch(c,['a'],deskActionOperations('adopt_analysis',c.terms[0]));assert.equal(result.request.changes[0].changes.definitionStatus,'inferred_definition');assert.ok(!Object.hasOwn(result.request.changes[0].changes,'stage'));
+});

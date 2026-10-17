@@ -280,6 +280,80 @@ print(json.dumps({'issueNumber':summary['issueNumber'],'changes':ledger['events'
   assertions.push('two-record checklist stages review-only changes and its decoded GitHub issue handoff applies through the real owner bridge/controller in memory');
 }
 
+const adoptable=catalog.terms.find(term=>term.stage!=='canon'&&term.analysis?.kind==='ai_hypothesis'&&
+  typeof term.analysis.interpretationProposal==='string'&&term.analysis.interpretationProposal.trim()&&
+  term.analysis.interpretationProposal.trim()!==term.definition.trim());
+if(adoptable){
+  const originalPublic=fs.readFileSync(new URL('public.json',site));
+  const proposed=adoptable.analysis.interpretationProposal.trim();
+  route('',`#review?term=${adoptable.slug}`);
+  let checkbox=[...document.querySelectorAll('[data-desk-adopt]')].find(node=>node.dataset.deskAdopt===adoptable.id);
+  assert.ok(checkbox&&!checkbox.disabled,'A distinct hypothetical interpretation must expose its optional adoption checkbox.');
+  checkbox.checked=true;checkbox.dispatchEvent(new window.Event('change',{bubbles:true}));
+  assert.match(document.querySelector('#desk-staged-count').textContent,/1 records/);
+  checkbox=[...document.querySelectorAll('[data-desk-adopt]')].find(node=>node.dataset.deskAdopt===adoptable.id);
+  checkbox.checked=false;checkbox.dispatchEvent(new window.Event('change',{bubbles:true}));
+  assert.match(document.querySelector('#desk-staged-count').textContent,/0 records/);
+  checkbox=[...document.querySelectorAll('[data-desk-adopt]')].find(node=>node.dataset.deskAdopt===adoptable.id);
+  checkbox.checked=true;checkbox.dispatchEvent(new window.Event('change',{bubbles:true}));
+  click('#desk-preview');
+  const prepared=document.querySelector('#bulk-change-json');assert.ok(prepared,document.querySelector('#review-error').textContent);
+  const request=JSON.parse(prepared.value);assert.equal(request.changes.length,1);
+  const change=request.changes[0];
+  assert.equal(change.id,adoptable.id);assert.equal(change.expectedRevision,adoptable.revision);
+  assert.equal(change.changes.definition,proposed);assert.equal(change.changes.definitionStatus,'inferred_definition');
+  assert.equal(change.changes.review.definitionBasis,'inferred');
+  assert.ok(change.changes.review.flags.includes('meaning_inferred'));
+  assert.ok(change.changes.review.flags.includes('author_decision'));
+  assert.ok(!Object.hasOwn(change,'canonConfirmation'));
+  assert.ok(!Object.hasOwn(change.changes,'authorship'));assert.ok(!Object.hasOwn(change.changes,'evidenceStrength'));
+  const proof=document.querySelector('.bulk-proofs').textContent;
+  assert.ok(proof.includes(adoptable.definition)&&proof.includes(proposed),'The proof must expose the existing wording and exact proposed interpretation.');
+  assert.deepEqual(fs.readFileSync(new URL('public.json',site)),originalPublic,'Checking or previewing must not publish data.');
+  click('#desk-continue-publish');assert.match(document.querySelector('#bulk-confirm-error').textContent,/Confirm.*reviewed.*publication/);
+  document.querySelector('#bulk-public-consent').checked=true;
+  const realLocation=globalThis.location,navigations=[];
+  Object.defineProperty(globalThis,'location',{value:{href:realLocation.href,origin:realLocation.origin,pathname:realLocation.pathname,
+    search:realLocation.search,hash:realLocation.hash,assign:url=>navigations.push(url)},configurable:true});
+  try{click('#desk-continue-publish');await tick();}finally{Object.defineProperty(globalThis,'location',{value:realLocation,configurable:true});}
+  assert.equal(navigations.length,1,'Consented Continue must prepare one external handoff, not publish in the browser.');
+  const handoff=new URL(navigations[0]);assert.equal(handoff.origin,'https://github.com');
+  assert.equal(handoff.pathname,'/exemptus9/idunnopoetry-museum/issues/new');
+  const issue={action:'opened',repository:{full_name:'exemptus9/idunnopoetry-museum',private:false},sender:{login:'exemptus9'},
+    issue:{number:124,state:'open',user:{login:'exemptus9'},title:handoff.searchParams.get('title'),body:handoff.searchParams.get('body')}};
+  const bridge=spawnSync('python3',['-c',`
+import json,sys
+from pathlib import Path
+sys.path.insert(0,'scripts')
+from lexical_issue import apply_issue,validated_request
+from lexical_editor import verify_history
+p=Path('museum-static/observatory');original=(p/'public.json').read_bytes()
+c=json.loads(original);h=json.loads((p/'history.json').read_text());event=json.load(sys.stdin)
+context=dict(actor='exemptus9',repository='exemptus9/idunnopoetry-museum',event_name='issues',ref='refs/heads/main')
+request,_=validated_request(event,**context);change=request['changes'][0]
+previous=next(t for t in c['terms'] if t['id']==change['id'])
+after,ledger,summary=apply_issue(c,h,event,**context)
+current=next(t for t in after['terms'] if t['id']==change['id'])
+assert current['definition']==previous['analysis']['interpretationProposal'].strip()==change['changes']['definition']
+assert current['definitionStatus']=='inferred_definition'
+assert current['review']['definitionBasis']=='inferred'
+assert current['stage']==previous['stage'] and current['stage']!='canon'
+assert current['revision']==previous['revision']+1
+for field in ('authorship','evidenceStrength','provenanceSummary','witnesses','corpus','earliestVerifiedDate','analysis'):
+ assert current.get(field)==previous.get(field),(field,'was unexpectedly changed')
+assert ledger['events'][:len(h['events'])]==h['events']
+assert after['versions'][:len(c['versions'])]==c['versions']
+assert any((e.get('snapshot') or {}).get('definition')==previous['definition'] for e in h['events'] if e['termId']==previous['id'])
+assert (p/'public.json').read_bytes()==original
+verify_history(ledger)
+print(json.dumps({'issueNumber':summary['issueNumber'],'adopted':True,'stage':current['stage']}))
+`],{cwd:new URL('../',import.meta.url),input:JSON.stringify(issue),encoding:'utf8'});
+  assert.equal(bridge.status,0,bridge.stderr);
+  assert.deepEqual(JSON.parse(bridge.stdout),{issueNumber:124,adopted:true,stage:adoptable.stage});
+  assert.deepEqual(fs.readFileSync(new URL('public.json',site)),originalPublic);
+  assertions.push('optional AI-reading checkbox supports undo, exact before/after proof and consented owner issue handoff; controller retains inferred labels, attribution and full history without publishing');
+}
+
 assert.deepEqual(failures, [], `Application errors: ${failures.join('; ')}`);
 console.log(JSON.stringify({result: 'PASS', catalogTerms: raw.terms.length, flows: assertions}));
 window.close();
