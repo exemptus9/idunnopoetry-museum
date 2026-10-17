@@ -12,6 +12,7 @@ import re
 from datetime import date as calendar_date
 from pathlib import Path
 from urllib.parse import urlsplit
+from lexical_social import social_name, build_social
 
 STAGES = {"forge", "lexicon", "canon"}
 STRENGTHS = {"verified", "supported", "reported", "hypothetical", "unknown"}
@@ -178,6 +179,9 @@ def page(term, base, catalog=None):
     structured = {"@context": "https://schema.org", "@type": "DefinedTerm",
                   "name": term["headword"], "description": term["definition"], "url": canonical,
                   "inDefinedTermSet": base}
+    image = base + "social/" + social_name(term)
+    description = term["definition"] or "A word in the making. Definition pending."
+    image_alt = term["headword"] + ": " + (term["definition"] or "Definition pending.")
     metadata = json.dumps(structured, ensure_ascii=False).replace("<", "\\u003c")
     date = term["earliestVerifiedDate"] or "Not established"
     catalog = catalog or {'terms': [], 'relations': [], 'versions': []}
@@ -221,20 +225,35 @@ def page(term, base, catalog=None):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(term['headword'])} · Lexical Observatory</title>
-<meta name="description" content="{esc(term['definition'][:160], quote=True)}">
+<meta name="description" content="{esc(description[:160], quote=True)}">
 <meta name="robots" content="{robots}">
 <link rel="canonical" href="{canonical}"><meta property="og:type" content="article">
 <meta property="og:title" content="{esc(term['headword'], quote=True)} · Lexical Observatory">
-<meta property="og:description" content="{esc(term['definition'][:200], quote=True)}">
-<meta property="og:url" content="{canonical}"><link rel="stylesheet" href="../../observatory.css">
+<meta property="og:description" content="{esc(description[:200], quote=True)}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:site_name" content="Lexical Observatory">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="{image}"><meta property="og:image:secure_url" content="{image}">
+<meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{esc(image_alt[:500], quote=True)}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{esc(term['headword'], quote=True)} · Lexical Observatory">
+<meta name="twitter:description" content="{esc((term['definition'] or 'Definition pending.')[:200], quote=True)}">
+<meta name="twitter:image" content="{image}"><meta name="twitter:image:alt" content="{esc(image_alt[:500], quote=True)}">
+<meta name="theme-color" content="#193d38">
+<link rel="icon" href="../../favicon.ico" sizes="any"><link rel="icon" href="../../observatory-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../observatory.css">
 <script type="application/ld+json">{metadata}</script>
 <link rel="stylesheet" href="../../atelier.css">
 </head><body class="static-word"><header><img src="../../observatory-mark.svg" width="36" height="36" alt=""><a href="../../">Lexical Observatory</a><span>/ Word Archive</span></header>
-<main><p class="status">{esc(term['stage'].title())} · {esc(status)}</p>
-<h1>{esc(term['headword'])}</h1><p class="definition">{esc(term['definition'])}</p>
+<main id="main"><p class="status">{esc(term['stage'].title())} · {esc(status)}</p>
+<h1>{esc(term['headword'])}</h1><p class="definition">{esc(term['definition'] or "Definition pending.")}</p>
 <p class="muted">{esc(term.get('editorialReview', {}).get('shortReason', ''))}</p>
-<div class="actions"><a href="../../?term={term['slug']}">Open interactive genome</a><a href="../../#author?term={term['slug']}">Prepare a public edit</a><a href="../../#review?term={term['slug']}">Flag / categorize</a></div>
-{review_html}
+<div class="actions word-share"><button class="button" type="button" data-share-word>Share this word ↗</button><button class="button secondary" type="button" data-copy-word>Copy link</button><a href="../../?term={term['slug']}">Explore the word genome →</a></div>
+<p id="share-status" class="small-meta" role="status" aria-live="polite"></p>
+<label id="share-fallback" hidden>Copy this permanent link<input readonly value="{canonical}"></label>
+<nav class="word-wayfinding" aria-label="Keep exploring"><a href="../../#archive">← All words</a><a href="../../#laboratory">Try the word laboratory →</a></nav>
+<details class="word-editorial"><summary>Editorial record &amp; author tools</summary>{review_html}<div class="actions"><a href="../../#author?term={term['slug']}">Prepare a public edit</a><a href="../../#review?term={term['slug']}">Flag / categorize</a></div></details>
 <section><h2>Word Genome</h2>
 <dl><dt>Formation</dt><dd>{esc(term['formation'] or 'Under review')}</dd>
 <dt>Components</dt><dd>{esc(' · '.join(term['roots']) or 'Not documented')}</dd>
@@ -250,7 +269,7 @@ def page(term, base, catalog=None):
 <section><h2>Definition archaeology</h2>{'<ol>' + ''.join(history) + '</ol>' if history else '<p>No public definition history is recorded.</p>'}<p class="muted">Undated recovered wording is not assigned a fabricated historical date. Publication dates do not establish dates of invention.</p></section>
 <section><h2>Public source summaries</h2>{'<ul>' + ''.join(witnesses) + '</ul>' if witnesses else '<p>No public external witness is attached.</p>'}</section>
 <p>Recorded dates do not establish absolute originality. Canon is an authorial decision.</p>
-</main><footer><a href="../../../">IDunnoPoetry Museum</a></footer></body></html>'''
+</main><footer><a href="../../">Lexical Observatory</a> · <a href="../../../">IDunnoPoetry Museum</a></footer><script type="module" src="../../share.js"></script></body></html>'''
 
 
 def build(payload, out, base, write=False):
@@ -268,6 +287,7 @@ def build(payload, out, base, write=False):
     if write:
         out = Path(out)
         out.mkdir(parents=True, exist_ok=True)
+        build_social(result["terms"], out)
         # Remove previous generated pages when an approval is withdrawn. Never
         # copy any input file or arbitrary file tree into the deployment folder.
         word_dir = out / "word"

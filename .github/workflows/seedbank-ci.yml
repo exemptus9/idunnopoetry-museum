@@ -27,6 +27,11 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Install lexical image renderer
+        run: python -m pip install 'Pillow>=12,<13'
+      - name: Render approved lexical share assets
+        run: python scripts/build_lexical_publication.py --input museum-static/observatory/public.json --write
+
       - uses: actions/setup-node@v4
         with:
           node-version: '24'

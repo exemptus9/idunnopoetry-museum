@@ -4,6 +4,10 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import struct
+from html.parser import HTMLParser
+from lexical_social import social_name, fit, font
+from PIL import Image, ImageDraw
 import build_lexical_publication as publication
 
 
@@ -16,6 +20,39 @@ def example():
 
 
 class LexicalPublicationTests(unittest.TestCase):
+    def test_all_word_pages_have_real_images_and_crawler_metadata(self):
+        site = Path(__file__).resolve().parents[1] / 'museum-static/observatory'
+        payload = json.loads((site / 'public.json').read_text())
+        class Tags(HTMLParser):
+            def __init__(self):
+                super().__init__(); self.meta = {}; self.links = {}
+            def handle_starttag(self, tag, attrs):
+                data = dict(attrs)
+                if tag == 'meta': self.meta[data.get('property', data.get('name'))] = data.get('content')
+                if tag == 'link': self.links.setdefault(data.get('rel'), []).append(data.get('href'))
+        for term in payload['terms']:
+            with self.subTest(slug=term['slug']):
+                parser = Tags(); parser.feed((site / 'word' / term['slug'] / 'index.html').read_text())
+                asset = site / 'social' / social_name(term)
+                self.assertEqual(struct.unpack('>II', asset.read_bytes()[16:24]), (1200,630))
+                self.assertEqual(parser.meta['og:image'], parser.meta['twitter:image'])
+                self.assertTrue(parser.meta['og:image'].endswith('/social/' + asset.name))
+                self.assertEqual(parser.meta['twitter:card'], 'summary_large_image')
+                self.assertIn(term['headword'], parser.meta['og:image:alt'])
+                self.assertIn('../../favicon.ico', parser.links['icon'])
+                self.assertTrue(parser.meta['description'])
+        self.assertTrue((site / 'apple-touch-icon.png').is_file())
+        self.assertTrue((site / 'favicon.ico').is_file())
+
+    def test_preview_identity_changes_when_meaning_or_status_changes(self):
+        term = example()
+        for change in ({'definition': 'A revised meaning'}, {'definitionStatus':'inferred_definition'}, {'stage':'forge'}):
+            self.assertNotEqual(social_name(term),social_name(term | change))
+        draw = ImageDraw.Draw(Image.new('RGB',(1200,630)))
+        face, lines, leading = fit(draw, 'x' * 200, 845, 180, 81, 34, True)
+        self.assertLessEqual(len(lines)*leading,180)
+        self.assertTrue(all(draw.textlength(line,font=face)<=845 for line in lines))
+
     def test_expanded_classification_vocabulary_projects_each_label(self):
         for classification in ('proper_name', 'literary_wordplay', 'concept_label', 'ai_suggestion', 'existing_term'):
             with self.subTest(classification=classification):
@@ -104,6 +141,7 @@ class LexicalPublicationTests(unittest.TestCase):
             self.assertIn("https://schema.org", rendered)
             publication.build({"terms": []}, out, "https://example.com/observatory/", True)
             self.assertFalse(page.exists())
+            self.assertFalse(list((out / "social").glob("sample-word-*.png")), "Withdrawn words must lose their generated previews too.")
             self.assertNotIn("sample-word", (out / "sitemap.xml").read_text())
 
 
