@@ -290,3 +290,30 @@ not assert that an authenticated owner edit, withdrawal, restoration, or Canon
 approval has already been executed live. Confirm an operation from its actual
 successful Actions run and resulting public catalog/page, not from the existence
 of this guide or its JSON preview.
+
+
+## Icons and social previews
+
+Use **Share this word** or **Copy link** on an entry when posting to Threads.
+These controls share `observatory/word/<slug>/`, whose first HTML response includes
+its title, definition, canonical URL, PNG Open Graph image, image description and
+large-card metadata. The older `?term=` links remain interactive entry links;
+GitHub Pages cannot serve different crawler metadata for individual query strings.
+
+Each approved public word has a 1200 × 630 typographic specimen card. Recovered
+and inferred meanings retain their labels; seeds display “Definition pending.”
+Long definitions receive an excerpt on the image and stay complete on the page.
+No preview contains unapproved private text. Content-based image filenames change
+when the public meaning/status changes. Withdrawals remove the current word page
+and its generated image, although outside services may retain cached previews.
+
+`build_lexical_publication.py --write` regenerates pages, previews and icon assets
+from the approved projection, so owner-authorized edits also refresh their cards.
+Install the renderer with `python -m pip install 'Pillow>=12,<13'`; use DejaVu fonts
+(as supplied by Ubuntu/GitHub Actions). `scripts/lexical_social.py` owns the artwork.
+All CI and deployment jobs render these assets before validation. Generated PNG/ICO
+files are deployment output and are ignored in Git to avoid accumulating binary
+revisions; the approved catalog, renderer and metadata pages remain tracked.
+The identity includes SVG/ICO browser icons and a 180-pixel Apple touch icon.
+A social platform decides when to fetch, cache or display a preview; the site cannot
+force Threads to refresh a previously posted URL.

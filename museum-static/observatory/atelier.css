@@ -96,3 +96,50 @@ button:disabled {cursor:not-allowed;opacity:.6;}
 @media(max-width:600px){.primary-nav>a,.nav-more>summary {font-size:.7rem;}.hero .eyebrow,.section-heading .eyebrow {font-size:.65rem;}.word-card .card-meta,.word-card .definition-state,.word-card .card-domains {font-size:.72rem;}.workshop-heading .eyebrow {font-size:.65rem;}.blend-toolbar label,.pin-source,.source-meaning summary,.blend-intent summary span,.blend-submit p,.candidate-meta,.candidate-meta .eyebrow,.blend-candidate .small-meta,.candidate-fragments small,.candidate-actions .text-button,.road-instrument>.small-meta,.road-readout span,.visitor-shelf>.small-meta,.approval-handoff>.small-meta {font-size:.72rem;}.blend-source legend {font-size:.72rem;}.blend-source {grid-template-columns:1fr;}.source-under {grid-column:1;margin-top:.3rem;}.pin-source {justify-content:start;}.source-meaning summary {min-height:38px;}.blend-submit p {flex-basis:100%;margin-left:0;}.candidate-meta {flex-wrap:wrap;}.candidate-actions .text-button {min-height:40px;}.heading-actions,.heading-actions .text-button {font-size:.72rem;}.collection-overview>p {font-size:.73rem;}}
 .nav-short {display:none;}
 @media(max-width:600px){.nav-short {display:inline;}.nav-long {display:none;}.primary-nav {grid-template-columns:1fr 1fr 1fr 1fr auto;}.specimen-word {font-size:clamp(1.4rem,6vw,1.9rem);overflow-wrap:anywhere;}}
+/* Sharing and browsing: useful words get the space, tools wait their turn. */
+.status-section:empty {display:none;}
+.word-card .card-definition {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;}
+.word-card .definition-state {display:block;margin-top:.65rem;font-size:.72rem;color:var(--ink-soft);}
+.word-card:focus-within {outline:3px solid var(--teal);outline-offset:3px;}
+.word-card h3 a:focus-visible {outline:none;}
+.card-arrow {pointer-events:none;}
+.archive-filters {margin-top:.9rem;border-top:1px solid var(--line);padding-top:.3rem;}
+.archive-filters>summary,.export-menu>summary,.detail-editorial>summary {cursor:pointer;min-height:44px;align-content:center;font-size:.8rem;}
+.archive-filters>summary span:not(:empty) {border-radius:50%;padding:.1rem .4rem;background:var(--teal);color:white;}
+.archive-filters .filter-grid {margin-top:.6rem;}
+.archive-tools {display:flex;gap:1rem;align-items:center;}
+.export-menu {position:relative;}
+.export-menu>div {position:absolute;right:0;top:100%;z-index:3;display:flex;padding:.5rem;background:var(--paper);border:1px solid var(--line);box-shadow:0 5px 15px #193d3815;}
+.detail-editorial {flex-basis:100%;}
+.detail-editorial>a {display:inline-flex;align-items:center;min-height:44px;margin-right:1.3rem;font-size:.8rem;}
+.static-word .word-wayfinding {display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.2rem 0;}
+.static-word .word-wayfinding>a {min-height:44px;display:inline-flex;align-items:center;font-size:.85rem;}
+.static-word .word-editorial {margin-top:1.2rem;font-size:.8rem;}
+.static-word .word-editorial>summary {cursor:pointer;min-height:44px;align-content:center;}
+.static-word #share-status:empty {display:none;}
+.static-word #share-fallback:not([hidden]) {display:block;}
+.static-word #share-fallback input {display:block;width:100%;font-size:16px;margin-top:.4rem;}
+.static-word .word-share {align-items:center;gap:.6rem 1rem;}
+.static-word .word-share .button {font-size:.85rem;min-height:44px;}
+.static-word .word-share>a {font-size:.85rem;min-height:44px;display:flex;align-items:center;}
+.static-word h1,.detail-intro h1 {hyphens:auto;}
+@media(max-width:600px){
+  .word-card {padding:1rem 1.1rem;}
+  .word-card h3 {margin:.65rem 0;font-size:1.8rem;}
+  .word-card .card-definition {font-size:.92rem;line-height:1.6;margin-top:.6rem;}
+  .word-card .card-domains {padding-right:1.5rem;line-height:1.5;}
+  .word-card .definition-state {font-size:.8rem;}
+  .detail-actions .text-button,.detail-editorial>summary,.detail-editorial>a {font-size:.85rem;min-height:44px;}
+  .alphabet {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;}
+  .alphabet button {min-width:0;min-height:44px;font-size:.8rem;}
+  .results-heading {gap:.75rem;align-items:center;}
+  .results-heading>p {font-size:.85rem;}
+  .archive-tools {gap:.6rem;}
+  .archive-tools .text-button {font-size:.8rem;min-height:44px;display:flex;align-items:center;}
+  .filter-grid select {min-height:44px;}
+  .static-word .definition {font-size:1.35rem;line-height:1.6;}
+  .static-word dt,.static-word dd,.static-word .muted,.static-word small {font-size:.85rem;}
+  .static-word header {flex-wrap:wrap;}
+  .static-word header>span {margin-left:auto;}
+  .static-word .word-share {margin:1rem 0;}
+}

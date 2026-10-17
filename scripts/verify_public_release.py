@@ -27,7 +27,7 @@ for attempt in range(8):
         png = get(image)
         assert png[:8] == b'\x89PNG\r\n\x1a\n' and struct.unpack('>II', png[16:24]) == (1200, 630), 'Public preview is invalid'
         checks = ['index.html', 'public.json', 'app.js', 'model.js', 'review.js', 'observatory.css', 'sitemap.xml']
-        for asset in ('public-request.js', 'blend-engine.js', 'laboratory.js'):
+        for asset in ('public-request.js', 'blend-engine.js', 'laboratory.js', 'share.js'):
             if (lexical / asset).is_file():
                 checks.append(asset)
         # Additional stylesheet names may change while the public entry page
@@ -37,8 +37,11 @@ for attempt in range(8):
         if (lexical / 'history.json').exists():
             checks.append('history.json')
         catalog = json.loads((lexical / 'public.json').read_text())
+        checks.extend(['favicon.ico', 'apple-touch-icon.png', 'social/observatory.png'])
         if catalog['terms']:
+            from lexical_social import social_name
             checks.append('word/' + catalog['terms'][0]['slug'] + '/index.html')
+            checks.append('social/' + social_name(catalog['terms'][0]))
         for path in checks:
             expected = hashlib.sha256((lexical / path).read_bytes()).digest()
             actual = hashlib.sha256(get('observatory/' + path)).digest()

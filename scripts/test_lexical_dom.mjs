@@ -73,6 +73,19 @@ assert.ok(document.querySelector('.results-heading').textContent.includes(`${pen
 route('', '#archive?stage=lexicon');
 assert.ok(document.querySelector('.results-heading').textContent.includes(`${catalog.terms.filter(t=>t.stage==='lexicon').length} public entr`));
 assertions.push('pending and Lexicon filters');
+assert.ok(document.querySelector('.archive-filters'), 'Filters should be available without dominating mobile search.');
+route('', '#archive?definitionState=pending');
+for (const card of document.querySelectorAll('.word-card')) {
+  assert.ok(!card.textContent.includes('A captured lexical candidate'));
+  assert.ok(!card.querySelector('.card-definition'), 'A seed must not receive an invented filler definition.');
+}
+route('', '#archive');
+const entry = document.querySelector('.word-card h3 a');
+assert.match(entry.getAttribute('href'), /^word\/[^/]+\/$/, 'Actual links must carry crawler-readable word metadata.');
+entry.dispatchEvent(new window.MouseEvent('click',{bubbles:true,cancelable:true,button:0}));
+assert.ok(new URLSearchParams(location.search).get('term'), 'A normal card click opens the interactive word view.');
+assertions.push('canonical card links, compact pending cards, and optional archive filters');
+
 
 if (target) {
 route(`?term=${target.slug}`, '');
@@ -84,7 +97,15 @@ assert.ok(document.querySelectorAll('.timeline li').length >= catalog.versions.f
 click('[data-action="copy-definition"]');
 await tick();
 assert.ok(copied.startsWith(`${target.headword}:`));
-assertions.push('direct term genome, relationships, archaeology, and copy');
+click('[data-action="copy-link"]');
+await tick();
+assert.equal(copied, `https://exemptus9.github.io/idunnopoetry-museum/observatory/word/${target.slug}/`);
+let shared;
+Object.defineProperty(window.navigator, 'share', {value:async value=>{shared=value;},configurable:true});
+click('[data-action="share-word"]');
+await tick();
+assert.equal(shared.url,copied);
+assertions.push('direct term genome, relationships, archaeology, native sharing and canonical link copy');
 }
 
 route('', '#constellation');

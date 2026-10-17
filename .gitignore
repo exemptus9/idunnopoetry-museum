@@ -32,3 +32,9 @@ dist-ssr
 *.sw?
 __pycache__/
 *.pyc
+
+# Observatory social artwork is rendered from the approved public projection.
+/museum-static/observatory/social/*.png
+/museum-static/observatory/favicon.ico
+/museum-static/observatory/apple-touch-icon.png
+/museum-static/observatory/icon-512.png

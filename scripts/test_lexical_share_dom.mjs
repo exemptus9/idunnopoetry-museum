@@ -1,0 +1,25 @@
+// Runs the real script on a crawler-readable landing page; no layout claims.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {JSDOM} from './dom-tests/node_modules/jsdom/lib/api.js';
+const root = new URL('../museum-static/observatory/',import.meta.url);
+const terms = JSON.parse(fs.readFileSync(new URL('public.json',root))).terms;
+const term = terms.find(t=>t.definition) || terms[0];
+const url = `https://exemptus9.github.io/idunnopoetry-museum/observatory/word/${term.slug}/`;
+const dom = new JSDOM(fs.readFileSync(new URL(`word/${term.slug}/index.html`,root),'utf8'),{url});
+Object.defineProperty(globalThis,'document',{value:dom.window.document,configurable:true});
+let copied = '', failCopy = false, shared, shareError;
+const navigator = {clipboard:{writeText:async value=>{if(failCopy)throw Error('denied');copied=value;}}};
+Object.defineProperty(globalThis,'navigator',{value:navigator,configurable:true});
+await import('../museum-static/observatory/share.js');
+const tick = ()=>new Promise(resolve=>setTimeout(resolve,0));
+const click = selector=>document.querySelector(selector).click();
+click('[data-copy-word]');await tick();assert.equal(copied,url);
+copied='';click('[data-share-word]');await tick();assert.equal(copied,url);
+navigator.share=async value=>{if(shareError)throw shareError;shared=value;};
+click('[data-share-word]');await tick();assert.equal(shared.url,url);
+copied='';shareError={name:'AbortError'};click('[data-share-word]');await tick();assert.equal(copied,'');
+shareError=Error('unavailable');click('[data-share-word]');await tick();assert.equal(copied,url);
+failCopy=true;click('[data-copy-word]');await tick();assert.equal(document.querySelector('#share-fallback').hidden,false);
+assert.equal(document.querySelector('#share-fallback input').value,url);
+console.log('PASS: static word copy, native share, cancellation, denied clipboard and manual fallback.');

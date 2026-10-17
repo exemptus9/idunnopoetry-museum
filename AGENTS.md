@@ -19,6 +19,9 @@ publication approval before adding personal material. Preserve private originals
 separately. Do not put private material behind CSS, a hidden route, client-side
 passwords, or a browser-only admin toggle.
 
+Before testing a fresh checkout, install `Pillow>=12,<13` and run
+`python scripts/build_lexical_publication.py --input museum-static/observatory/public.json --write`
+to render the approved share assets (generated binary files are ignored).
 Run `python3 -m unittest discover -s scripts -p 'test_*.py'` before publishing.
 The creative allowlist locks the retained public text. Never expand it merely to
 make a failed privacy test pass. Check `public/` as well as `museum-static/`.
