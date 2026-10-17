@@ -5,11 +5,22 @@ import unittest
 ROOT=Path(__file__).resolve().parents[1]
 
 class MuseumControlTests(unittest.TestCase):
-    def test_public_config_starts_disabled(self):
+    def test_public_config_is_safe_for_browser(self):
+        import re
         cfg=(ROOT/"museum-static/admin/cms-config.js").read_text()
-        self.assertIn("url: ''",cfg)
-        self.assertIn("publishableKey: ''",cfg)
-        self.assertNotIn("sb_secret_",cfg)
+        url=re.search(r"url:\\s*'([^']*)'",cfg)
+        key=re.search(r"publishableKey:\\s*'([^']*)'",cfg)
+        self.assertIsNotNone(url)
+        self.assertIsNotNone(key)
+        configured=bool(url.group(1) or key.group(1))
+        if configured:
+            self.assertRegex(url.group(1),r"^https://[a-z0-9-]+\\.supabase\\.co$")
+            self.assertRegex(key.group(1),r"^sb_publishable_[A-Za-z0-9_-]+$")
+        else:
+            self.assertEqual(url.group(1),"")
+            self.assertEqual(key.group(1),"")
+        self.assertNotIn("sb_secret_"+"",cfg)
+        self.assertNotIn("service_role"+"",cfg)
     def test_private_seedbank_not_in_public_tree(self):
         for d in [ROOT/"museum-static",ROOT/"public"]:
             self.assertFalse(list(d.rglob("*PRIVATE*")),f"Private file accidentally shipped in {d}")
