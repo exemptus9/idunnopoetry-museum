@@ -2,17 +2,19 @@ name: Museum private backend security
 
 on:
   push:
-    branches: [museum-secure-editorial-backend-2026-10-08]
+    branches: [main, museum-secure-editorial-backend-2026-10-08]
     paths:
       - museum-static/**
       - supabase/**
       - scripts/test_museum_*
+      - scripts/*preservation*
       - .github/workflows/museum-cms-ci.yml
   pull_request:
     paths:
       - museum-static/**
       - supabase/**
       - scripts/test_museum_*
+      - scripts/*preservation*
       - .github/workflows/museum-cms-ci.yml
 
 permissions:
@@ -20,6 +22,7 @@ permissions:
 
 jobs:
   backend-tests:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -61,15 +64,34 @@ jobs:
 
       - name: Static privacy and museum regressions
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
-      - name: Browser script syntax
+      - name: Browser script syntax and existing editorial flows
         run: |
           node --check museum-static/museum.js
           node --check museum-static/admin/admin.js
           node --check museum-static/admin/navigator-core.js
           node --check museum-static/admin/public-overlay.js
           node --check museum-static/admin/cms-config.js
+          node --check museum-static/admin/preservation-core.js
+          node --check museum-static/admin/preservation-desk.js
           node scripts/test_museum_control_dom.mjs
           node scripts/test_museum_navigator_dom.mjs
+          node scripts/test_preservation_core.cjs
+      - name: Install pinned real-browser testing tools
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Native browser preservation and privacy flows
+        env:
+          SCREENSHOT_DIR: test-artifacts/preservation
+        run: python scripts/preservation_browser.py
+      - name: Preserve synthetic browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preservation-browser-evidence
+          path: test-artifacts/preservation/
+          retention-days: 7
+          if-no-files-found: warn
       - name: Deployable static Museum release is internally consistent
         run: python scripts/check_release.py --source-only
       - name: PostgreSQL RLS + owner/editor/publication integration tests
