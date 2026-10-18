@@ -410,6 +410,176 @@ function exportLoadedRecords() {
   tell('Private snapshot prepared. Protect the downloaded file; it is not encrypted.');
  }finally {setTimeout(()=>URL.revokeObjectURL(url),30000)}
 }
+/* Editorial command desk: the public archive is indexed lazily and only in this browser.
+ * Saved editor records are searched by title/key alone, never by private body.
+ */
+function needsProvenanceReview(record){
+ return ['seed','poem','creative'].includes(record?.kind) &&
+   (!record?.draft?.provenance || record.draft.provenance==='uncertain');
+}
+function navigatorNote(message){
+ const out=$('global-results');out.replaceChildren();
+ const note=document.createElement('p');note.className='muted';note.textContent=message;out.append(note);
+}
+function chooseNavigatorItem(item){
+ if(!confirmDiscard())return;
+ $('kind').value=item.kind;
+ $('record-filter').value='all';
+ $('provenance-filter').value='all';
+ $('draft-search').value='';
+ if(item.type==='saved'){
+  const saved=records.find(r=>r.id===item.id && r.entity_key===item.key);
+  if(!saved)return tell('That saved record is no longer in the loaded review index. Refresh to find it.',true);
+  openDraft(saved);
+ }else{
+  openSource(item,item.kind);
+  $('source-search').value=item.title;
+ }
+ listPublicSources();listDrafts();
+ $('global-search').value='';
+ navigatorNote('Record opened below. Browse the preserved source before saving a private revision.');
+ scrollToEditor();
+ $('title').focus();
+}
+function paintNavigatorResults(data,searchText){
+ const out=$('global-results');out.replaceChildren();
+ const bar=document.createElement('p');bar.className='result-summary';
+ bar.textContent=data.total+' matching record(s) for “'+searchText+'”'+
+   (data.total>data.results.length?' · showing best '+data.results.length:'')+
+   '. Private records are matched by title or key only.';
+ out.append(bar);
+ if(!data.results.length){
+  const empty=document.createElement('p');empty.className='muted';
+  empty.textContent='No matching records. Try fewer words or the Everything scope.';
+  out.append(empty);return;
+ }
+ const list=document.createElement('div');list.className='command-result-grid';list.setAttribute('role','group');
+ list.setAttribute('aria-label','Search results');
+ for(const item of data.results){
+  const button=document.createElement('button');button.className='command-result';button.type='button';
+  const top=document.createElement('span');top.className='command-result-title';top.textContent=item.title;
+  const meta=document.createElement('span');meta.className='command-result-meta';
+  meta.textContent=(item.type==='saved'?'Saved private ': 'Preserved public ')+
+   (navigatorCore.LABELS[item.kind]||item.kind)+
+   ' · '+(item.type==='saved'?(item.status+' · '):'')+item.key;
+  button.append(top,meta);
+  if(item.type==='public'&&item.excerpt){
+   const excerpt=document.createElement('span');excerpt.className='command-result-excerpt';
+   excerpt.textContent=item.excerpt;
+   button.append(excerpt);
+  }
+  button.addEventListener('click',()=>chooseNavigatorItem(item));list.append(button);
+ }
+ out.append(list);
+}
+async function renderNavigator(){
+ const generation=++navigatorSearchGeneration;
+ if(!navigatorCore)return navigatorNote('Search helpers are unavailable. Reload the latest editor to retry.');
+ if(!['owner','editor'].includes(role))return navigatorNote('Sign in as an authorized curator to use this search.');
+ const term=$('global-search').value.trim(),scope=$('global-scope').value;
+ if(term.length<2)return navigatorNote('Type at least two characters. Search never sends private text to other projects.');
+ if(!publicNavigatorIndex&&scope!=='saved'){
+  if(!publicNavigatorBuild){
+   publicNavigatorBuild=navigatorCore.buildPublicIndex(window,{
+    yieldEvery:400,
+    onProgress:(done,total)=>{
+     if(generation===navigatorSearchGeneration)
+      navigatorNote('Indexing preserved public records in this browser: '+done.toLocaleString()+
+       ' / '+total.toLocaleString()+'. No private text is being transmitted.');
+    }
+   }).then(index=>{publicNavigatorIndex=index;return index}).catch(error=>{
+    publicNavigatorBuild=null;throw error;
+   });
+  }
+  navigatorNote('Preparing the archive-wide search index…');
+  await publicNavigatorBuild;
+ }
+ if(generation!==navigatorSearchGeneration)return;
+ const matches=navigatorCore.search(publicNavigatorIndex||[],records,term,{scope,limit:35});
+ paintNavigatorResults(matches,term);
+}
+function openProvenanceReview(){
+ const candidate=records.find(needsProvenanceReview);
+ if(!candidate)return tell('No saved creative records currently need authorship verification. Start by reviewing an original source or creating a private Seed.');
+ if(!confirmDiscard())return;
+ $('kind').value=candidate.kind;
+ $('record-filter').value='all';$('provenance-filter').value='unresolved';
+ $('draft-search').value='';listPublicSources();listDrafts();
+ openDraft(candidate);scrollToEditor();
+ $('provenance').focus();
+ tell('Authorship review: compare your sources and choose a supported classification, then save privately. This does NOT approve or publish.');
+}
+function archivedSourceForActive(){
+ if(!active||!navigatorCore)return null;
+ return navigatorCore.sourceRows(active.kind,window).find(row=>
+  String(row.id??row.workId??'')===String(active.entity_key))||null;
+}
+function renderComparison(){
+ if(!active)return;
+ const row=archivedSourceForActive();
+ const original=row?String(row.x??row.text??row.summary??row.description??''):null;
+ const current=$('text').value;
+ const preserved=original===null?'No preserved public source record is linked to this key.':original;
+ const maxView=100000;
+ $('original-text').textContent=preserved.slice(0,maxView)+
+  (preserved.length>maxView?'\n[View shortened; original archive is unchanged]':'');
+ $('comparison-text').textContent=current.slice(0,maxView)+
+  (current.length>maxView?'\n[View shortened; editor text is unchanged]':'');
+ let summary;
+ if(original===null){
+  summary='No matching recovered public witness. The editor text has not been checked against an original.';
+ }else{
+  const a=original.split(/\r?\n/),b=current.split(/\r?\n/);
+  let changed=0;
+  for(let i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])changed++;
+  summary=original===current?'Current text matches the displayed recovered source.':
+   changed+' line position(s) differ from the recovered source. Review deliberately; this is not a canonicality verdict.';
+  if(/(?:\.\.\.|…){2,}/.test(original))summary+=' Possible truncation markers need source verification.';
+ }
+ $('comparison-summary').textContent=summary;
+}
+function toggleComparison(){
+ if(!active)return;
+ const box=$('source-compare');
+ box.hidden=!box.hidden;
+ if(!box.hidden){
+  renderComparison();
+  box.scrollIntoView?.({behavior:'smooth',block:'nearest'});
+ }
+}
+async function copyContinuityHandoff(){
+ if(!active?.id||hasUnsavedChanges()||!navigatorCore)
+  return tell('Save this exact private revision before copying its metadata handoff.',true);
+ const metadata=navigatorCore.handoff(active);
+ try{
+  if(!navigator.clipboard?.writeText)throw Error('Clipboard API unavailable');
+  await navigator.clipboard.writeText(metadata);
+  tell('Copied metadata-only handoff. Paste it into Continuity deliberately; no poem text or credentials were transferred.');
+ }catch(error){
+  // Do not automatically navigate to a different app or transmit private data.
+  window.prompt('Copy this metadata-only handoff manually (private text excluded):',metadata);
+  tell('Clipboard permission was unavailable. You can copy the handoff from the prompt.');
+ }
+}
+function jumpToCommandSearch(){
+ if($('app').hidden)return;
+ $('global-search').focus();$('global-search').scrollIntoView?.({behavior:'smooth',block:'center'});
+}
+function keyboardCommands(event){
+ if($('app').hidden)return;
+ const key=String(event.key||''),tag=event.target?.tagName||'';
+ const editable=/^(INPUT|TEXTAREA|SELECT)$/.test(tag)||event.target?.isContentEditable;
+ if((event.ctrlKey||event.metaKey)&&key.toLowerCase()==='k'){
+  event.preventDefault();jumpToCommandSearch();return;
+ }
+ if(key==='/'&&!editable&&!event.ctrlKey&&!event.metaKey&&!event.altKey){
+  event.preventDefault();jumpToCommandSearch();return;
+ }
+ if(key==='Escape'&&event.target?.closest?.('#global-results')){
+  event.preventDefault();$('global-search').focus();
+ }
+}
+
 async function ready(){
  $('login-form').addEventListener('submit',async e=>{
   e.preventDefault();
