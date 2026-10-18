@@ -65,6 +65,8 @@ jobs:
           node scripts/test_lexical_dom.mjs
           node --check museum-static/admin/admin.js
           node scripts/test_museum_control_dom.mjs
+          node --check museum-static/admin/navigator-core.js
+          node scripts/test_museum_navigator_dom.mjs
 
       - name: Render and verify release preview
         run: |
