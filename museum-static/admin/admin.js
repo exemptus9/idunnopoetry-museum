@@ -13,6 +13,8 @@ const storageKey = 'idp_museum_editor_session_v1';
 let session = null, role = null, records = [], active = null, localVault = [];
 let busy = false,selectedVault = null;
 let formBaseline = null;
+const navigatorCore = window.IDP_EDITOR_NAV;
+let publicNavigatorIndex=null,publicNavigatorBuild=null,navigatorSearchGeneration=0;
 const EDIT_FIELDS = ['entity-key','title',...FIELDS,'reason'];
 function editSnapshot() {
  const values = {};
@@ -26,6 +28,7 @@ function updateEditState() {
  if (!active || $('edit-form').hidden) return;
  const dirty = hasUnsavedChanges();
  $('unsaved-note').hidden = !dirty;
+ $('copy-handoff').disabled=busy || dirty || !active?.id;
  $('save-state').textContent = (dirty ? '● Unsaved changes' : 'Saved or unchanged') +
    ' · revision ' + active.revision + ' · ' + active.status;
  const approved = active.approved_revision === active.revision;
@@ -44,7 +47,7 @@ function confirmDiscard() {
  return !hasUnsavedChanges() || confirm('Discard unsaved edits on this device? Saved revisions remain intact.');
 }
 function clearEditor() {
- active=null;formBaseline=null;hide('edit-form');show('empty');
+ active=null;formBaseline=null;hide('edit-form','source-compare');show('empty');
  $('unsaved-note').hidden=true;
 }
 function scrollToEditor() {
@@ -145,7 +148,10 @@ async function load(){
   ? 'Your editorial workspace is ready. Nothing is published, and there are no saved drafts yet.'
   : records.length+' private editorial records loaded · '+counts.draft+' draft(s) to review. Publication always requires separate owner approval.';
  $('export-drafts').disabled = !records.length;
+ const unresolved=records.filter(needsProvenanceReview).length;
+ if(unresolved)$('welcome-status').textContent+=' '+unresolved+' saved creative record(s) need authorship review.';
  listDrafts();listPublicSources();
+ if($('global-search').value.trim().length>=2)renderNavigator().catch(e=>tell('Search unavailable: '+e.message,true));
  if(active?.id){const found=records.find(x=>x.id===active.id);if(found)openDraft(found)}
 }
 function sourceData(){
@@ -196,9 +202,11 @@ function listPublicSources(){
 }
 function listDrafts(){
  const kind=$('kind').value,q=$('draft-search').value.trim().toLowerCase();
- const filter=$('record-filter').value;
+ const filter=$('record-filter').value,provenance=$('provenance-filter').value;
  const out=$('draft-list');out.replaceChildren();
  const items=records.filter(r=>r.kind===kind && (filter==='all' || r.status===filter) &&
+  (provenance==='all' || (provenance==='unresolved'?needsProvenanceReview(r):
+   String(r.draft?.provenance||'')===provenance)) &&
   (!q||(r.title+' '+r.entity_key).toLowerCase().includes(q))).slice(0,100);
  for(const d of items)addOption(out,d.title,()=>{if(!confirmDiscard())return;openDraft(d);scrollToEditor();},d.entity_key+' · '+d.status+' · r'+d.revision);
  if(!items.length)out.textContent='No saved drafts yet.';
@@ -236,6 +244,7 @@ function renderEditor(){
  formBaseline=editSnapshot();
  updateEditState();
  $('preview-panel').hidden=true;
+ $('source-compare').hidden=true;
  loadHistory().catch(e=>tell(e.message,true));
 }
 function draftForm(){
