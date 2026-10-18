@@ -54,6 +54,24 @@ No website user is able to self-register as an administrator; the allowlist is p
 9. To bring in a private Seed, select a local v5 Seedbank JSON file in the editor, search locally, and choose ONE record. Saving the selected work to the hosted PRIVATE database requires a separate explicit confirmation. The file itself is not automatically uploaded.
 10. Set up verified database backup/restore and recovery before making the cloud database the authoritative copy of any private corpus.
 
+## The command desk: search, connect, reconcile
+
+The editorial home now opens with a **single search box**, rather than requiring the curator to know a record's category first. Press `Ctrl+K` or `Command+K` (or `/` when not already typing in a field) to focus it. Two or more characters match public titles, recovered text excerpts and record IDs; use its scope filter to narrow down to a category, or search **Saved editorial records**.
+
+- Public-source search is indexed **lazily in small batches in the browser**, with progress visible for large corpora. It uses already-delivered *sanitized public* Museum arrays: poems, Seeds, reconciled works, documents, topics, rooms, public posts, members, media and reader-impact records. The index is not a remote crawler and is rebuilt on a new page session.
+- Saved editorial records are queried in the same control by **title and stable key only**. Private draft bodies, private review reasons and secret tokens are deliberately never added to the search index or URL. Results are not transmitted to a third-party search provider.
+- Choosing a result opens it for **local editorial review** without saving or publishing. Public source witnesses are imported only into an *unsaved* editor form until the owner chooses `Save PRIVATE draft`.
+- **Resolve uncertain authorship** finds an already-saved creative record with absent or uncertain classification and puts focus on the classification field. It does **not** infer or grant authorship; the classification requires a deliberate, saved revision.
+- **Compare preserved source** shows the surviving public text beside the current editor's text. Differences are strictly position-by-position line counts; they are not an automatic merger, a determination of canonicality, or proof that a recovered copy is complete. Archive bytes are never rewritten by this comparison.
+- **Copy Continuity handoff** becomes available on a saved, unmodified revision. It copies *metadata only*: title, kind, stable key, revision, editorial state, and the recorded authorship classification. It intentionally excludes poem bodies, private notes, passwords and tokens. The user chooses whether and where to paste this into Continuity.
+- The **Constellation** links navigate to the Museum, Lexical Observatory, RhymeMosaic public archive, Artificial Continuity, HYDRA//INDEX and the project directory. They do not share login sessions, automatically sync private records, claim a common authoritative database, or import text from the linked applications. HYDRA is trial-hosted and availability may change.
+
+Search, source comparisons and handoff preparation are local to the authenticated editor. **Publication remains a separate owner-approved, revision-specific server operation.**
+
+### Next architectural boundary: canonical creative corpus
+
+The Museum's original forum recovery and RhymeMosaic's present-day publication snapshot are *different source witnesses*. Neither is silently promoted to the single authoritative copy of every poem. A true cross-project canonical registry requires unique work IDs, all nontruncated witnesses, documented variation, author-approved text, public/private classifications, and explicit per-project projection rules. Until that reconciliation exists, the command desk offers navigation and safe handoff, **not automatic propagation of editorial changes to another site**.
+
 ## Supported edit categories and current scope
 
 The admin browser can create revisioned overlays for Seeds, poems, reconciled creative works, existing forum posts/topics/rooms, user display names, media records, prose/documents, curated Museum pages, exhibits, Reader Impact summaries, site labels, custom navigation links, and a site accent color.
