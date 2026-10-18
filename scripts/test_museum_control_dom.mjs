@@ -7,6 +7,7 @@ import {JSDOM} from './dom-tests/node_modules/jsdom/lib/api.js';
 const home = new URL('../museum-static/admin/',import.meta.url);
 const html=fs.readFileSync(new URL('index.html',home),'utf8');
 const script=fs.readFileSync(new URL('admin.js',home),'utf8');
+const navigatorSource=fs.readFileSync(new URL('navigator-core.js',home),'utf8');
 const dom=new JSDOM(html,{url:'https://exemptus9.github.io/idunnopoetry-museum/admin/',
   pretendToBeVisual:true,runScripts:'outside-only'});
 const {window:w}=dom, doc=w.document, $=id=>doc.getElementById(id);
@@ -39,6 +40,7 @@ w.fetch=async (input,options={})=>{
  if(path.includes('/rpc/museum_withdraw')){withdrawals++;return response({})}
  throw Error('Unexpected network request: '+path);
 };
+w.eval(navigatorSource);
 w.eval(script);
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 async function settle(){for(let i=0;i<5;i++)await tick()}
