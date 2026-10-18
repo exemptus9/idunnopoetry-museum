@@ -110,7 +110,7 @@ async function signedIn() {
 async function signOut(){
  if(!confirmDiscard())return;
  if(access())try{await fetch(base()+'/auth/v1/logout',{method:'POST',headers:authHeaders()})}catch{}
- clearSession();clearEditor();records=[];hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('export-drafts').disabled=true;
+ clearSession();clearEditor();records=[];++navigatorSearchGeneration;$('global-search').value='';navigatorNote('Signed out. Private search results cleared.');hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('export-drafts').disabled=true;
 }
 async function beginSession() {
  if(!configured()){hide('login','app','denied');show('setup');return}
