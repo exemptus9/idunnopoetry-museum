@@ -358,6 +358,33 @@ async function importVault(evt){
   $('kind').value='seed';renderVault();tell('Loaded '+localVault.length+' local Seed records. No data has been transmitted.');
  }catch(e){tell('Local Vault import failed: '+e.message,true)}
 }
+function newRecord(kind) {
+ if(!confirmDiscard())return;
+ $('kind').value=kind;
+ listPublicSources();listDrafts();
+ active={id:null,kind,entity_key:'',title:'',draft:{},revision:0,status:'new'};
+ renderEditor();scrollToEditor();$('title').focus();
+}
+function exportLoadedRecords() {
+ if(!records.length)return;
+ if(!confirm('Download '+records.length+' PRIVATE editorial record(s) as an UNENCRYPTED JSON file? Anyone who gets the file can read private drafts. This is a snapshot, NOT a verified database backup or original-source archive.'))return;
+ const payload={
+  format:'IDP-Museum-Private-Editorial-Snapshot-v1',
+  exported_at:new Date().toISOString(),
+  scope:'Loaded editorial records only; excludes revision history, audit events, and original historical archive',
+  limited_to_first_1000:records.length>=1000,
+  documents:records.map(({id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at})=>
+   ({id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at}))
+ };
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ try {
+  const a=document.createElement('a');
+  a.href=url;a.download='idp-private-editorial-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.append(a);a.click();a.remove();
+  tell('Private snapshot prepared. Protect the downloaded file; it is not encrypted.');
+ }finally {setTimeout(()=>URL.revokeObjectURL(url),30000)}
+}
 async function ready(){
  $('login-form').addEventListener('submit',async e=>{
   e.preventDefault();
@@ -372,14 +399,31 @@ async function ready(){
  });
  $('logout').addEventListener('click',signOut);
  $('logout-denied').addEventListener('click',signOut);
- $('reload').addEventListener('click',()=>load().catch(e=>tell(e.message,true)));
- $('kind').addEventListener('change',()=>{listPublicSources();listDrafts()});
+ $('reload').addEventListener('click',()=>{if(confirmDiscard())load().catch(e=>tell(e.message,true))});
+ $('export-drafts').addEventListener('click',exportLoadedRecords);
+ $('quick-find').addEventListener('click',()=>{
+  if(!confirmDiscard())return;
+  clearEditor();$('kind').value='poem';listPublicSources();listDrafts();
+  $('source-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
+ });
+ $('quick-seed').addEventListener('click',()=>newRecord('seed'));
+ $('quick-review').addEventListener('click',()=>{
+  $('record-filter').value='draft';listDrafts();
+  $('draft-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
+ });
+ $('kind').addEventListener('change',()=>{
+  if(!confirmDiscard()){$('kind').value=active?.kind||'seed';return}
+  clearEditor();listPublicSources();listDrafts();
+ });
  $('source-search').addEventListener('input',listPublicSources);
  $('draft-search').addEventListener('input',listDrafts);
- $('new').addEventListener('click',()=>{
-   const kind=$('kind').value;
-   active={id:null,kind,entity_key:'',title:'',draft:{},revision:0,status:'new'};
-   renderEditor();
+ $('record-filter').addEventListener('change',listDrafts);
+ $('new').addEventListener('click',()=>newRecord($('kind').value));
+ $('edit-form').addEventListener('input',()=>{$('preview-panel').hidden=true;updateEditState()});
+ $('edit-form').addEventListener('change',()=>{$('preview-panel').hidden=true;updateEditState()});
+ window.addEventListener('beforeunload',event=>{
+  if(!hasUnsavedChanges())return;
+  event.preventDefault();event.returnValue='';
  });
  $('edit-form').addEventListener('submit',saveDraft);
  $('preview').addEventListener('click',()=>{show('preview-panel');$('preview-content').textContent=JSON.stringify(draftProjection(),null,2)});
