@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, featuredTerms, preparePublicChange, safeUrl, definitionDiff, editDistance, validatePublicTransport} from '../museum-static/observatory/model.js';
+import {normalizeCatalog, findPublicTerm, searchTerms, searchScore, createSearchIndex, relatedTo, publicVersions, versionAt, csvExport, publicJsonExport, featuredTerms, preparePublicChange, safeUrl, definitionDiff, editDistance, validatePublicTransport} from '../museum-static/observatory/model.js';
 
 const publicTerm = (id, headword, extra = {}) => ({id, headword, slug: headword.toLowerCase(), stage:'forge', visibility:'approved_public', definition:'An example definition about weather.', revision:1, publication:{approvedAt:'2026-01-01',approvedRevision:1}, ...extra});
 const project = (terms, relations=[], versions=[]) => normalizeCatalog({terms,relations,versions});
@@ -98,6 +98,138 @@ test('filters combine and alphabetical browsing is accent-aware', () => {
   const c=project([publicTerm('a','Example',{formation:'blend',domains:['Language']}),publicTerm('b','Extra',{stage:'lexicon',formation:'compound',domains:['Language']})]);
   assert.equal(searchTerms(c,{stage:'lexicon',domain:'Language',formation:'compound',letter:'E'})[0].id,'b');
   assert.equal(searchTerms(c,{stage:'canon'}).length,0);
+});
+test('instant index ranks word, alternate form, compact spelling, prefix, meaning and typo distinctly', () => {
+  const c=project([
+    publicTerm('word','Weather'),
+    publicTerm('variant','Skyword',{variants:['Weather']}),
+    publicTerm('compact','Wea-ther',{slug:'wea-ther'}),
+    publicTerm('prefix','Weatherman'),
+    publicTerm('meaning','Cloud'),
+  ]);
+  const index=createSearchIndex(c),hits=index.search('weather',{limit:Infinity});
+  assert.deepEqual(hits.map(hit=>hit.term.id),['word','variant','compact','prefix','meaning']);
+  assert.equal(hits[0].match.field,'headword');assert.equal(hits[1].match.field,'variant');assert.equal(hits.at(-1).match.field,'definition');
+  assert.equal(index.search('wether')[0].term.id,'word');
+  assert.equal(index.search('w')[0].term.id,'compact');
+  assert.deepEqual(index.search('weather',{limit:2}).map(hit=>hit.term.id),['word','variant']);
+  assert.deepEqual(index.search('weather',{limit:0}),[]);
+});
+test('instant search treats accents, apostrophes, dash types and word spacing as spelling alternatives', () => {
+  const c=project([
+    publicTerm('port','Portmantrés',{slug:'portmantres'}),
+    publicTerm('us','Us-conscious',{slug:'us-conscious'}),
+    publicTerm('b','B’s Myth',{slug:'bs-myth'}),
+    publicTerm('unicode','Élan',{slug:'elan'}),
+  ]), index=createSearchIndex(c);
+  for(const q of ['Portmantres','portmantrés'])assert.equal(index.search(q)[0].term.id,'port');
+  for(const q of ['us conscious','usconscious','Us—conscious'])assert.equal(index.search(q)[0].term.id,'us');
+  for(const q of ["B's Myth",'BsMyth','b’smyth'])assert.equal(index.search(q)[0].term.id,'b');
+  assert.equal(index.search('e\u0301lan')[0].term.id,'unicode');
+  assert.deepEqual(index.search('',{filters:{letter:'E'}}).map(hit=>hit.term.id),['unicode']);
+});
+test('symbol-only search remains literal and the symbolic alphabet shelf includes numbers and punctuation', () => {
+  const c=project([
+    publicTerm('plus','Love+logic',{slug:'love-logic'}),
+    publicTerm('dash','Us-conscious',{slug:'us-conscious'}),
+    publicTerm('quote','“Soon,” I Sighed',{slug:'soon-i-sighed'}),
+    publicTerm('number','404 feelings',{slug:'404-feelings'}),
+    publicTerm('plain','Plain',{definition:'This source has + and - punctuation.'}),
+  ]), index=createSearchIndex(c);
+  assert.deepEqual(index.search('+').map(hit=>hit.term.id),['plus']);
+  assert.deepEqual(index.search('-').map(hit=>hit.term.id),['dash']);
+  assert.deepEqual(index.search('—').map(hit=>hit.term.id),['dash']);
+  assert.deepEqual(index.search('?!'),[]);
+  assert.deepEqual(index.search('',{limit:Infinity,filters:{letter:'#'}}).map(hit=>hit.term.id).sort(),['number','quote']);
+  assert.deepEqual(searchTerms(c,{letter:'#'}).map(term=>term.id).sort(),['number','quote']);
+});
+test('instant index covers approved source, corpus, senses, examples and contextual fields with honest match labels', () => {
+  const fields=[
+    ['source',{sources:[{visibility:'approved_public',label:'Notebook',publicSummary:'The gilded threshold.',approvedExcerpt:'First copper wording.'}]},'gilded','source'],
+    ['corpus',{corpus:[{visibility:'approved_public',title:'Poem of starlings',summary:'A murmuration takes shape.'}]},'murmuration','corpus'],
+    ['sense',{senses:[{visibility:'approved_public',label:'Secondary',definition:'A pocket of reverberation.'}]},'reverberation','sense'],
+    ['example',{examples:['The lanterns considered their options.']},'lanterns','example'],
+    ['component',{roots:['resonant']},'resonant','component'],
+    ['formation',{formation:'semantic_extension'},'semantic extension','formation'],
+    ['domain',{domains:['Astronomy']},'astronomy','domain'],
+    ['tag',{tags:['Threshold']},'threshold','tag'],
+    ['collection',{collections:['Boundaries']},'boundaries','collection'],
+    ['concept',{conceptualGap:'Naming the liminal interval.'},'liminal','conceptualGap'],
+  ];
+  for(const [id,extra,q,field]of fields){
+    const hits=createSearchIndex(project([publicTerm(id,id,extra)])).search(q);
+    assert.equal(hits[0]?.term.id,id,`missing ${field}`);assert.equal(hits[0].match.field,field);
+  }
+});
+test('connected-concept lookup keeps inferred associations visibly qualified and exact targets first', () => {
+  const c=project([publicTerm('a','Alpha'),publicTerm('b','Beta'),publicTerm('g','Gamma')],[
+    {visibility:'approved_public',from:'a',to:'b',inferred:true},
+    {visibility:'approved_public',from:'b',to:'g',type:'derivation',inferred:false},
+  ]), index=createSearchIndex(c);
+  assert.deepEqual(index.search('Beta').map(hit=>hit.term.id),['b','a','g']);
+  assert.equal(index.search('Beta')[1].match.label,'Proposed relation');
+  assert.equal(index.search('Beta')[2].match.label,'Related concept');
+  assert.equal(index.search('Gamma').find(hit=>hit.term.id==='b').match.field,'relationship');
+});
+test('raw payload search excludes private records, nested bodies, AI proposals and private historical definitions', () => {
+  const raw={terms:[publicTerm('a','Visible',{
+    rawPrivateSource:'rawsecretmarker',
+    sources:[{visibility:'private',title:'hiddenwitnessmarker'},{visibility:'approved_public',label:'Notebook',body:'bodysecretmarker',approvedExcerpt:'publicexcerptmarker'}],
+    senses:[{visibility:'private',definition:'privatesensemarker'}],
+    corpus:[{visibility:'private',title:'privatecorpusmarker'}],
+    analysis:{kind:'ai_hypothesis',interpretationProposal:'unacceptedproposalmarker'},
+  }),publicTerm('private','Hidden',{visibility:'private',definition:'hiddendefinitionmarker'})],relations:[],versions:[{visibility:'private',termId:'a',definition:'privateversionmarker'},{visibility:'approved_public',termId:'private',definition:'hiddenversionmarker'},{termId:'a',definition:'unapprovedversionmarker'}]};
+  const index=createSearchIndex(raw);
+  for(const q of ['rawsecretmarker','hiddenwitnessmarker','bodysecretmarker','privatesensemarker','privatecorpusmarker','unacceptedproposalmarker','Hidden','hiddendefinitionmarker','privateversionmarker','hiddenversionmarker','unapprovedversionmarker'])assert.deepEqual(index.search(q),[],q);
+  assert.equal(index.search('publicexcerptmarker')[0].term.id,'a');
+  assert.ok(!JSON.stringify(index.search('Visible')).includes('rawsecretmarker'));
+});
+test('historical lookup labels only approved earlier wording and preserves the current definition preview', () => {
+  const c=project([
+    publicTerm('a','Alpha',{definition:'A current amber interpretation.'}),
+    publicTerm('b','Beta',{definition:'The obsolete cinnabar conception.'}),
+  ],[],[
+    {visibility:'approved_public',termId:'a',version:1,effectiveAt:'2024-02-01',definition:'The obsolete cinnabar conception.'},
+    {visibility:'approved_public',termId:'a',version:2,effectiveAt:'2025-03-01',definition:'The obsolete cinnabar conception.'},
+    {visibility:'approved_public',termId:'a',version:3,effectiveAt:'2026-01-01',definition:'A current amber interpretation.'},
+    {visibility:'private',termId:'a',version:4,definition:'privateversionmarker'},
+    {termId:'a',version:5,definition:'unapprovedversionmarker'},
+  ]),index=createSearchIndex(c);
+  const hits=index.search('cinnabar');
+  assert.deepEqual(hits.map(hit=>hit.term.id),['b','a']);
+  assert.equal(hits[0].match.field,'definition');
+  assert.equal(hits[1].match.field,'history');
+  assert.equal(hits[1].match.label,'Earlier public wording · version 2 · 2025-03-01');
+  assert.equal(hits[1].match.text,'The obsolete cinnabar conception.');
+  assert.equal(hits[1].term.definition,'A current amber interpretation.');
+  assert.equal(index.search('amber')[0].match.field,'definition');
+  assert.deepEqual(searchTerms(c,{q:'cinnabar'}).map(term=>term.id),['b','a']);
+  assert.equal(index.search('Alpha cinnabar')[0].match.field,'history');
+  assert.deepEqual(index.search('privateversionmarker'),[]);
+  assert.deepEqual(index.search('unapprovedversionmarker'),[]);
+});
+test('verified pronunciation, grammar, public identifiers and recorded source dates are searchable as metadata', () => {
+  const c=project([publicTerm('public-record-123','Alpha',{slug:'stable-route',partOfSpeech:'adjective',pronunciation:'al-fa',ipa:'æl.fə',pronunciationVerified:true,
+    sources:[{visibility:'approved_public',label:'Notebook',sourceDate:'2024-08-12'}],
+  }),publicTerm('other','Beta',{pronunciation:'unverifiedsounds',ipa:'unverifiedipa',pronunciationVerified:false})]),index=createSearchIndex(c);
+  for(const [q,field,label]of [
+    ['al-fa','pronunciation','Verified pronunciation'],['æl.fə','ipa','Verified IPA'],['adjective','partOfSpeech','Part of speech'],
+    ['public-record-123','id','Public record ID'],['stable-route','slug','Permanent word URL'],['2024-08-12','sourceDate','Recorded source date'],
+  ]){
+    const hit=index.search(q)[0];assert.equal(hit?.term.id,'public-record-123',q);assert.equal(hit.match.field,field);assert.equal(hit.match.label,label);
+  }
+  assert.deepEqual(index.search('unverifiedsounds'),[]);assert.deepEqual(index.search('unverifiedipa'),[]);
+});
+test('indexed lookup combines archive filters, multi-field queries, bounded snippets and bounded input', () => {
+  const c=project([
+    publicTerm('a','Alpha',{stage:'lexicon',domains:['Climate'],definition:'prefix '.repeat(70)+'the amber sky.',roots:['thermal']}),
+    publicTerm('b','Beta',{stage:'forge',roots:['thermal']}),
+  ]),index=createSearchIndex(c);
+  assert.deepEqual(index.search('thermal',{filters:{stage:'lexicon',domain:'Climate'}}).map(hit=>hit.term.id),['a']);
+  assert.equal(index.search('thermal amber')[0].term.id,'a');
+  const hit=index.search('amber')[0];assert.ok(hit.match.text.includes('amber'));assert.ok(hit.match.text.length<=280);
+  assert.deepEqual(index.search('z'.repeat(50000)),[]);
+  assert.equal(index.search('',{limit:Infinity}).length,2);
 });
 test('relations with private endpoint or no publication approval are excluded', () => {
   const c=project([publicTerm('a','Alpha'),publicTerm('b','Beta'),publicTerm('p','Private',{visibility:'private'})],[{visibility:'approved_public',source:'a',target:'b',type:'association',status:'inferred'},{visibility:'approved_public',source:'a',target:'p',type:'private relation'},{source:'a',target:'b',type:'unapproved'}]);

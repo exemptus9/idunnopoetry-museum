@@ -28,7 +28,7 @@ for attempt in range(8):
         png = get(image)
         assert png[:8] == b'\x89PNG\r\n\x1a\n' and struct.unpack('>II', png[16:24]) == (1200, 630), 'Public preview is invalid'
         checks = ['index.html', 'public.json', 'app.js', 'model.js', 'review.js', 'observatory.css', 'sitemap.xml']
-        for asset in ('public-request.js', 'blend-engine.js', 'laboratory.js', 'share.js'):
+        for asset in ('public-request.js', 'blend-engine.js', 'laboratory.js', 'share.js', 'instant-search.js', 'static-search.js'):
             if (lexical / asset).is_file():
                 checks.append(asset)
         # Additional stylesheet names may change while the public entry page

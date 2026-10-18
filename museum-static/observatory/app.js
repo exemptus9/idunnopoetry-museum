@@ -1,4 +1,5 @@
 import {config} from './config.js';
+import {instantSearchMarkup, mountInstantSearch} from './instant-search.js';
 import {laboratoryMarkup, mountLaboratory} from './laboratory.js';
 import {mountReviewWorkbench} from './review.js';
 import {createPublicationRequest} from './public-request.js';
@@ -10,6 +11,7 @@ let catalog = empty, connection = 'loading', failure = '', page = 1;
 let releasePage = () => {};
 let lastSurprise = '';
 const pageSize = 18;
+let lookup = null;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const label = value => String(value ?? '').replaceAll('_', ' ').replace(/\b\w/g, ch => ch.toUpperCase());
 const announce = message => { document.querySelector('#announcement').textContent = message; };
@@ -49,27 +51,30 @@ function card(term) {
 function emptyPanel(title = 'Nothing public to display yet.', description = 'New material begins in a private workspace. Entries appear here only after an explicit publication decision.') {
   return `<div class="empty-state"><span class="empty-glyph" aria-hidden="true">○</span><h2>${esc(title)}</h2><p>${esc(description)}</p><a class="button secondary" href="#laboratory">Explore the formation laboratory <span aria-hidden="true">↗</span></a></div>`;
 }
+function alphabetLinks(selected='', formMode=false) {
+  return `<div class="alphabet lookup-alphabet" aria-label="Browse words alphabetically or by initial symbol">${['','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','#'].map(letter=>formMode?`<button type="button" data-letter="${esc(letter)}" aria-pressed="${selected===letter}"${letter==='#'?' aria-label="Words starting with numbers or symbols"':''}>${letter||'All'}</button>`:`<a href="#archive${letter?'?letter='+encodeURIComponent(letter):''}"${letter==='#'?' aria-label="Words starting with numbers or symbols"':''}>${letter||'All'}</a>`).join('')}</div>`;
+}
 function home() {
-  const selected = featuredTerms(catalog);
-  return `<section class="hero section"><div class="hero-copy"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>The language experiments of B’sMyth</p><h1>A thought walks<br>into <em>a word.</em></h1><p class="hero-description">Sometimes it’s a revelation. Sometimes it’s a terrible pun. Here, both get a closer look.</p><div class="hero-actions"><a class="button" href="#archive">Explore the archive <span aria-hidden="true">↗</span></a><a class="quiet-link" href="#laboratory">Make a meaningful mess <span aria-hidden="true">→</span></a></div><form id="home-search" class="home-search" role="search"><label class="visually-hidden" for="home-query">Find a word or idea</label><input id="home-query" name="q" type="search" maxlength="160" placeholder="A word, a root, a thought…"><button class="button" type="submit" aria-label="Search the word archive">Find →</button></form></div><div class="thought-specimen" aria-label="A word under observation: Suffralchemy, suffering and alchemy"><span class="specimen-corner top-left" aria-hidden="true">+</span><span class="specimen-corner top-right" aria-hidden="true">+</span><div class="specimen-caption"><span>FIELD NOTE / 001</span><span>HANDLE WITH CURIOSITY</span></div><svg class="thought-botanical" viewBox="0 0 440 250" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="222" cy="119" rx="145" ry="66" transform="rotate(-28 222 119)"/><ellipse cx="222" cy="119" rx="145" ry="66" transform="rotate(28 222 119)"/><circle cx="222" cy="119" r="93" stroke-dasharray="2 8"/><path d="M222 235V114M222 172Q159 161 145 119Q207 127 222 172M222 198Q284 184 300 151Q239 154 222 198M41 119H399M222 11V235"/><circle cx="222" cy="119" r="31" fill="var(--paper)"/><circle cx="222" cy="119" r="22"/></g><text x="222" y="131" text-anchor="middle" fill="currentColor" font-family="Georgia" font-size="37">&amp;</text><g fill="currentColor"><circle cx="100" cy="88" r="4"/><circle cx="329" cy="69" r="4"/><circle cx="300" cy="170" r="4"/></g></svg><p class="specimen-word">Suffr<span>alchemy</span><sup>n.</sup></p><div class="specimen-roots"><span>suffering</span><i aria-hidden="true">×</i><span>alchemy</span></div><p class="specimen-gloss">Something valuable from suffering.<br>Never a reason to wish for the suffering.</p><a href="?term=suffralchemy" class="specimen-entry">Examine the record ↗</a><span class="specimen-margin">A word is a small place to put a very large thing.</span><span class="specimen-corner bottom-left" aria-hidden="true">+</span><span class="specimen-corner bottom-right" aria-hidden="true">+</span></div></section>
+  const selected=featuredTerms(catalog,6);
+  return `<section class="section reader-intro"><div><p class="eyebrow">The language experiments of B’sMyth</p><h1>Find the word.<br><em>Follow the thought.</em></h1><p>Words, meanings, roots, and the ideas between them. Start typing above. See what takes shape.</p></div><img class="reader-mark" src="./observatory-mark.svg" width="120" height="120" alt=""></section>
   <section class="section status-section">${statusNotice()}</section>
-  ${selected.length ? `<section class="section featured-section"><div class="section-heading"><div><p class="eyebrow">A few things we found in thought</p><h2>Look what the words dragged in.</h2></div><div class="heading-actions"><button class="text-button" type="button" data-action="surprise-word">A random word ⤨</button><a href="#archive">All ${catalog.terms.length} entries →</a></div></div><div class="word-grid">${selected.map(card).join('')}</div></section>` : ''}
-  <section class="section exhibition-grid"><a class="exhibition lab-exhibit" href="#laboratory"><span class="eyebrow">01 / B’sMyth’s wordsmithing bench</span><h2>Two ideas.<br><em>One unlikely introduction.</em></h2><p>Shuffle concepts, find real overlaps, and try out what the result might mean. Bring your own words. Leave with a few almosts.</p><span class="exhibition-link">Make something wonderfully questionable ↗</span></a><a class="exhibition constellation-exhibit" href="#constellation"><span class="eyebrow">02 / Lexiconography</span><h2>Ideas have<br><em>neighbours.</em></h2><p>Follow the conceptual threads. Every line carries its reason, and every hypothesis keeps its question mark.</p><span class="exhibition-link">Go off on a tangent ↗</span></a></section>
-  <section class="section"><div class="section-heading"><div><p class="eyebrow">Capture now. Understand later.</p><h2>A spark gets to become something.</h2></div><p>Three stages. A history that stays.<br>The author holds the pen.</p></div><div class="lifecycle-grid"><a class="stage-card" href="#archive?stage=forge"><span class="card-number">01 / FORGE</span><h3>What if?</h3><p>Fragments, wordplay, and unfinished ideas. A thought doesn’t need a polished definition to deserve a record.</p><span class="stage-foot">Enter the experiments ↗</span></a><a class="stage-card" href="#archive?stage=lexicon"><span class="card-number">02 / LEXICON</span><h3>What it means.</h3><p>A developed identity, with components, distinctions, and the evidence we can actually support.</p><span class="stage-foot">Meet the vocabulary ↗</span></a><a class="stage-card" href="#archive?stage=canon"><span class="card-number">03 / CANON</span><h3>Yes. That.</h3><p>The author’s explicit decision. No algorithm, audience, or very persuasive semicolon gets the final say.</p><span class="stage-foot">See author-approved meanings ↗</span></a></div></section>
-  ${catalog.terms.length ? `<section class="section collection-overview"><p>${catalog.terms.filter(hasWorkingDefinition).length} working definitions · ${catalog.terms.filter(t=>!hasWorkingDefinition(t)).length} candidates awaiting definition · ${catalog.terms.filter(t=>t.stage==='canon').length} author-approved Canon entries</p><details><summary>Browse the little universes inside</summary><div class="collection-links">${[...new Set(catalog.terms.flatMap(t=>t.collections))].sort().map(name=>`<a href="#archive?collection=${encodeURIComponent(name)}">${esc(name)} <span>${catalog.terms.filter(t=>t.collections.includes(name)).length}</span></a>`).join('')}</div></details></section>` : ''}
-  <section class="section manifesto"><p class="eyebrow">Words are not merely invented.</p><blockquote>They are observed<br><em>becoming.</em></blockquote><p>Document what is known. Label what is uncertain.<br>Leave a little room for mischief.</p></section>`;
+  <section class="section reader-collection"><div class="section-heading"><div><p class="eyebrow">A way in, from A to otherwise</p><h2>Start anywhere.</h2></div><a href="#archive">Browse all ${catalog.terms.length} words →</a></div>${alphabetLinks()}${selected.length?`<div class="word-grid">${selected.map(card).join('')}</div>`:emptyPanel()}<div class="reader-next"><a class="button secondary" href="#archive">Open the complete archive →</a><button class="text-button" type="button" data-action="surprise-word">A chance encounter ⤨</button></div></section>
+  <section class="section exhibition-grid reader-pathways"><a class="exhibition lab-exhibit" href="#laboratory"><span class="eyebrow">Make something</span><h2>Two ideas.<br><em>One unlikely introduction.</em></h2><p>Shuffle concepts, find real overlaps, and try out what the result might mean.</p><span class="exhibition-link">Enter the wordsmith’s bench ↗</span></a><a class="exhibition constellation-exhibit" href="#constellation"><span class="eyebrow">Follow a connection</span><h2>Ideas have<br><em>neighbours.</em></h2><p>Every line carries a reason. Every hypothesis keeps its question mark.</p><span class="exhibition-link">Explore the constellation ↗</span></a></section>
+  ${catalog.terms.length?`<section class="section collection-overview"><p>${catalog.terms.filter(hasWorkingDefinition).length} working definitions · ${catalog.terms.filter(t=>!hasWorkingDefinition(t)).length} candidates awaiting definition · ${catalog.terms.filter(t=>t.stage==='canon').length} author-approved Canon entries</p><details><summary>Collections &amp; editorial stages</summary><div class="collection-links">${['forge','lexicon','canon'].map(stage=>`<a href="#archive?stage=${stage}">${label(stage)} <span>${catalog.terms.filter(t=>t.stage===stage).length}</span></a>`).join('')}${[...new Set(catalog.terms.flatMap(t=>t.collections))].sort().map(name=>`<a href="#archive?collection=${encodeURIComponent(name)}">${esc(name)}</a>`).join('')}</div><p class="small-meta">Forge is experimental. Lexicon has a developed identity. Canon requires an explicit authorial decision. <a href="#methodology">Read the method →</a></p></details></section>`:''}`;
+}
+function archiveFilters() {
+  const hashParams=new URLSearchParams(location.hash.split('?')[1]||''), params=new URLSearchParams(location.search);
+  return Object.fromEntries(['q','stage','domain','formation','letter','sort','definitionState','collection'].map(key=>[key,params.get(key)||hashParams.get(key)||'']));
+}
+function archiveResultMarkup(filters) {
+  const matching=searchTerms(catalog,filters), visible=matching.slice(0,page*pageSize);
+  return `<div class="results-heading"><p id="archive-result-count" role="status">${connection==='unavailable'?'Results unavailable':`${matching.length} public ${matching.length===1?'entry':'entries'}${filters.q?` matching “${esc(filters.q)}”`:''}${filters.letter?` · ${filters.letter==='#'?'numbers & symbols':esc(filters.letter)}`:''}`}</p><div class="archive-tools">${Object.entries(filters).some(([key,value])=>value&&(key!=='sort'||value!=='relevance'))?'<a class="text-button" href="#archive">Clear filters</a>':''}<details class="export-menu"><summary>Export</summary><div><button class="text-button" data-action="json">JSON</button><button class="text-button" data-action="csv">CSV</button></div></details></div></div>${visible.length?`<div class="word-grid">${visible.map(card).join('')}</div>${visible.length<matching.length?`<div class="load-more"><button class="button secondary" data-action="more">Show ${Math.min(pageSize,matching.length-visible.length)} more entries</button></div>`:''}`:emptyPanel(catalog.terms.length?'No matching public entries.':'The archive starts with editorial care.',catalog.terms.length?'Try a shorter spelling, a related idea, or clear a filter. The search includes definitions, variants, components, and approved source summaries.':'Public entries appear here after publication approval.')}`;
 }
 function archive() {
-  const hashParams = new URLSearchParams(location.hash.split('?')[1] || '');
-  const params = new URLSearchParams(location.search);
-  const filters = Object.fromEntries(['q','stage','domain','formation','letter','sort','definitionState','collection'].map(key => [key, params.get(key) || hashParams.get(key) || '']));
-  const domainOptions = [...new Set(catalog.terms.flatMap(t => t.domains))].sort();
-  const collectionOptions = [...new Set(catalog.terms.flatMap(t => t.collections))].sort();
-  const formationOptions = [...new Set(catalog.terms.map(t => t.formation).filter(Boolean))].sort();
-  const options = (values, selected) => values.map(value => `<option value="${esc(value)}"${value === selected ? ' selected' : ''}>${esc(label(value))}</option>`).join('');
-  const matching = searchTerms(catalog, filters);
-  const visible = matching.slice(0, page * pageSize);
-  return `<section class="section page-intro"><p class="eyebrow">The word archive</p><h1>Find a word.<br><em>Follow a thought.</em></h1><p>Search definitions, forms, roots, and conceptual families. Every result is explicitly approved for public display.</p></section><section class="section archive-section">${statusNotice()}<form id="search-form" class="search-panel" role="search"><label for="query" class="search-label">Search the public collection</label><div class="search-field"><span aria-hidden="true">⌕</span><input id="query" name="q" type="search" autocomplete="off" maxlength="160" value="${esc(filters.q)}" placeholder="A word, a root, a thought…"><button type="submit" class="button">Search</button></div><details class="archive-filters"${Object.entries(filters).some(([key,value])=>value && key!=='q' && (key!=='sort' || value!=='relevance')) ? ' open' : ''}><summary>Filter &amp; sort <span>${Object.entries(filters).filter(([key,value])=>value && key!=='q' && (key!=='sort' || value!=='relevance')).length || ''}</span></summary><div class="filter-grid"><label>Stage<select name="stage"><option value="">All stages</option>${options(['forge','lexicon','canon'], filters.stage)}</select></label><label>Conceptual domain<select name="domain"><option value="">All domains</option>${options(domainOptions, filters.domain)}</select></label><label>Word formation<select name="formation"><option value="">All formations</option>${options(formationOptions, filters.formation)}</select></label><label>Definition state<select name="definitionState"><option value="">All definition states</option><option value="defined"${filters.definitionState === 'defined' ? ' selected' : ''}>Has a working definition</option><option value="pending"${filters.definitionState === 'pending' ? ' selected' : ''}>Awaiting a definition</option></select></label>${collectionOptions.length ? `<label>Collection<select name="collection"><option value="">All public collections</option>${options(collectionOptions, filters.collection)}</select></label>` : ''}<label>Order<select name="sort">${options(['relevance','alphabetical','documented'], filters.sort || 'relevance')}</select></label></div><input type="hidden" name="letter" value="${esc(filters.letter)}"><div class="alphabet" aria-label="Browse by first letter"><button type="button" data-letter="" aria-pressed="${!filters.letter}">All</button>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(letter => `<button type="button" data-letter="${letter}" aria-pressed="${filters.letter === letter}">${letter}</button>`).join('')}</div></details></form><div class="results-heading"><p role="status">${connection === 'unavailable' ? 'Results unavailable' : `${matching.length} public ${matching.length === 1 ? 'entry' : 'entries'}${filters.q ? ` matching “${esc(filters.q)}”` : ''}`}</p><div class="archive-tools">${Object.entries(filters).some(([key,value])=>value && (key!=='sort' || value!=='relevance')) ? '<a class="text-button" href="#archive">Clear filters</a>' : ''}<details class="export-menu"><summary>Export</summary><div><button class="text-button" data-action="json">JSON</button><button class="text-button" data-action="csv">CSV</button></div></details></div></div>${visible.length ? `<div class="word-grid">${visible.map(card).join('')}</div>${visible.length < matching.length ? `<div class="load-more"><button class="button secondary" data-action="more">Show ${Math.min(pageSize, matching.length - visible.length)} more entries</button></div>` : ''}` : emptyPanel(catalog.terms.length ? 'No matching public entries.' : 'The archive starts with editorial care.', catalog.terms.length ? 'Try a shorter spelling, another domain, or fewer filters. Approximate spelling is supported for individual words of four or more letters.' : 'The infrastructure is open. The personal vocabulary remains private until the author approves individual entries for publication.')}</section>`;
+  const filters=archiveFilters(), domainOptions=[...new Set(catalog.terms.flatMap(t=>t.domains))].sort(), collectionOptions=[...new Set(catalog.terms.flatMap(t=>t.collections))].sort(), formationOptions=[...new Set(catalog.terms.map(t=>t.formation).filter(Boolean))].sort();
+  const options=(values,selected)=>values.map(value=>`<option value="${esc(value)}"${value===selected?' selected':''}>${esc(label(value))}</option>`).join('');
+  const active=Object.entries(filters).filter(([key,value])=>value&&!['q','letter'].includes(key)&&(key!=='sort'||value!=='relevance'));
+  return `<section class="section page-intro archive-intro"><p class="eyebrow">The word archive</p><h1>Words, within reach.</h1><p>Type to filter every public entry. Open a word for its definition, history, and connections.</p></section><section class="section archive-section">${statusNotice()}<form id="search-form" class="search-panel" role="search"><input type="hidden" name="letter" value="${esc(filters.letter)}">${alphabetLinks(filters.letter,true)}<details class="archive-filters"${active.length?' open':''}><summary>Filter &amp; sort <span>${active.length||''}</span></summary><label for="query" class="search-label">Search within the selected filters</label><div class="search-field"><span aria-hidden="true">⌕</span><input id="query" name="q" type="search" autocomplete="off" maxlength="160" value="${esc(filters.q)}" placeholder="A word, a meaning, a source…" aria-controls="archive-results"><button type="button" class="button secondary" id="clear-archive-query" aria-label="Clear archive search">Clear</button></div><div class="filter-grid"><label>Stage<select name="stage"><option value="">All stages</option>${options(['forge','lexicon','canon'],filters.stage)}</select></label><label>Conceptual domain<select name="domain"><option value="">All domains</option>${options(domainOptions,filters.domain)}</select></label><label>Word formation<select name="formation"><option value="">All formations</option>${options(formationOptions,filters.formation)}</select></label><label>Definition state<select name="definitionState"><option value="">All definition states</option><option value="defined"${filters.definitionState==='defined'?' selected':''}>Has a working definition</option><option value="pending"${filters.definitionState==='pending'?' selected':''}>Awaiting a definition</option></select></label>${collectionOptions.length?`<label>Collection<select name="collection"><option value="">All public collections</option>${options(collectionOptions,filters.collection)}</select></label>`:''}<label>Order<select name="sort">${options(['relevance','alphabetical','documented'],filters.sort||'relevance')}</select></label></div></details></form><div id="archive-results">${archiveResultMarkup(filters)}</div></section>`;
 }
 function sources(records) {
   return records.length ? `<ul class="source-list">${records.map(s => `<li><strong>${s.url ? external(s.url, s.label) : esc(s.label)}</strong><span class="small-meta">Source date: ${esc(dateLabel(s.sourceDate))} · ${esc(label(s.evidence))}</span>${s.summary ? `<p>${esc(s.summary)}</p>` : ''}${s.originalWording ? `<blockquote>${esc(s.originalWording)}</blockquote>` : ''}</li>`).join('')}</ul>` : '<p class="muted">No approved public source witnesses are attached. This does not establish absence of earlier use.</p>';
@@ -201,6 +206,8 @@ function render() {
   if (!robots) {robots = document.createElement('meta'); robots.name='robots'; document.head.append(robots);}
   robots.content = slug && !term ? 'noindex, nofollow' : ['author','review'].includes(view) || term?.stage === 'forge' ? 'noindex, follow' : 'index, follow';
   updateCanonical(term);
+  if(view==='archive')lookup?.setQuery(archiveFilters().q);
+  lookup?.refresh();
   bind();
   if (view === 'constellation' && catalog.terms.length) setupGraph();
   if (view === 'laboratory') {renderSpecimen('blending'); releasePage=mountLaboratory(app,catalog.terms);}
@@ -226,18 +233,31 @@ function updateCanonical(term) {
     document.head.append(schema);
   }
 }
-function searchNavigate(form) {
-  const data = new FormData(form), params = new URLSearchParams();
-  for (const [key,value] of data) if (String(value).trim()) params.set(key, String(value).trim());
-  page = 1;
-  navigate(`?${params.toString()}#archive`, {preserveScroll:true,focusName:document.activeElement?.name || '',filtersOpen:!!form.querySelector('.archive-filters')?.open});
-  announce(`${searchTerms(catalog, Object.fromEntries(params)).length} public results`);
+function searchNavigate(form,{push=false}={}) {
+  const params=new URLSearchParams();
+  for(const [key,value] of new FormData(form)) if(String(value).trim())params.set(key,String(value).trim());
+  page=1;
+  const filters=Object.fromEntries(params), url=new URL(location.href);url.search=params.toString();url.hash='archive';
+  const state={...history.state,archivePage:1,scrollTop:window.scrollY};
+  if(push&&url.href!==location.href){history.replaceState({...history.state,scrollTop:window.scrollY},'',location.href);history.pushState(state,'',url);}else history.replaceState(state,'',url);
+  document.querySelector('#archive-results').innerHTML=archiveResultMarkup(filters);
+  if(document.activeElement!==document.querySelector('[data-search-input]'))lookup?.setQuery(filters.q||'');
+  form.querySelectorAll('[data-letter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.letter===(filters.letter||''))));
+  const count=Object.entries(filters).filter(([key,value])=>value&&!['q','letter'].includes(key)&&(key!=='sort'||value!=='relevance')).length;
+  const summary=form.querySelector('.archive-filters>summary>span');if(summary)summary.textContent=count||'';
 }
 function bind() {
-  document.querySelector('#home-search')?.addEventListener('submit',event=>{event.preventDefault();const q=new FormData(event.currentTarget).get('q');navigate(`?q=${encodeURIComponent(q)}#archive`);});
-  document.querySelector('#search-form')?.addEventListener('submit', event => {event.preventDefault(); searchNavigate(event.currentTarget);});
-  document.querySelectorAll('#search-form select').forEach(select => select.addEventListener('change', () => searchNavigate(document.querySelector('#search-form'))));
-  document.querySelectorAll('[data-letter]').forEach(button => button.addEventListener('click', () => {const form=document.querySelector('#search-form');form.elements.letter.value=button.dataset.letter;searchNavigate(form);}));
+  const searchForm=document.querySelector('#search-form');
+  if(searchForm){
+    let composing=false;
+    searchForm.addEventListener('submit',event=>{event.preventDefault();if(!composing)searchNavigate(searchForm,{push:true});});
+    searchForm.elements.q.addEventListener('compositionstart',()=>{composing=true;});
+    searchForm.elements.q.addEventListener('compositionend',()=>{composing=false;searchNavigate(searchForm);});
+    searchForm.elements.q.addEventListener('input',event=>{if(!composing&&!event.isComposing)searchNavigate(searchForm);});
+    searchForm.querySelectorAll('select').forEach(select=>select.addEventListener('change',()=>searchNavigate(searchForm,{push:true})));
+    searchForm.querySelectorAll('[data-letter]').forEach(button=>button.addEventListener('click',()=>{searchForm.elements.letter.value=button.dataset.letter;searchNavigate(searchForm,{push:true});}));
+    document.querySelector('#clear-archive-query').addEventListener('click',()=>{searchForm.elements.q.value='';searchNavigate(searchForm);searchForm.elements.q.focus();});
+  }
   document.querySelector('#time-at')?.addEventListener('change', event => {
     const slug = new URLSearchParams(location.search).get('term'), term=findPublicTerm(catalog,slug);
     const version=versionAt(catalog,term.id,event.target.value);
@@ -259,7 +279,7 @@ async function copy(text, success) {
 }
 document.addEventListener('click', event => {
   const anchor=event.target.closest('a');
-  if(anchor && anchor.getAttribute('href') !== '#main' && !event.ctrlKey && !event.metaKey && !event.shiftKey && event.button===0) {
+  if(anchor && anchor.getAttribute('href') !== '#main' && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && event.button===0) {
     const url=new URL(anchor.getAttribute('href'),location.href);
     const wordPath = new URL('word/', config.canonicalBase).pathname;
     if(url.origin===location.origin && url.pathname.startsWith(wordPath)) {
@@ -328,4 +348,20 @@ function setupGraph() {
 }
 const editor=safeUrl(config.editorialUrl,location.href);
 if(editor){const target=document.querySelector('#editorial-link');target.innerHTML=`<a href="${esc(editor)}">Connected editorial workspace ↗</a>`;}
+const lookupRoot=document.querySelector('#site-lookup');
+if(lookupRoot){
+  const fallbackInput=lookupRoot.querySelector('input[type=search]');
+  const hadLookupFocus=fallbackInput===document.activeElement;
+  const initialLookupValue=fallbackInput?.value || new URLSearchParams(location.search).get('q') || '';
+  if(viewName()==='archive' && fallbackInput?.value){
+    const startupUrl=new URL(location.href);startupUrl.searchParams.set('q',fallbackInput.value);
+    history.replaceState(history.state,'',startupUrl);
+  }
+  lookupRoot.innerHTML=`<div class="lookup-dock-inner">${instantSearchMarkup({base:'./',idPrefix:'site-lookup'})}</div>`;
+  lookup=mountInstantSearch(lookupRoot,{getCatalog:()=>catalog,status:()=>connection,base:'./',initialQuery:initialLookupValue,
+    onNavigate:(href,{term,query}={})=>{history.replaceState({...history.state,lookupQuery:query||''},'',location.href);navigate(term?`?term=${encodeURIComponent(term.slug)}`:href);},
+    onSearchAll:query=>navigate(`?q=${encodeURIComponent(query)}#archive`),
+    onQueryChange:query=>{const archiveForm=document.querySelector('#search-form');if(archiveForm){archiveForm.elements.q.value=query;searchNavigate(archiveForm);}}});
+  if(hadLookupFocus)lookup.focus();
+}
 loadCatalog();

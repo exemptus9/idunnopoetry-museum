@@ -6,6 +6,7 @@ export const REVIEW_STATES = ['open','resolved','deferred'];
 export const DEFINITION_BASES = ['author_supplied','conversation_recovered','archive_recovered','inferred','unknown'];
 export const REVIEW_FLAGS = ['definition_conflict','definition_needed','meaning_inferred','classification_review','variant_review','attribution_review','source_needed','author_decision','duplicate_candidate'];
 const EVIDENCE = ['verified', 'supported', 'reported', 'hypothetical', 'unknown'];
+const normalizedCatalogs = new WeakSet(), normalizedTerms = new WeakSet(), searchIndexes = new WeakMap();
 const text = value => typeof value === 'string' ? value.trim() : '';
 const strings = value => Array.isArray(value) ? value.map(v => typeof v === 'string' ? v : text(v?.label || v?.name || v?.word)).filter(Boolean) : [];
 export function normalizeReview(value) {
@@ -15,7 +16,7 @@ export function normalizeReview(value) {
     definitionBasis:DEFINITION_BASES.includes(review.definitionBasis)?review.definitionBasis:'unknown',note:text(review.note).slice(0,2000)};
 }
 export function fold(value) {
-  return text(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('en');
+  return text(value).normalize('NFKD').replace(/\p{M}/gu, '').toLocaleLowerCase('en');
 }
 export function slugify(value) {
   return fold(value).replace(/[’']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -118,7 +119,10 @@ export function normalizeCatalog(payload) {
     note: text(v.note || v.changeSummary || v.change_summary),
     stage: STAGES.includes(v.stage) ? v.stage : null,
   })).filter(v => ids.has(v.termId) && v.definition);
-  return {schemaVersion: '1.0', terms, relations, versions, generatedAt: date(payload.generatedAt || payload.generated_at), publicationState: text(payload.publicationState), warnings: [...new Set(warnings)]};
+  terms.forEach(term => normalizedTerms.add(term));
+  const catalog = {schemaVersion: '1.0', terms, relations, versions, generatedAt: date(payload.generatedAt || payload.generated_at), publicationState: text(payload.publicationState), warnings: [...new Set(warnings)]};
+  normalizedCatalogs.add(catalog);
+  return catalog;
 }
 export function findPublicTerm(catalog, identifier) {
   return catalog.terms.find(term => term.id === identifier || term.slug === identifier) || null;
@@ -134,40 +138,165 @@ export function editDistance(a, b, limit = 2) {
   }
   return prior[b.length];
 }
-export function searchScore(term, query) {
-  const q = fold(query); if (!q) return 1;
-  const head = fold(term.headword), forms = term.variants.map(fold);
-  if (head === q) return 120;
-  if (forms.includes(q)) return 110;
-  if (head.startsWith(q)) return 95;
-  if (head.endsWith(q)) return 90;
-  if (head.includes(q) || forms.some(f => f.includes(q))) return 85;
-  const haystack = fold([term.definition, term.formation, term.classification, ...term.components, ...term.domains, ...term.tags, ...term.senses.map(s => s.definition)].join(' '));
-  const tokens = q.split(/\s+/).filter(Boolean);
-  if (tokens.every(token => haystack.includes(token) || head.includes(token))) return 70;
-  if (q.length >= 4 && q.length <= 64 && !q.includes(' ')) {
-    const limit = q.length > 7 ? 2 : 1;
-    const d = Math.min(...[head, ...forms].map(f => editDistance(q, f, limit)));
-    if (d <= limit) return 35 - d;
+/** Search folds typography without making a punctuation-only query match everything. */
+function searchText(value) {
+  return fold(value).replace(/[’‘ʼʻ`´]/g, "'").replace(/[‐‑‒–—―−]/g, '-').replace(/\s+/g, ' ');
+}
+const compactKey = value => searchText(value).replace(/[^\p{L}\p{N}]/gu, '');
+const alphabeticOrder = new Intl.Collator('en', {sensitivity:'base', numeric:true});
+function searchField(field, label, value, weight) {
+  const original = text(value);
+  return original ? {field, label, text:original, folded:searchText(original), compact:compactKey(original), weight} : null;
+}
+function searchableRecord(term, connected = [], history = []) {
+  const fields = [], add = (field, label, value, weight) => {
+    const row = searchField(field, label, value, weight); if (row) fields.push(row);
+  };
+  add('headword', 'Word', term.headword, 180);
+  for (const variant of term.variants) add('variant', 'Alternate spelling', variant, 170);
+  add('definition', term.definitionStatus === 'inferred_definition' ? 'Provisional definition' : 'Definition', term.definition, 95);
+  for (const component of term.components) add('component', 'Component', component, 100);
+  for (const sense of term.senses) add('sense', sense.label ? `Sense: ${sense.label}` : 'Sense', sense.definition, 94);
+  for (const domain of term.domains) add('domain', 'Semantic domain', domain, 92);
+  for (const tag of term.tags) add('tag', 'Tag', tag, 90);
+  add('formation', 'Formation', term.formation.replaceAll('_', ' '), 88);
+  add('classification', 'Classification', term.classification.replaceAll('_', ' '), 86);
+  for (const collection of term.collections) add('collection', 'Collection', collection, 84);
+  for (const example of term.examples) add('example', 'Usage example', example, 82);
+  for (const [field, label] of [['conceptualGap','Conceptual distinction'], ['literalMeaning','Literal meaning'], ['figurativeMeaning','Figurative meaning']]) add(field, label, term[field], 80);
+  for (const source of term.witnesses) {
+    for (const value of [source.label, source.summary, source.originalWording]) add('source', 'Approved source', value, 76);
   }
-  return 0;
+  for (const work of term.corpus) {
+    for (const value of [work.label, work.summary, work.originalWording]) add('corpus', 'Approved literary use', value, 78);
+  }
+  add('provenance', 'Public provenance', term.provenanceSummary, 74);
+  add('authorship', 'Authorship', term.authorship, 70);
+  add('attribution', 'Attribution', term.attribution, 70);
+  add('stage', 'Editorial stage', term.stage, 68);
+  add('partOfSpeech', 'Part of speech', term.partOfSpeech, 67);
+  add('pronunciation', 'Verified pronunciation', term.pronunciation, 66);
+  add('ipa', 'Verified IPA', term.ipa, 66);
+  add('id', 'Public record ID', term.id, 60);
+  add('slug', 'Permanent word URL', term.slug, 61);
+  for (const source of [...term.witnesses, ...term.corpus]) add('sourceDate', 'Recorded source date', source.sourceDate, 58);
+  for (const {other, relation} of connected) {
+    add('relationship', relation.inferred ? 'Proposed relation' : 'Related concept', other.headword, 72);
+    for (const variant of other.variants) add('relationship', relation.inferred ? 'Proposed relation' : 'Related concept', variant, 71);
+  }
+  for (const version of history) {
+    const details = [version.version === null ? '' : `version ${version.version}`, version.effectiveAt || ''].filter(Boolean);
+    add('history', `Earlier public wording${details.length ? ` · ${details.join(' · ')}` : ''}`, version.definition, 48);
+  }
+  return {term, fields, forms:fields.filter(row => ['headword','variant'].includes(row.field))};
+}
+function matchesSearchFilters(term, filters) {
+  return (!filters.stage || term.stage === filters.stage) &&
+    (!filters.definitionState || (filters.definitionState === 'defined' ? hasWorkingDefinition(term) : !hasWorkingDefinition(term))) &&
+    (!filters.collection || term.collections.includes(filters.collection)) &&
+    (!filters.reviewState || term.review?.state === filters.reviewState) &&
+    (!filters.reviewFlag || term.review?.flags.includes(filters.reviewFlag)) &&
+    (!filters.definitionBasis || term.review?.definitionBasis === filters.definitionBasis) &&
+    (!filters.classification || term.classification === filters.classification) &&
+    (!filters.tag || term.tags.includes(filters.tag)) &&
+    (!filters.domain || term.domains.includes(filters.domain)) && (!filters.formation || term.formation === filters.formation) &&
+    (!filters.letter || (filters.letter === '#' ? !/^\p{L}/u.test(term.headword) : searchText(term.headword).startsWith(searchText(filters.letter))));
+}
+function makeQuery(value) {
+  const q = searchText(text(value).slice(0, 200)), compact = compactKey(q);
+  return {q, compact, tokens:q.match(/[\p{L}\p{N}]+/gu) || [], symbolsOnly:Boolean(q) && !compact};
+}
+function scoreSearchRecord(record, query) {
+  const {q, compact, tokens, symbolsOnly} = query;
+  if (!q) return {score:1, field:record.forms[0]};
+  let best = null;
+  const consider = (score, field) => {if (!best || score > best.score) best = {score, field};};
+  for (const field of record.forms) {
+    const variant = field.field === 'variant';
+    if (field.folded === q) consider(variant ? 170 : 180, field);
+    else if (!symbolsOnly && field.compact === compact) consider(variant ? 158 : 164, field);
+    else if (field.folded.startsWith(q)) consider(variant ? 145 : 150, field);
+    else if (field.folded.endsWith(q)) consider(variant ? 136 : 140, field);
+    else if (field.folded.includes(q)) consider(variant ? 126 : 130, field);
+    else if (!symbolsOnly && compact.length >= 2 && field.compact.includes(compact)) consider(variant ? 120 : 122, field);
+  }
+  // Punctuation alone is useful for finding expressive headwords, not every full stop in a source summary.
+  if (symbolsOnly) return best;
+  for (const field of record.fields) {
+    if (field.field === 'headword' || field.field === 'variant') continue;
+    if (field.folded.includes(q)) consider(field.weight + (field.folded === q ? 4 : 0), field);
+    else if (tokens.length && tokens.every(token => field.folded.includes(token))) consider(field.weight - 3, field);
+  }
+  // A query can span a root and its definition, or a domain and its usage example.
+  if (!best && tokens.length > 1 && tokens.every(token => record.fields.some(field => field.folded.includes(token)))) {
+    const historicalToken = tokens.find(token => !record.fields.some(field => field.field !== 'history' && field.folded.includes(token)));
+    const field = historicalToken ? record.fields.find(field => field.field === 'history' && field.folded.includes(historicalToken)) : record.fields.find(field => field.folded.includes(tokens[0]));
+    consider(historicalToken ? 45 : 64, field);
+  }
+  if (!best && compact.length >= 4 && compact.length <= 64 && tokens.length === 1) {
+    const limit = compact.length > 7 ? 2 : 1;
+    for (const field of record.forms) {
+      const distance = editDistance(compact, field.compact, limit);
+      if (distance <= limit) consider((field.field === 'headword' ? 35 : 32) - distance - (field.folded === field.compact ? 0 : 1), field);
+    }
+  }
+  return best;
+}
+function searchHit(record, scored, query) {
+  const field = scored.field;
+  const found = query.q ? field.folded.indexOf(query.q) : 0;
+  const tokenAt = found < 0 && query.tokens.length ? field.folded.indexOf(query.tokens[0]) : found;
+  const start = field.text.length > 280 ? Math.max(0, tokenAt - 60) : 0;
+  const snippet = `${start ? '…' : ''}${field.text.slice(start, start + 278)}${start + 278 < field.text.length ? '…' : ''}`;
+  return {term:record.term, score:scored.score, match:{field:field.field, label:field.label, text:snippet}};
+}
+/**
+ * Build once per catalog load. Only the normalized, approved public projection is indexed;
+ * Private fields and AI proposals are excluded. Approved older wording is searchable
+ * only as an explicitly labeled historical match, never as the current definition.
+ * Rebuild when replacing the catalog. Results carry the field that actually matched.
+ */
+export function createSearchIndex(input) {
+  const catalog = normalizedCatalogs.has(input) ? input : normalizeCatalog(input);
+  const connected = new Map(catalog.terms.map(term => [term.id, []])), byId = new Map(catalog.terms.map(term => [term.id, term]));
+  const history = new Map(catalog.terms.map(term => [term.id, []]));
+  const definitionKey = value => text(value).replace(/\s+/g, ' ').toLocaleLowerCase('en');
+  const seenDefinitions = new Map(catalog.terms.map(term => [term.id, new Set([definitionKey(term.definition)])]));
+  // Repeated version snapshots do not inflate lookup work or drown out current wording.
+  const versions = [...catalog.versions].sort((a,b) => (b.effectiveAt || '').localeCompare(a.effectiveAt || '') || (b.version || 0) - (a.version || 0));
+  for (const version of versions) {
+    const seen = seenDefinitions.get(version.termId), key = definitionKey(version.definition);
+    if (seen && key && !seen.has(key)) {seen.add(key);history.get(version.termId).push(version);}
+  }
+  for (const relation of catalog.relations) {
+    connected.get(relation.from).push({other:byId.get(relation.to), relation});
+    connected.get(relation.to).push({other:byId.get(relation.from), relation});
+  }
+  const records = catalog.terms.map(term => searchableRecord(term, connected.get(term.id), history.get(term.id)));
+  return {
+    size:records.length,
+    search(value, {limit = 8, filters = {}} = {}) {
+      const query = makeQuery(value), hits = [];
+      for (const record of records) {
+        if (!isApprovedPublic(record.term) || !matchesSearchFilters(record.term, filters)) continue;
+        const scored = scoreSearchRecord(record, query);
+        if (scored) hits.push(searchHit(record, scored, query));
+      }
+      hits.sort((a,b) => (query.q && filters.sort !== 'alphabetical' && filters.sort !== 'documented' ? b.score - a.score : 0) ||
+        (filters.sort === 'documented' ? (b.term.earliestAppearance || '').localeCompare(a.term.earliestAppearance || '') : 0) ||
+        alphabeticOrder.compare(a.term.headword, b.term.headword) || a.term.id.localeCompare(b.term.id));
+      const count = limit === Infinity ? hits.length : Number.isFinite(limit) ? Math.max(0, Math.floor(limit)) : 8;
+      return hits.slice(0, count);
+    },
+  };
+}
+export function searchScore(term, query) {
+  const safe = normalizedTerms.has(term) ? term : normalizeCatalog({terms:[term],relations:[],versions:[]}).terms[0];
+  return safe ? scoreSearchRecord(searchableRecord(safe), makeQuery(query))?.score || 0 : 0;
 }
 export function searchTerms(catalog, filters = {}) {
-  const q = text(filters.q);
-  const matches = catalog.terms.filter(t => (!filters.stage || t.stage === filters.stage) &&
-    (!filters.definitionState || (filters.definitionState === 'defined' ? hasWorkingDefinition(t) : !hasWorkingDefinition(t))) &&
-    (!filters.collection || t.collections.includes(filters.collection)) &&
-    (!filters.reviewState || t.review?.state === filters.reviewState) &&
-    (!filters.reviewFlag || t.review?.flags.includes(filters.reviewFlag)) &&
-    (!filters.definitionBasis || t.review?.definitionBasis === filters.definitionBasis) &&
-    (!filters.classification || t.classification === filters.classification) &&
-    (!filters.tag || t.tags.includes(filters.tag)) &&
-    (!filters.domain || t.domains.includes(filters.domain)) && (!filters.formation || t.formation === filters.formation) &&
-    (!filters.letter || fold(t.headword).startsWith(fold(filters.letter))))
-    .map(term => ({term, score: searchScore(term, q)})).filter(row => row.score > 0);
-  matches.sort((a, b) => (q && filters.sort !== 'alphabetical' ? b.score - a.score : 0) || a.term.headword.localeCompare(b.term.headword));
-  if (filters.sort === 'documented') matches.sort((a, b) => (b.term.earliestAppearance || '').localeCompare(a.term.earliestAppearance || ''));
-  return matches.map(row => row.term);
+  if (!searchIndexes.has(catalog)) searchIndexes.set(catalog, createSearchIndex(catalog));
+  return searchIndexes.get(catalog).search(filters.q, {limit:Infinity, filters}).map(hit => hit.term);
 }
 export function featuredTerms(catalog, limit = 3) {
   return catalog.terms.filter(hasWorkingDefinition).sort((a, b) =>

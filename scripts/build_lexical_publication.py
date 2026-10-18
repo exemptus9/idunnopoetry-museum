@@ -245,7 +245,9 @@ def page(term, base, catalog=None):
 <link rel="stylesheet" href="../../observatory.css">
 <script type="application/ld+json">{metadata}</script>
 <link rel="stylesheet" href="../../atelier.css">
+<link rel="stylesheet" href="../../search.css">
 </head><body class="static-word"><header><img src="../../observatory-mark.svg" width="36" height="36" alt=""><a href="../../">Lexical Observatory</a><span>/ Word Archive</span></header>
+<div class="lookup-dock" data-static-lookup data-base="../../" aria-label="Find another word"><form action="../../#archive" method="get" class="lookup-fallback"><label for="word-initial-query">Find a word or idea</label><input id="word-initial-query" name="q" type="search" placeholder="Search words, meanings, roots…" autocomplete="off"><button type="submit">Search</button></form></div>
 <main id="main"><p class="status">{esc(term['stage'].title())} · {esc(status)}</p>
 <h1>{esc(term['headword'])}</h1><p class="definition">{esc(term['definition'] or "Definition pending.")}</p>
 <p class="muted">{esc(term.get('editorialReview', {}).get('shortReason', ''))}</p>
@@ -269,7 +271,7 @@ def page(term, base, catalog=None):
 <section><h2>Definition archaeology</h2>{'<ol>' + ''.join(history) + '</ol>' if history else '<p>No public definition history is recorded.</p>'}<p class="muted">Undated recovered wording is not assigned a fabricated historical date. Publication dates do not establish dates of invention.</p></section>
 <section><h2>Public source summaries</h2>{'<ul>' + ''.join(witnesses) + '</ul>' if witnesses else '<p>No public external witness is attached.</p>'}</section>
 <p>Recorded dates do not establish absolute originality. Canon is an authorial decision.</p>
-</main><footer><a href="../../">Lexical Observatory</a> · <a href="../../../">IDunnoPoetry Museum</a></footer><script type="module" src="../../share.js"></script></body></html>'''
+</main><footer><a href="../../">Lexical Observatory</a> · <a href="../../../">IDunnoPoetry Museum</a></footer><script type="module" src="../../share.js"></script><script type="module" src="../../static-search.js"></script></body></html>'''
 
 
 def build(payload, out, base, write=False):

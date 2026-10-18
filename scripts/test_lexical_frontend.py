@@ -1,4 +1,4 @@
-"""Run the dependency-free public model tests in the publication test suite."""
+"""Run public model and DOM behavior checks in the publication test suite."""
 from pathlib import Path
 import json
 import subprocess
@@ -11,7 +11,7 @@ SITE = ROOT / 'museum-static/observatory'
 
 class LexicalFrontendTests(unittest.TestCase):
     def test_public_modules_parse(self):
-        for source in ('config.js', 'model.js', 'app.js', 'review.js', 'public-request.js', 'blend-engine.js', 'laboratory.js', 'share.js'):
+        for source in ('config.js', 'model.js', 'app.js', 'review.js', 'public-request.js', 'blend-engine.js', 'laboratory.js', 'share.js', 'instant-search.js', 'static-search.js'):
             result = subprocess.run(['node', '--check', str(SITE / source)], capture_output=True, text=True, timeout=30)
             self.assertEqual(result.returncode, 0, result.stderr)
 
@@ -33,6 +33,10 @@ class LexicalFrontendTests(unittest.TestCase):
 
     def test_laboratory_dom_behaviors(self):
         result = subprocess.run(['node', str(ROOT / 'scripts/test_lexical_lab_dom.mjs')], capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_instant_search_dom_behaviors(self):
+        result = subprocess.run(['node', str(ROOT / 'scripts/test_lexical_search_dom.mjs')], capture_output=True, text=True, timeout=60)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_publication_output_is_consumed_without_losing_relations_or_canon(self):

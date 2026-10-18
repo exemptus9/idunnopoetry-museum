@@ -32,7 +32,11 @@ class LexicalPublicationTests(unittest.TestCase):
                 if tag == 'link': self.links.setdefault(data.get('rel'), []).append(data.get('href'))
         for term in payload['terms']:
             with self.subTest(slug=term['slug']):
-                parser = Tags(); parser.feed((site / 'word' / term['slug'] / 'index.html').read_text())
+                page_html = (site / 'word' / term['slug'] / 'index.html').read_text()
+                parser = Tags(); parser.feed(page_html)
+                self.assertIn('data-static-lookup', page_html)
+                self.assertIn('../../search.css', parser.links['stylesheet'])
+                self.assertIn('src="../../static-search.js"', page_html)
                 asset = site / 'social' / social_name(term)
                 self.assertEqual(struct.unpack('>II', asset.read_bytes()[16:24]), (1200,630))
                 self.assertEqual(parser.meta['og:image'], parser.meta['twitter:image'])
