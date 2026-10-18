@@ -606,6 +606,7 @@ async function ready(){
   $('source-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
  });
  $('quick-seed').addEventListener('click',()=>newRecord('seed'));
+ $('quick-provenance').addEventListener('click',openProvenanceReview);
  $('quick-review').addEventListener('click',()=>{
   const first=records.find(r=>r.status==='draft');
   if(first && first.kind!==$('kind').value){
@@ -623,11 +624,35 @@ async function ready(){
  $('source-search').addEventListener('input',listPublicSources);
  $('draft-search').addEventListener('input',listDrafts);
  $('record-filter').addEventListener('change',listDrafts);
+ $('provenance-filter').addEventListener('change',listDrafts);
+ $('global-search').addEventListener('input',()=>renderNavigator().catch(e=>navigatorNote('Search error: '+e.message)));
+ $('global-scope').addEventListener('change',()=>renderNavigator().catch(e=>navigatorNote('Search error: '+e.message)));
+ $('global-search').addEventListener('keydown',event=>{
+  if(event.key==='Escape'){$('global-search').value='';navigatorNote('Search cleared.');return}
+  if(event.key==='ArrowDown' || (event.key==='Enter' && $('global-search').value.trim().length>=2)){
+   const first=$('global-results').querySelector('.command-result');
+   if(first){event.preventDefault();if(event.key==='Enter')first.click();else first.focus()}
+  }
+ });
+ $('global-results').addEventListener('keydown',event=>{
+  if(!['ArrowDown','ArrowUp'].includes(event.key))return;
+  const buttons=Array.from($('global-results').querySelectorAll('.command-result'));
+  const at=buttons.indexOf(document.activeElement);
+  if(at<0)return;
+  event.preventDefault();
+  const next=at+(event.key==='ArrowDown'?1:-1);
+  if(next<0)$('global-search').focus();
+  else (buttons[next]||buttons[at]).focus();
+ });
+ document.addEventListener('keydown',keyboardCommands);
  $('new').addEventListener('click',()=>newRecord($('kind').value));
  $('title').addEventListener('input',suggestNewRecordKey);
  $('entity-key').addEventListener('input',()=>{$('entity-key').dataset.userEdited='true'});
  $('edit-form').addEventListener('input',()=>{$('preview-panel').hidden=true;updateEditState()});
  $('edit-form').addEventListener('change',()=>{$('preview-panel').hidden=true;updateEditState()});
+ $('compare-source').addEventListener('click',toggleComparison);
+ $('copy-handoff').addEventListener('click',copyContinuityHandoff);
+ $('text').addEventListener('input',()=>{if(!$('source-compare').hidden)renderComparison()});
  window.addEventListener('beforeunload',event=>{
   if(!hasUnsavedChanges())return;
   event.preventDefault();event.returnValue='';
