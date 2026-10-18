@@ -1,6 +1,6 @@
 # Museum Control Center — private backend and editorial overlays
 
-**Status: source implemented and testable; hosted backend NOT yet activated.**
+**Status (October 18, 2026):** Hosted Supabase project active, original editorial migration installed, one allowlisted owner, GitHub Pages connected. Database save/approve/publish/withdraw was verified transactionally and rolled back. Synthetic client DOM tests are part of CI. Authenticated end-to-end production browser publication and database restore are separate acceptance gates.
 
 Public Museum: https://exemptus9.github.io/idunnopoetry-museum/  
 Private editor shell: https://exemptus9.github.io/idunnopoetry-museum/admin/
@@ -12,11 +12,30 @@ The original static IDunnoPoetry source records remain unchanged. The control ce
 - museum-static/admin/index.html — browser editor, authorization and revision UI; no third-party CDN.
 - supabase/migrations/20261008_museum_editorial_backend.sql — private draft records, revisions, audit events, owner/editor allowlist, public projection, RLS, and approval/publish/withdraw RPCs.
 - museum-static/admin/public-overlay.js — visitor pages read ONLY the approved public projection, never private drafts.
-- museum-static/admin/cms-config.js — empty by default; public project URL and publishable API key ONLY.
+- museum-static/admin/cms-config.js — configured with the public Supabase project URL and publishable API key ONLY. No service-role or secret key belongs in the repository.
 - scripts/test_museum_backend.sql — disposable PostgreSQL role and publication tests.
 - scripts/test_museum_control.py — public-vs-private regressions.
+- scripts/test_museum_control_dom.mjs — synthetic browser DOM coverage of quick capture, owner role, dirty-state protection, stage filtering, private export, and the rule that saving never publishes.
 
-## Activation: explicit owner action needed
+## Using the editor now
+
+1. Visit https://exemptus9.github.io/idunnopoetry-museum/admin/ in the same browser used for the sign-in link. The existing Supabase owner account is already allowlisted.
+2. Choose **Find a preserved poem** and search the public recovery archive by title or text; or choose **Start a private Seed**. Neither action publishes.
+3. Edit and inspect the selected record. **Unsaved changes** are visibly flagged; changing records, leaving the tab, and switching categories requires acknowledging any unsaved work.
+4. Choose **Save PRIVATE draft** to create an audit-tracked revision. The **Review stage** filter lets the owner find drafts, approvals, publications, and withdrawals.
+5. If and only if the exact stored revision is intended for public release, use **Approve** and then **Publish**, separately. A new edit blocks public actions until saved, and any new stored revision must be reapproved.
+6. **Export loaded private drafts** is an explicit, unencrypted local JSON download of *up to 1,000 records loaded in the editor*. It is **not** a verified database backup: it excludes revision history, audit events, the original recovered corpus and anything outside the loaded page. Store the file privately.
+
+### Known activation and security limits
+
+- The project is in Supabase organization `exemptus9's Org`, project `idp-museum-editorial`, region `us-east-1`, with owner authorization already established. No private source text was seeded.
+- All five editorial tables use RLS. The privileged, authenticated RPCs remain flagged by Supabase's security advisor; they check the privileged curator allowlist and require explicit publication phrases. Continue testing these controls; a static audit is not an independent security certificate.
+- Supabase Auth's URL Configuration must retain the live `/admin/` URL. The former `localhost:3000` setting caused broken email redirects.
+- Before treating the private cloud database as an irreplaceable master, implement a **verified** full database backup/restore and a real authenticated browser publication-withdrawal test.
+- Site operators should consider a dedicated administration origin and appropriate MFA, rate limiting and access-control hardening.
+- The existing Museum website remains public; authentication gates only the editor's private data API, not the static archive's historical source files.
+
+## Original activation recipe (for disaster recovery; currently completed)
 
 1. Choose the Supabase organization and approve the checked project cost. No new paid project may be provisioned without confirming pricing and permission.
 2. Create the approved Supabase project and apply the SQL migration only after confirming backups/target scope. The migration seeds NO private writing.
@@ -30,7 +49,7 @@ The original static IDunnoPoetry source records remain unchanged. The control ce
 No website user is able to self-register as an administrator; the allowlist is populated only through privileged administrator action.
 
 6. After testing RLS, configure only the project URL and its PUBLISHABLE key in museum-static/admin/cms-config.js. NEVER put a service-role or secret key, database password, token, private Vault file, or original notebook into the public repository.
-7. Release the configured assets on the approved host. Before activation, the editor intentionally shows a setup screen instead of pretending to be an active backend.
+7. Release configured assets on the approved host. If the project is deliberately unconfigured on a future environment, the editor must show a setup screen.
 8. Test a harmless sample: create draft → save → preview → approve exact revision → publish → verify in public Museum → change draft (must invalidate approval) → withdraw → confirm tombstone → restore a prior revision. Separately verify a signed-out user cannot read drafts or edit.
 9. To bring in a private Seed, select a local v5 Seedbank JSON file in the editor, search locally, and choose ONE record. Saving the selected work to the hosted PRIVATE database requires a separate explicit confirmation. The file itself is not automatically uploaded.
 10. Set up verified database backup/restore and recovery before making the cloud database the authoritative copy of any private corpus.

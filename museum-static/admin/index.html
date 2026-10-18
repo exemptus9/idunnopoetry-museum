@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#143a43">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; form-action 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'">
 <title>Museum Control Center · private curator</title>
@@ -37,12 +38,22 @@
   <section id="app" hidden>
     <div class="hero">
       <div><div class="eyebrow">Owner-only publishing • revision-safe drafts</div><h1>Museum Control Center</h1><p>One place to edit curated content while preserving the original recovered archive.</p></div>
-      <div class="quick"><a href="../#seeds">View public Seed Bank ↗</a> <button id="reload" type="button" class="secondary">Refresh records</button> <button id="logout" type="button" class="secondary">Sign out</button></div>
+      <div class="quick"><a href="../#seeds">View public Seed Bank ↗</a> <button id="export-drafts" type="button" class="secondary" disabled>Export loaded private drafts</button> <button id="reload" type="button" class="secondary">Refresh records</button> <button id="logout" type="button" class="secondary">Sign out</button></div>
     </div>
-    <div class="stat-grid" id="stats"></div>
+    <section class="guide" aria-labelledby="guide-heading">
+      <div><div class="eyebrow">Your next step</div><h2 id="guide-heading">Choose a starting point</h2>
+      <p>Capture privately first. Review evidence and authorship independently. Only an explicitly approved, saved revision can be published.</p></div>
+      <div class="guide-actions">
+        <button id="quick-find" type="button">Find a preserved poem</button>
+        <button id="quick-seed" type="button" class="secondary">Start a private Seed</button>
+        <button id="quick-review" type="button" class="secondary">Review saved drafts</button>
+      </div>
+      <p class="guide-status" id="welcome-status" role="status" aria-live="polite">Loading your private editorial index…</p>
+    </section>
+    <div class="stat-grid" id="stats" aria-label="Editorial record counts"></div>
     <div class="layout">
-      <aside>
-        <h2>Manage</h2>
+      <aside id="workspace-sidebar">
+        <h2>Find and organize</h2>
         <label>Section
           <select id="kind">
             <option value="seed">🌱 Seeds & drafts</option>
@@ -70,6 +81,15 @@
         <label>Search your drafts
           <input id="draft-search" type="search" placeholder="Title or record ID">
         </label>
+        <label>Review stage
+          <select id="record-filter" aria-label="Filter saved records by editorial stage">
+            <option value="all">All saved records</option>
+            <option value="draft">Private drafts</option>
+            <option value="approved">Approved, not yet published</option>
+            <option value="published">Published</option>
+            <option value="withdrawn">Withdrawn</option>
+          </select>
+        </label>
         <div id="draft-list" class="scroll-list" aria-live="polite"></div>
         <button id="new" type="button" class="secondary full">+ New editorial record</button>
         <details class="vault-import"><summary>Import ONE Seed from private Vault</summary>
@@ -86,7 +106,7 @@
         </details>
       </aside>
       <section id="editor" class="panel editor">
-        <div id="empty"><h2>Select a record</h2><p>Choose an existing Museum entry to annotate, or start a new one. Original recovered text stays immutable; all changes are tracked as overlays.</p></div>
+        <div id="empty"><div class="eyebrow">The author’s desk</div><h2>Ready when the words are.</h2><p>Find a preserved record at left, or start a new private draft. The historical source stays untouched and nothing is published just because you save.</p><p class="muted">On a phone, tapping a record brings the editor into view.</p></div>
         <form id="edit-form" hidden>
           <div class="eyebrow" id="edit-identity"></div>
           <h2 id="edit-heading">Edit record</h2>
@@ -116,7 +136,8 @@
             <button id="preview" type="button" class="secondary">Preview published fields</button>
             <span id="save-state" class="muted"></span>
           </div>
-          <div id="preview-panel" class="preview" hidden><h3>Public projection preview (not published)</h3><pre id="preview-content"></pre></div>
+          <p id="unsaved-note" class="unsaved-note" role="status" hidden>Unsaved edits on this device. Save privately before approving or publishing a revision.</p>
+          <div id="preview-panel" class="preview" hidden><h3>On-screen projection preview — not saved or published</h3><pre id="preview-content"></pre></div>
           <div class="publish">
             <div><h3>Release controls</h3><p>Saving never publishes. Only the owner may approve the exact revision and then publish it. New edits invalidate prior approval.</p><p id="release-state" class="muted"></p></div>
             <div class="button-row"><button id="approve" type="button" class="secondary">1 · Approve this exact version</button><button id="publish" type="button">2 · Publish approved version</button><button id="withdraw" type="button" class="danger">Withdraw publicly</button></div>

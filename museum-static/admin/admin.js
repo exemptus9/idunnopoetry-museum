@@ -12,6 +12,47 @@ const FIELDS = ['text','description','status','provenance','public-note','url','
 const storageKey = 'idp_museum_editor_session_v1';
 let session = null, role = null, records = [], active = null, localVault = [];
 let busy = false,selectedVault = null;
+let formBaseline = null;
+const EDIT_FIELDS = ['entity-key','title',...FIELDS,'reason'];
+function editSnapshot() {
+ const values = {};
+ for (const id of EDIT_FIELDS) values[id] = $(id).value;
+ return JSON.stringify(values);
+}
+function hasUnsavedChanges() {
+ return !!active && formBaseline !== null && !$('edit-form').hidden && editSnapshot() !== formBaseline;
+}
+function updateEditState() {
+ if (!active || $('edit-form').hidden) return;
+ const dirty = hasUnsavedChanges();
+ $('unsaved-note').hidden = !dirty;
+ $('save-state').textContent = (dirty ? '● Unsaved changes' : 'Saved or unchanged') +
+   ' · revision ' + active.revision + ' · ' + active.status;
+ const approved = active.approved_revision === active.revision;
+ $('release-state').textContent = dirty
+   ? 'Current changes are not saved. Publication controls are locked.'
+   : (approved ? 'Exact revision ' + active.revision + ' is approved.'
+     : 'Not approved for public release.');
+ $('approve').disabled = busy || dirty || role !== 'owner' || !active.id || approved;
+ $('publish').disabled = busy || dirty || role !== 'owner' || !active.id || !approved ||
+   active.status === 'published';
+ $('withdraw').disabled = busy || dirty || role !== 'owner' || !active.id ||
+   active.status === 'withdrawn';
+}
+function confirmDiscard() {
+ if (busy) { tell('Wait for the current operation to finish.',true); return false; }
+ return !hasUnsavedChanges() || confirm('Discard unsaved edits on this device? Saved revisions remain intact.');
+}
+function clearEditor() {
+ active=null;formBaseline=null;hide('edit-form');show('empty');
+ $('unsaved-note').hidden=true;
+}
+function scrollToEditor() {
+ if (typeof window.matchMedia === 'function' &&
+     window.matchMedia('(max-width:850px)').matches)
+   $('editor').scrollIntoView?.({behavior:'smooth',block:'start'});
+}
+
 function tell(message,error=false) {
  const el=$('message');el.textContent=String(message);el.className='message'+(error?' error':'');el.hidden=false;
 }
@@ -64,8 +105,9 @@ async function signedIn() {
  await load();
 }
 async function signOut(){
+ if(!confirmDiscard())return;
  if(access())try{await fetch(base()+'/auth/v1/logout',{method:'POST',headers:authHeaders()})}catch{}
- clearSession();hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('edit-form').hidden=true;
+ clearSession();clearEditor();records=[];hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('export-drafts').disabled=true;
 }
 async function beginSession() {
  if(!configured()){hide('login','app','denied');show('setup');return}
@@ -99,6 +141,10 @@ async function load(){
  for(const [text,count] of [['Saved records',records.length],...Object.entries(counts)]) {
   const el=document.createElement('span');el.textContent=text+': '+count;$('stats').append(el);
  }
+ $('welcome-status').textContent = records.length === 0
+  ? 'Your editorial workspace is ready. Nothing is published, and there are no saved drafts yet.'
+  : records.length+' private editorial records loaded · '+counts.draft+' draft(s) to review. Publication always requires separate owner approval.';
+ $('export-drafts').disabled = !records.length;
  listDrafts();listPublicSources();
  if(active?.id){const found=records.find(x=>x.id===active.id);if(found)openDraft(found)}
 }
@@ -145,14 +191,16 @@ function listPublicSources(){
  if(!q) {const note=document.createElement('p');note.className='muted';note.textContent='Type a title, username, or original ID to find an entry.';out.append(note);return}
  const kind=$('kind').value;
  const source=sourceData().filter(x=>x.searchText.includes(q)).slice(0,45);
- for(const x of source) addOption(out,x.title,()=>openSource(x,kind),'Original ID '+x.key+' · '+String(x.row.x||x.row.text||x.row.summary||'').slice(0,85));
+ for(const x of source) addOption(out,x.title,()=>{if(!confirmDiscard())return;openSource(x,kind);scrollToEditor();},'Original ID '+x.key+' · '+String(x.row.x||x.row.text||x.row.summary||'').slice(0,85));
  if(!source.length)out.textContent='No matching public source records.';
 }
 function listDrafts(){
  const kind=$('kind').value,q=$('draft-search').value.trim().toLowerCase();
+ const filter=$('record-filter').value;
  const out=$('draft-list');out.replaceChildren();
- const items=records.filter(r=>r.kind===kind&&(!q||(r.title+' '+r.entity_key).toLowerCase().includes(q))).slice(0,100);
- for(const d of items)addOption(out,d.title,()=>openDraft(d),d.entity_key+' · '+d.status+' · r'+d.revision);
+ const items=records.filter(r=>r.kind===kind && (filter==='all' || r.status===filter) &&
+  (!q||(r.title+' '+r.entity_key).toLowerCase().includes(q))).slice(0,100);
+ for(const d of items)addOption(out,d.title,()=>{if(!confirmDiscard())return;openDraft(d);scrollToEditor();},d.entity_key+' · '+d.status+' · r'+d.revision);
  if(!items.length)out.textContent='No saved drafts yet.';
 }
 function openSource(item,kind){
@@ -184,11 +232,8 @@ function renderEditor(){
  }
  $('edit-identity').textContent=active.kind+' · '+active.entity_key;
  $('edit-heading').textContent=(active.id?'Edit':'New')+' '+active.kind;
- $('save-state').textContent='Revision '+active.revision+' · '+active.status;
- $('release-state').textContent=active.approved_revision===active.revision?'Approved revision '+active.revision:'Not approved for public release';
- $('approve').disabled=role!=='owner'||!active.id||active.approved_revision===active.revision;
- $('publish').disabled=role!=='owner'||!active.id||active.approved_revision!==active.revision;
- $('withdraw').disabled=role!=='owner'||!active.id;
+ formBaseline=editSnapshot();
+ updateEditState();
  $('preview-panel').hidden=true;
  loadHistory().catch(e=>tell(e.message,true));
 }
@@ -217,9 +262,9 @@ async function saveDraft(evt){
   });
   active={...saved,draft:{...saved.draft}};
   tell('Private draft saved at revision '+active.revision+'. Nothing published.');
-  await load();openDraft(active);
+  await load();
  } catch(e){tell('Could not save: '+e.message,true)}
- finally{busy=false;$('save').disabled=false}
+ finally{busy=false;$('save').disabled=false;updateEditState()}
 }
 function draftProjection(){
  const d=draftForm(),result={title:$('title').value};
@@ -230,6 +275,7 @@ function draftProjection(){
 async function action(name,confirmation){
  if(!active?.id||busy)return;
  if(role!=='owner'){tell('Owner permission required.',true);return}
+ if(hasUnsavedChanges()){tell('Save private edits before approving, publishing, or withdrawing the saved revision.',true);return}
  if(confirmation && !confirm(confirmation.prompt))return;
  busy=true;
  try{
@@ -239,21 +285,23 @@ async function action(name,confirmation){
   if(name==='museum_publish'||name==='museum_withdraw'){
    tell((name==='museum_publish'?'Published':'Withdrawn')+' successfully. The public overlay is updated.');
   } else tell('Exact revision approved. A separate Publish action is still required.');
-  await load();const updated=records.find(x=>x.id===active.id);if(updated)openDraft(updated);
+  await load();
  }catch(e){tell('Action rejected: '+e.message,true)}
- finally{busy=false}
+ finally{busy=false;updateEditState()}
 }
 async function loadHistory(){
  const out=$('history-list');out.replaceChildren();
  if(!active?.id){out.textContent='Save your first draft to begin immutable revision history.';return}
- const data=await api('museum_revisions?select=version,reason,created_at,editor_id&document_id=eq.'+encodeURIComponent(active.id)+'&order=version.desc&limit=30');
+ const id=active.id;
+ const data=await api('museum_revisions?select=version,reason,created_at,editor_id&document_id=eq.'+encodeURIComponent(id)+'&order=version.desc&limit=30');
+ if(active?.id!==id)return;
  for(const row of data){
   const el=document.createElement('div');el.className='row';
   const text=document.createElement('span');text.textContent='v'+row.version+' · '+new Date(row.created_at).toLocaleString()+' · '+(row.reason||'saved');
   el.append(text);
   if(row.version!==active.revision){
    const button=document.createElement('button');button.className='secondary';button.type='button';button.textContent='Restore as new draft';
-   button.addEventListener('click',async()=>{if(!confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;try{
+   button.addEventListener('click',async()=>{if(!confirmDiscard() || !confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;try{
     await rpc('museum_restore',{p_id:active.id,p_expected_revision:active.revision,p_from_revision:row.version});
     await load();tell('Restored safely as a new private revision.');}catch(e){tell(e.message,true)}});
    el.append(button);
@@ -280,6 +328,7 @@ function selectVault(record){
 function useVaultWitness(){
  const record=selectedVault;if(!record)return;
  const witness=record.versions?.[Number($('vault-version').value)];
+ if(!confirmDiscard())return;
  if(!witness?.text)return tell('Choose a preserved version with text.',true);
  $('kind').value='seed';
  active={id:null,kind:'seed',entity_key:String(record.id).replace(/[^A-Za-z0-9_-]/g,'_').slice(0,120),
@@ -287,7 +336,7 @@ function useVaultWitness(){
   provenance:record.provenance||'uncertain',private_witness_id:String(witness.id||''),
   private_witness_sha256:String(witness.sha256||'')},
   revision:0,status:'local preview',localPrivate:true};
- renderEditor();tell('Selected the exact private witness. NOT uploaded or published.');
+ renderEditor();listPublicSources();listDrafts();scrollToEditor();tell('Selected the exact private witness. NOT uploaded or published.');
 }
 function renderVault(){
  const out=$('vault-list');out.replaceChildren();
@@ -309,6 +358,33 @@ async function importVault(evt){
   $('kind').value='seed';renderVault();tell('Loaded '+localVault.length+' local Seed records. No data has been transmitted.');
  }catch(e){tell('Local Vault import failed: '+e.message,true)}
 }
+function newRecord(kind) {
+ if(!confirmDiscard())return;
+ $('kind').value=kind;
+ listPublicSources();listDrafts();
+ active={id:null,kind,entity_key:'',title:'',draft:{},revision:0,status:'new'};
+ renderEditor();scrollToEditor();$('title').focus();
+}
+function exportLoadedRecords() {
+ if(!records.length)return;
+ if(!confirm('Download '+records.length+' PRIVATE editorial record(s) as an UNENCRYPTED JSON file? Anyone who gets the file can read private drafts. This is a snapshot, NOT a verified database backup or original-source archive.'))return;
+ const payload={
+  format:'IDP-Museum-Private-Editorial-Snapshot-v1',
+  exported_at:new Date().toISOString(),
+  scope:'Loaded editorial records only; excludes revision history, audit events, and original historical archive',
+  limited_to_first_1000:records.length>=1000,
+  documents:records.map(({id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at})=>
+   ({id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at}))
+ };
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ try {
+  const a=document.createElement('a');
+  a.href=url;a.download='idp-private-editorial-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.append(a);a.click();a.remove();
+  tell('Private snapshot prepared. Protect the downloaded file; it is not encrypted.');
+ }finally {setTimeout(()=>URL.revokeObjectURL(url),30000)}
+}
 async function ready(){
  $('login-form').addEventListener('submit',async e=>{
   e.preventDefault();
@@ -323,14 +399,31 @@ async function ready(){
  });
  $('logout').addEventListener('click',signOut);
  $('logout-denied').addEventListener('click',signOut);
- $('reload').addEventListener('click',()=>load().catch(e=>tell(e.message,true)));
- $('kind').addEventListener('change',()=>{listPublicSources();listDrafts()});
+ $('reload').addEventListener('click',()=>{if(confirmDiscard())load().catch(e=>tell(e.message,true))});
+ $('export-drafts').addEventListener('click',exportLoadedRecords);
+ $('quick-find').addEventListener('click',()=>{
+  if(!confirmDiscard())return;
+  clearEditor();$('kind').value='poem';listPublicSources();listDrafts();
+  $('source-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
+ });
+ $('quick-seed').addEventListener('click',()=>newRecord('seed'));
+ $('quick-review').addEventListener('click',()=>{
+  $('record-filter').value='draft';listDrafts();
+  $('draft-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
+ });
+ $('kind').addEventListener('change',()=>{
+  if(!confirmDiscard()){$('kind').value=active?.kind||'seed';return}
+  clearEditor();listPublicSources();listDrafts();
+ });
  $('source-search').addEventListener('input',listPublicSources);
  $('draft-search').addEventListener('input',listDrafts);
- $('new').addEventListener('click',()=>{
-   const kind=$('kind').value;
-   active={id:null,kind,entity_key:'',title:'',draft:{},revision:0,status:'new'};
-   renderEditor();
+ $('record-filter').addEventListener('change',listDrafts);
+ $('new').addEventListener('click',()=>newRecord($('kind').value));
+ $('edit-form').addEventListener('input',()=>{$('preview-panel').hidden=true;updateEditState()});
+ $('edit-form').addEventListener('change',()=>{$('preview-panel').hidden=true;updateEditState()});
+ window.addEventListener('beforeunload',event=>{
+  if(!hasUnsavedChanges())return;
+  event.preventDefault();event.returnValue='';
  });
  $('edit-form').addEventListener('submit',saveDraft);
  $('preview').addEventListener('click',()=>{show('preview-panel');$('preview-content').textContent=JSON.stringify(draftProjection(),null,2)});
