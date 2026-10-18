@@ -40,6 +40,39 @@
       <div><div class="eyebrow">Owner-only publishing • revision-safe drafts</div><h1>Museum Control Center</h1><p>One place to edit curated content while preserving the original recovered archive.</p></div>
       <div class="quick"><a href="../#seeds">View public Seed Bank ↗</a> <button id="export-drafts" type="button" class="secondary" disabled>Export loaded private drafts</button> <button id="reload" type="button" class="secondary">Refresh records</button> <button id="logout" type="button" class="secondary">Sign out</button></div>
     </div>
+    <section class="command-desk" aria-labelledby="command-desk-title">
+      <div class="command-desk-head">
+        <div><div class="eyebrow">A map of everything worth preserving</div>
+          <h2 id="command-desk-title">One search. Every surviving thread.</h2>
+          <p>Search preserved public poems, forum posts, Seeds, media, and saved editorial titles. No private draft text is indexed or transmitted to another service.</p>
+        </div>
+        <span class="keyboard-note" aria-label="Keyboard shortcut Control or Command plus K">⌘ / Ctrl + K</span>
+      </div>
+      <div class="command-controls">
+        <label class="command-search-label" for="global-search">Find a word, title, remembered line, or original record ID
+          <input id="global-search" type="search" autocomplete="off"
+            placeholder="Search the entire recovered archive…" aria-controls="global-results" aria-keyshortcuts="Control+K Meta+K">
+        </label>
+        <label class="command-scope-label" for="global-scope">Search in
+          <select id="global-scope">
+            <option value="all">Everything</option>
+            <option value="saved">My saved editorial records</option>
+            <option value="poem">Poems</option>
+            <option value="seed">Seeds</option>
+            <option value="creative">Reconciled works</option>
+            <option value="document">Documents</option>
+            <option value="topic">Forum topics</option>
+            <option value="post">Forum posts</option>
+            <option value="member">Members</option>
+            <option value="forum">Forum rooms</option>
+            <option value="media">Media records</option>
+          </select>
+        </label>
+      </div>
+      <div id="global-results" class="command-results" aria-live="polite">
+        <p class="muted">Start typing two or more characters. Results appear here; no external search provider is contacted.</p>
+      </div>
+    </section>
     <section class="guide" aria-labelledby="guide-heading">
       <div><div class="eyebrow">Your next step</div><h2 id="guide-heading">Choose a starting point</h2>
       <p>Capture privately first. Review evidence and authorship independently. Only an explicitly approved, saved revision can be published.</p></div>
@@ -47,10 +80,22 @@
         <button id="quick-find" type="button">Find a preserved poem</button>
         <button id="quick-seed" type="button" class="secondary">Start a private Seed</button>
         <button id="quick-review" type="button" class="secondary">Review saved drafts</button>
+        <button id="quick-provenance" type="button" class="secondary">Resolve uncertain authorship</button>
       </div>
       <p class="guide-status" id="welcome-status" role="status" aria-live="polite">Loading your private editorial index…</p>
     </section>
     <div class="stat-grid" id="stats" aria-label="Editorial record counts"></div>
+    <nav class="connected-projects" aria-label="Connected public projects">
+      <div class="connected-heading"><strong>The constellation</strong><span>Move between related projects; navigation only, not automatic data synchronization.</span></div>
+      <div class="project-pills">
+        <a href="../" target="_blank" rel="noopener noreferrer">Museum <span aria-hidden="true">↗</span></a>
+        <a href="../observatory/" target="_blank" rel="noopener noreferrer">Lexical Observatory <span aria-hidden="true">↗</span></a>
+        <a href="https://rhymemosaic-emergent-v2-preview.vercel.app/" target="_blank" rel="noopener noreferrer">RhymeMosaic archive <span aria-hidden="true">↗</span></a>
+        <a href="https://exemptus9.github.io/artificial-continuity/" target="_blank" rel="noopener noreferrer">Artificial Continuity <span aria-hidden="true">↗</span></a>
+        <a href="https://hydra-production-7ed1.up.railway.app/" target="_blank" rel="noopener noreferrer" title="HYDRA depends on trial-funded server hosting">HYDRA//INDEX <span aria-hidden="true">↗</span></a>
+        <a href="../projects/" target="_blank" rel="noopener noreferrer">All projects <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
     <div class="layout">
       <aside id="workspace-sidebar">
         <h2>Find and organize</h2>
@@ -88,6 +133,18 @@
             <option value="approved">Approved, not yet published</option>
             <option value="published">Published</option>
             <option value="withdrawn">Withdrawn</option>
+          </select>
+        </label>
+        <label>Authorship verification
+          <select id="provenance-filter" aria-label="Filter saved creative records by authorship classification">
+            <option value="all">All provenance states</option>
+            <option value="unresolved">Unresolved / uncertain</option>
+            <option value="brandon">Brandon original</option>
+            <option value="assisted">Brandon + AI assisted</option>
+            <option value="mixed">Mixed / section-level</option>
+            <option value="prompted">Prompt-led</option>
+            <option value="ai">AI generated</option>
+            <option value="external">External source</option>
           </select>
         </label>
         <div id="draft-list" class="scroll-list" aria-live="polite"></div>
@@ -134,10 +191,20 @@
           <div class="button-row">
             <button id="save" type="submit">Save PRIVATE draft</button>
             <button id="preview" type="button" class="secondary">Preview published fields</button>
+            <button id="compare-source" type="button" class="secondary">Compare preserved source</button>
+            <button id="copy-handoff" type="button" class="secondary" disabled>Copy Continuity handoff</button>
             <span id="save-state" class="muted"></span>
           </div>
           <p id="unsaved-note" class="unsaved-note" role="status" hidden>Unsaved edits on this device. Save privately before approving or publishing a revision.</p>
           <div id="preview-panel" class="preview" hidden><h3>On-screen projection preview — not saved or published</h3><pre id="preview-content"></pre></div>
+          <section id="source-compare" class="source-compare" hidden aria-label="Preserved source comparison">
+            <div class="comparison-head"><h3>Original beside the revision</h3><p>Comparison only. No automatic rewriting, attribution, or canonical promotion.</p></div>
+            <p id="comparison-summary" class="muted" role="status"></p>
+            <div class="comparison-grid">
+              <div><h4>Recovered public source (read-only)</h4><pre id="original-text"></pre></div>
+              <div><h4>Current editor text (not necessarily saved)</h4><pre id="comparison-text"></pre></div>
+            </div>
+          </section>
           <div class="publish">
             <div><h3>Release controls</h3><p>Saving never publishes. Only the owner may approve the exact revision and then publish it. New edits invalidate prior approval.</p><p id="release-state" class="muted"></p></div>
             <div class="button-row"><button id="approve" type="button" class="secondary">1 · Approve this exact version</button><button id="publish" type="button">2 · Publish approved version</button><button id="withdraw" type="button" class="danger">Withdraw publicly</button></div>
@@ -156,5 +223,6 @@
 <script src="../data/creative-meta.js"></script>
 <script src="../data/media-catalog.js"></script>
 <script src="../data/reader-impact.js"></script>
+<script src="navigator-core.js"></script>
 <script src="admin.js"></script>
 </body></html>
