@@ -63,6 +63,8 @@ jobs:
           node --check museum-static/version.js
           node --check museum-static/data/version-history.js
           node scripts/test_lexical_dom.mjs
+          node --check museum-static/admin/admin.js
+          node scripts/test_museum_control_dom.mjs
 
       - name: Render and verify release preview
         run: |
