@@ -6,7 +6,7 @@ TEST_IN_MEMORY=1 is a separately labeled fallback for environments blocking navi
 import copy, hashlib, json, os, tempfile, mimetypes, re
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 ROOT=Path(__file__).resolve().parents[1]
 url='https://museum.example.test/admin/'
 ID='11111111-1111-4111-8111-111111111111'
@@ -83,7 +83,6 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
         if target.is_file():
             route.fulfill(content_type=mimetypes.guess_type(str(target))[0] or 'application/octet-stream',body=target.read_bytes())
         else:route.fulfill(status=404,body='Missing test asset')
-    # Reject unrecognized hosts before installing the two authorized fixture routes.
     context.route('**/*',lambda route:route.abort())
     context.route('https://museum.example.test/**',static_source)
     context.route('**/*.supabase.co/**',intercept)
@@ -92,8 +91,6 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('dialog',lambda d:d.accept())
     if os.environ.get('TEST_IN_MEMORY'):
-        # This mode does not establish real-origin WebCrypto/CSP behavior.
-        # API, storage and digest boundaries are mocked; the interface source is unchanged.
         html=(ROOT/'museum-static/admin/index.html').read_text()
         html=re.sub(r'<script[^>]*src=[^>]+></script>','',html)
         html=re.sub(r'<meta[^>]+http-equiv="Content-Security-Policy"[^>]*>','',html)
@@ -114,7 +111,7 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
             page.add_script_tag(content=(ROOT/'museum-static/admin'/name).read_text())
     else:page.goto(url)
     page.locator('#preservation-open').wait_for(state='visible')
-    page.wait_for_function("!document.querySelector('#preservation-open').disabled")
+    expect(page.locator('#preservation-open')).to_be_enabled()
     check(page.locator('#app').is_visible(),'authenticated original editor loads')
     page.locator('#preservation-open').click()
     check(page.locator('#preservation-desk').is_visible(),'native preservation dialog opens')
@@ -132,19 +129,20 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
     check(packet['data']['record']['draft']['text']==ORIGINAL,'download preserves exact source string')
     check('synthetic-test-only' not in dest.read_text(),'recovery export omits session credentials')
     page.locator('#pd-tab-recovery').click();page.locator('#pd-recovery-file').set_input_files(str(dest))
-    page.wait_for_function("document.querySelector('#pd-status').textContent.includes('Recovery rehearsal passed')")
+    expect(page.locator('#pd-status')).to_contain_text('Recovery rehearsal passed')
     check('0 — review only' in page.locator('#pd-recovery-report').inner_text(),'recovery rehearsal performs zero writes')
     broken=copy.deepcopy(packet);broken['data']['record']['title']='Modified'
     bad=Path(tmp)/'broken.json';bad.write_text(json.dumps(broken))
-    page.locator('#pd-recovery-file').set_input_files(str(bad));page.wait_for_function("document.querySelector('#pd-status').textContent.includes('checksum mismatch')")
+    page.locator('#pd-recovery-file').set_input_files(str(bad))
+    expect(page.locator('#pd-status')).to_contain_text('checksum mismatch')
     check(len(state['writes'])==0,'invalid bundle causes no mutation')
     page.locator('#pd-tab-revisions').click();page.locator('#pd-restore').click()
-    page.wait_for_function("document.querySelector('#pd-status').textContent.includes('Restored as a new private revision')")
+    expect(page.locator('#pd-status')).to_contain_text('Restored as a new private revision')
     check(state['records'][0]['revision']==3,'restore creates a new revision')
     check(len(state['versions'])==3,'restore retains every older revision')
     check(state['records'][0]['status']=='draft' and state['records'][0]['approved_revision'] is None,'restore never republishes or reapproves')
     state['history_changes']=True;state['reads']=0;page.locator('#pd-history').click()
-    page.wait_for_function("document.querySelector('#pd-status').textContent.includes('Record changed during capture')")
+    expect(page.locator('#pd-status')).to_contain_text('Record changed during capture')
     check(True,'concurrent capture changes are detected')
     state['history_changes']=False
     page.locator('#pd-tab-canon').click()
@@ -152,7 +150,8 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
     candidate=dict(work_id='registry-stable-01',title='A stable original',canonical_text=canonical,
       sha256=hashlib.sha256(canonical.encode()).hexdigest(),canonical_witness_id='witness-1',canon_status='CANON-A',public_export_approved=True)
     source=Path(tmp)/'registry.html';source.write_text('<html><script>window.MUST_NOT_RUN=true</script><script id="work-data" type="application/json">'+json.dumps([candidate])+'</script></html>')
-    page.locator('#pd-registry-file').set_input_files(str(source));page.wait_for_function("document.querySelector('#pd-status').textContent.includes('1 matching text hashes')")
+    page.locator('#pd-registry-file').set_input_files(str(source))
+    expect(page.locator('#pd-status')).to_contain_text('1 matching text hashes')
     check(page.evaluate('window.MUST_NOT_RUN===undefined'),'imported report scripts never execute')
     check(len(state['writes'])==1,'local registry import makes no save request')
     page.locator('.pd-work').click()
@@ -162,7 +161,8 @@ with tempfile.TemporaryDirectory() as tmp, sync_playwright() as p:
     check(page.locator('#entity-key').input_value()=='registry-stable-01','stable canonical work ID retained')
     check(page.locator('#provenance').input_value()=='uncertain','import never invents authorship')
     check(len(state['writes'])==1,'staging is not saving')
-    page.locator('#save').click();page.wait_for_function("document.querySelector('#message').textContent.includes('Private draft saved')")
+    page.locator('#save').click()
+    expect(page.locator('#message')).to_contain_text('Private draft saved')
     saved=state['writes'][-1][1]
     check(saved['p_draft']['text']==canonical,'unmodified textarea preserves source CRLF when saved')
     check(saved['p_draft']['_canonical_source']['publication_permission']=='NOT_IMPORTED','source permission never grants a public release')
