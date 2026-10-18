@@ -20,9 +20,9 @@ The original static IDunnoPoetry source records remain unchanged. The control ce
 ## Using the editor now
 
 1. Visit https://exemptus9.github.io/idunnopoetry-museum/admin/ in the same browser used for the sign-in link. The existing Supabase owner account is already allowlisted.
-2. Choose **Find a preserved poem** and search the public recovery archive by title or text; or choose **Start a private Seed**. Neither action publishes.
+2. Choose **Find a preserved poem** and search the public recovery archive by title or text; or choose **Start a private Seed**. New record keys are suggested from the title and can be edited. Neither action publishes.
 3. Edit and inspect the selected record. **Unsaved changes** are visibly flagged; changing records, leaving the tab, and switching categories requires acknowledging any unsaved work.
-4. Choose **Save PRIVATE draft** to create an audit-tracked revision. The **Review stage** filter lets the owner find drafts, approvals, publications, and withdrawals.
+4. Choose **Save PRIVATE draft** to create an audit-tracked revision. The **Review saved drafts** shortcut finds a category containing an outstanding draft; the **Review stage** filter lets the owner locate drafts, approvals, publications, and withdrawals.
 5. If and only if the exact stored revision is intended for public release, use **Approve** and then **Publish**, separately. A new edit blocks public actions until saved, and any new stored revision must be reapproved.
 6. **Export loaded private drafts** is an explicit, unencrypted local JSON download of *up to 1,000 records loaded in the editor*. It is **not** a verified database backup: it excludes revision history, audit events, the original recovered corpus and anything outside the loaded page. Store the file privately.
 
