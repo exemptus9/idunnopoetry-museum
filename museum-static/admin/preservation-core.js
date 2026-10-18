@@ -85,8 +85,12 @@ async function pack(record,versions,source){
  await verify(envelope);return envelope;
 }
 async function verify(input){
+ // The pure import API must enforce the same bound as the file picker, including
+ // callers outside that UI. Count UTF-8 bytes before parsing a string.
+ if(typeof input==='string')assert(new TextEncoder().encode(input).length<=MAX_BYTES,'Recovery bundle exceeds 8 MiB.');
  const p=typeof input==='string'?JSON.parse(input):input;
  assert(object(p)&&p.format===FORMAT&&object(p.data)&&HASH.test(p.sha256||''),'Unsupported recovery format.');
+ assert(new TextEncoder().encode(stable(p)).length<=MAX_BYTES,'Recovery bundle exceeds 8 MiB.');
  assert(await digest(stable(p.data))===p.sha256,'Recovery checksum mismatch. Nothing was imported.');
  const {record:r,versions:v}=p.data;checkRecord(r);
  assert(p.data.scope==='one-editorial-record'&&Array.isArray(v)&&v.length<=MAX_RECORDS,'Invalid recovery scope.');

@@ -31,6 +31,12 @@ const C=globalThis.IDP_PRESERVATION;
  ok((await C.recoveryPlan(p,[{...record,draft:{text:'newer'}}])).state==='conflict','never overwrite a newer witness');
  ok((await C.recoveryPlan(p,[])).writes===0,'dry run writes nothing');
  const bad=C.clone(p);bad.data.record.title='changed';await rejects(()=>C.verify(bad),/checksum/);
+ // Reject an over-limit raw file before JSON parsing, and do not let an object
+ // caller bypass the picker limit. Multibyte UTF-8 must count as bytes.
+ await rejects(()=>C.verify(' '.repeat(C.MAX_BYTES+1)),/exceeds 8 MiB/);
+ await rejects(()=>C.verify('é'.repeat(C.MAX_BYTES/2+1)),/exceeds 8 MiB/);
+ const oversized=C.clone(p);oversized.data.record.draft.text='x'.repeat(C.MAX_BYTES);
+ await rejects(()=>C.verify(oversized),/exceeds 8 MiB/);
  await rejects(()=>C.pack(record,versions.slice(0,1),'test'),/incomplete/);
  await rejects(()=>C.pack(record,[versions[1],versions[1]],'test'),/Duplicate/);
  await rejects(()=>C.pack(record,[versions[0],{...versions[1],draft:{text:'mismatched'}}],'test'),/differs/);
