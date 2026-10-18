@@ -4,9 +4,10 @@
 (function(root){
 'use strict';
 const P=root.IDP_PRESERVATION,SCHEMA='UniversalWritingCanon/1',INTAKE='UniversalWritingCanonIntake/1';
-const PREFIX='canon:v1:',KEY=/^[A-Za-z0-9_-]{1,120}$/,DESTINATIONS=['museum','rhymemosaic'];
+const PREFIX='canon:v1:',STORE_PREFIX='canon__',KEY=/^[A-Za-z0-9_-]{1,120}$/,DESTINATIONS=['museum','rhymemosaic'];
 const fail=(ok,message)=>{if(!ok)throw Error(message);};
 const copy=value=>P.clone(value);
+function storageKey(workId){fail(KEY.test(workId||'')&&workId.length<=113,'Work ID is not representable in the protected canon namespace.');return STORE_PREFIX+workId;}
 async function parseIntake(raw){
  fail(typeof raw==='string'&&new TextEncoder().encode(raw).length<=8000000,'Choose a canon intake file under 8 MB.');
  const envelope=JSON.parse(raw);P.stable(envelope);
@@ -16,7 +17,7 @@ async function parseIntake(raw){
  fail(Array.isArray(data.works)&&data.works.length>0&&data.works.length<=5000,'An intake needs 1–5,000 work records.');
  const seen=new Set();let versions=0,selected=0;
  for(const work of data.works){
-  fail(KEY.test(work.work_id||'')&&!seen.has(work.work_id),'Missing or duplicate work ID. Titles never identify a work.');seen.add(work.work_id);
+  fail(KEY.test(work.work_id||'')&&!seen.has(work.work_id),'Missing or duplicate work ID. Titles never identify a work.');seen.add(work.work_id);storageKey(work.work_id);
   fail(typeof work.title==='string'&&work.title.length>0&&work.title.length<=240,'Invalid title.');
   fail(Array.isArray(work.versions)&&work.versions.length<=500,'Invalid witness collection.');
   const ids=new Set();
@@ -31,10 +32,10 @@ async function parseIntake(raw){
  }
  return {data,sha256:envelope.sha256,workCount:seen.size,witnessCount:versions,selectedCount:selected};
 }
-function isCanon(record){return record?.kind==='creative'&&record?.draft?._canon?.schema===SCHEMA&&record.entity_key===record.draft._canon.work_id;}
+function isCanon(record){return record?.kind==='creative'&&record?.draft?._canon?.schema===SCHEMA&&record.entity_key===STORE_PREFIX+record.draft._canon.work_id;}
 function fromIntake(work,sourceSHA){
  const v=work.versions.find(x=>x.witness_id===work.selected_version);
- return {kind:'creative',entity_key:work.work_id,title:work.title,draft:{
+ return {kind:'creative',entity_key:storageKey(work.work_id),title:work.title,draft:{
   text:v?.text||'',provenance:'uncertain',status:work.classification==='CANON-A'?'finished':'candidate',label:PREFIX,
   _canon:{schema:SCHEMA,work_id:work.work_id,classification:work.classification||'DRAFT',
    redirect_to:work.redirect_to||null,selected_version:work.selected_version||null,
@@ -51,6 +52,7 @@ async function importDisposition(existing,incoming){
   const kept=old.witnesses.find(x=>x.witness_id===v.witness_id);
   fail(kept&&kept.sha256===v.sha256&&kept.text===v.text,'Witness collections differ. Keep both packages; no automatic overwrite.');
  }
+ // A repeat import must never reset a newer author decision or private revision.
  return 'existing';
 }
 function selected(record){return record?.draft?._canon?.witnesses?.find(v=>v.witness_id===record.draft._canon.selected_version)||null;}
@@ -105,14 +107,41 @@ async function releaseDraft(record,destinations){
  out.draft.label=PREFIX+chosen.join(',');out.draft._canon.publication_intent={destinations:chosen,witness_id:v.witness_id,text_sha256:v.sha256,at:new Date().toISOString()};
  return out;
 }
+function bulkEligible(record){
+ const c=record?.draft?._canon;
+ return isCanon(record)&&c.classification==='CANON-A'&&!c.redirect_to&&!c.confirmation&&!!selected(record)&&questions(record).length===0;
+}
+async function bookManifest(records,bookId){
+ fail(['brandonmeant','wreckage'].includes(bookId),'Unknown book.');
+ const entries=[];
+ for(const r of records){
+  if(!isCanon(r))continue;
+  for(const membership of r.draft._canon.source_metadata?.book_memberships||[]){
+   if(membership.book_id!==bookId)continue;
+   fail(Number.isSafeInteger(membership.position)&&membership.position>0,'Invalid book placement.');
+   const v=selected(r);if(v)await verified(r);
+   entries.push({position:membership.position,work_id:r.draft._canon.work_id,title:r.title,
+    witness_id:v?.witness_id||null,text:v?.text??null,sha256:v?.sha256||null,
+    selection_authority:r.draft._canon.selection_authority,questions:questions(r),publication_permission:'NOT_GRANTED'});
+  }
+ }
+ entries.sort((a,b)=>a.position-b.position);
+ fail(new Set(entries.map(x=>x.position)).size===entries.length,'Duplicate book position: preserve the conflicting manifest for review.');
+ const expected=bookId==='brandonmeant'?49:77;
+ return {schema:'UniversalWritingCanonBookCandidate/1',book_id:bookId,
+  title:bookId==='brandonmeant'?'BRANDONMEANT':'THE WRECKAGE ARRANGED ME',
+  status:'PRIVATE_REVIEW_CANDIDATE_NOT_PUBLICATION_APPROVED',expected_placements:expected,
+  complete_sequence:entries.length===expected&&entries.every((x,i)=>x.position===i+1),
+  entries};
+}
 async function publicManifest(rows,destination){
  fail(DESTINATIONS.includes(destination),'Unknown publication destination.');
  const works=[];
  for(const row of rows){
-  if(row.kind!=='creative'||row.state!=='published'||!targets(row.payload?.label).includes(destination))continue;
+  if(row.kind!=='creative'||row.state!=='published'||!row.entity_key?.startsWith(STORE_PREFIX)||!targets(row.payload?.label).includes(destination))continue;
   const p=row.payload;
   fail(KEY.test(row.entity_key||'')&&typeof p.title==='string'&&typeof p.text==='string','Malformed published record.');
-  works.push({work_id:row.entity_key,title:p.title,text:p.text,sha256:await P.textDigest(p.text),authorship:p.provenance||'uncertain',editorial_revision:row.revision,published_at:row.published_at});
+  works.push({work_id:row.entity_key.slice(STORE_PREFIX.length),title:p.title,text:p.text,sha256:await P.textDigest(p.text),authorship:p.provenance||'uncertain',editorial_revision:row.revision,published_at:row.published_at});
  }
  const payload={schema:'UniversalWritingCanonPublic/1',destination,empty_policy:'DO_NOT_REPLACE_EXISTING_ARCHIVES',works};
  return {...payload,manifest_sha256:await P.digest(P.stable(payload))};
@@ -135,5 +164,5 @@ async function inspectBackup(raw,current){
  }
  return {matching,missing,conflicting,records:data.records.length,checksum:e.sha256,writes:0};
 }
-root.IDP_CANON=Object.freeze({SCHEMA,INTAKE,PREFIX,DESTINATIONS,parseIntake,isCanon,fromIntake,importDisposition,selected,questions,verified,confirmVersion,addVersion,targets,releaseDraft,publicManifest,packBackup,inspectBackup});
+root.IDP_CANON=Object.freeze({SCHEMA,INTAKE,PREFIX,STORE_PREFIX,storageKey,DESTINATIONS,parseIntake,isCanon,fromIntake,importDisposition,selected,questions,verified,confirmVersion,addVersion,targets,releaseDraft,bulkEligible,bookManifest,publicManifest,packBackup,inspectBackup});
 })(typeof window==='undefined'?globalThis:window);
