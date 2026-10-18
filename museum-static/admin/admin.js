@@ -12,7 +12,9 @@ const FIELDS = ['text','description','status','provenance','public-note','url','
 const storageKey = 'idp_museum_editor_session_v1';
 let session = null, role = null, records = [], active = null, localVault = [];
 let busy = false,selectedVault = null;
-let formBaseline = null;
+let formBaseline = null, renderedTextBaseline = null;
+let refreshTask = null;
+const busyControls = new Map();
 const navigatorCore = window.IDP_EDITOR_NAV;
 let publicNavigatorIndex=null,publicNavigatorBuild=null,navigatorSearchGeneration=0;
 const EDIT_FIELDS = ['entity-key','title',...FIELDS,'reason'];
@@ -20,6 +22,17 @@ function editSnapshot() {
  const values = {};
  for (const id of EDIT_FIELDS) values[id] = $(id).value;
  return JSON.stringify(values);
+}
+function setBusy(value) {
+ busy=value;
+ if(value){
+  for(const node of $('edit-form').querySelectorAll('input,textarea,select,button')){
+   busyControls.set(node,node.disabled);node.disabled=true;
+  }
+ }else{
+  for(const [node,disabled] of busyControls)node.disabled=disabled;
+  busyControls.clear();updateEditState();
+ }
 }
 function hasUnsavedChanges() {
  return !!active && formBaseline !== null && !$('edit-form').hidden && editSnapshot() !== formBaseline;
@@ -69,7 +82,7 @@ function base(){return String(cfg.url).replace(/\/$/,'');}
 function access(){return session?.access_token||'';}
 function authHeaders() {return {'apikey':cfg.publishableKey,'Authorization':'Bearer '+access()};}
 function saveSession(x){session=x;try{sessionStorage.setItem(storageKey,JSON.stringify(x))}catch{}}
-function clearSession(){session=null;role=null;try{sessionStorage.removeItem(storageKey)}catch{}}
+function clearSession(){session=null;role=null;window.dispatchEvent(new Event('idp:editor-signed-out'));try{sessionStorage.removeItem(storageKey)}catch{}}
 async function readJson(res) {
  const text=await res.text();let body;try{body=JSON.parse(text)}catch{body={message:text.slice(0,400)}}
  if(!res.ok)throw Error(body.message||body.msg||body.error_description||body.error||('HTTP '+res.status));
@@ -79,11 +92,16 @@ async function refreshIfNeeded(){
  if(!session?.refresh_token)return;
  const expires=(session.expires_at||0);
  if(!expires||expires-Date.now()/1000>90)return;
- const data=await readJson(await fetch(base()+'/auth/v1/token?grant_type=refresh_token',{
-  method:'POST',headers:{'apikey':cfg.publishableKey,'Content-Type':'application/json'},
-  body:JSON.stringify({refresh_token:session.refresh_token})
- }));
- saveSession({...data,expires_at:Math.floor(Date.now()/1000)+Number(data.expires_in||3600)});
+ if(refreshTask)return refreshTask;
+ refreshTask=(async()=>{
+  const data=await readJson(await fetch(base()+'/auth/v1/token?grant_type=refresh_token',{
+   method:'POST',headers:{'apikey':cfg.publishableKey,'Content-Type':'application/json'},
+   body:JSON.stringify({refresh_token:session.refresh_token})
+  }));
+  saveSession({...data,expires_at:Math.floor(Date.now()/1000)+Number(data.expires_in||3600)});
+ })();
+ try{await refreshTask}finally{refreshTask=null}
+
 }
 async function api(path,options={}) {
  await refreshIfNeeded();
@@ -153,6 +171,7 @@ async function load(){
  listDrafts();listPublicSources();
  if($('global-search').value.trim().length>=2)renderNavigator().catch(e=>tell('Search unavailable: '+e.message,true));
  if(active?.id){const found=records.find(x=>x.id===active.id);if(found)openDraft(found)}
+ window.dispatchEvent(new Event('idp:editor-ready'));
 }
 function sourceData(){
  const kind=$('kind').value;
@@ -241,6 +260,7 @@ function renderEditor(){
  }
  $('edit-identity').textContent=active.kind+' · '+active.entity_key;
  $('edit-heading').textContent=(active.id?'Edit':'New')+' '+active.kind;
+ renderedTextBaseline=$('text').value;
  formBaseline=editSnapshot();
  updateEditState();
  $('preview-panel').hidden=true;
@@ -248,13 +268,16 @@ function renderEditor(){
  loadHistory().catch(e=>tell(e.message,true));
 }
 function draftForm(){
- const d={};
+ // Preserve private provenance extensions. The server still whitelists public fields.
+ const d={...(active?.draft||{})};
  if(active?.draft?.private_witness_id)d.private_witness_id=active.draft.private_witness_id;
  if(active?.draft?.private_witness_sha256)d.private_witness_sha256=active.draft.private_witness_sha256;
  for(const k of FIELDS){
   const prop=k==='public-note'?'public_note':k==='nav-label'?'label':k;
-  const v=$(k).value;
-  if(v)d[prop]=v;
+  let v=$(k).value;
+  // Textareas normalize CRLF when rendering. Keep original exact bytes when unedited.
+  if(prop==='text' && v===renderedTextBaseline && typeof active?.draft?.text==='string')v=active.draft.text;
+  if(v!=='' || prop==='text')d[prop]=v;else delete d[prop];
  }
  return d;
 }
@@ -263,8 +286,8 @@ async function saveDraft(evt){
  const kind=active.kind;
  const key=$('entity-key').value.trim(),title=$('title').value.trim(),draft=draftForm();
  if(!/^[A-Za-z0-9_-]{1,120}$/.test(key)||!title){tell('Valid key and title are required.',true);return}
- if(active.localPrivate && !confirm('Save this selected Seed text to YOUR PRIVATE hosted database? This uploads only the selected item, not the entire Vault. It does not publish.'))return;
- busy=true;$('save').disabled=true;
+ if(active.localPrivate && !confirm('Save this selected source text to YOUR PRIVATE hosted database? Only this work is uploaded, not the whole source file. This does not publish or grant canonical authority.'))return;
+ setBusy(true);
  try {
   const saved=await rpc('museum_save',{
    p_id:active.id||null,p_kind:kind,p_entity_key:key,p_title:title,p_draft:draft,
@@ -274,7 +297,7 @@ async function saveDraft(evt){
   tell('Private draft saved at revision '+active.revision+'. Nothing published.');
   await load();
  } catch(e){tell('Could not save: '+e.message,true)}
- finally{busy=false;$('save').disabled=false;updateEditState()}
+ finally{setBusy(false)}
 }
 function draftProjection(){
  const d=draftForm(),result={title:$('title').value};
@@ -287,7 +310,7 @@ async function action(name,confirmation){
  if(role!=='owner'){tell('Owner permission required.',true);return}
  if(hasUnsavedChanges()){tell('Save private edits before approving, publishing, or withdrawing the saved revision.',true);return}
  if(confirmation && !confirm(confirmation.prompt))return;
- busy=true;
+ setBusy(true);
  try{
   const body={p_id:active.id,p_expected_revision:active.revision};
   if(confirmation)body.p_confirmation=confirmation.phrase;
@@ -297,7 +320,7 @@ async function action(name,confirmation){
   } else tell('Exact revision approved. A separate Publish action is still required.');
   await load();
  }catch(e){tell('Action rejected: '+e.message,true)}
- finally{busy=false;updateEditState()}
+ finally{setBusy(false)}
 }
 async function loadHistory(){
  const out=$('history-list');out.replaceChildren();
@@ -311,9 +334,14 @@ async function loadHistory(){
   el.append(text);
   if(row.version!==active.revision){
    const button=document.createElement('button');button.className='secondary';button.type='button';button.textContent='Restore as new draft';
-   button.addEventListener('click',async()=>{if(!confirmDiscard() || !confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;try{
-    await rpc('museum_restore',{p_id:active.id,p_expected_revision:active.revision,p_from_revision:row.version});
-    await load();tell('Restored safely as a new private revision.');}catch(e){tell(e.message,true)}});
+   button.addEventListener('click',async()=>{
+    if(!confirmDiscard() || !confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;
+    const target=active.id,expected=active.revision;setBusy(true);
+    try{
+     await rpc('museum_restore',{p_id:target,p_expected_revision:expected,p_from_revision:row.version});
+     await load();tell('Restored safely as a new private revision.');
+    }catch(e){tell(e.message,true)}finally{setBusy(false)}
+   });
    el.append(button);
   }
   out.append(el);
@@ -556,7 +584,6 @@ async function copyContinuityHandoff(){
   await navigator.clipboard.writeText(metadata);
   tell('Copied metadata-only handoff. Paste it into Continuity deliberately; no poem text or credentials were transferred.');
  }catch(error){
-  // Do not automatically navigate to a different app or transmit private data.
   window.prompt('Copy this metadata-only handoff manually (private text excluded):',metadata);
   tell('Clipboard permission was unavailable. You can copy the handoff from the prompt.');
  }
@@ -654,7 +681,7 @@ async function ready(){
  $('copy-handoff').addEventListener('click',copyContinuityHandoff);
  $('text').addEventListener('input',()=>{if(!$('source-compare').hidden)renderComparison()});
  window.addEventListener('beforeunload',event=>{
-  if(!hasUnsavedChanges())return;
+  if(!hasUnsavedChanges()&&!busy)return;
   event.preventDefault();event.returnValue='';
  });
  $('edit-form').addEventListener('submit',saveDraft);
@@ -668,5 +695,53 @@ async function ready(){
  $('vault-filter').addEventListener('input',renderVault);
  renderVault();await beginSession();
 }
+
+const safeCopy=x=>JSON.parse(JSON.stringify(x));
+window.IDP_EDITOR_WORKSPACE=Object.freeze({
+ state(){return {role,busy,dirty:hasUnsavedChanges(),active:active?safeCopy(active):null,records:safeCopy(records)};},
+ async history(id){
+  if(!['owner','editor'].includes(role)||!records.some(x=>x.id===id))throw Error('Select an authorized saved record.');
+  const path='museum_documents?select=id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at&id=eq.'+encodeURIComponent(id);
+  const first=(await api(path))[0];if(!first)throw Error('Record no longer available.');
+  let versions=[],after=0;
+  while(true){
+   const page=await api('museum_revisions?select=document_id,version,title,draft,reason,created_at&document_id=eq.'+encodeURIComponent(id)+'&version=gt.'+after+'&order=version.asc&limit=500');
+   if(!Array.isArray(page))throw Error('Unexpected revision response.');
+   versions.push(...page);if(versions.length>5000)throw Error('History exceeds the supported 5,000-revision bundle.');
+   if(page.length<500)break;
+   const next=page[page.length-1].version;if(next<=after)throw Error('History pagination did not advance.');after=next;
+  }
+  const last=(await api(path))[0];
+  if(!last||JSON.stringify(first)!==JSON.stringify(last))throw Error('Record changed during capture. Retry; no incomplete bundle was exported.');
+  return {record:first,versions};
+ },
+ stagePrivate(item){
+  if(!['owner','editor'].includes(role)||!confirmDiscard())return false;
+  if(item?.kind!=='creative'||!item.entity_key?.match(/^[A-Za-z0-9_-]{1,120}$/)||typeof item.title!=='string'||typeof item.draft?.text!=='string')throw Error('Invalid canonical source candidate.');
+  const existing=records.find(x=>x.kind===item.kind&&x.entity_key===item.entity_key);
+  if(existing){openDraft(existing);tell('This stable work ID already exists. Opened it unchanged; nothing was overwritten.');return 'existing';}
+  $('kind').value='creative';$('record-filter').value='all';$('provenance-filter').value='all';
+  active={...safeCopy(item),id:null,revision:0,status:'source candidate',localPrivate:true};
+  renderEditor();listPublicSources();listDrafts();scrollToEditor();
+  tell('Exact source candidate staged locally. Save PRIVATE draft to upload this one work. Publication permission was not imported.');return 'staged';
+ },
+ async restore(id,fromRevision,expectedRevision){
+  if(!['owner','editor'].includes(role)||!records.some(x=>x.id===id)||!confirmDiscard())return false;
+  if(!Number.isSafeInteger(fromRevision)||fromRevision<1||fromRevision>expectedRevision)throw Error('Invalid historical revision.');
+  if(!confirm('Create a NEW PRIVATE revision from revision '+fromRevision+'? This preserves history, invalidates approval and does not publish.'))return false;
+  setBusy(true);
+  try{
+   await rpc('museum_restore',{p_id:id,p_expected_revision:expectedRevision,p_from_revision:fromRevision});
+   await load();const found=records.find(x=>x.id===id);if(found){$('kind').value=found.kind;openDraft(found);}
+   tell('A new private revision was created. Public content is unchanged.');return true;
+  }finally{setBusy(false)}
+ },
+ open(id){
+  if(!['owner','editor'].includes(role)||!confirmDiscard())return false;
+  const record=records.find(x=>x.id===id);if(!record)return false;
+  $('kind').value=record.kind;openDraft(record);listDrafts();listPublicSources();scrollToEditor();return true;
+ }
+});
+
 ready().catch(e=>tell('Control center could not start: '+e.message,true));
 })();

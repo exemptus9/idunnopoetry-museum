@@ -8,6 +8,7 @@ on:
       - scripts/check_release.py
       - scripts/verify_public_release.py
       - scripts/test_*.py
+      - scripts/*preservation*
       - .github/workflows/pages.yml
   workflow_dispatch:
   workflow_run:
@@ -67,6 +68,9 @@ jobs:
           node scripts/test_museum_control_dom.mjs
           node --check museum-static/admin/navigator-core.js
           node scripts/test_museum_navigator_dom.mjs
+          node --check museum-static/admin/preservation-core.js
+          node --check museum-static/admin/preservation-desk.js
+          node scripts/test_preservation_core.cjs
 
       - name: Render and verify release preview
         run: |
