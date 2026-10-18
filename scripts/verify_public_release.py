@@ -12,6 +12,7 @@ from check_release import settings
 version, _ = settings()
 base = os.environ['MUSEUM_PUBLIC_URL'].rstrip('/') + '/'
 lexical = Path(__file__).resolve().parents[1] / 'museum-static/observatory'
+unfinished = Path(__file__).resolve().parents[1] / 'museum-static/unfinished'
 for attempt in range(8):
     try:
         query = '?verify=' + str(time.time_ns())
@@ -46,7 +47,21 @@ for attempt in range(8):
             expected = hashlib.sha256((lexical / path).read_bytes()).digest()
             actual = hashlib.sha256(get('observatory/' + path)).digest()
             assert actual == expected, f'Public lexical file is stale: {path}'
-        print(f'Public v{version} verified: Museum metadata and preview; {len(checks)} exact lexical files; {len(catalog["terms"])} public terms.')
+        # The Unfinished is deliberately isolated: only fictional demo
+        # specimens ship here. Verify every required public-demo asset
+        # against the exact committed bytes, not an HTML shell fallback.
+        demo_files = ('index.html', 'app.js', 'samples.js', 'styles.css',
+                      'icon.svg', 'manifest.webmanifest', 'service-worker.js')
+        for path in demo_files:
+            expected = hashlib.sha256((unfinished / path).read_bytes()).digest()
+            actual = hashlib.sha256(get('unfinished/' + path)).digest()
+            assert actual == expected, f'Public Unfinished demo file missing/stale: {path}'
+        demo_html = (unfinished / 'index.html').read_text()
+        demo_samples = (unfinished / 'samples.js').read_text()
+        assert 'PUBLIC DEMO' in demo_html and 'FICTIONAL TEXT' in demo_html, 'Fictional sample notice missing'
+        assert 'window.UNFINISHED_SAMPLES=' in demo_samples, 'Demo samples missing'
+        assert 'Beyond Beautiful' not in demo_samples and 'THE WRECKAGE ARRANGED ME' not in demo_samples, 'Private title leakage in demo'
+        print(f'Public v{version} verified: Museum metadata and preview; {len(checks)} exact lexical files; {len(catalog["terms"])} public terms; {len(demo_files)} exact fictional Unfinished demo assets.')
         break
     except Exception:
         if attempt == 7:
