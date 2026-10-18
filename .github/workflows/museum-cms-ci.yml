@@ -65,9 +65,11 @@ jobs:
         run: |
           node --check museum-static/museum.js
           node --check museum-static/admin/admin.js
+          node --check museum-static/admin/navigator-core.js
           node --check museum-static/admin/public-overlay.js
           node --check museum-static/admin/cms-config.js
           node scripts/test_museum_control_dom.mjs
+          node scripts/test_museum_navigator_dom.mjs
       - name: Deployable static Museum release is internally consistent
         run: python scripts/check_release.py --source-only
       - name: PostgreSQL RLS + owner/editor/publication integration tests
