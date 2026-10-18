@@ -1,7 +1,10 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
 if(!globalThis.crypto)globalThis.crypto=crypto.webcrypto;
-const C=require('../museum-static/admin/preservation-core.js');
+// Execute the actual classic browser script; repository package.json may specify type=module.
+const corePath=require('node:path').join(__dirname,'../museum-static/admin/preservation-core.js');
+require('node:vm').runInThisContext(fs.readFileSync(corePath,'utf8'),{filename:corePath});
+const C=globalThis.IDP_PRESERVATION;
 (async()=>{
  let checks=0;const ok=(v,m)=>{assert(v,m);checks++};
  const rejects=async(fn,re)=>{await assert.rejects(fn,re);checks++};
