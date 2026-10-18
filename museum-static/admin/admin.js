@@ -12,6 +12,47 @@ const FIELDS = ['text','description','status','provenance','public-note','url','
 const storageKey = 'idp_museum_editor_session_v1';
 let session = null, role = null, records = [], active = null, localVault = [];
 let busy = false,selectedVault = null;
+let formBaseline = null;
+const EDIT_FIELDS = ['entity-key','title',...FIELDS,'reason'];
+function editSnapshot() {
+ const values = {};
+ for (const id of EDIT_FIELDS) values[id] = $(id).value;
+ return JSON.stringify(values);
+}
+function hasUnsavedChanges() {
+ return !!active && formBaseline !== null && !$('edit-form').hidden && editSnapshot() !== formBaseline;
+}
+function updateEditState() {
+ if (!active || $('edit-form').hidden) return;
+ const dirty = hasUnsavedChanges();
+ $('unsaved-note').hidden = !dirty;
+ $('save-state').textContent = (dirty ? '● Unsaved changes' : 'Saved or unchanged') +
+   ' · revision ' + active.revision + ' · ' + active.status;
+ const approved = active.approved_revision === active.revision;
+ $('release-state').textContent = dirty
+   ? 'Current changes are not saved. Publication controls are locked.'
+   : (approved ? 'Exact revision ' + active.revision + ' is approved.'
+     : 'Not approved for public release.');
+ $('approve').disabled = busy || dirty || role !== 'owner' || !active.id || approved;
+ $('publish').disabled = busy || dirty || role !== 'owner' || !active.id || !approved ||
+   active.status === 'published';
+ $('withdraw').disabled = busy || dirty || role !== 'owner' || !active.id ||
+   active.status === 'withdrawn';
+}
+function confirmDiscard() {
+ if (busy) { tell('Wait for the current operation to finish.',true); return false; }
+ return !hasUnsavedChanges() || confirm('Discard unsaved edits on this device? Saved revisions remain intact.');
+}
+function clearEditor() {
+ active=null;formBaseline=null;hide('edit-form');show('empty');
+ $('unsaved-note').hidden=true;
+}
+function scrollToEditor() {
+ if (typeof window.matchMedia === 'function' &&
+     window.matchMedia('(max-width:850px)').matches)
+   $('editor').scrollIntoView?.({behavior:'smooth',block:'start'});
+}
+
 function tell(message,error=false) {
  const el=$('message');el.textContent=String(message);el.className='message'+(error?' error':'');el.hidden=false;
 }
