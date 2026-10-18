@@ -105,8 +105,9 @@ async function signedIn() {
  await load();
 }
 async function signOut(){
+ if(!confirmDiscard())return;
  if(access())try{await fetch(base()+'/auth/v1/logout',{method:'POST',headers:authHeaders()})}catch{}
- clearSession();hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('edit-form').hidden=true;
+ clearSession();clearEditor();records=[];hide('app','denied','setup');show('login');$('identity').textContent='Signed out';$('export-drafts').disabled=true;
 }
 async function beginSession() {
  if(!configured()){hide('login','app','denied');show('setup');return}
@@ -140,6 +141,10 @@ async function load(){
  for(const [text,count] of [['Saved records',records.length],...Object.entries(counts)]) {
   const el=document.createElement('span');el.textContent=text+': '+count;$('stats').append(el);
  }
+ $('welcome-status').textContent = records.length === 0
+  ? 'Your editorial workspace is ready. Nothing is published, and there are no saved drafts yet.'
+  : records.length+' private editorial records loaded · '+counts.draft+' draft(s) to review. Publication always requires separate owner approval.';
+ $('export-drafts').disabled = !records.length;
  listDrafts();listPublicSources();
  if(active?.id){const found=records.find(x=>x.id===active.id);if(found)openDraft(found)}
 }
@@ -186,14 +191,16 @@ function listPublicSources(){
  if(!q) {const note=document.createElement('p');note.className='muted';note.textContent='Type a title, username, or original ID to find an entry.';out.append(note);return}
  const kind=$('kind').value;
  const source=sourceData().filter(x=>x.searchText.includes(q)).slice(0,45);
- for(const x of source) addOption(out,x.title,()=>openSource(x,kind),'Original ID '+x.key+' · '+String(x.row.x||x.row.text||x.row.summary||'').slice(0,85));
+ for(const x of source) addOption(out,x.title,()=>{if(!confirmDiscard())return;openSource(x,kind);scrollToEditor();},'Original ID '+x.key+' · '+String(x.row.x||x.row.text||x.row.summary||'').slice(0,85));
  if(!source.length)out.textContent='No matching public source records.';
 }
 function listDrafts(){
  const kind=$('kind').value,q=$('draft-search').value.trim().toLowerCase();
+ const filter=$('record-filter').value;
  const out=$('draft-list');out.replaceChildren();
- const items=records.filter(r=>r.kind===kind&&(!q||(r.title+' '+r.entity_key).toLowerCase().includes(q))).slice(0,100);
- for(const d of items)addOption(out,d.title,()=>openDraft(d),d.entity_key+' · '+d.status+' · r'+d.revision);
+ const items=records.filter(r=>r.kind===kind && (filter==='all' || r.status===filter) &&
+  (!q||(r.title+' '+r.entity_key).toLowerCase().includes(q))).slice(0,100);
+ for(const d of items)addOption(out,d.title,()=>{if(!confirmDiscard())return;openDraft(d);scrollToEditor();},d.entity_key+' · '+d.status+' · r'+d.revision);
  if(!items.length)out.textContent='No saved drafts yet.';
 }
 function openSource(item,kind){
@@ -225,11 +232,8 @@ function renderEditor(){
  }
  $('edit-identity').textContent=active.kind+' · '+active.entity_key;
  $('edit-heading').textContent=(active.id?'Edit':'New')+' '+active.kind;
- $('save-state').textContent='Revision '+active.revision+' · '+active.status;
- $('release-state').textContent=active.approved_revision===active.revision?'Approved revision '+active.revision:'Not approved for public release';
- $('approve').disabled=role!=='owner'||!active.id||active.approved_revision===active.revision;
- $('publish').disabled=role!=='owner'||!active.id||active.approved_revision!==active.revision;
- $('withdraw').disabled=role!=='owner'||!active.id;
+ formBaseline=editSnapshot();
+ updateEditState();
  $('preview-panel').hidden=true;
  loadHistory().catch(e=>tell(e.message,true));
 }
