@@ -50,7 +50,7 @@ for attempt in range(8):
         # The Unfinished is deliberately isolated: only fictional demo
         # specimens ship here. Verify every required public-demo asset
         # against the exact committed bytes, not an HTML shell fallback.
-        demo_files = ('index.html', 'app.js', 'samples.js', 'styles.css',
+        demo_files = ('index.html', 'app.js', 'experience.js', 'samples.js', 'styles.css',
                       'icon.svg', 'manifest.webmanifest', 'service-worker.js')
         for path in demo_files:
             expected = hashlib.sha256((unfinished / path).read_bytes()).digest()
@@ -60,6 +60,7 @@ for attempt in range(8):
         demo_samples = (unfinished / 'samples.js').read_text()
         assert 'PUBLIC DEMO' in demo_html and 'FICTIONAL TEXT' in demo_html, 'Fictional sample notice missing'
         assert 'window.UNFINISHED_SAMPLES=' in demo_samples, 'Demo samples missing'
+        assert "window.UNFINISHED_VERSION='0.5.0'" in (unfinished / 'app.js').read_text(), 'Wrong demo version'
         assert 'Beyond Beautiful' not in demo_samples and 'THE WRECKAGE ARRANGED ME' not in demo_samples, 'Private title leakage in demo'
         print(f'Public v{version} verified: Museum metadata and preview; {len(checks)} exact lexical files; {len(catalog["terms"])} public terms; {len(demo_files)} exact fictional Unfinished demo assets.')
         break
