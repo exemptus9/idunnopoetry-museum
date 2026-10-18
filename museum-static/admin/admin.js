@@ -220,6 +220,7 @@ function renderEditor(){
  clearFields();
  $('entity-key').value=active.entity_key;
  $('entity-key').readOnly=!!active.id;
+ $('entity-key').dataset.userEdited=active.status==='new'?'false':'true';
  $('entity-kind').value=active.kind;
  $('title').value=active.title||'';
  const d=active.draft||{};
@@ -358,6 +359,21 @@ async function importVault(evt){
   $('kind').value='seed';renderVault();tell('Loaded '+localVault.length+' local Seed records. No data has been transmitted.');
  }catch(e){tell('Local Vault import failed: '+e.message,true)}
 }
+function suggestNewRecordKey() {
+ if(!active || active.status!=='new' || active.id || $('entity-key').dataset.userEdited==='true')return;
+ const raw=$('title').value.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+ const slug=raw.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,90);
+ if(!slug){$('entity-key').value='';updateEditState();return}
+ const base=(active.kind+'-'+slug).slice(0,120);
+ const used=new Set(records.filter(r=>r.kind===active.kind).map(r=>r.entity_key));
+ let key=base,number=2;
+ while(used.has(key) && number<1000){
+  const suffix='-'+number++;
+  key=base.slice(0,120-suffix.length)+suffix;
+ }
+ $('entity-key').value=key;
+ updateEditState();
+}
 function newRecord(kind) {
  if(!confirmDiscard())return;
  $('kind').value=kind;
@@ -399,7 +415,11 @@ async function ready(){
  });
  $('logout').addEventListener('click',signOut);
  $('logout-denied').addEventListener('click',signOut);
- $('reload').addEventListener('click',()=>{if(confirmDiscard())load().catch(e=>tell(e.message,true))});
+ $('reload').addEventListener('click',()=>{
+  if(!confirmDiscard())return;
+  if(active && !active.id)clearEditor();
+  load().catch(e=>tell(e.message,true));
+ });
  $('export-drafts').addEventListener('click',exportLoadedRecords);
  $('quick-find').addEventListener('click',()=>{
   if(!confirmDiscard())return;
@@ -408,7 +428,13 @@ async function ready(){
  });
  $('quick-seed').addEventListener('click',()=>newRecord('seed'));
  $('quick-review').addEventListener('click',()=>{
+  const first=records.find(r=>r.status==='draft');
+  if(first && first.kind!==$('kind').value){
+   if(!confirmDiscard())return;
+   clearEditor();$('kind').value=first.kind;listPublicSources();
+  }
   $('record-filter').value='draft';listDrafts();
+  if(!first)tell('There are no private drafts in the loaded records yet. Start a new one whenever you are ready.');
   $('draft-search').focus();$('workspace-sidebar').scrollIntoView?.({behavior:'smooth',block:'start'});
  });
  $('kind').addEventListener('change',()=>{
@@ -419,6 +445,8 @@ async function ready(){
  $('draft-search').addEventListener('input',listDrafts);
  $('record-filter').addEventListener('change',listDrafts);
  $('new').addEventListener('click',()=>newRecord($('kind').value));
+ $('title').addEventListener('input',suggestNewRecordKey);
+ $('entity-key').addEventListener('input',()=>{$('entity-key').dataset.userEdited='true'});
  $('edit-form').addEventListener('input',()=>{$('preview-panel').hidden=true;updateEditState()});
  $('edit-form').addEventListener('change',()=>{$('preview-panel').hidden=true;updateEditState()});
  window.addEventListener('beforeunload',event=>{
