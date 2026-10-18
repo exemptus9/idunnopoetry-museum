@@ -54,7 +54,11 @@ assert.equal($('export-drafts').disabled,true,'empty private export unavailable'
 $('quick-seed').click();
 assert.equal($('edit-form').hidden,false);
 assert.equal($('kind').value,'seed');
+change('title','A Test Seed');
+assert.equal($('entity-key').value,'seed-a-test-seed','suggests a stable key when starting a new record');
 change('entity-key','test-seed');
+change('title','Changed Title');
+assert.equal($('entity-key').value,'test-seed','manual record IDs are respected');
 change('title','A Test Seed');
 change('text','Source-preserving private draft');
 assert.equal($('unsaved-note').hidden,false,'edits identified as unsaved');
@@ -71,6 +75,11 @@ assert.equal(before.defaultPrevented,true,'browser navigation warns about unsave
 allowDiscard=true;change('kind','poem','change');
 assert.equal($('edit-form').hidden,true,'approved discard clears editor');
 assert.equal($('kind').value,'poem');
+$('quick-seed').click();
+change('title','Temporary unsaved idea');
+$('reload').click();
+await settle();
+assert.equal($('edit-form').hidden,true,'refresh discards unsaved new records when confirmed');
 $('quick-seed').click();
 change('entity-key','test-seed');
 change('title','A Test Seed');
@@ -101,6 +110,11 @@ assert.match($('draft-list').textContent,/No saved drafts/i);
 $('record-filter').value='draft';
 $('record-filter').dispatchEvent(new w.Event('change',{bubbles:true}));
 assert.match($('draft-list').textContent,/A Test Seed/,'review filter finds saved drafts');
+$('quick-find').click();
+assert.equal($('kind').value,'poem');
+$('quick-review').click();
+assert.equal($('kind').value,'seed','review shortcut locates drafts across editorial sections');
+assert.match($('draft-list').textContent,/A Test Seed/);
 
 let privateExport='';
 w.Blob=class {constructor(parts){privateExport=parts.join('')}};
