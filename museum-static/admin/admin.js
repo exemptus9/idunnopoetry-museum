@@ -262,9 +262,9 @@ async function saveDraft(evt){
   });
   active={...saved,draft:{...saved.draft}};
   tell('Private draft saved at revision '+active.revision+'. Nothing published.');
-  await load();openDraft(active);
+  await load();
  } catch(e){tell('Could not save: '+e.message,true)}
- finally{busy=false;$('save').disabled=false}
+ finally{busy=false;$('save').disabled=false;updateEditState()}
 }
 function draftProjection(){
  const d=draftForm(),result={title:$('title').value};
@@ -275,6 +275,7 @@ function draftProjection(){
 async function action(name,confirmation){
  if(!active?.id||busy)return;
  if(role!=='owner'){tell('Owner permission required.',true);return}
+ if(hasUnsavedChanges()){tell('Save private edits before approving, publishing, or withdrawing the saved revision.',true);return}
  if(confirmation && !confirm(confirmation.prompt))return;
  busy=true;
  try{
@@ -284,21 +285,23 @@ async function action(name,confirmation){
   if(name==='museum_publish'||name==='museum_withdraw'){
    tell((name==='museum_publish'?'Published':'Withdrawn')+' successfully. The public overlay is updated.');
   } else tell('Exact revision approved. A separate Publish action is still required.');
-  await load();const updated=records.find(x=>x.id===active.id);if(updated)openDraft(updated);
+  await load();
  }catch(e){tell('Action rejected: '+e.message,true)}
- finally{busy=false}
+ finally{busy=false;updateEditState()}
 }
 async function loadHistory(){
  const out=$('history-list');out.replaceChildren();
  if(!active?.id){out.textContent='Save your first draft to begin immutable revision history.';return}
- const data=await api('museum_revisions?select=version,reason,created_at,editor_id&document_id=eq.'+encodeURIComponent(active.id)+'&order=version.desc&limit=30');
+ const id=active.id;
+ const data=await api('museum_revisions?select=version,reason,created_at,editor_id&document_id=eq.'+encodeURIComponent(id)+'&order=version.desc&limit=30');
+ if(active?.id!==id)return;
  for(const row of data){
   const el=document.createElement('div');el.className='row';
   const text=document.createElement('span');text.textContent='v'+row.version+' · '+new Date(row.created_at).toLocaleString()+' · '+(row.reason||'saved');
   el.append(text);
   if(row.version!==active.revision){
    const button=document.createElement('button');button.className='secondary';button.type='button';button.textContent='Restore as new draft';
-   button.addEventListener('click',async()=>{if(!confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;try{
+   button.addEventListener('click',async()=>{if(!confirmDiscard() || !confirm('Create a NEW private draft copied from revision '+row.version+'? Published content remains unchanged until separately approved.'))return;try{
     await rpc('museum_restore',{p_id:active.id,p_expected_revision:active.revision,p_from_revision:row.version});
     await load();tell('Restored safely as a new private revision.');}catch(e){tell(e.message,true)}});
    el.append(button);
@@ -325,6 +328,7 @@ function selectVault(record){
 function useVaultWitness(){
  const record=selectedVault;if(!record)return;
  const witness=record.versions?.[Number($('vault-version').value)];
+ if(!confirmDiscard())return;
  if(!witness?.text)return tell('Choose a preserved version with text.',true);
  $('kind').value='seed';
  active={id:null,kind:'seed',entity_key:String(record.id).replace(/[^A-Za-z0-9_-]/g,'_').slice(0,120),
@@ -332,7 +336,7 @@ function useVaultWitness(){
   provenance:record.provenance||'uncertain',private_witness_id:String(witness.id||''),
   private_witness_sha256:String(witness.sha256||'')},
   revision:0,status:'local preview',localPrivate:true};
- renderEditor();tell('Selected the exact private witness. NOT uploaded or published.');
+ renderEditor();listPublicSources();listDrafts();scrollToEditor();tell('Selected the exact private witness. NOT uploaded or published.');
 }
 function renderVault(){
  const out=$('vault-list');out.replaceChildren();
