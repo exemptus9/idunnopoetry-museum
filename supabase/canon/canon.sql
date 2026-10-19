@@ -185,8 +185,8 @@ begin
   if n=0 or exists(select 1 from generate_series(1,n) a where not exists(select 1 from canon_private.placements s where s.book=dest and s.position=a)) then raise exception 'Book order incomplete; nothing exported'; end if;
   if exists(select 1 from canon_private.placements s join canon_private.works x on x.work_id=s.work_id where s.book=dest and x.selected_revision is null) then raise exception 'Book has missing selected texts; nothing exported'; end if;
   return jsonb_build_object('format','UniversalWritingCanonBook/1','book',dest,'visibility','private_review',
-   'items',(select jsonb_agg(jsonb_build_object('position',s.position,'work_id',x.work_id,'revision',v.revision,'title',v.title,'text',v.body,'sha256',v.sha256,'author_confirmed',x.confirmed_revision=v.revision,'holds',x.holds) order by s.position)
-    from canon_private.placements s join canon_private.works x on x.work_id=s.work_id join canon_private.versions v on v.work_id=x.work_id and v.revision=x.selected_revision where s.book=dest));
+   'items',(select jsonb_agg(jsonb_build_object('position',s.position,'work_id',x.work_id,'revision',cv.revision,'title',cv.title,'text',cv.body,'sha256',cv.sha256,'author_confirmed',x.confirmed_revision=cv.revision,'holds',x.holds) order by s.position)
+    from canon_private.placements s join canon_private.works x on x.work_id=s.work_id join canon_private.versions cv on cv.work_id=x.work_id and cv.revision=x.selected_revision where s.book=dest));
  end if;
  work_key:=p->>'work_id';
  select * into w from canon_private.works where work_id=work_key for update;
