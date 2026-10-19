@@ -1,0 +1,62 @@
+name: Universal writing canon
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'museum-static/admin/**'
+      - 'museum-static/canon/**'
+      - 'scripts/*canon*'
+      - '.github/workflows/universal-canon-ci.yml'
+  pull_request:
+    paths:
+      - 'museum-static/admin/**'
+      - 'museum-static/canon/**'
+      - 'scripts/*canon*'
+      - '.github/workflows/universal-canon-ci.yml'
+permissions:
+  contents: read
+jobs:
+  canon-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Exact text, stable identity, release boundaries and recovery contracts
+        run: |
+          set -eu
+          mkdir -p test-artifacts/universal-canon
+          node --check museum-static/admin/canon/canon-core.js
+          node --check museum-static/admin/canon/canon-app.js
+          node --check museum-static/admin/canon-link.js
+          node --check museum-static/canon/reader.js
+          node --check museum-static/admin/public-overlay.js
+          node scripts/test_universal_canon_core.cjs | tee test-artifacts/universal-canon/core-results.json
+      - name: Install pinned native browser tooling
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise real browser with synthetic backend only
+        env:
+          SCREENSHOT_DIR: test-artifacts/universal-canon
+        run: python scripts/universal_canon_browser.py
+      - name: Preserve test evidence and tested public source
+        if: always()
+        run: |
+          mkdir -p test-artifacts/universal-canon/source/admin
+          cp -a museum-static/admin/canon test-artifacts/universal-canon/source/admin/
+          cp -a museum-static/canon test-artifacts/universal-canon/source/
+          cp museum-static/admin/canon-link.js museum-static/admin/public-overlay.js museum-static/admin/index.html test-artifacts/universal-canon/source/admin/
+          git rev-parse HEAD > test-artifacts/universal-canon/source/COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: universal-canon-evidence
+          path: test-artifacts/universal-canon/
+          retention-days: 7
+          if-no-files-found: error

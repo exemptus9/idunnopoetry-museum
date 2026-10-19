@@ -9,6 +9,7 @@ on:
       - scripts/verify_public_release.py
       - scripts/test_*.py
       - scripts/*preservation*
+      - scripts/*canon*
       - .github/workflows/pages.yml
   workflow_dispatch:
   workflow_run:
@@ -71,6 +72,11 @@ jobs:
           node --check museum-static/admin/preservation-core.js
           node --check museum-static/admin/preservation-desk.js
           node scripts/test_preservation_core.cjs
+          node --check museum-static/admin/canon/canon-core.js
+          node --check museum-static/admin/canon/canon-app.js
+          node --check museum-static/admin/canon-link.js
+          node --check museum-static/canon/reader.js
+          node scripts/test_universal_canon_core.cjs
 
       - name: Render and verify release preview
         run: |
@@ -85,6 +91,8 @@ jobs:
           test -s museum-static/data/core.js
           test -s museum-static/data/posts.js
           test -s museum-static/data/poetry.js
+          test -s museum-static/admin/canon/index.html
+          test -s museum-static/canon/index.html
           python scripts/check_release.py --check
 
       - name: Configure Pages

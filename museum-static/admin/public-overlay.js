@@ -37,6 +37,8 @@ function hideRow(row){
 function apply(change){
  const {kind,entity_key:key,payload:p={},state}=change;
  if(!/^[A-Za-z0-9_-]{1,120}$/.test(String(key))||!p||typeof p!=='object')return;
+ // Canon releases have a separate current-author reader. Never merge them into historical sources.
+ if(String(key).startsWith('canon__') || (typeof p.label==='string'&&p.label.startsWith('canon:v1:')))return;
  const meta=window.IDP_CREATIVE_META||{},core=window.IDP_CORE||{},
   poetry=window.IDP_POETRY||{},media=window.IDP_MEDIA_CATALOG||{};
  const tombstone=state==='withdrawn'||p.hidden===true;
@@ -86,7 +88,7 @@ function apply(change){
  if(kind==='reader_impact'){
   item=findById((window.IDP_READER_IMPACT||{}).entries,key);
   if(item){if(tombstone)hideRow(item);else setFields(item,p,{summary:'text'});return;}
-}
+ }
  if(['page','exhibit','reader_impact'].includes(kind)){
   const previous=live.findIndex(x=>x.kind===kind&&x.key===key);
   if(previous>=0)live.splice(previous,1);
