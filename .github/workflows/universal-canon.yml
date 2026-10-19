@@ -1,20 +1,10 @@
 name: Universal Writing Canon verification
 on:
   pull_request:
-    paths:
-      - 'museum-static/admin/canon/**'
-      - 'museum-static/canon/**'
-      - 'supabase/canon/**'
-      - 'scripts/canon/**'
-      - '.github/workflows/universal-canon.yml'
+    paths: ['museum-static/admin/canon/**', 'museum-static/canon/**', 'supabase/canon/**', 'scripts/canon/**', '.github/workflows/universal-canon.yml']
   push:
     branches: [main]
-    paths:
-      - 'museum-static/admin/canon/**'
-      - 'museum-static/canon/**'
-      - 'supabase/canon/**'
-      - 'scripts/canon/**'
-      - '.github/workflows/universal-canon.yml'
+    paths: ['museum-static/admin/canon/**', 'museum-static/canon/**', 'supabase/canon/**', 'scripts/canon/**', '.github/workflows/universal-canon.yml']
 permissions:
   contents: read
 jobs:
@@ -30,7 +20,7 @@ jobs:
           POSTGRES_DB: canon_test
         ports: ['5432:5432']
         options: >-
-          --health-cmd 'pg_isready -U postgres -d canon_test'
+          --health-cmd "pg_isready -U postgres -d canon_test"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 15
