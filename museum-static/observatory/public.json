@@ -2696,6 +2696,69 @@
       }
     },
     {
+      "id": "lex-dim-mentionally",
+      "slug": "dim-mentionally",
+      "headword": "Dim-mentionally",
+      "term": "Dim-mentionally",
+      "definition": "",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Experimental respelling of dimensionally; mention association unconfirmed.",
+      "roots": [
+        "dimensionally",
+        "possible mention wordplay"
+      ],
+      "domains": [
+        "literary wordplay"
+      ],
+      "variants": [],
+      "authorship": "author_reported",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": "2026-10-19",
+      "provenanceSummary": "Observed October 19, 2026 as an author-proposed sound-and-spelling variation during verse development. The question mark expressed exploration; no final independent definition or derivation was confirmed.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "literary_wordplay",
+      "editorialReview": {
+        "shortReason": "Recent author conversation capture; editorial meaning/originality review open. No Canon approval."
+      },
+      "collections": [
+        "Literary wordplay"
+      ],
+      "tags": [
+        "phonosemantic resegmentation"
+      ],
+      "analysis": null,
+      "witnesses": [
+        {
+          "id": "lex-dim-mentionally-recent-witness",
+          "visibility": "approved_public",
+          "label": "Author conversation — recorded lexical context",
+          "publicSummary": "Author proposed the spelling 'Dim-mentionally?' during revision of 'dimensionally dense with / inconsequential influential essence.' Intended independent lexical meaning not established.",
+          "approvedExcerpt": "",
+          "sourceDate": "2026-10-19",
+          "evidence": "reported",
+          "url": ""
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-21T01:23:36.190891Z",
+        "approvedRevision": 1,
+        "approvalMethod": "owner_action"
+      },
+      "permalink": "word/dim-mentionally/",
+      "review": {
+        "state": "open",
+        "flags": [
+          "definition_needed",
+          "author_decision"
+        ],
+        "definitionBasis": "unknown",
+        "note": "Forge capture only. Preserves uncertainty and does not assert prior-use exclusivity, historically proven derivation, or Canon approval."
+      }
+    },
+    {
       "id": "lex-dim-mentions",
       "slug": "dim-mentions",
       "headword": "dim-mentions",
@@ -9219,6 +9282,70 @@
       }
     },
     {
+      "id": "lex-sabatoid",
+      "slug": "sabatoid",
+      "headword": "Sabatoid",
+      "term": "Sabatoid",
+      "definition": "",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Possible association of sabat-/Sabbath with -oid; not verified.",
+      "roots": [
+        "possible sabat / Sabbath",
+        "English -oid"
+      ],
+      "domains": [
+        "word formation"
+      ],
+      "variants": [],
+      "authorship": "author_reported",
+      "evidenceStrength": "reported",
+      "earliestVerifiedDate": "2026-10-19",
+      "provenanceSummary": "Observed as an author-reported spontaneously formed word on October 19, 2026. Meaning remains unassigned; resemblance to Sabbath and sabotage is not evidence of derivation or priority.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recent author conversation capture; editorial meaning/originality review open. No Canon approval."
+      },
+      "collections": [
+        "Coinage candidates"
+      ],
+      "tags": [
+        "spontaneous word formation"
+      ],
+      "analysis": null,
+      "witnesses": [
+        {
+          "id": "lex-sabatoid-recent-witness",
+          "visibility": "approved_public",
+          "label": "Author conversation — recorded lexical context",
+          "publicSummary": "Author described Sabatoid as a spontaneously occurring word form before its meaning was determined. Sabbath/Shabbat/Sabat associations were discussed; sabotage resemblance is speculative.",
+          "approvedExcerpt": "",
+          "sourceDate": "2026-10-19",
+          "evidence": "reported",
+          "url": ""
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-21T01:23:36.190891Z",
+        "approvedRevision": 1,
+        "approvalMethod": "owner_action"
+      },
+      "permalink": "word/sabatoid/",
+      "review": {
+        "state": "open",
+        "flags": [
+          "definition_needed",
+          "source_needed",
+          "author_decision"
+        ],
+        "definitionBasis": "unknown",
+        "note": "Forge capture only. Preserves uncertainty and does not assert prior-use exclusivity, historically proven derivation, or Canon approval."
+      }
+    },
+    {
       "id": "lex-saran-dipity",
       "slug": "saran-dipity",
       "headword": "Saran-dipity",
@@ -10151,6 +10278,70 @@
         ],
         "definitionBasis": "author_supplied",
         "note": "Current user-provided working definition is the latest directly available endpoint. No claim of prior conversation acceptance or Canon."
+      }
+    },
+    {
+      "id": "lex-survivewill",
+      "slug": "survivewill",
+      "headword": "SurviveWill",
+      "term": "SurviveWill",
+      "definition": "",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Compound title: survive + will.",
+      "roots": [
+        "survive",
+        "will"
+      ],
+      "domains": [
+        "poetry",
+        "literary wordplay"
+      ],
+      "variants": [],
+      "authorship": "author_reported",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": "2026-10-19",
+      "provenanceSummary": "Attested as an author-chosen poem title on October 19, 2026. Preserve the exact capitalization and distinguish titular wordplay from a fully defined lexical entry.",
+      "definitionStatus": "awaiting_definition",
+      "classification": "literary_wordplay",
+      "editorialReview": {
+        "shortReason": "Recent author conversation capture; editorial meaning/originality review open. No Canon approval."
+      },
+      "collections": [
+        "Literary wordplay"
+      ],
+      "tags": [
+        "coined title"
+      ],
+      "analysis": null,
+      "witnesses": [
+        {
+          "id": "lex-survivewill-recent-witness",
+          "visibility": "approved_public",
+          "label": "Author conversation — recorded lexical context",
+          "publicSummary": "Author gave SurviveWill as the title of a poem ending 'My proof is to survive.' Its independent dictionary meaning has not been established.",
+          "approvedExcerpt": "",
+          "sourceDate": "2026-10-19",
+          "evidence": "supported",
+          "url": ""
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-21T01:23:36.190891Z",
+        "approvedRevision": 1,
+        "approvalMethod": "owner_action"
+      },
+      "permalink": "word/survivewill/",
+      "review": {
+        "state": "open",
+        "flags": [
+          "definition_needed",
+          "author_decision"
+        ],
+        "definitionBasis": "unknown",
+        "note": "Forge capture only. Preserves uncertainty and does not assert prior-use exclusivity, historically proven derivation, or Canon approval."
       }
     },
     {
@@ -11463,6 +11654,76 @@
         ],
         "definitionBasis": "inferred",
         "note": "A transparent literary gloss is supported by the source title and motif. No standalone author lexical definition was recovered; this is not a medical use of vertigo."
+      }
+    },
+    {
+      "id": "lex-victiminated",
+      "slug": "victiminated",
+      "headword": "Victiminated",
+      "term": "Victiminated",
+      "definition": "Victimized, blamed for one's victimization, and alienated by its aftermath.",
+      "stage": "forge",
+      "visibility": "approved_public",
+      "revision": 1,
+      "formation": "Proposed conceptual blend: victimized + incriminated + alienated (semantic, not proven historical derivation).",
+      "roots": [
+        "victim / victimized",
+        "incriminated",
+        "alienated (semantic closure)"
+      ],
+      "domains": [
+        "social blame",
+        "alienation"
+      ],
+      "variants": [
+        "Victimniated",
+        "Victieneated"
+      ],
+      "authorship": "author_reported",
+      "evidenceStrength": "supported",
+      "earliestVerifiedDate": "2026-10-20",
+      "provenanceSummary": "Recorded from an October 20, 2026 author conversation. Proposed three-part semantic circuit endorsed by the author, distinct from demonstrated morphology, established dictionary use, or proven original priority.",
+      "definitionStatus": "working_definition",
+      "classification": "coinage_candidate",
+      "editorialReview": {
+        "shortReason": "Recent author conversation capture; editorial meaning/originality review open. No Canon approval."
+      },
+      "collections": [
+        "Coinage candidates"
+      ],
+      "tags": [
+        "phonosemantic blending",
+        "three-part verbal circuit"
+      ],
+      "analysis": null,
+      "witnesses": [
+        {
+          "id": "lex-victiminated-recent-witness",
+          "visibility": "approved_public",
+          "label": "Author conversation — recorded lexical context",
+          "publicSummary": "Author explicitly endorsed the victimization → incrimination/blame → alienation progression and preferred spelling Victiminated; the final concise wording is an editorial formulation, not independently attested usage.",
+          "approvedExcerpt": "",
+          "sourceDate": "2026-10-20",
+          "evidence": "supported",
+          "url": ""
+        }
+      ],
+      "corpus": [],
+      "publication": {
+        "approvedAt": "2026-10-21T01:23:36.190891Z",
+        "approvedRevision": 1,
+        "approvalMethod": "owner_action"
+      },
+      "permalink": "word/victiminated/",
+      "review": {
+        "state": "open",
+        "flags": [
+          "attribution_review",
+          "source_needed",
+          "author_decision"
+        ],
+        "definitionBasis": "conversation_recovered",
+        "note": "Forge capture only. Preserves uncertainty and does not assert prior-use exclusivity, historically proven derivation, or Canon approval."
       }
     },
     {
@@ -14609,6 +14870,38 @@
       "definition": "",
       "date": "2026-10-17T00:13:49.405554Z",
       "note": "Recovered assistant interpretation or capitalization witness added under delegated publication permission. The accepted definition remains empty; no Canon approval."
+    },
+    {
+      "termId": "lex-victiminated",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "Victimized, blamed for one's victimization, and alienated by its aftermath.",
+      "date": "2026-10-21T01:23:36.190891Z",
+      "note": "Author requested recent lexical captures on 2026-10-20. Experimental Forge entry; not a Canon approval."
+    },
+    {
+      "termId": "lex-sabatoid",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "",
+      "date": "2026-10-21T01:23:36.190891Z",
+      "note": "Author requested recent lexical captures on 2026-10-20. Experimental Forge entry; not a Canon approval."
+    },
+    {
+      "termId": "lex-dim-mentionally",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "",
+      "date": "2026-10-21T01:23:36.190891Z",
+      "note": "Author requested recent lexical captures on 2026-10-20. Experimental Forge entry; not a Canon approval."
+    },
+    {
+      "termId": "lex-survivewill",
+      "version": 1,
+      "visibility": "approved_public",
+      "definition": "",
+      "date": "2026-10-21T01:23:36.190891Z",
+      "note": "Author requested recent lexical captures on 2026-10-20. Experimental Forge entry; not a Canon approval."
     }
   ]
 }
