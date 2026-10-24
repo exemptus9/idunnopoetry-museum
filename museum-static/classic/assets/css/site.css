@@ -1,0 +1,124 @@
+/* Reconstruction of the historical IDunnoPoetry.com main site.
+   Root style.css was not recovered. Palette is corroborated by idp/style.css from Archive 2;
+   layout dimensions, background references and nav styles by head.txt from Archive 1.
+   This derivative CSS is new work and is NOT represented as recovered original bytes. */
+:root { --blood:#b80032; --blood-light:#ef425d; --panel:#999999; --panel2:#888888; --text:#161616; --frame:775px; }
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body{background:#060505;color:#dedede;margin:0;font:15px/1.48 Georgia,'Times New Roman',serif}
+a{color:#fff;text-decoration:none}
+a:hover,a:focus-visible{color:#e40040;text-decoration:underline}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.skip{position:absolute;top:-100px;left:8px;background:#fff;color:#111;padding:10px;z-index:100}
+.skip:focus{top:5px}
+.toolbar{width:min(775px,100%);margin:22px auto 8px;display:flex;align-items:center;justify-content:space-between;gap:9px;color:#bcb9b9;font:11px/1.25 Arial,sans-serif;letter-spacing:.06em;flex-wrap:wrap}
+.toolbar .brand{display:flex;align-items:center;gap:7px}
+.toolbar .dot{height:6px;width:6px;display:inline-block;background:#e53853;border-radius:50%}
+.toolbar .actions{display:flex;gap:6px;align-items:center}
+.toolbar button,.toolbar a{font:11px Arial,sans-serif;border:1px solid #4c4a4a;padding:7px 9px;border-radius:4px;background:#171515;color:#eee}
+.toolbar button:hover,.toolbar a:hover{border-color:#a31b3a;color:white;text-decoration:none}
+.toolbar button[aria-pressed="true"]{background:#8b1732;border-color:#df526a}
+.shell{width:min(var(--frame),100%);margin:0 auto;border:1px solid #232021;box-shadow:0 0 45px rgba(0,0,0,.85);background:#666 url('../images/bg2.jpg') repeat}
+.site-header{display:grid;grid-template-columns:120px minmax(0,1fr);min-height:100px;background:url('../images/bg2.jpg') repeat;align-items:center}
+.corner{width:120px;height:100px;object-fit:cover;display:block}
+.site-header .logowrap{display:flex;align-items:center;justify-content:center;min-height:100px;padding:6px 12px}
+.site-header img.logo{width:300px;max-width:100%;height:auto;image-rendering:auto}
+.site-columns{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:stretch;min-height:510px}
+.sidebar{background:url('../images/bg2.jpg') repeat;align-self:stretch;min-width:0}
+.navcap{background:url('../images/bg4.jpg') center top repeat-x;height:40px}
+.navbottom{height:20px;background:url('../images/bg5.jpg') center top repeat-x}
+.nav{display:flex;flex-direction:column}
+.nav a{min-height:27px;background:#888;border-bottom:1px solid #aaa;border-top:1px solid #676767;display:flex;align-items:center;justify-content:center;gap:3px;color:white;text-align:center;font:12px/1.15 'Times New Roman',serif;padding:6px 3px}
+.nav a:hover,.nav a[aria-current="page"]{background:#555;color:white;text-decoration:none}
+.nav a[aria-current="page"]{border-left:3px solid #b90034}
+.nav img{height:16px;width:auto;object-fit:contain}
+.content{background:var(--panel);color:var(--text);padding:17px 25px 35px;text-align:center;min-width:0}
+.content a{color:#fff;text-shadow:0 1px rgba(40,40,40,.12)}
+.content a:hover,.content a:focus-visible{color:#a00030}
+h1,h2,h3{color:var(--blood);line-height:1.15;font-weight:700}
+h1{font-size:28px;margin:13px auto 12px}h2{font-size:24px;margin:10px auto 10px}h3{font-size:19px}
+hr{width:60%;border:0;border-top:1px solid #676767;margin:13px auto 20px}
+.small{font-size:12px}.eyebrow{font:11px/1.4 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#50202b}
+.lead{max-width:500px;margin:15px auto;line-height:1.65}
+.center{margin-left:auto;margin-right:auto}
+.spaced{margin-top:24px}
+.note{margin:17px auto;padding:12px 14px;max-width:540px;text-align:left;background:rgba(255,255,255,.27);border-left:3px solid #952344;font:12px/1.5 Arial,sans-serif;color:#242424}
+.note strong{color:#641329}.note a{color:#5d1831}
+.banner{background:#767676;border:1px solid #5e5e5e;text-align:left;padding:15px 17px;margin:20px auto;max-width:520px}
+.banner p{margin:8px 0}.banner h3{margin:0 0 8px}
+.archive-table{border-collapse:collapse;width:100%;margin:15px auto;background:#aaa;font-size:14px;text-align:left}
+.archive-table th,.archive-table td{border:1px solid #535353;padding:8px 9px;vertical-align:top}
+.archive-table th{background:#777;color:#fff;font:12px Arial,sans-serif}
+.archive-table td:first-child{text-align:center;color:#3a3a3a;width:50px}
+.archive-table tbody tr:nth-child(even){background:#a0a0a0}
+.archive-table a{color:#4c0e25;text-shadow:none;font-weight:bold}
+.archive-table a:hover{color:#fff}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:20px 0}
+.filters input,.filters select{border:1px solid #666;color:#171717;background:#efefef;padding:9px 10px;font:13px Arial,sans-serif;border-radius:3px;max-width:100%}
+.filters input{min-width:210px;flex:1}
+.result-count{font:12px Arial,sans-serif;color:#4c3439;margin-bottom:8px;text-align:right}
+.poem{max-width:540px;margin:26px auto 35px;text-align:center;line-height:1.38;font:17px/1.5 Georgia,'Times New Roman',serif}
+.poem pre{font:15px/1.45 'Courier New',monospace;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;margin:0 auto;max-width:max-content}
+.poem-nav{display:flex;justify-content:space-between;gap:10px;padding:9px 0;margin:18px auto 0;max-width:500px;border-bottom:1px solid #666;font:13px Arial,sans-serif}
+.poem-nav a{color:#3a0920;text-shadow:none;font-weight:bold}
+.poem-nav a:hover{color:white}
+.poem-meta{max-width:520px;margin:20px auto;padding-top:10px;border-top:1px solid #777;text-align:left;font:12px/1.45 Arial,sans-serif;color:#3e3a3a}
+.poem-tools{display:flex;justify-content:center;gap:6px;margin:10px 0 0;flex-wrap:wrap}
+.poem-tools button,.poem-tools a,.pill{display:inline-flex;align-items:center;border:1px solid #5d5d5d;background:rgba(0,0,0,.09);padding:7px 10px;color:#3a1a24;font:12px Arial,sans-serif;border-radius:3px;text-shadow:none}
+.poem-tools button:hover,.poem-tools a:hover,.pill:hover{background:#4a2632;color:white;text-decoration:none}
+.list{list-style:none;padding:0;margin:15px auto;text-align:left;max-width:500px}
+.list li{padding:9px 5px;border-bottom:1px dashed rgba(50,50,50,.26)}
+.list li a{color:#50132b;font-weight:bold;text-shadow:none}
+.list li a:hover{color:white}
+.faq{text-align:left;margin:15px 0 30px}.faq details{border-bottom:1px solid #777;padding:12px 5px}.faq summary{cursor:pointer;font-weight:bold;color:#701330}.faq p{margin:12px 0 0;line-height:1.68}
+.art-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:555px;margin:18px auto}
+.art-item{display:block;background:rgba(20,20,20,.15);border:1px solid #555;padding:8px;color:#eee!important}
+.art-item img{display:block;width:100%;height:165px;object-fit:contain;background:#141414}
+.art-item span{display:block;color:#242424;font:11px Arial,sans-serif;margin-top:7px}
+.art-pages{margin:20px 0;display:flex;gap:8px;justify-content:center}
+.art-pages a{padding:6px 10px;border:1px solid #5d5454;color:#46152b;text-shadow:none}
+.art-pages a[aria-current="page"]{background:#79243b;color:white}
+.footer{display:grid;grid-template-columns:120px minmax(0,1fr);height:50px;color:white}
+.footer .end-left{background:url('../images/bg6.jpg') top left repeat-x}
+.footer .end-right{background:url('../images/bg3.jpg') top left repeat-x;display:flex;align-items:flex-start;justify-content:center;padding-top:7px;color:#eee;font:12px Georgia,serif;text-align:center}
+.footer a{color:white;text-decoration:underline}
+.bottom-text{font:11px Arial,sans-serif;color:#817b7b;width:min(775px,100%);margin:13px auto 35px;text-align:center}
+.bottom-text a{color:#e4a4b5}
+.trip-surface{background:linear-gradient(#56616d,#98a3ae 55%,#5c6668);border:1px solid #5b5b5b;padding:15px;margin:auto;max-width:450px}
+.trip-surface img{max-width:100%;height:140px;object-fit:contain;display:block;margin:10px auto;background:#444}
+.trip-surface .trip-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.trip-surface button{background:#ddd;border:1px solid #555;color:#333;padding:7px}
+.trip-surface .trip-status{font:12px Arial,sans-serif}
+body.mode-reader{font:16px/1.65 system-ui,Arial,sans-serif;background:#171313}
+.mode-reader .shell{--frame:940px}
+.mode-reader .toolbar{width:min(940px,100%)}
+.mode-reader .site-columns{grid-template-columns:150px minmax(0,1fr)}
+.mode-reader .site-header{grid-template-columns:150px minmax(0,1fr)}
+.mode-reader .sidebar .nav a{font:13px/1.3 Arial,sans-serif;padding:10px 3px}
+.mode-reader .content{background:#c5c2be;padding:26px 34px}
+.mode-reader .poem{font-size:18px;line-height:1.65}
+.mode-reader .archive-table a,.mode-reader .content a{color:#651832;text-shadow:none}
+.mode-reader .content a:hover{color:#000}
+.mode-reader .footer{grid-template-columns:150px minmax(0,1fr)}
+@media (max-width:700px){
+ .toolbar{padding:0 10px;margin-top:8px}
+ .site-header{grid-template-columns:88px minmax(0,1fr);min-height:85px}
+ .corner{width:88px;height:80px;object-fit:cover}
+ .site-header .logowrap{min-height:80px}
+ .site-header img.logo{width:min(300px,100%)}
+ .site-columns,.mode-reader .site-columns{display:block}
+ .sidebar{display:block;padding-bottom:1px}
+ .navcap,.navbottom{display:none}
+ .nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .nav a{font:12px Arial,sans-serif;min-height:39px;padding:7px 3px}
+ .content,.mode-reader .content{padding:20px 14px;min-height:500px}
+ .footer,.mode-reader .footer{grid-template-columns:88px minmax(0,1fr)}
+ .mode-reader .site-header{grid-template-columns:88px minmax(0,1fr)}
+ .poem{font-size:16px;max-width:100%}
+ .poem pre{font-size:12px}
+ .art-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .art-item img{height:130px}
+}
+@media(max-width:420px){.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.filters input{min-width:100%}.poem-nav{font-size:12px}}
+@media print{.toolbar,.sidebar,.bottom-text,.poem-tools,.poem-nav,.navcap{display:none!important}.shell{border:0;width:100%;box-shadow:none}.site-header{display:none}.site-columns{display:block}.content{background:#fff;color:#000;width:100%;padding:0}.poem{font-size:13pt}.footer{display:none}h1,h2{color:#000}}

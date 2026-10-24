@@ -1,0 +1,18 @@
+<br><h1>The Phone</h1><br>
+
+<pre>
+The phone is silent
+Idle
+Awaiting a call
+It has no other job
+Just ring,
+That's all.
+
+I am silent
+Idle
+Awaiting your call
+I have no other job
+Just answer,
+That's all.
+</pre>
+

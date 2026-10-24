@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>IDunnoPoetry, Teen Poetry & Rhyming Poems About Love, Hate, Depression, etc</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="randomimage.js">
+</script>
+<meta name="verify-v1" content="90LItA/OrprRW+JG2DO2a7Lb+y7hkG2XZxUdUmqFzq8=" />
+<meta name="description" content="Teen poetry site with complex rhyming poems about emotional topics from love to anger to depression.">
+<meta name="keywords" content="Poetry, rhyming poetry, love poetry, hate poetry, sadness poetry, teen poetry, romantic poetry, brandon smith, depression poetry, true love, love, male poetry, poem submission, submit poems, teen poems, love poems, hate poems, anger poems, romantic poems, sad poems, dark poetry, free poetry, free poems, inspirational poetry">
+</head>
+<body bottommargin="0" leftmargin="0" marginheight="0" marginwidth=
+"0" rightmargin="0" topmargin="0">
+<table cellpadding="0" cellspacing="0" width="775" align="center"
+background="images/bg2.jpg">
+<tr>
+<td width="1" height="1">
+<script type="text/javascript" language="JavaScript">
+showImage();
+</script>
+</td>
+<td width="655" height="90" align="center"><img src="images/logo2.jpg" alt="IDunnoPoetry Logo, Teen Poetry and Rhyming Poems About Love, Hate, Depression, etc">
+</td>
+</tr>
+</table>
+
+<table width="775" border="0" cellpadding="0" cellspacing="0"
+align="center" background="images/bg2.jpg">
+<tr>
+<td valign="top" background="images/bg2.jpg">
+<table width="120" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="120" height="40" background="images/bg4.jpg"></td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"index.php" style="text-decoration: none"><font color=
+"ffffff"><img src="images/home.gif" border="0" alt="Free poems brought to you by the rhyming master himself, Brandon Smith!">Home</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"poetry.php?sortby=poemid&order=desc" style="text-decoration: none"><font color=
+"ffffff"><img src="images/book_open.gif" border="0" alt="Witness a poet learning to write!">Poetry</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"poetry2.php?sortby=PoemID&order=desc" style="text-decoration: none"><font color=
+"ffffff">Other's Poetry</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"http://idunnopoetry.net/mb/index.php" target="_blank" style="text-decoration: none"><font color=
+"ffffff">Messageboard</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"faq.shtml" style="text-decoration: none"><font color=
+"ffffff"><img src="images/question.gif" border="0"> FAQ</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"blah.shtml" style="text-decoration: none"><font color=
+"ffffff"><img src="images/icon_gack.gif" border="0"> Blah</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"links.shtml" style="text-decoration: none"><font color=
+"ffffff"><img src="images/link.png" border="0"> Links</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td align="center" bgcolor="#888888" width="120" height="20"
+onmouseover="this.style.backgroundColor='#999999'" onmouseout=
+"this.style.backgroundColor='#888888'">
+<layer width="100%" onmouseover="this.bgColor='#999999'"
+onmouseout="this.bgColor='#888888'"><ilayer width="100%"><a href=
+"email.shtml" style="text-decoration: none"><font color=
+"ffffff"><img src="images/email.gif" border="0"> E-Mail</font></a></ilayer></layer>
+</td>
+</tr>
+
+<tr>
+<td width="120" height="20" background="images/bg5.jpg"></td>
+</tr>
+</table>
+</td>
+<td width="655" bgcolor="#999999" valign="top" align="center">

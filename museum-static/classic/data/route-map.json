@@ -1,0 +1,7 @@
+{
+  "home": "index.html",
+  "poetry": "poetry.html",
+  "poem_template": "poems/{slug}.html",
+  "forum_museum": "https://exemptus9.github.io/idunnopoetry-museum/",
+  "historic_index_source": "idp original1.zip :: poetry.shtml"
+}

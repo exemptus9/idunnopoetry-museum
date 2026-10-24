@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://exemptus9.github.io/idunnopoetry-museum/classic/sitemap.xml

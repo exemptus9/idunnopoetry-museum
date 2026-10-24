@@ -1,0 +1,111 @@
+<!--#include file="head.txt" -->
+<br>
+<h2>My Poetry</h2><hr width="60%"><br>
+<a href="poem.php?load=broken">Broken</a><br>
+<a href="poem.php?load=missing">Missing You</a><br>
+<a href="poem.php?load=dream">Dream</a><br>
+<a href="poem.php?load=totheone">To the One I Love</a><br>
+<a href="poem.php?load=time">Time</a><br>
+<a href="poem.php?load=uncertain">Uncertain</a><br>
+<a href="poem.php?load=youtoknow">I Want You to Know</a><br>
+<a href="poem.php?load=gone">Gone</a><br>
+<a href="poem.php?load=lovehim">You Love Him</a><br>
+<a href="poem.php?load=life">Life</a><br>
+<a href="poem.php?load=thepoint">What's the Point?</a><br>
+<a href="poem.php?load=panic">Panic</a><br>
+<a href="poem.php?load=fiftythings">Fifty Things I Love About You</a><br>
+<a href="poem.php?load=loveyoumore">I Love You More</a><br>
+<a href="poem.php?load=confusion">Confusion</a><br>
+<a href="poem.php?load=descent">The Descent of Happiness</a><br>
+<a href="poem.php?load=reason">The Reason</a><br>
+<a href="poem.php?load=belike">What Would It Be Like?</a><br>
+<a href="poem.php?load=sometimes">Sometimes</a><br>
+<a href="poem.php?load=dontyou">Don't You?</a><br>
+<a href="poem.php?load=lovedream">The Love Dream</a><br>
+<a href="poem.php?load=fragile">Fragile</a><br>
+<a href="poem.php?load=deception">Deception</a><br>
+<a href="poem.php?load=theend">The End</a><br>
+<a href="poem.php?load=perfect">Perfect</a><br>
+<a href="poem.php?load=badthoughts">Bad Thoughts</a><br>
+<a href="poem.php?load=remember">I Remember</a><br>
+<a href="poem.php?load=distraction">Distraction</a><br>
+<a href="poem.php?load=destroyer">The Destroyer</a><br>
+<a href="poem.php?load=scars">Scars</a><br>
+<a href="poem.php?load=clone">Clone</a><br>
+<a href="poem.php?load=iknow">I Know</a><br>
+<a href="poem.php?load=true">True Perfection</a><br>
+<a href="poem.php?load=ascension">Ascension</a><br>
+<a href="poem.php?load=nightlight">Nightlight</a><br>
+<a href="poem.php?load=iloveyou">I Love You</a><br>
+<a href="poem.php?load=forever">Forever</a><br>
+<a href="poem.php?load=giveme">Give Me</a><br>
+<a href="poem.php?load=questioning">Questioning Good</a><br>
+<a href="poem.php?load=it">It</a><br>
+<a href="poem.php?load=wonder">Wonder</a><br>
+<a href="poem.php?load=regret">Regretfully Apologetic</a><br>
+<a href="poem.php?load=sorry">Sorry</a><br>
+<a href="poem.php?load=wish">Wish</a><br>
+<a href="poem.php?load=sleep">Sleep</a><br>
+<a href="poem.php?load=delusion">Delusion</a><br>
+<a href="poem.php?load=absolutes">Absolutes</a><br>
+<a href="poem.php?load=confessions">Confessions of a Liar</a><br>
+<a href="poem.php?load=falsehope">False Hope</a><br>
+<a href="poem.php?load=yourfault">Your Fault</a><br>
+<a href="poem.php?load=thanks">Thanks for Everything</a><br>
+<a href="poem.php?load=oops">Oops</a><br>
+<a href="poem.php?load=difficult">Difficult</a><br>
+<a href="poem.php?load=donttell">Don't Tell Me</a><br>
+<a href="poem.php?load=goodfriend">The Good Friend</a><br>
+<a href="poem.php?load=ridofyou">Rid of You</a><br>
+<a href="poem.php?load=without">Without You</a><br>
+<a href="poem.php?load=froze">The Day my Heart Froze Over</a><br>
+<a href="poem.php?load=parting">Parting Ways</a><br>
+<a href="poem.php?load=mercurian">Mercurian</a><br>
+<a href="poem.php?load=million">Million</a><br>
+<a href="poem.php?load=words">Words</a><br>
+<a href="poem.php?load=runner">Runner-Up</a><br>
+<a href="poem.php?load=selfish">Selfish?</a><br>
+<a href="poem.php?load=shattered">Shattered Existence</a><br>
+<a href="poem.php?load=wasted">Wasted</a><br>
+<a href="poem.php?load=changed">Changed</a><br>
+<a href="poem.php?load=dive">Dive</a><br>
+<a href="poem.php?load=aide">Malicious Aide</a><br>
+<a href="poem.php?load=payback">Payback</a><br>
+<a href="poem.php?load=interstice">Interstice</a><br>
+<a href="poem.php?load=future">Future</a><br>
+<a href="poem.php?load=sardonic">The Sardonic</a><br>
+<a href="poem.php?load=bleeding">Bleeding</a><br>
+<a href="poem.php?load=riddle">Riddle</a><br>
+<a href="poem.php?load=excuse">Excuse Me</a><br>
+<a href="poem.php?load=igneus">Igneus Velius</a><br>
+<a href="poem.php?load=stupidity">Stupidity</a><br>
+<a href="poem.php?load=nottoday">Not Today</a><br>
+<a href="poem.php?load=shallow">Shallow</a><br>
+<a href="poem.php?load=hypocrite">Hypocrites</a><br>
+<a href="poem.php?load=never">Never</a><br>
+<a href="poem.php?load=phone">The Phone</a><br>
+<a href="poem.php?load=touch">Just a Touch</a><br>
+<a href="poem.php?load=HM">H.M. (The Light That Shines Through Rain)</a><br>
+<a href="poem.php?load=someone">Someone</a><br>
+<a href="poem.php?load=recidivism">Recidivism</a><br>
+<a href="poem.php?load=pieces">Pieces Have Their Place</a><br>
+<a href="poem.php?load=little">A Little Off</a><br>
+<a href="poem.php?load=throw">Throw It All Away</a><br>
+<a href="poem.php?load=violence">Violence</a><br>
+<a href="poem.php?load=redivivus">Redivivus</a><br>
+<a href="poem.php?load=survive">The Will To Survive</a><br>
+<a href="poem.php?load=letter">Open Letter</a><br>
+<a href="poem.php?load=myplace">My Place</a><br>
+<a href="poem.php?load=embrace">Embracing Change</a><br>
+<a href="poem.php?load=maternal">Maternal Asphyxiation</a><br>
+<a href="poem.php?load=pointfive">0.5</a><br>
+<a href="poem.php?load=abrogation">Abrogation</a><br>
+<a href="poem.php?load=whitelies">White Lies</a><br>
+<a href="poem.php?load=glass">Glass Onion</a><br>
+<a href="poem.php?load=behindback">Behind Your Back</a><br>
+<a href="poem.php?load=poem">Poem</a><br>
+<a href="poem.php?load=everytime">Every Time</a><br>
+<a href="poem.php?load=allalong">All Along</a><br>
+<a href="poem.php?load=together">Together</a><br>
+<!--#include file="foot.txt" -->
+
