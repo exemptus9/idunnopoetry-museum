@@ -14,6 +14,7 @@ let session = null, role = null, records = [], active = null, localVault = [];
 let busy = false,selectedVault = null;
 let formBaseline = null, renderedTextBaseline = null;
 let refreshTask = null;
+let privateGeneration = 0;
 const busyControls = new Map();
 const navigatorCore = window.IDP_EDITOR_NAV;
 let publicNavigatorIndex=null,publicNavigatorBuild=null,navigatorSearchGeneration=0;
@@ -82,7 +83,21 @@ function base(){return String(cfg.url).replace(/\/$/,'');}
 function access(){return session?.access_token||'';}
 function authHeaders() {return {'apikey':cfg.publishableKey,'Authorization':'Bearer '+access()};}
 function saveSession(x){session=x;try{sessionStorage.setItem(storageKey,JSON.stringify(x))}catch{}}
-function clearSession(){session=null;role=null;window.dispatchEvent(new Event('idp:editor-signed-out'));try{sessionStorage.removeItem(storageKey)}catch{}}
+function clearSession(){
+ session=null;role=null;++privateGeneration;records=[];localVault=[];selectedVault=null;
+ clearEditor();renderedTextBaseline=null;
+ // Hiding an authenticated panel is not erasure on a shared device. Remove
+ // private text, selected local witnesses, metadata and callback-bearing rows.
+ for(const id of [...EDIT_FIELDS,'entity-kind','vault-file','vault-filter','draft-search','global-search'])$(id).value='';
+ for(const id of ['draft-list','history-list','vault-list','vault-title','vault-version','vault-preview',
+  'preview-content','comparison-text','original-text','comparison-summary','edit-identity','edit-heading',
+  'save-state','release-state','welcome-status','stats','message'])$(id).replaceChildren();
+ hide('vault-detail','preview-panel','message');
+ $('export-drafts').disabled=true;$('copy-handoff').disabled=true;
+ ++navigatorSearchGeneration;navigatorNote('Signed out. Private search results cleared.');
+ window.dispatchEvent(new Event('idp:editor-signed-out'));
+ try{sessionStorage.removeItem(storageKey)}catch{}
+}
 async function readJson(res) {
  const text=await res.text();let body;try{body=JSON.parse(text)}catch{body={message:text.slice(0,400)}}
  if(!res.ok)throw Error(body.message||body.msg||body.error_description||body.error||('HTTP '+res.status));
@@ -93,11 +108,13 @@ async function refreshIfNeeded(){
  const expires=(session.expires_at||0);
  if(!expires||expires-Date.now()/1000>90)return;
  if(refreshTask)return refreshTask;
+ const generation=privateGeneration;
  refreshTask=(async()=>{
   const data=await readJson(await fetch(base()+'/auth/v1/token?grant_type=refresh_token',{
    method:'POST',headers:{'apikey':cfg.publishableKey,'Content-Type':'application/json'},
    body:JSON.stringify({refresh_token:session.refresh_token})
   }));
+  if(generation!==privateGeneration)throw Error('Sign-in changed. Please sign in again.');
   saveSession({...data,expires_at:Math.floor(Date.now()/1000)+Number(data.expires_in||3600)});
  })();
  try{await refreshTask}finally{refreshTask=null}
@@ -154,7 +171,10 @@ async function beginSession() {
  catch(err) {clearSession();hide('app','denied');show('login');tell('Authentication expired: '+err.message,true)}
 }
 async function load(){
- records=await api('museum_documents?select=id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at&order=updated_at.desc&limit=1000');
+ const generation=privateGeneration;
+ const loaded=await api('museum_documents?select=id,kind,entity_key,title,draft,revision,approved_revision,status,updated_at&order=updated_at.desc&limit=1000');
+ if(generation!==privateGeneration||!['owner','editor'].includes(role))return;
+ records=loaded;
  if(!Array.isArray(records))throw Error('Unexpected private record list');
  const counts={draft:0,approved:0,published:0,withdrawn:0};
  for(const doc of records){if(counts[doc.status]!==undefined)counts[doc.status]++}
@@ -386,9 +406,11 @@ function renderVault(){
 }
 async function importVault(evt){
  const file=evt.target.files?.[0];if(!file)return;
+ const generation=privateGeneration;
  try{
   if(file.size>15_000_000)throw Error('File too large to read safely');
   const data=JSON.parse(await file.text());
+  if(generation!==privateGeneration||!['owner','editor'].includes(role))return;
   if(!String(data.format||'').toLowerCase().includes('seed')
    || !Array.isArray(data.records) || data.records.length>20000) throw Error('Invalid Seedbank format');
   localVault=data.records.filter(r=>r&&typeof r.id==='string'&&Array.isArray(r.versions));

@@ -17,14 +17,19 @@ w.matchMedia=()=>({matches:false});
 w.sessionStorage.setItem('idp_museum_editor_session_v1',
  JSON.stringify({access_token:'synthetic-only',refresh_token:'synthetic-refresh',expires_at:9999999999}));
 let documents=[], saves=0, approvals=0, publications=0, withdrawals=0;
+let deferredDocuments=null;
 let allowDiscard=false, savePayload;
 w.confirm=()=>allowDiscard;
 function response(value){return{ok:true,async text(){return JSON.stringify(value)}}}
 w.fetch=async (input,options={})=>{
  const path=String(input);
  if(path.includes('/auth/v1/user'))return response({email:'curator@example.test'});
+ if(path.includes('/auth/v1/logout'))return response({});
  if(path.includes('/rpc/museum_my_role'))return response('owner');
- if(path.includes('/rest/v1/museum_documents?'))return response(documents.map(d=>({...d})));
+ if(path.includes('/rest/v1/museum_documents?')){
+  if(deferredDocuments)return deferredDocuments;
+  return response(documents.map(d=>({...d})));
+ }
  if(path.includes('/rest/v1/museum_revisions?'))return response([]);
  if(path.includes('/rpc/museum_save')){
   saves++;
@@ -129,6 +134,35 @@ assert.match(downloaded,/idp-private-editorial-/);
 assert.equal(JSON.parse(privateExport).documents[0].draft.text,'Private version one');
 assert.equal(privateExport.includes('synthetic-only'),false,'session token excluded from private export');
 
+// A shared-device sign-out must erase private DOM values and local witnesses,
+// including imports and record loads that finish after the session is gone.
+const fixture={format:'Seedbank-test',records:[{id:'local-only',title:'Local private witness',
+ versions:[{id:'witness-1',text:'Local private text 81739'}]}]};
+const fileInput=$('vault-file');
+Object.defineProperty(fileInput,'files',{value:[{size:100,text:async()=>JSON.stringify(fixture)}],configurable:true});
+fileInput.dispatchEvent(new w.Event('change',{bubbles:true}));await settle();
+assert.match($('vault-list').textContent,/Local private witness/);
+$('vault-list').querySelector('button').click();
+assert.match($('vault-preview').textContent,/Local private text 81739/);
+let completeImport,completeLoad;
+Object.defineProperty(fileInput,'files',{value:[{size:100,text:()=>new Promise(resolve=>{completeImport=resolve})}],configurable:true});
+fileInput.dispatchEvent(new w.Event('change',{bubbles:true}));
+deferredDocuments=new Promise(resolve=>{completeLoad=resolve});
+$('reload').click();await settle();
+$('logout').click();await settle();
+assert.equal($('login').hidden,false);
+assert.equal($('text').value,'','sign-out erases the hidden editor value');
+assert.equal($('title').value,'');
+assert.equal($('vault-preview').textContent,'');
+assert.equal($('vault-list').textContent,'');
+assert.equal($('draft-list').textContent,'');
+assert.equal($('export-drafts').disabled,true);
+assert.equal(w.sessionStorage.getItem('idp_museum_editor_session_v1'),null);
+completeImport(JSON.stringify(fixture));completeLoad(response(documents));await settle();
+assert.equal($('vault-list').textContent,'','late import cannot restore local private text');
+assert.equal($('draft-list').textContent,'','late load cannot restore private rows');
+assert.equal(w.IDP_EDITOR_WORKSPACE.state().records.length,0,'late load cannot repopulate private state');
+
 assert.equal(withdrawals,0);
 dom.window.close();
-console.log('PASS: Museum mobile start flow, authenticated dashboard, dirty guard, private save, stage filter and explicit export.');
+console.log('PASS: Museum start flow, authenticated dashboard, dirty guard, private save, stage filter, export and shared-device sign-out erasure.');

@@ -31,7 +31,7 @@ if (controls && !controls.querySelector('[data-continuity-atlas]')) {
 }
 // A private-by-default continuation trail. Only the last eight historical poem slugs
 // are stored in this browser; no account, network call, or browsing outside classic pages.
-const match = location.pathname.match(/\/poems\/([a-z0-9]+)\.html$/);
+const match = location.pathname.match(/\/poems\/([A-Za-z0-9]+)\.html$/);
 const historicTitle = document.querySelector('article.poem')?.getAttribute('aria-label');
 if (match && historicTitle) {
   try {

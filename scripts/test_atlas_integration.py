@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+import subprocess
 import unittest
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
@@ -11,6 +12,12 @@ ATLAS = ROOT / 'atlas'
 
 
 class AtlasIntegrationTests(unittest.TestCase):
+    def test_historical_reading_trail_journey(self):
+        result = subprocess.run(
+            ['node', str(ROOT.parent / 'scripts/test_atlas_dom.mjs')],
+            capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
     def test_complete_historical_index(self):
         index = (ATLAS / 'poems.js').read_text(encoding='utf-8')
         prefix = 'window.IDP_ATLAS_POEMS='
