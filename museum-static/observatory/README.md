@@ -51,8 +51,17 @@ accepted. Optional `analysis.kind: "ai_hypothesis"` displays a collapsible
 formation/interpretation/distinction proposal separate from the definition,
 with explicit limitations and a need for author review.
 
-The reconciled snapshot has 132 working records: 120 Forge, 12 Lexicon, zero
-Canon. Definition bases comprise 81 conversation recoveries, 26 archive
+The public snapshot checked on 28 October 2026 has 203 records: 191 Forge,
+12 Lexicon, and zero Canon. Its definition statuses comprise 81 conversation
+recoveries, 42 working definitions, 55 awaiting definition, 12 author-supplied
+definitions, and 13 inferred definitions. The live home page displayed 148
+working definitions and 55 candidates awaiting definition. These are catalog
+counts, not proof of originality or author approval. The public snapshot is not
+a backup of private editorial records.
+
+An earlier reconciliation snapshot had 132 records: 120 Forge, 12 Lexicon,
+and zero Canon. The following figures describe that earlier snapshot, not the
+current catalog. Definition bases comprise 81 conversation recoveries, 26 archive
 recoveries, 12 supplied definitions, and 13 explicitly inferred readings. It is
 not a collection of 132 accepted or original coinages. Fifty-two reviews remain
 open and 80 are operationally resolved; 11 carry definition-conflict flags.
