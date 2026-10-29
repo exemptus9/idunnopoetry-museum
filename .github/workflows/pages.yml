@@ -46,9 +46,11 @@ jobs:
           python-version: "3.12"
 
       - name: Install lexical image renderer
-        run: python -m pip install 'Pillow>=12,<13'
+        run: python -m pip install 'Pillow>=12,<13' 'cairosvg>=2.7,<3'
       - name: Render approved lexical share assets
         run: python scripts/build_lexical_publication.py --input museum-static/observatory/public.json --write
+      - name: Render public project thumbnails before release checks
+        run: python scripts/render_project_brand_assets.py
 
       - uses: actions/setup-node@v4
         with:
@@ -82,9 +84,6 @@ jobs:
         run: |
           python -m pip install 'cairosvg>=2.7,<3'
           python scripts/check_release.py --render-preview
-
-      - name: Render project social previews and favicons
-        run: python scripts/render_project_brand_assets.py
 
       - name: Verify complete museum
         shell: bash
