@@ -7,7 +7,7 @@ import cairosvg
 ROOT = Path(__file__).resolve().parents[1] / "museum-static/assets/brand"
 def main():
     shares=sorted(ROOT.glob("*/share.svg"))
-    assert len(shares)==11, f"Expected 11 named public brands, got {len(shares)}"
+    assert len(shares)==21, f"Expected 21 named project brands, got {len(shares)}"
     for svg in shares:
         folder=svg.parent
         icon=folder/"icon.svg"
