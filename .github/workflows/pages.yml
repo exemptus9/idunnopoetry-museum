@@ -83,6 +83,9 @@ jobs:
           python -m pip install 'cairosvg>=2.7,<3'
           python scripts/check_release.py --render-preview
 
+      - name: Render project social previews and favicons
+        run: python scripts/render_project_brand_assets.py
+
       - name: Verify complete museum
         shell: bash
         run: |
