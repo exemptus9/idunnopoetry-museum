@@ -78,3 +78,40 @@ footer{padding:47px 0 50px;background:#08151c}.footer-grid{display:grid;grid-tem
 .worlds-footnote{font-size:.84rem;line-height:1.65;color:#aac4c3;margin-top:24px}
 @media(max-width:640px){.worlds-controls label{flex-basis:100%}.worlds-controls button{width:100%}.worlds-callout{flex-direction:column}.worlds-section{padding:70px 0}.worlds-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}}
 @media(prefers-reduced-motion:reduce){.atlas-orbit{transition:none}}
+
+
+/* PROJECT MAP / compact by default on phones; visual gallery stays available */
+.worlds-section{padding-top:70px;padding-bottom:65px;position:relative}
+.worlds-section::before{content:"";position:absolute;z-index:-1;pointer-events:none;top:22px;left:-30px;right:-30px;height:460px;background:radial-gradient(ellipse 35% 70% at 9% 22%,#719fa021,transparent 73%),radial-gradient(ellipse 34% 54% at 90% 6%,#d9bc8520,transparent 80%)}
+.worlds-controls.compendium-toolbar{display:grid;grid-template-columns:minmax(200px,2fr) repeat(3,minmax(125px,1fr));gap:9px;align-items:end;margin:18px 0 11px}
+.worlds-controls.compendium-toolbar label{display:grid;gap:5px;min-width:0;flex:none;font-size:.73rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#b5d6cf}
+.worlds-controls.compendium-toolbar input,.worlds-controls.compendium-toolbar select,.worlds-controls.compendium-toolbar button{width:100%;min-height:43px;padding:9px 10px;border-radius:8px;background:#12303e;color:#f6eee0;border:1px solid #779497;font-size:.84rem;letter-spacing:normal;text-transform:none}
+.worlds-controls .view-switch{display:flex;gap:3px;padding:3px;border-radius:10px;background:#203b45;border:1px solid #54747b}
+.worlds-controls .view-switch button{border:0;background:transparent;min-height:35px;padding:6px 9px;cursor:pointer;font-weight:650}
+.worlds-controls .view-switch button[aria-pressed=true]{background:#f0cc94;color:#102833;font-weight:800}
+.worlds-controls.compendium-toolbar .reset-filters{grid-column:4;width:auto;min-width:92px;justify-self:end;background:#264554;cursor:pointer}
+.quick-filters{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:10px 0}.quick-filters>span{color:#a9cfc6;font-size:.73rem;margin-right:4px}
+.quick-filters button{border:1px solid #668d89;background:#1f4247;color:#dbeee5;min-height:34px;padding:6px 11px;border-radius:999px;font-size:.78rem;cursor:pointer}
+.quick-filters button:hover,.quick-filters button:focus-visible{background:#315b59;border-color:#f4d3a4}
+.worlds-results{margin:12px 0 16px}.compendium-empty{border:1px dashed #c9ae88;padding:17px;color:#f0d4a6;border-radius:10px}
+.worlds-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px}
+.atlas-orbit{gap:9px;min-height:0;padding:15px;border-radius:13px;box-shadow:0 12px 24px #030f1630;position:relative;isolation:isolate}
+.atlas-orbit::before{content:"";position:absolute;top:0;left:17px;right:17px;height:1px;background:linear-gradient(90deg,transparent,#c7d7b766,transparent)}
+.atlas-orbit .orbit-cover{border-radius:10px}.atlas-orbit .orbit-icon{margin-top:7px}.atlas-orbit h3{font-size:1.4rem}
+.atlas-orbit p{font-size:.83rem;line-height:1.53}.atlas-orbit .project-bottom{padding-top:10px}
+.atlas-orbit .date-label{font-size:.67rem}.atlas-orbit .project-datestamp{font-size:.76rem}
+.compendium-more{display:flex;justify-content:center;margin:24px 0}.compendium-more button{border:0;border-radius:999px;padding:11px 28px;min-height:46px;background:linear-gradient(120deg,#f2c98d,#a0dfd0);color:#16303b;font-weight:800;cursor:pointer}
+.compendium-more button[hidden]{display:none}.compendium-more button:hover{filter:brightness(1.07)}
+body[data-compendium-view=compact] .worlds-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:9px}
+body[data-compendium-view=compact] .atlas-orbit{display:grid;grid-template-columns:59px minmax(0,1fr);grid-template-rows:auto auto auto auto;align-content:start;gap:1px 12px;padding:12px}
+body[data-compendium-view=compact] .atlas-orbit .project-top{grid-column:2;grid-row:1}
+body[data-compendium-view=compact] .atlas-orbit img{grid-column:1;grid-row:1/span 3;width:59px;height:59px;object-fit:cover;border-radius:12px;margin:0}
+body[data-compendium-view=compact] .atlas-orbit h3{grid-column:2;grid-row:2;margin:2px 0;font-size:1.12rem}
+body[data-compendium-view=compact] .atlas-orbit>p{grid-column:2;grid-row:3;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:.78rem;margin:1px 0 2px}
+body[data-compendium-view=compact] .atlas-orbit .project-bottom{grid-column:1/-1;grid-row:4;margin-top:6px;padding-top:7px;display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:5px 12px}
+body[data-compendium-view=compact] .atlas-orbit .project-datestamp{display:flex;flex-wrap:wrap;gap:5px}
+body[data-compendium-view=compact] .atlas-orbit .project-datestamp .date-label{display:none}
+.worlds-section .worlds-callout{padding:16px 18px;gap:14px;margin-bottom:20px}.worlds-callout p{font-size:.83rem}
+@media(max-width:840px){.worlds-controls.compendium-toolbar{grid-template-columns:repeat(3,minmax(0,1fr))}.worlds-controls.compendium-toolbar .search-field{grid-column:1/-1}.worlds-controls.compendium-toolbar .reset-filters{grid-column:auto;justify-self:stretch}}
+@media(max-width:640px){.worlds-controls.compendium-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.worlds-controls.compendium-toolbar .search-field{grid-column:1/-1}.worlds-controls.compendium-toolbar label{font-size:.7rem}.worlds-section{padding:56px 0}.worlds-callout{flex-direction:row}.worlds-callout img{width:44px;height:44px}.quick-filters{flex-wrap:nowrap;overflow-x:auto;padding:0 0 9px}.quick-filters button{flex:0 0 auto;white-space:nowrap}.worlds-grid{grid-template-columns:1fr}.worlds-controls.compendium-toolbar .reset-filters{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.atlas-orbit{transition:none}}
