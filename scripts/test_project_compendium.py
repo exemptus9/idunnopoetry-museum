@@ -49,6 +49,11 @@ class ProjectCompendiumTests(unittest.TestCase):
                     self.assertTrue((ROOT/"projects"/path).resolve().is_file(),path)
         self.assertIn('data-compendium-view="compact"',CON)
         self.assertIn('data-compendium-view="compact"',ATL)
+    def test_live_controls_in_dom_engine(self):
+        result=subprocess.run(["node",str(ROOT.parent/"scripts/test_compendium_dom.mjs")],
+                              capture_output=True,text=True,timeout=60)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
     def test_navigation_code_is_parseable(self):
         js=ROOT/"atlas/worlds.js"
         result=subprocess.run(["node","--check",str(js)],capture_output=True,text=True,timeout=30)
