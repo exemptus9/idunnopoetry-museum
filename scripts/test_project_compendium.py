@@ -36,7 +36,7 @@ class ProjectCompendiumTests(unittest.TestCase):
             self.assertIn(target,ATL)
         for page in (CON,ATL):
             self.assertIn("sanford-resource-hub.idunnopoetry.chatgpt.site/",page)
-            self.assertIn("185969e0",page)
+            self.assertIn("20706dcc",page)
             for private_url in ("brandon-mirror-private.idunnopoetry.chatgpt.site","synchronicity-atlas-brandon.idunnopoetry.chatgpt.site","threads-observatory-wordsmith.idunnopoetry.chatgpt.site"):
                 self.assertNotIn(private_url,page)
     def test_cards_and_live_assets_are_safe(self):
