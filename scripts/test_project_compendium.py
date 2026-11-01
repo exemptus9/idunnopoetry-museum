@@ -63,5 +63,10 @@ class ProjectCompendiumTests(unittest.TestCase):
         self.assertIn('id="worlds-domain"',ATL)
         self.assertIn('id="project-domain"',CON)
 
+    def test_goal_routes_in_dom_engine(self):
+        result=subprocess.run(["node",str(ROOT.parent/"scripts/test_launchpad_dom.mjs")],
+                              capture_output=True,text=True,timeout=60)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
 if __name__=="__main__":
     unittest.main()
