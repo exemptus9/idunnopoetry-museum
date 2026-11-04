@@ -19,12 +19,17 @@ function exercise(page,mobile){
  assert.equal(all.length,config.expectedCount);
  assert.equal(d.body.dataset.compendiumView,mobile?'compact':'gallery');assert.equal(visible().length,16);assert.ok(!more.hidden);
  stage.value='live';change(stage,'change');assert.equal(visible().length,catalog.stageCounts.live);
+ const sacred=d.getElementById('project-sacred-interval');
+ assert.ok(sacred&&!sacred.hidden,'The independently checked Sacred Interval website is a public destination');
+ assert.equal(sacred.dataset.phase,'website');
+ assert.equal(sacred.querySelector('a.go')?.href,'https://sacred-interval.idunnopoetry.chatgpt.site/');
  domain.value='community';change(domain,'change');assert.ok(visible().some(c=>c.textContent.includes('Sanford Resource Hub')));
  domain.value='all';stage.value='all';change(stage,'change');search.value='Sanford';change(search,'input');
  assert.equal(visible().length,1);assert.equal(visible()[0].querySelector('h3').textContent,'Sanford Resource Hub');assert.equal(new URL(w.location.href).searchParams.get('p'),'Sanford');
  d.querySelector('[data-compendium-shortcut="stage:archive"]').click();assert.equal(visible().length,catalog.stageCounts.archive);assert.equal(stage.value,'archive');
  reset.click();stage.value='concept';change(stage,'change');assert.equal(visible().length,config.concepts.length);assert.ok(visible().every(c=>c.dataset.phase==='concept'));
- assert.ok(visible().some(c=>c.id==='project-sacred-interval'));
+ assert.ok(visible().some(c=>c.id==='project-dab-1'));
+ assert.ok(sacred.hidden,'A public website must no longer be falsely presented as concept-only');
  // Hash links must reveal cards hidden by a filter, without a reload.
  w.history.replaceState({},'','#project-rhymemosaic');w.dispatchEvent(new w.HashChangeEvent('hashchange'));
  assert.equal(d.getElementById('project-rhymemosaic').hidden,false);assert.equal(visible().length,config.expectedCount);
@@ -36,4 +41,4 @@ function exercise(page,mobile){
  dom.window.close();
 }
 for(const mobile of [true,false]){exercise('projects/',mobile);exercise('atlas/',mobile);}
-console.log('PASS: reviewed project inventory, mobile/desktop controls, concepts, hash reveal, sorting, pagination and URL state.');
+console.log('PASS: reviewed project inventory, public website/concept distinction, mobile/desktop controls, hash reveal, sorting, pagination and URL state.');
