@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-04",
+  "sourceChange": "cc79293357a4501ab1b0e8a68315d75382fd2e3e",
+  "publicCatalog": {"baselineProjects": 40, "additionalConcepts": 5, "generatedProjects": 45},
+  "renderCommand": "python scripts/render_project_brand_assets.py",
+  "localValidation": {
+    "surface": "Offline Chromium source fixtures; not live host acceptance",
+    "widths": [390, 1280],
+    "pages": ["projects/", "atlas/"],
+    "checks": ["45 project identities", "5 concepts filter", "10 public routes", "no horizontal overflow", "hash target reveal", "existing public goal routes"],
+    "result": "passed"
+  },
+  "publicationBoundary": "No private documents, private app URLs, new dictionary definitions or poetry bodies published.",
+  "rhymeMosaicCopyControl": "Separate private integration package prepared; not installed on the live ChatGPT Sites host."
+}
