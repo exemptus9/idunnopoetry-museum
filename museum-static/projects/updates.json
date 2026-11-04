@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-04",
+  "baselineCount": 40,
+  "expectedCount": 45,
+  "updates": {
+    "project-rhymemosaic": {"description":"The public poetry reading room combines reading paths, a browser-local queue and a language-practice notebook. The current release record reports v42; literary sources and publication permissions remain separate from interface changes.","date":"2026-11-04","dateLabel":"Public route checked; v42 release record reviewed","when":"Nov 4, 2026"},
+    "project-hydra-index": {"description":"An evidence-conscious compound and research reference. Its current public health endpoint reports release 67529258 ready. Source-linked study reading, the Observatory and research discovery remain its central public routes.","date":"2026-11-04","dateLabel":"Public health endpoint checked · 67529258","when":"Nov 4, 2026"},
+    "project-threads-observatory": {"description":"An owner-only creative studio for post-performance history, source-linked word and poetry intake, and editorial queue review. The current site record reports v15. Private content and publishing approval remain separate.","date":"2026-11-04","dateLabel":"Owner-only source version 15 recorded","when":"Nov 4, 2026"},
+    "project-resonance-atlas-synchronicity": {"description":"An owner-only workspace for recording coincidences, examining patterns and comparing interpretations. Its current site record reports v9. Recorded experiences are not treated as proof of causality.","date":"2026-11-04","dateLabel":"Owner-only source version 9 recorded","when":"Nov 4, 2026"},
+    "project-public-deception-atlas": {"description":"An owner-only source-linked research project about public claims, documented misrepresentation and counterevidence. The current site record reports v15; its private case material is not exposed through this directory.","date":"2026-11-04","dateLabel":"Owner-only source version 15 recorded","when":"Nov 4, 2026"},
+    "project-forge-lexicon": {"description":"The language-development pipeline keeps experiments, exact usage witnesses and reviewed definitions distinct. A new private reconciliation preserves existing public terms and definition history while collecting recent candidates without automatic publication.","date":"2026-11-04","dateLabel":"Private source-preserving lexical reconciliation","when":"Nov 4, 2026"},
+    "project-brandonmeant": {"description":"One half of the poetry diptych. A full-reader proof is undergoing text-extraction, layout and accessibility review; author approval, retailer checks and a verified commercial release remain separate.","date":"2026-11-04","dateLabel":"Private proof review recorded","when":"Nov 4, 2026"},
+    "project-the-wreckage-arranged-me": {"description":"The companion poetry collection remains in private proof review. Revised reader and print files are distinguished from historical text witnesses and from a verified retail publication.","date":"2026-11-04","dateLabel":"Private proof review recorded","when":"Nov 4, 2026"},
+    "project-sanford-resource-hub": {"description":"A public, mobile-oriented guide to local support in Sanford and Lee County: meals, essential services, contacts, maps and practical planning. Provider availability should still be confirmed before travel.","date":"2026-11-04","dateLabel":"Public resource-directory route checked","when":"Nov 4, 2026"},
+    "project-techenlight": {"description":"Public technology services covering device troubleshooting, websites, practical AI and one-to-one tutoring. A direct way to explore service scope and contact the person doing the work.","date":"2026-11-04","dateLabel":"Public service website checked","when":"Nov 4, 2026"}
+  },
+  "concepts": [
+    {"id":"project-sacred-interval","name":"Sacred Interval · Church of Dissociation","domain":"community","category":"Philosophical community · Concept","icon":"constellation","description":"A philosophical and creative community concept with draft texts exploring experience, consent, interpretation and mutual care. It is not presented as a verified institution, treatment service or launched public community."},
+    {"id":"project-dab-1","name":"DAB-1 · Prompting Benchmark","domain":"research","category":"Evaluation research · Concept","icon":"atlas","description":"A retained prompting-comparison experiment with prepared pilot materials. No completed empirical run, measured advantage or validated outcome is claimed."},
+    {"id":"project-eliminating-loneliness","name":"Eliminating Loneliness · Teaching Pilot","domain":"community","category":"Education · Concept","icon":"sanford","description":"A retained teaching and connection-oriented pilot idea. Lesson recovery and a small, testable pilot would precede any claim of delivery or demonstrated benefit."},
+    {"id":"project-burrit-o-clock","name":"Burrit’o’clock","domain":"technology","category":"Speculative product · Concept","icon":"mosaic","description":"A playful product idea kept in the speculative backlog. Its presence here records an idea worth retaining, not an available product or a promise to build it."},
+    {"id":"project-public-interest-lab","name":"Public-interest Creative & Technical Lab","domain":"community","category":"Independent research · Concept","icon":"proof","description":"A possible supporter-funded framework for documented creative and technical work. Funding, institutional status, staffing and delivered fellowships are not established."}
+  ],
+  "now": [
+    {"title":"Read & explore","text":"Start with poetry, the recovered community and language experiments.","href":"https://rhymemosaic.com/","linkLabel":"Open RhymeMosaic"},
+    {"title":"Research & practical tools","text":"HYDRA and the Sanford Resource Hub remain public entry points, with source and availability limits visible.","href":"#project-sanford-resource-hub","linkLabel":"Explore community resources"},
+    {"title":"Words in development","text":"Existing public vocabulary is preserved; the newest word experiments are collected privately for review.","href":"../observatory/","linkLabel":"Visit the published word lab"},
+    {"title":"Beyond finished products","text":"Five retained concepts now have a place on the map, clearly separated from active releases.","href":"?ps=concept","linkLabel":"Browse concepts"}
+  ],
+  "boundaries": [
+    "Public-facing metadata only. No private app URLs, raw conversations, manuscripts, credentials or medical/legal records.",
+    "A review date is not a creation date. Host release records are not claims of full device acceptance.",
+    "Ideas remain concepts until implementation and deployment are independently established.",
+    "No new dictionary entry, poem or private source document is published by this reconciliation."
+  ]
+}

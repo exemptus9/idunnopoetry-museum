@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate public preview PNGs and favicons from reviewed project SVG files."""
+"""Render reviewed public brand assets, then reconcile public project metadata."""
 import io
 from pathlib import Path
 from PIL import Image
@@ -24,5 +24,7 @@ def main():
         with Image.open(folder/"icon-192.png") as img:
             img.save(folder/"favicon.ico",format="ICO",sizes=[(16,16),(32,32),(48,48),(64,64)])
         print(folder.name, "OG:1200x630, icon:192/180, favicon.ico")
+    from reconcile_public_compendium import run
+    run()
 if __name__=="__main__":
     main()
