@@ -25,12 +25,17 @@ function exercise(page,mobile){
  assert.equal(sacred.querySelector('a.go')?.href,'https://sacred-interval.idunnopoetry.chatgpt.site/');
  domain.value='community';change(domain,'change');assert.ok(visible().some(c=>c.textContent.includes('Sanford Resource Hub')));
  domain.value='all';stage.value='all';change(stage,'change');search.value='Sanford';change(search,'input');
- assert.equal(visible().length,1);assert.equal(visible()[0].querySelector('h3').textContent,'Sanford Resource Hub');assert.equal(new URL(w.location.href).searchParams.get('p'),'Sanford');
+ // A truthful cross-link description may mention Sanford in more than one card.
+ // Test all matching IDs rather than assuming a permanently unique keyword.
+ const expectedSanford=all.filter(c=>(c.dataset.search||'').toLowerCase().includes('sanford'));
+ assert.ok(expectedSanford.length>0);
+ assert.deepEqual(visible().map(c=>c.id).sort(),expectedSanford.map(c=>c.id).sort());
+ assert.ok(visible().some(c=>c.id==='project-sanford-resource-hub'));
+ assert.equal(new URL(w.location.href).searchParams.get('p'),'Sanford');
  d.querySelector('[data-compendium-shortcut="stage:archive"]').click();assert.equal(visible().length,catalog.stageCounts.archive);assert.equal(stage.value,'archive');
  reset.click();stage.value='concept';change(stage,'change');assert.equal(visible().length,config.concepts.length);assert.ok(visible().every(c=>c.dataset.phase==='concept'));
  assert.ok(visible().some(c=>c.id==='project-dab-1'));
  assert.ok(sacred.hidden,'A public website must no longer be falsely presented as concept-only');
- // Hash links must reveal cards hidden by a filter, without a reload.
  w.history.replaceState({},'','#project-rhymemosaic');w.dispatchEvent(new w.HashChangeEvent('hashchange'));
  assert.equal(d.getElementById('project-rhymemosaic').hidden,false);assert.equal(visible().length,config.expectedCount);
  const gallery=d.querySelector('.view-switch [data-compendium-view="gallery"]');gallery.click();assert.equal(d.body.dataset.compendiumView,'gallery');assert.equal(gallery.getAttribute('aria-pressed'),'true');
@@ -41,4 +46,4 @@ function exercise(page,mobile){
  dom.window.close();
 }
 for(const mobile of [true,false]){exercise('projects/',mobile);exercise('atlas/',mobile);}
-console.log('PASS: reviewed project inventory, public website/concept distinction, mobile/desktop controls, hash reveal, sorting, pagination and URL state.');
+console.log('PASS: reviewed project inventory, complete keyword matching, public website/concept distinction, mobile/desktop controls, hash reveal, sorting, pagination and URL state.');
