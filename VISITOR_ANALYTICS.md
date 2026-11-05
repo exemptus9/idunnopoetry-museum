@@ -1,33 +1,7 @@
 # Visitor analytics
 
-The public museum is prepared for **Cloudflare Web Analytics**, but collection remains disabled until a Cloudflare Web Analytics site token is supplied.
+The public museum, project directory and Lexical Observatory send anonymous public-page counts to the owner's Creative Traffic Observatory. The museum uses an optional Cloudflare loader separately; its token remains independently configured at deployment and is not required by the Observatory.
 
-## Why this provider
+The Observatory records only approved public section paths, aggregate device and approximate-country categories, referring website names and outbound-link counts. Search/reclaim inputs, archive usernames, review or authoring routes, private materials, form contents, full referring URLs and raw network addresses are not stored in its analytics records. Session identifiers are random and hashed by project and day. Records are retained for up to 180 days.
 
-The museum is a static GitHub Pages application. Cloudflare Web Analytics can be added with a browser beacon without moving DNS or hosting, and the museum does not need to maintain its own visitor database.
-
-## Activation
-
-1. Create a Web Analytics site in Cloudflare for `exemptus9.github.io/idunnopoetry-museum`.
-2. Copy the site token from the Cloudflare beacon snippet.
-3. Set `cloudflareAnalyticsToken` in `museum-static/museum-config.js`.
-4. Push the change. GitHub Pages will redeploy automatically.
-
-Until a token is present, `museum-static/analytics.js` exits immediately and sends no analytics traffic.
-
-## Intended reporting
-
-Once activated, use the provider dashboard for:
-- visits and pageviews
-- entry and exit paths
-- referrers
-- country/region aggregate traffic
-- device, browser, and operating-system mix
-- performance/Core Web Vitals
-- trends over time
-
-The museum uses hash routes such as `#poem/123`, `#forum/...`, and `#media`. The loader declares SPA mode so internal museum navigation can be treated as navigational activity where supported by the provider.
-
-## Privacy boundary
-
-Do not add archive usernames, poem text, search strings, private recovery identifiers, credentials, email addresses, IP addresses, or other recovered private material as custom analytics properties. The analytics layer is for aggregate museum usage only.
+Visitors can turn off the Observatory statistics in `traffic-privacy.html`; Do Not Track and Global Privacy Control are respected. Counts do not identify people or establish anonymity. Historical archive counts are not current audience traffic.

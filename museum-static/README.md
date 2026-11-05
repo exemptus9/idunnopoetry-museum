@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.25**, October 8, 2026.
+Current museum line: **v3.26**, November 4, 2026.
 
 ### Version visibility
 
@@ -131,3 +131,7 @@ The visitor navigation now links directly to the curated Seed Bank and its sourc
 ### v3.25 — Optional Museum Control Center foundation
 
 The public site can apply explicitly approved editorial overlays from a separately authorized Supabase project; the original static archive remains intact. A private HTML editor for Seeds, poetry, forums, members, media, documents and curated pages is installed but unconfigured and unavailable for authenticated editing until hosting, RLS and owner setup are approved. No private notebook contents were committed. See docs/MUSEUM_CONTROL_CENTER.md.
+
+### v3.26 — Anonymous audience statistics
+
+The museum, public project directory, and Lexical Observatory now report anonymous, site-specific traffic counts. Search, reclaim and private review areas remain excluded. Visitors may opt out, and browser privacy signals are respected. See `traffic-privacy.html`.

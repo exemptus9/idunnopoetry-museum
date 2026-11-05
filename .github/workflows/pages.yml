@@ -8,6 +8,7 @@ on:
       - scripts/check_release.py
       - scripts/verify_public_release.py
       - scripts/test_*.py
+      - scripts/test_observatory_traffic.cjs
       - scripts/*preservation*
       - scripts/*canon*
       - .github/workflows/pages.yml
@@ -64,6 +65,7 @@ jobs:
         run: |
           python -m unittest discover -s scripts -p 'test_*.py' -v
           node --check museum-static/museum.js
+          NODE_PATH="$GITHUB_WORKSPACE/scripts/dom-tests/node_modules" node scripts/test_observatory_traffic.cjs
           node --check museum-static/version.js
           node --check museum-static/data/version-history.js
           node scripts/test_lexical_dom.mjs

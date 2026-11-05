@@ -1,5 +1,5 @@
 window.IDP_VERSION_HISTORY={
-  current: "3.25",
+  current: "3.26",
   releases: [
     {
       version: "3.3",
@@ -156,10 +156,18 @@ window.IDP_VERSION_HISTORY={
     {
       version: "3.25",
       date: "2026-10-08",
-      status: "current",
+      status: "confirmed",
       title: "Optional private Museum Control Center foundation",
       summary: "Added role-checked editorial backend migrations, private draft/revision UI, owner-only approval and publishing, and optional public display overlays. Hosted database and owner authentication remain unconfigured; no private Seed Vault source was published.",
       evidence: "museum-secure-editorial-backend GitHub branch and PostgreSQL security tests"
+    },
+    {
+      version: "3.26",
+      date: "2026-11-04",
+      status: "current",
+      title: "Anonymous audience statistics",
+      summary: "Added public-section traffic counts for the museum, project directory and Lexical Observatory, with a visitor opt-out and exclusions for search and private review areas.",
+      evidence: "Museum analytics integration and privacy tests"
     }
   ],
   milestones: [

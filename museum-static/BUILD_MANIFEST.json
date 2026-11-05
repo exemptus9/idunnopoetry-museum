@@ -68,7 +68,11 @@
     "admin/cms-config.js",
     "admin/public-overlay.js",
     "assets/idp-museum-og-v3.25.svg",
-    "assets/idp-museum-og-v3.25.png"
+    "assets/idp-museum-og-v3.25.png",
+    "project-observatory.js",
+    "traffic-privacy.html",
+    "assets/idp-museum-og-v3.26.svg",
+    "assets/idp-museum-og-v3.26.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -119,9 +123,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.25",
-  "build_date": "2026-10-08",
-  "archive_version": "3.25",
+  "build_version": "v3.26",
+  "build_date": "2026-11-04",
+  "archive_version": "3.26",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -180,8 +184,8 @@
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.25.svg",
-    "path": "assets/idp-museum-og-v3.25.png",
+    "source": "assets/idp-museum-og-v3.26.svg",
+    "path": "assets/idp-museum-og-v3.26.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -211,7 +215,7 @@
     "last_successful_scheduled_sync": "2026-10-01T10:35:03Z",
     "automation_status": "Scheduled YouTube sync and downstream GitHub Pages deployment both verified successful on 2026-10-01."
   },
-  "release_note": "v3.25 adds source-preserving public editorial overlays and a disabled-by-default authenticated control-center frontend. The Supabase backend is not provisioned, no owner login has been configured, and no previously private Seed Vault data was deployed.",
+  "release_note": "v3.26 adds anonymous public-section traffic statistics and a browser opt-out; search, reclaim and private review areas are excluded.",
   "visitor_experience": {
     "primary_navigation": [
       "Home",
