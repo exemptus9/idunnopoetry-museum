@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify published release surfaces; optionally rasterize the exact SVG share card."""
+"""Verify published release surfaces; optionally rasterize all generated release assets."""
 import argparse
 import json
 import re
@@ -94,6 +94,11 @@ def main():
     if args.render_preview:
         import cairosvg
         cairosvg.svg2png(url=str(svg), write_to=str(png))
+        # The public project catalog and raster brand assets are generated release
+        # products. Build them before the all-repository regression suite so link
+        # checks validate the same tree that will be deployed.
+        from render_project_brand_assets import main as render_project_brand_assets
+        render_project_brand_assets()
     if not args.source_only:
         raw = png.read_bytes()
         assert raw[:8] == b'\x89PNG\r\n\x1a\n', 'Preview is not PNG'
