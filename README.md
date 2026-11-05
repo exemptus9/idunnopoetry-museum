@@ -1,10 +1,12 @@
 # IDunnoPoetry Messageboard Museum
 
-**Current public museum release: v3.25 · October 8, 2026**
+**Current public museum release: v3.26 · November 4, 2026**
 
 Public site: https://exemptus9.github.io/idunnopoetry-museum/
 
 The deployable museum lives in `museum-static/`. It reconstructs the surviving IDunnoPoetry forum and poetry archive while excluding private-message bodies, credentials, historical email addresses, and IP addresses.
+
+v3.26 adds anonymous public-section audience statistics, privacy controls and separate reporting for the project directory and Lexical Observatory.
 
 v3.25 adds an optional secure Museum Control Center editorial layer to the existing public Seed Bank, with role-checked private drafts, explicit approvals, and audit-safe publication overlays. This code is **disabled until a separately authorized Supabase project and owner account are provisioned**; no private writing is uploaded.
 
