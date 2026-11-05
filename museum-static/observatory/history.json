@@ -22917,6 +22917,875 @@
       "definitionVersions": [],
       "previousHash": "834f4ded1a1d10717ef117d2624a2151b76e68a2b5317e99cf38fc02e5a668fc",
       "hash": "437f40abb88f200670fc24b0e56700c7cefdbc05124575ef4b69ff3e966e0381"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-eloexa",
+      "slug": "eloexa",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-eloexa",
+        "slug": "eloexa",
+        "headword": "Eloexa",
+        "term": "Eloexa",
+        "definition": "The wind of inspiration.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-eloexa-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-11-02",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/DfOLoaJAHnQ"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/eloexa/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-eloexa",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "The wind of inspiration.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "437f40abb88f200670fc24b0e56700c7cefdbc05124575ef4b69ff3e966e0381",
+      "hash": "fdb66d7ced5185ab14ba111ac452c80bd6b3aa178c84ce5c7352982f7e981d89"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-eloette",
+      "slug": "eloette",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-eloette",
+        "slug": "eloette",
+        "headword": "eloette",
+        "term": "eloette",
+        "definition": "One little thing carried in by the wind of inspiration.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-eloette-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-11-02",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/DfOLoaJAHnQ"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/eloette/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-eloette",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "One little thing carried in by the wind of inspiration.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "fdb66d7ced5185ab14ba111ac452c80bd6b3aa178c84ce5c7352982f7e981d89",
+      "hash": "fef01e4daf0c763ff91085e0f90d9d353725c375ab13ebdac39f302cd71438f9"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-aquiancy",
+      "slug": "aquiancy",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-aquiancy",
+        "slug": "aquiancy",
+        "headword": "Aquiancy",
+        "term": "Aquiancy",
+        "definition": "The emerging state of acquiring something not yet fully identified or understood; an intuitive movement toward possession, knowledge, or realization. The sensation of acquiring meaning before knowing precisely what that meaning is.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-aquiancy-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-30",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/DfICAwKltZX"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/aquiancy/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-aquiancy",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "The emerging state of acquiring something not yet fully identified or understood; an intuitive movement toward possession, knowledge, or realization. The sensation of acquiring meaning before knowing precisely what that meaning is.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "fef01e4daf0c763ff91085e0f90d9d353725c375ab13ebdac39f302cd71438f9",
+      "hash": "ea20fb9d19e303977f7af84f29af9267173fb63974379753f13d8985457aea73"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-camelbirding",
+      "slug": "camelbirding",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-camelbirding",
+        "slug": "camelbirding",
+        "headword": "Camelbirding",
+        "term": "Camelbirding",
+        "definition": "The pursuit of improbable possibilities through unconventional observation.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-camelbirding-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-25",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/De7b7e_FtUM"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/camelbirding/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-camelbirding",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "The pursuit of improbable possibilities through unconventional observation.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "ea20fb9d19e303977f7af84f29af9267173fb63974379753f13d8985457aea73",
+      "hash": "515f0debb106e27aa1a35ec3518ca5fd4fc5a6a66607dd1d9f683e422b330415"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-lexignition",
+      "slug": "lexignition",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-lexignition",
+        "slug": "lexignition",
+        "headword": "Lexignition",
+        "term": "Lexignition",
+        "definition": "The catalytic moment when language catches fire in the mind, igniting an accelerating chain reaction of words, meanings, associations, and possibilities.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-lexignition-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-24",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/De5Ecx-EkiS"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/lexignition/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-lexignition",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "The catalytic moment when language catches fire in the mind, igniting an accelerating chain reaction of words, meanings, associations, and possibilities.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "515f0debb106e27aa1a35ec3518ca5fd4fc5a6a66607dd1d9f683e422b330415",
+      "hash": "20d0cfc5f59a9c17db70b23583ef9e728f6aff26e67641c1094eb28bebc35ad0"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-lexideus",
+      "slug": "lexideus",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-lexideus",
+        "slug": "lexideus",
+        "headword": "Lexideus",
+        "term": "Lexideus",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-lexideus-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-24",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/De4ryO5lmdY"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/lexideus/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-lexideus",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "20d0cfc5f59a9c17db70b23583ef9e728f6aff26e67641c1094eb28bebc35ad0",
+      "hash": "d257d1d97309d78a15af8d44299667e565de6d688f32a2f489e674cb1d51e893"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-glossolexia",
+      "slug": "glossolexia",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-glossolexia",
+        "slug": "glossolexia",
+        "headword": "Glossolexia",
+        "term": "Glossolexia",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-glossolexia-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-23",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/De16bZKlu9o"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/glossolexia/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-glossolexia",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "d257d1d97309d78a15af8d44299667e565de6d688f32a2f489e674cb1d51e893",
+      "hash": "ea7031123226aa0b5f15539618f024137dbeb4e634882b5d4f65380748342913"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-viscryptic",
+      "slug": "viscryptic",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-viscryptic",
+        "slug": "viscryptic",
+        "headword": "Viscryptic",
+        "term": "Viscryptic",
+        "definition": "Plainly observable but not intelligible without the knowledge, experience, or interpretive framework necessary to recognize its significance.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-viscryptic-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-29",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/DfFXN-Clg7s"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/viscryptic/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-viscryptic",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "Plainly observable but not intelligible without the knowledge, experience, or interpretive framework necessary to recognize its significance.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "ea7031123226aa0b5f15539618f024137dbeb4e634882b5d4f65380748342913",
+      "hash": "976e2a7d6f05e78d10d341c6c4ac16f5456d55c528a516c309806b77329d3ccb"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-viscrypt",
+      "slug": "viscrypt",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-viscrypt",
+        "slug": "viscrypt",
+        "headword": "Viscrypt",
+        "term": "Viscrypt",
+        "definition": "An openly displayed symbol, message, or structure whose meaning remains concealed from those lacking the means to interpret it.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "origin_undetermined",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "A public @idunnopoetry post supplies a dated account witness. Publication records use, not original priority, sole authorship, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [
+          {
+            "id": "lex-viscrypt-public-post-witness",
+            "visibility": "approved_public",
+            "label": "@idunnopoetry public post — lexical witness",
+            "publicSummary": "A public @idunnopoetry post records this form with the displayed working wording; the post establishes an account witness, not original priority or sole authorship.",
+            "approvedExcerpt": "",
+            "sourceDate": "2026-10-29",
+            "evidence": "supported",
+            "url": "https://www.threads.com/@idunnopoetry/post/DfFXN-Clg7s"
+          }
+        ],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/viscrypt/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "archive_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-viscrypt",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "An openly displayed symbol, message, or structure whose meaning remains concealed from those lacking the means to interpret it.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "976e2a7d6f05e78d10d341c6c4ac16f5456d55c528a516c309806b77329d3ccb",
+      "hash": "1a464d1732daf59eb674f2f9c742060ebf6d5b84f738b68d6b69afcbfe316582"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-karonkyronk",
+      "slug": "karonkyronk",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-karonkyronk",
+        "slug": "karonkyronk",
+        "headword": "karonkyronk",
+        "term": "karonkyronk",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-01. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/karonkyronk/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-karonkyronk",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "1a464d1732daf59eb674f2f9c742060ebf6d5b84f738b68d6b69afcbfe316582",
+      "hash": "691632df659644f22b6cfdde6ca7e3a7dfd080f32f36a9f5f1d31f97bdd9f7fe"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-foremeaning",
+      "slug": "foremeaning",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-foremeaning",
+        "slug": "foremeaning",
+        "headword": "Foremeaning",
+        "term": "Foremeaning",
+        "definition": "Meaning already latent in an event, phrase, symbol, or experience before later context makes its significance fully legible; meaning that precedes its own recognition.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reinterpretation",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from a November 4, 2026 author discussion. The word has earlier historical use; this entry documents a proposed modern personal sense only.",
+        "definitionStatus": "working_definition",
+        "classification": "existing_form_reinterpreted",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Existing forms reinterpreted"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:06:02.057478Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/foremeaning/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "meaning_inferred",
+            "author_decision",
+            "attribution_review"
+          ],
+          "definitionBasis": "conversation_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-foremeaning",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "Meaning already latent in an event, phrase, symbol, or experience before later context makes its significance fully legible; meaning that precedes its own recognition.",
+          "date": "2026-11-05T22:06:02.057478Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "691632df659644f22b6cfdde6ca7e3a7dfd080f32f36a9f5f1d31f97bdd9f7fe",
+      "hash": "a961ed2c6bfa6cb91e5808bc421c412ecb1d0e818680bd82057ff253619bdd86"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "batch",
+      "approvalMethod": "owner_action",
+      "termId": "__batch__",
+      "slug": "",
+      "revision": 2,
+      "recordedAt": "2026-11-05T22:06:02.057478Z",
+      "publicNote": "Author-requested reconciliation of recent lexical intake. All entries remain Forge-level; unresolved definitions, attribution, historical priority, and derivations remain explicitly under review. Batch 4 of 4.",
+      "snapshot": {
+        "changes": 11,
+        "termIds": [
+          "lex-eloexa",
+          "lex-eloette",
+          "lex-aquiancy",
+          "lex-camelbirding",
+          "lex-lexignition",
+          "lex-lexideus",
+          "lex-glossolexia",
+          "lex-viscryptic",
+          "lex-viscrypt",
+          "lex-karonkyronk",
+          "lex-foremeaning"
+        ]
+      },
+      "definitionVersions": [],
+      "previousHash": "a961ed2c6bfa6cb91e5808bc421c412ecb1d0e818680bd82057ff253619bdd86",
+      "hash": "c2be38e6f31ba763b90802d2d582534452be18b00902ffb904dccb471799bb38"
     }
   ]
 }
