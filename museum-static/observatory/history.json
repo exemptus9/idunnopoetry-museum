@@ -23786,6 +23786,780 @@
       "definitionVersions": [],
       "previousHash": "a961ed2c6bfa6cb91e5808bc421c412ecb1d0e818680bd82057ff253619bdd86",
       "hash": "c2be38e6f31ba763b90802d2d582534452be18b00902ffb904dccb471799bb38"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-cortexual",
+      "slug": "cortexual",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-cortexual",
+        "slug": "cortexual",
+        "headword": "Cortexual",
+        "term": "Cortexual",
+        "definition": "Intellectually stimulating; provoking thought, curiosity, imagination, or insight in a way that makes thinking itself pleasurable. Secondary sense: Describing intellectual chemistry or attraction arising through stimulating exchanges of thought.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "supported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-04. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "author_supplied",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/cortexual/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "attribution_review"
+          ],
+          "definitionBasis": "author_supplied",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-cortexual",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "Intellectually stimulating; provoking thought, curiosity, imagination, or insight in a way that makes thinking itself pleasurable. Secondary sense: Describing intellectual chemistry or attraction arising through stimulating exchanges of thought.",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "c2be38e6f31ba763b90802d2d582534452be18b00902ffb904dccb471799bb38",
+      "hash": "c56adf94113e4324aa3d1e46fc206dcfd0502fca5795a18fbd9736b8582137c3"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-lexearching",
+      "slug": "lexearching",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-lexearching",
+        "slug": "lexearching",
+        "headword": "lexearching",
+        "term": "lexearching",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-03. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/lexearching/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-lexearching",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "c56adf94113e4324aa3d1e46fc206dcfd0502fca5795a18fbd9736b8582137c3",
+      "hash": "51406b2d8b550757f33a5f00d8ad46ec77037af2b338a3d63fba0e6e5ba3c041"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-lexploration",
+      "slug": "lexploration",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-lexploration",
+        "slug": "lexploration",
+        "headword": "lexploration",
+        "term": "lexploration",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-03. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/lexploration/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-lexploration",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "51406b2d8b550757f33a5f00d8ad46ec77037af2b338a3d63fba0e6e5ba3c041",
+      "hash": "8a296a0ef25af555d3af7976514999a8e1fa64f239d078b96e76fc869e4e2d75"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-lexiquiry",
+      "slug": "lexiquiry",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-lexiquiry",
+        "slug": "lexiquiry",
+        "headword": "lexiquiry",
+        "term": "lexiquiry",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-03. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/lexiquiry/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-lexiquiry",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "8a296a0ef25af555d3af7976514999a8e1fa64f239d078b96e76fc869e4e2d75",
+      "hash": "c1c2df0b06e73d7a1dacc9291a55eac6c6bbfb1e071f0dc61447a204da497732"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-vibrato-bravado",
+      "slug": "vibrato-bravado",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-vibrato-bravado",
+        "slug": "vibrato-bravado",
+        "headword": "vibrato bravado",
+        "term": "vibrato bravado",
+        "definition": "The outward expression of courage or resolve while fear, doubt, or vulnerability remains perceptible, especially in a voice that trembles but continues to speak.",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-03. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "working_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/vibrato-bravado/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "author_decision",
+            "attribution_review"
+          ],
+          "definitionBasis": "conversation_recovered",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-vibrato-bravado",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "The outward expression of courage or resolve while fear, doubt, or vulnerability remains perceptible, especially in a voice that trembles but continues to speak.",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "c1c2df0b06e73d7a1dacc9291a55eac6c6bbfb1e071f0dc61447a204da497732",
+      "hash": "52846ceae90ed937643d402f80cb8011b25bffcd84b43c540ba850fb77b3cc04"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-sobrato",
+      "slug": "sobrato",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-sobrato",
+        "slug": "sobrato",
+        "headword": "Sobrato",
+        "term": "Sobrato",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-11-03. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/sobrato/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-sobrato",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "52846ceae90ed937643d402f80cb8011b25bffcd84b43c540ba850fb77b3cc04",
+      "hash": "5ef18e71500461ada98cfa7da5ce03fe492a0ed3697c07c8021c52c673c7e15a"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-exocryptic",
+      "slug": "exocryptic",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-exocryptic",
+        "slug": "exocryptic",
+        "headword": "Exocryptic",
+        "term": "Exocryptic",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-10-29. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/exocryptic/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-exocryptic",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "5ef18e71500461ada98cfa7da5ce03fe492a0ed3697c07c8021c52c673c7e15a",
+      "hash": "b3002a38827c378ea43358a135f38a6b7f938e9d6a592a083d31dab07abac7fb"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-goddian",
+      "slug": "goddian",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-goddian",
+        "slug": "goddian",
+        "headword": "Goddian",
+        "term": "Goddian",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-10-29. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/goddian/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-goddian",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "b3002a38827c378ea43358a135f38a6b7f938e9d6a592a083d31dab07abac7fb",
+      "hash": "e1966cf1ece2dbb34018e484d3a6d0ce8ecb1fc16c4b904b00f21fd4e7146298"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-explivolution",
+      "slug": "explivolution",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-explivolution",
+        "slug": "explivolution",
+        "headword": "explivolution",
+        "term": "explivolution",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-10-29. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "coinage_candidate",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Coinage candidates"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/explivolution/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-explivolution",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "e1966cf1ece2dbb34018e484d3a6d0ce8ecb1fc16c4b904b00f21fd4e7146298",
+      "hash": "44e1183e344b065dc12dffd7249bed8c5116f100e588ec17294e7e922e18891a"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-hierarchical-conscription",
+      "slug": "hierarchical-conscription",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-hierarchical-conscription",
+        "slug": "hierarchical-conscription",
+        "headword": "hierarchical conscription",
+        "term": "hierarchical conscription",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-10-29. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "expression",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Expressions and phrases"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/hierarchical-conscription/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-hierarchical-conscription",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "44e1183e344b065dc12dffd7249bed8c5116f100e588ec17294e7e922e18891a",
+      "hash": "7f7e0ce2dff1cf92c823a7b9128421a9f0fbfe2f940a583e26639c41190b65b4"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "create",
+      "approvalMethod": "owner_action",
+      "termId": "lex-the-straw-that-strengthens-camel-backs",
+      "slug": "the-straw-that-strengthens-camel-backs",
+      "revision": 1,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status.",
+      "snapshot": {
+        "id": "lex-the-straw-that-strengthens-camel-backs",
+        "slug": "the-straw-that-strengthens-camel-backs",
+        "headword": "The straw that strengthens camel backs",
+        "term": "The straw that strengthens camel backs",
+        "definition": "",
+        "stage": "forge",
+        "visibility": "approved_public",
+        "revision": 1,
+        "formation": "",
+        "roots": [],
+        "domains": [],
+        "variants": [],
+        "authorship": "author_reported",
+        "evidenceStrength": "reported",
+        "earliestVerifiedDate": null,
+        "provenanceSummary": "Recorded from an author discussion dated 2026-10-29. This Forge capture preserves the form and available context without asserting original priority, proven derivation, or Canon status.",
+        "definitionStatus": "awaiting_definition",
+        "classification": "literary_wordplay",
+        "editorialReview": {
+          "shortReason": "Recent author/source recovery; public Forge review remains open. No Canon approval."
+        },
+        "collections": [
+          "Literary wordplay"
+        ],
+        "tags": [],
+        "analysis": null,
+        "witnesses": [],
+        "corpus": [],
+        "publication": {
+          "approvedAt": "2026-11-05T22:08:41.709845Z",
+          "approvedRevision": 1,
+          "approvalMethod": "owner_action"
+        },
+        "permalink": "word/the-straw-that-strengthens-camel-backs/",
+        "review": {
+          "state": "open",
+          "flags": [
+            "definition_needed",
+            "attribution_review",
+            "author_decision"
+          ],
+          "definitionBasis": "unknown",
+          "note": "Forge capture only. Meaning, attribution, and source history remain open unless explicitly stated; no Lexicon or Canon promotion is implied."
+        }
+      },
+      "definitionVersions": [
+        {
+          "termId": "lex-the-straw-that-strengthens-camel-backs",
+          "version": 1,
+          "visibility": "approved_public",
+          "definition": "",
+          "date": "2026-11-05T22:08:41.709845Z",
+          "note": "Author requested reconciliation of recent lexical intake into the public Forge. This records a working or pending entry without asserting originality or Canon status."
+        }
+      ],
+      "previousHash": "7f7e0ce2dff1cf92c823a7b9128421a9f0fbfe2f940a583e26639c41190b65b4",
+      "hash": "1560deac8424802c582911c5f1c45b3a9f85bdb5a00ab80eaee3803ecba0701c"
+    },
+    {
+      "actor": "exemptus9",
+      "action": "batch",
+      "approvalMethod": "owner_action",
+      "termId": "__batch__",
+      "slug": "",
+      "revision": 3,
+      "recordedAt": "2026-11-05T22:08:41.709845Z",
+      "publicNote": "Author-requested reconciliation of recent lexical intake. All entries remain Forge-level; unresolved definitions, attribution, historical priority, and derivations remain explicitly under review. Batch 1 of 4.",
+      "snapshot": {
+        "changes": 11,
+        "termIds": [
+          "lex-cortexual",
+          "lex-lexearching",
+          "lex-lexploration",
+          "lex-lexiquiry",
+          "lex-vibrato-bravado",
+          "lex-sobrato",
+          "lex-exocryptic",
+          "lex-goddian",
+          "lex-explivolution",
+          "lex-hierarchical-conscription",
+          "lex-the-straw-that-strengthens-camel-backs"
+        ]
+      },
+      "definitionVersions": [],
+      "previousHash": "1560deac8424802c582911c5f1c45b3a9f85bdb5a00ab80eaee3803ecba0701c",
+      "hash": "e442442eee86eb01d7556d07af9fc03d3b3c3f3a5c6972e00e1f32c39d7f3bc9"
     }
   ]
 }
