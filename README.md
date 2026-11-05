@@ -1,10 +1,12 @@
 # IDunnoPoetry Messageboard Museum
 
-**Current public museum release: v3.26 · November 4, 2026**
+**Current public museum release: v3.27 · November 5, 2026**
 
 Public site: https://exemptus9.github.io/idunnopoetry-museum/
 
 The deployable museum lives in `museum-static/`. It reconstructs the surviving IDunnoPoetry forum and poetry archive while excluding private-message bodies, credentials, historical email addresses, and IP addresses.
+
+v3.27 clarifies how older audience records are cleaned during activity.
 
 v3.26 adds anonymous public-section audience statistics, privacy controls and separate reporting for the project directory and Lexical Observatory.
 

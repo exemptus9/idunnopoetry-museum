@@ -1,1 +1,1 @@
-window.IDP_CONFIG={version:'3.26',releaseDate:'2026-11-04',releaseName:'Privacy-conscious audience statistics',mediaBaseUrl:'',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic',cloudflareAnalyticsToken:''};
+window.IDP_CONFIG={version:'3.27',releaseDate:'2026-11-05',releaseName:'Clear audience-data retention',mediaBaseUrl:'',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic',cloudflareAnalyticsToken:''};

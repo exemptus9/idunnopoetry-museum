@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.26**, November 4, 2026.
+Current museum line: **v3.27**, November 5, 2026.
 
 ### Version visibility
 
@@ -135,3 +135,7 @@ The public site can apply explicitly approved editorial overlays from a separate
 ### v3.26 — Anonymous audience statistics
 
 The museum, public project directory, and Lexical Observatory now report anonymous, site-specific traffic counts. Search, reclaim and private review areas remain excluded. Visitors may opt out, and browser privacy signals are respected. See `traffic-privacy.html`.
+
+### v3.27 — Clear audience-data retention
+
+The visitor privacy notice now explains the 180-day reporting window and activity-triggered cleanup of older records.
