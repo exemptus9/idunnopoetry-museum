@@ -1,5 +1,5 @@
 window.IDP_VERSION_HISTORY={
-  current: "3.26",
+  current: "3.27",
   releases: [
     {
       version: "3.3",
@@ -164,10 +164,18 @@ window.IDP_VERSION_HISTORY={
     {
       version: "3.26",
       date: "2026-11-04",
-      status: "current",
+      status: "confirmed",
       title: "Anonymous audience statistics",
       summary: "Added public-section traffic counts for the museum, project directory and Lexical Observatory, with a visitor opt-out and exclusions for search and private review areas.",
       evidence: "Museum analytics integration and privacy tests"
+    },
+    {
+      version: "3.27",
+      date: "2026-11-05",
+      status: "current",
+      title: "Clear audience-data retention",
+      summary: "Clarified the 180-day reporting window and the activity-triggered cleanup of older audience records.",
+      evidence: "Audience statistics privacy notice and cleanup implementation"
     }
   ],
   milestones: [
