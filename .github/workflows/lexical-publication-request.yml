@@ -63,6 +63,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install 'cairosvg>=2.7,<3'
+          python scripts/render_project_brand_assets.py
           python scripts/check_release.py --render-preview
           python -m unittest discover -s scripts -p 'test_*.py' -v
           node --check museum-static/observatory/app.js
