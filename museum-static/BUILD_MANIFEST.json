@@ -256,8 +256,9 @@
     "note": "No detailed museum visitor telemetry is being collected until a site token is configured."
   },
   "poem_date_reconciliation": {
-    "release": "poem-dates-2026-11-23-v1",
+    "release": "poem-dates-2026-11-23-v2",
     "existing_records": 234,
-    "interpolated_records": 101
+    "interpolated_records": 109,
+    "source_based_writing_estimates": true
   }
 }
