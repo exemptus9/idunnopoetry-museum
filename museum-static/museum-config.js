@@ -1,1 +1,1 @@
-window.IDP_CONFIG={version:'3.27',releaseDate:'2026-11-05',releaseName:'Clear audience-data retention',mediaBaseUrl:'',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic',cloudflareAnalyticsToken:''};
+window.IDP_CONFIG={version:'3.28',releaseDate:'2026-11-23',releaseName:'Reconciled poem dates',mediaBaseUrl:'',archiveOwner:'Brandon WordSmith',contactLabel:'Recovery / archive contact',contactUrl:'https://rhymemosaic.com',siteLabel:'RhymeMosaic',cloudflareAnalyticsToken:''};

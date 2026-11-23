@@ -98,7 +98,7 @@ Edit `museum-config.js` to change the archive owner/contact destination.
 
 ## Build
 
-Current museum line: **v3.27**, November 5, 2026.
+Current museum line: **v3.28**, November 23, 2026.
 
 ### Version visibility
 
@@ -139,3 +139,5 @@ The museum, public project directory, and Lexical Observatory now report anonymo
 ### v3.27 — Clear audience-data retention
 
 The visitor privacy notice now explains the 180-day reporting window and activity-triggered cleanup of older records.
+
+The 2026-11-23 chronology adds date-only overlays for 234 existing Brandon records. It preserves source post timestamps and marks every interpolated estimate. No poem texts or publication permissions change.

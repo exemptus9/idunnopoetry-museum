@@ -1,6 +1,7 @@
 window.IDP_VERSION_HISTORY={
-  current: "3.27",
+  current: "3.28",
   releases: [
+    {version: "3.28", date: "2026-11-23", status: "current", title: "Reconciled poem dates", summary: "Writing associations, publication evidence and visibly labeled interpolation accompany existing Brandon poem records. Original timestamps and text remain intact.", evidence: "Poem date reconciliation 2026-11-23"},
     {
       version: "3.3",
       date: "2026-09-23",
@@ -172,7 +173,7 @@ window.IDP_VERSION_HISTORY={
     {
       version: "3.27",
       date: "2026-11-05",
-      status: "current",
+      status: "confirmed",
       title: "Clear audience-data retention",
       summary: "Clarified the 180-day reporting window and the activity-triggered cleanup of older audience records.",
       evidence: "Audience statistics privacy notice and cleanup implementation"

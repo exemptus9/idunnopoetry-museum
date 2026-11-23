@@ -74,7 +74,10 @@
     "assets/idp-museum-og-v3.26.svg",
     "assets/idp-museum-og-v3.26.png",
     "assets/idp-museum-og-v3.27.svg",
-    "assets/idp-museum-og-v3.27.png"
+    "assets/idp-museum-og-v3.27.png",
+    "data/poem-chronology.js",
+    "assets/idp-museum-og-v3.28.svg",
+    "assets/idp-museum-og-v3.28.png"
   ],
   "recovery_overlay": {
     "permanent_source": "WordPress.com WXR export captured 2026-09-23 and offline enriched archive",
@@ -90,7 +93,7 @@
       "Nice Future",
       "Love Burden"
     ],
-    "probable_community_work": "If I Could (unfinished) — angelplaya",
+    "probable_community_work": "If I Could (unfinished) \u2014 angelplaya",
     "privacy": "No private messages, email addresses, IP addresses, credentials, or password material are added by the recovery overlay."
   },
   "interface_reconstruction": {
@@ -125,9 +128,9 @@
     "last_post_link_behavior": "Recovered icon_latest_reply.gif links to the final surviving 20-post page for each topic",
     "topic_author_visibility": "Forum topic lists show each thread starter both in the traditional Author column and inline beneath the topic title; inline attribution remains visible on narrow/mobile layouts. Topic search results and topic headers also identify the starter where recoverable."
   },
-  "build_version": "v3.27",
-  "build_date": "2026-11-05",
-  "archive_version": "3.27",
+  "build_version": "v3.28",
+  "build_date": "2026-11-23",
+  "archive_version": "3.28",
   "creative_archive": {
     "seeds_section": true,
     "provenance_metadata": true,
@@ -186,8 +189,8 @@
     }
   },
   "social_preview": {
-    "source": "assets/idp-museum-og-v3.27.svg",
-    "path": "assets/idp-museum-og-v3.27.png",
+    "source": "assets/idp-museum-og-v3.28.svg",
+    "path": "assets/idp-museum-og-v3.28.png",
     "width": 1200,
     "height": 630,
     "rendered_during_deployment": true
@@ -251,5 +254,10 @@
     "blocker": "Set GitHub repository variable or secret CLOUDFLARE_ANALYTICS_TOKEN after creating the Cloudflare Web Analytics site.",
     "historical_backfill": false,
     "note": "No detailed museum visitor telemetry is being collected until a site token is configured."
+  },
+  "poem_date_reconciliation": {
+    "release": "poem-dates-2026-11-23-v1",
+    "existing_records": 234,
+    "interpolated_records": 101
   }
 }
