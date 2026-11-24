@@ -93,7 +93,7 @@
       "Nice Future",
       "Love Burden"
     ],
-    "probable_community_work": "If I Could (unfinished) — angelplaya",
+    "probable_community_work": "If I Could (unfinished) \u2014 angelplaya",
     "privacy": "No private messages, email addresses, IP addresses, credentials, or password material are added by the recovery overlay."
   },
   "interface_reconstruction": {
@@ -256,7 +256,7 @@
     "note": "No detailed museum visitor telemetry is being collected until a site token is configured."
   },
   "poem_date_reconciliation": {
-    "release": "poem-dates-2026-11-23-v4",
+    "release": "poem-dates-2026-11-23-v5",
     "existing_records": 234,
     "interpolated_records": 109,
     "source_based_writing_estimates": true
