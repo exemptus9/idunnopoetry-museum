@@ -142,8 +142,7 @@ def finish_page(page, data, counts, atlas=False):
         heading_rx = r'(<h2 id="group-' + re.escape(stage) + r'">[\s\S]*?<span class="count">)\d+(</span>)'
         page = re.sub(heading_rx, lambda m, n=count: m.group(1) + str(n) + m.group(2), page)
     page = re.sub(r'\b40(?= (?:projects|project|curated|source-labeled|creative|connected))', str(data['expectedCount']), page)
-    if data['expectedCount'] == 45:
-        page = page.replace('Forty connected projects:', 'Forty-five connected projects:')
+    page = page.replace('Forty connected projects:', f"{data['expectedCount']} connected projects:")
     stamp = date.fromisoformat(data['reviewedOn']).strftime('%B %d, %Y').replace(' 0', ' ')
     page = re.sub(r'Directory reconciled <time datetime="[^"]+">[^<]+</time>', 'Directory reconciled <time datetime="' + data['reviewedOn'] + '">' + stamp + '</time>', page)
     page = re.sub(r'Status was reviewed on [A-Z][a-z]+ \d{1,2}, \d{4}\.', 'Status was reviewed on ' + stamp + '.', page)

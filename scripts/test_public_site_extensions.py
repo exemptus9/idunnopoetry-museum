@@ -14,16 +14,26 @@ CONFIG=json.loads((ROOT/'museum-static/projects/updates.json').read_text())
 class PublicSiteExtensionTests(unittest.TestCase):
     def test_existing_identity_promoted_without_duplication(self):
         sites=CONFIG['publishedProjects']
-        self.assertEqual(len(sites),1)
-        self.assertEqual(sites[0]['id'],'project-sacred-interval')
-        self.assertNotIn(sites[0]['id'],{c['id'] for c in CONFIG['concepts']})
-        card=renderer.public_site_card(sites[0],CONFIG['publicSiteAllowlist'])
-        record=renderer.inspect(card)
-        self.assertEqual(record['id'],'project-sacred-interval')
-        self.assertEqual(record['stage'],'live')
-        self.assertEqual(record['phase'],'website')
-        self.assertEqual(record['links'][0]['href'],sites[0]['url'])
-        self.assertIn('institutional status',record['description'])
+        expected = {
+            'project-sacred-interval': 'https://sacred-interval.idunnopoetry.chatgpt.site/',
+            'project-porchbraid': 'https://goodfolk-social.idunnopoetry.chatgpt.site/',
+            'project-traffic-with-intent': 'https://night-freight-underworld.idunnopoetry.chatgpt.site/',
+        }
+        self.assertEqual(len(sites), len(expected))
+        self.assertEqual({item['id']: item['url'] for item in sites}, expected)
+        self.assertEqual(set(CONFIG['publicSiteAllowlist']), set(expected.values()))
+        concept_ids = {item['id'] for item in CONFIG['concepts']}
+        self.assertTrue(concept_ids.isdisjoint(expected))
+        for item in sites:
+            with self.subTest(project=item['id']):
+                card = renderer.public_site_card(item, CONFIG['publicSiteAllowlist'])
+                record = renderer.inspect(card)
+                self.assertEqual(record['id'], item['id'])
+                self.assertEqual(record['stage'], 'live')
+                self.assertEqual(record['phase'], 'website')
+                self.assertEqual(record['links'][0]['href'], expected[item['id']])
+                if item['id'] == 'project-sacred-interval':
+                    self.assertIn('institutional status', record['description'])
     def test_unreviewed_or_private_endpoints_rejected(self):
         for url in ('javascript:alert(1)','https://example.com/','https://brandon-mirror-private.idunnopoetry.chatgpt.site/','https://sacred-interval.idunnopoetry.chatgpt.site/\n'):
             item=copy.deepcopy(CONFIG['publishedProjects'][0]);item['url']=url
